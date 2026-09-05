@@ -2441,7 +2441,7 @@ if(session && session.date === todayStr()){
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/Shell-FOS-APK/sw.js')
+        navigator.serviceWorker.register('./sw.js')
           .then(reg => console.log('Service Worker registered:', reg.scope))
           .catch(err => console.log('SW registration failed:', err));
       });

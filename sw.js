@@ -1,13 +1,14 @@
 // Shell FOS — minimal service worker.
-// Scope matches manifest.json's "scope"/"start_url": /Shell-FOS-APK/.
+// Scope matches manifest.json's "scope"/"start_url": relative to wherever
+// this file is deployed (currently /reporting/).
 // Bump CACHE_NAME whenever you deploy a new index.html so old clients
 // pick up the change instead of serving a stale cached copy.
-const CACHE_NAME = 'shell-fos-v1';
+const CACHE_NAME = 'shell-fos-v2';
 
 const CORE_ASSETS = [
-  '/Shell-FOS-APK/',
-  '/Shell-FOS-APK/index.html',
-  '/Shell-FOS-APK/manifest.json'
+  './',
+  './index.html',
+  './manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
