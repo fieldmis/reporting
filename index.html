@@ -728,9 +728,10 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 /* ====================== CONFIG ====================== */
 const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbyTgdS7h7qM3Hg8bXFIegr1KRsuvEBG-JLT3WA10F_t0fvAE5xgDxzNKd7LT2Fk5-DC/exec",
-  // Apps Script Web App "/exec" URL that receives the Visit Report wizard submission.
-  // This was the endpoint used by the old standalone Daily Visit MIS form — point it
-  // at whichever deployment writes into your tracker Sheet.
+  // Separate Apps Script Web App deployment — the "Daily Visit MIS" handler
+  // bound to the "Daily Contribution Report" spreadsheet's "Merged Data" tab.
+  // It expects a raw { answers: {...} } body (question-id keys), no "action"
+  // wrapper — do not route this through API_URL/api().
   VISIT_REPORT_SUBMIT_URL: "https://script.google.com/macros/s/AKfycby4iTnuXi_vbLAB-YgzSJ2AfIbHoa9Y5WB0GOPnZpM6PE2p3uNb8ScOtHVOnHFRmLoAFQ/exec",
   WHATSAPP_GROUP_INVITE: "https://chat.whatsapp.com/E4R9B2fVwKW2xzJT7gCopd"
 };
@@ -2032,8 +2033,11 @@ const VisitForm = (function(){
     }
 
     const target = page.branch(answers);
-    history.push(currentPage);
     if(target === 'SUBMIT'){
+      // Don't push currentPage onto history here — getPathQuestionIds()
+      // below also appends currentPage itself, so pushing it here as well
+      // made the final page's question ids (and answers) appear twice in
+      // the submitted payload and the on-screen summary.
       lockActiveBlock();
       navBar.style.display = 'none';
       // Capture a location selfie (shared to WhatsApp, same as other app
@@ -2042,6 +2046,7 @@ const VisitForm = (function(){
       openCamera('visitform');
       return;
     }
+    history.push(currentPage);
     render(target);
   }
 
@@ -2116,7 +2121,7 @@ const VisitForm = (function(){
     return ids;
   }
 
-  function finishSubmit(){
+  async function finishSubmit(){
     navBar.style.display = 'none';
 
     const pathIds = getPathQuestionIds();
@@ -2141,9 +2146,6 @@ const VisitForm = (function(){
       lines.push(`${String(id).padStart(2,'0')}. ${q.label}\n    -> ${display}`);
     });
 
-    const submitUrl = CONFIG.VISIT_REPORT_SUBMIT_URL;
-    const submitting = submitUrl && !submitUrl.startsWith('PASTE_');
-
     // Remove the earlier (now-locked) wizard pages so only the final
     // summary + "Back to Dashboard" button remain on screen.
     card.innerHTML = '';
@@ -2153,10 +2155,8 @@ const VisitForm = (function(){
     doneBlock.innerHTML = `
       <div class="vfDone">
         <div class="vfDoneMark">&#10003;</div>
-        <h2>Visit report ready</h2>
-        <p>${submitting
-          ? 'Your responses passed validation and are being sent to the tracker sheet.'
-          : 'Your responses passed validation. Set VISIT_REPORT_SUBMIT_URL in CONFIG to your Apps Script Web App endpoint to send this straight to your Sheet.'}</p>
+        <h2 id="vfDoneTitle">Submitting…</h2>
+        <p id="vfDoneMsg">Sending your responses to the tracker sheet…</p>
         <div class="vfSummary">${lines.length ? vfEsc(lines.join('\n\n')) : '(DB Meet — no further details required.)'}</div>
         <button class="btn primary" type="button" onclick="showScreen('screen-dashboard')">Back to Dashboard</button>
       </div>
@@ -2164,13 +2164,43 @@ const VisitForm = (function(){
     card.appendChild(doneBlock);
     doneBlock.scrollIntoView({behavior:'smooth', block:'start'});
 
-    if(submitting){
-      fetch(submitUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
+    // Routed directly to the Daily Visit MIS Apps Script (VISIT_REPORT_SUBMIT_URL),
+    // matching the { answers: {...} } shape its doPost() actually parses.
+    // We attempt a normal (cors-mode) fetch so we can read back a real
+    // status instead of guessing — Apps Script Web Apps sometimes can't be
+    // read this way due to how script.google.com redirects to
+    // script.googleusercontent.com, in which case the request still reaches
+    // doPost and the row still gets appended server-side; we just can't
+    // confirm it from here, so that case gets an honest "unconfirmed"
+    // message rather than a false "success" or false "failure".
+    const titleEl = document.getElementById('vfDoneTitle');
+    const msgEl = document.getElementById('vfDoneMsg');
+    const submitUrl = CONFIG.VISIT_REPORT_SUBMIT_URL;
+    if(!submitUrl || submitUrl.startsWith('PASTE_')){
+      titleEl.textContent = 'Not submitted';
+      msgEl.textContent = 'VISIT_REPORT_SUBMIT_URL is not configured.';
+      return;
+    }
+    try{
+      const res = await fetch(submitUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ answers: pathAnswers })
-      }).catch(()=>{ /* network errors are silently ignored under no-cors */ });
+      });
+      const data = await res.json();
+      if(data && data.status === 'ok'){
+        titleEl.textContent = 'Visit report submitted';
+        msgEl.textContent = 'Your responses were saved to the tracker sheet.';
+      } else {
+        titleEl.textContent = 'Submission failed';
+        msgEl.textContent = (data && data.message) || 'The server reported an error saving your responses.';
+      }
+    }catch(e){
+      // Could not read the response (often a CORS/redirect quirk with Apps
+      // Script, not necessarily a real failure) — the row may still have
+      // been written. Say so plainly rather than claiming success.
+      titleEl.textContent = 'Submitted — could not confirm';
+      msgEl.textContent = 'Your responses were sent, but we could not confirm the server received them. Please check the tracker sheet.';
     }
   }
 
