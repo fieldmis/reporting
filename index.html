@@ -1993,7 +1993,7 @@ const VisitForm = (function(){
     return true;
   }
 
-  function validatePage(pageId, silent){
+   function validatePage(pageId, silent){
     const page = PAGES[pageId];
     let mainIds = page.ids;
     let extraIds = [];
@@ -2001,8 +2001,15 @@ const VisitForm = (function(){
     if(page.conditional){
       extraIds = page.conditional.extraIds;
       mainIds = page.ids.filter(id=>!extraIds.includes(id));
-      const trig = answers[page.conditional.trigger];
-      extraActive = trig && trig.choice === page.conditional.showValue;
+      // Read the live DOM instead of answers[trigger] — answers[trigger]
+      // is only populated later in this same pass (see the trigger id's
+      // own validateField call below), so on the very first Next click
+      // it's still undefined here. That made extraActive false even when
+      // "Order Collected" was checked and Q8/Q9 were filled in, so the
+      // block below deleted answers[8]/answers[9] before they were ever
+      // read — the values never reached finishSubmit() or the Sheet.
+      const triggerEl = card.querySelector(`input[name="vfRadio_${page.conditional.trigger}"]:checked`);
+      extraActive = !!triggerEl && triggerEl.value === page.conditional.showValue;
     }
     let valid = true;
     let firstInvalidId = null;
