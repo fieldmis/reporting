@@ -1509,7 +1509,7 @@ function buildBarChart(containerId, days, field, unit){
 
 function buildRing(containerId, value, target){
   const pct = target>0 ? Math.min(1, value/target) : 0;
-  const r = 48, c = 2*Math.PI*r;
+  const r = 40, c = 2*Math.PI*r;
   document.getElementById(containerId).innerHTML = `
     <svg viewBox="0 0 100 100" width="118" height="118">
       <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
