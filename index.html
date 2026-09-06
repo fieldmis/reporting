@@ -1236,7 +1236,7 @@ async function doCaptureSelfie(){
   // canvas via ctx.scale(), so geolocation, map-tile fetching, and every
   // proportion on the stamp panel are completely unaffected; the photo
   // just comes out sharper.
-  const PHOTO_SCALE = 4;
+  const PHOTO_SCALE = 3;
   const logicalW = video.videoWidth || 720;
   const logicalH = video.videoHeight || 960;
   canvas.width = logicalW * PHOTO_SCALE;
@@ -1509,7 +1509,7 @@ function buildBarChart(containerId, days, field, unit){
 
 function buildRing(containerId, value, target){
   const pct = target>0 ? Math.min(1, value/target) : 0;
-  const r = 40, c = 2*Math.PI*r;
+  const r = 42, c = 2*Math.PI*r;
   document.getElementById(containerId).innerHTML = `
     <svg viewBox="0 0 100 100" width="118" height="118">
       <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1593,8 +1593,8 @@ const VisitForm = (function(){
     bizom:  /^(?!.*\s)[0-9]{4,6}$/,
     share:  /^(?!.*\s)[a-zA-Z0-9]{8,10}$/,
     ltr:    /^[0-9]{1,4}$/,
-    other:  /^[\s\S]{2,200}$/,
-    para:   /^[\s\S]{2,1000}$/
+    other:  /^[\s\S]{1,100}$/,
+    para:   /^[\s\S]{1,300}$/
   };
 
   const DISTRIBUTORS = [
@@ -1667,7 +1667,7 @@ const VisitForm = (function(){
            {label:"Issue Resolution", value:"Issue Resolution"},
            {label:"Other", value:"__other__", other:true}
          ]},
-    25:{ type:"textarea", label:"Remarks of the Outcome ( Mentioned Number of Coupons Scanned against Target )", required:true, rx:RX.para, err:"Enter a remark of at least 5 characters." },
+    25:{ type:"textarea", label:"Remarks of the Outcome ( Mentioned Number of Coupons Scanned against Target )", required:true, rx:RX.other, err:"Enter a remark of at least 5 characters." },
 
     26:{ type:"text", label:"Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
     27:{ type:"text", label:"Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name." },
