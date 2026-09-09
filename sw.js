@@ -1,65 +1,56 @@
-// Field Ops Console — service worker
-// Bump this on every deploy so old caches get cleared out.
-const CACHE_VERSION = 'fos-v1';
-const CACHE_NAME = `fos-cache-${CACHE_VERSION}`;
+// Shell FOS — minimal service worker.
+// Scope matches manifest.json's "scope"/"start_url": relative to wherever
+// this file is deployed (currently /reporting/).
+// Bump CACHE_NAME whenever you deploy a new index.html so old clients
+// pick up the change instead of serving a stale cached copy.
+const CACHE_NAME = 'shell-fos-v2';
 
-// App-shell files to pre-cache. Add/remove paths to match your repo.
-const PRECACHE_URLS = [
+const CORE_ASSETS = [
   './',
   './index.html',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  './manifest.json'
 ];
 
-// ---- Install: pre-cache the app shell ----
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())
+      .then((cache) => cache.addAll(CORE_ASSETS))
+      .catch(() => { /* offline-first install shouldn't hard-fail the SW */ })
   );
+  self.skipWaiting();
 });
 
-// ---- Activate: drop old caches from previous versions ----
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key.startsWith('fos-cache-') && key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      )
-    ).then(() => self.clients.claim())
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+    )
   );
+  self.clients.claim();
 });
 
-// ---- Fetch strategy ----
-// - Never cache calls to the Apps Script backend (script.google.com):
-//   this data changes constantly and must always be fresh. Network-only,
-//   let the page's own fetch().catch() handle failures.
-// - For everything else (HTML/CSS/JS/fonts/icons): network-first, falling
-//   back to cache when offline, and caching successful responses as we go.
+// Stale-while-revalidate: serve from cache instantly if available, and
+// refresh the cache in the background from the network. Only same-origin
+// GET requests are handled — third-party requests (map tiles, geocoding,
+// the Apps Script API, etc.) always go straight to the network, since
+// those are live/dynamic data this app already handles failure for.
 self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-
-  // Only handle GET requests; let POST (our API calls) pass straight through.
-  if (event.request.method !== 'GET') return;
-
-  if (url.hostname === 'script.google.com' || url.hostname === 'script.googleusercontent.com') {
-    return; // network-only, no interception
-  }
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  if (new URL(req.url).origin !== self.location.origin) return;
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Only cache successful, basic (same-origin-ish) responses.
-        if (response && response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(event.request).then((cached) => cached || caches.match('./index.html')))
+    caches.match(req).then((cached) => {
+      const networkFetch = fetch(req)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          }
+          return response;
+        })
+        .catch(() => cached);
+      return cached || networkFetch;
+    })
   );
 });
