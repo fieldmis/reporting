@@ -596,7 +596,7 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
     </div>
     <div class="pjpUpdateBox" id="pjpUpdateBox" style="display:none;">
       <textarea id="pjpUpdateText" placeholder="Enter your updated beat plan…"></textarea>
-      <button class="btn primary" onclick="submitPjpUpdate()">Submit Update</button>
+      <button class="btn primary" id="submitPjpUpdateBtn" onclick="submitPjpUpdate()">Submit Update</button>
     </div>
   </div>
 
@@ -924,9 +924,20 @@ function togglePjpUpdate(){
   document.getElementById('updatePjpBtn').style.display = 'none';
 }
 
-function submitPjpUpdate(){
+async function submitPjpUpdate(){
   const newPlan = document.getElementById('pjpUpdateText').value.trim();
   if(!newPlan){ toast('Please enter an updated plan.'); return; }
+  const btn = document.getElementById('submitPjpUpdateBtn');
+  setBtnLoading(btn, true);
+  try{
+    const r = await api('updatePJP', {userId: session.userId, pjp: newPlan});
+    if(!r.ok){ toast(r.message || 'Could not save update. Try again.'); return; }
+  }catch(e){
+    toast('Could not reach server. Update not saved.');
+    return;
+  }finally{
+    setBtnLoading(btn, false);
+  }
   session.pjp = newPlan;
   localStorage.setItem('sfos_session', JSON.stringify(session));
   document.getElementById('pjpContent').innerHTML = formatPJP(newPlan);
