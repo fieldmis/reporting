@@ -911,7 +911,7 @@ async function doLogin(){
 function confirmPjp(){
   const planText = String(session.pjp || '').trim();
   shareTextToWhatsApp(`*Todays Plan*\n\n${planText || 'No beat plan set for today.'}`).catch(()=>{});
-  showScreen('screen-dashboard');
+  replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
 }
@@ -946,7 +946,7 @@ async function submitPjpUpdate(){
   document.getElementById('updatePjpBtn').style.display = 'block';
   toast('Beat plan updated!');
   shareTextToWhatsApp(`*Updated Plan*\n\n${newPlan}`).catch(()=>{});
-  showScreen('screen-dashboard');
+  replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
 }
