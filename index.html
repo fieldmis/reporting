@@ -1254,7 +1254,7 @@ async function doCaptureSelfie(){
   // canvas via ctx.scale(), so geolocation, map-tile fetching, and every
   // proportion on the stamp panel are completely unaffected; the photo
   // just comes out sharper.
-  const PHOTO_SCALE = 3;
+  const PHOTO_SCALE = 4;
   const logicalW = video.videoWidth || 720;
   const logicalH = video.videoHeight || 960;
   canvas.width = logicalW * PHOTO_SCALE;
