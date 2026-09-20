@@ -902,7 +902,7 @@ async function doLogin(){
     document.getElementById('confirmPjpBtn').style.display = 'block';
     document.getElementById('updatePjpBtn').style.display = 'block';
     msgEl.innerHTML = '';
-    showScreen('screen-pjp');
+    replaceScreen('screen-pjp');
   }catch(e){ msgEl.textContent = 'Could not reach server. Check API_URL.'; }
   finally{ setBtnLoading(btn, false); }
 }
