@@ -796,6 +796,7 @@ function renderScreen(id, direction){
   el.classList.add('active');
   if(id==='screen-visitreport') VisitForm.reset();
   if(id==='screen-dashboard' && session) loadDashboardStats();
+  if(id==='screen-dashboard') ensureHomeBackGuardEntry();
 }
 function showScreen(id){
   renderScreen(id);
@@ -811,7 +812,7 @@ let homeBackArmed = false;
 let homeBackArmTimer = null;
 function isHomeScreenActive(){
   const el = document.getElementById('screen-dashboard');
-  return !!(el && el.classList.contains('active') && session);
+  return !!(el && el.classList.contains('active'));
 }
 function exitAppNow(){
   const AppPlugin = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
@@ -829,23 +830,29 @@ function armHomeBackExit(){
   homeBackArmTimer = setTimeout(()=>{ homeBackArmed = false; }, 2000);
 }
 
+function ensureHomeBackGuardEntry(){
+  // Keeps one extra history entry sitting above the dashboard so a back
+  // press always fires popstate (rather than escaping the page/app),
+  // guaranteeing the exit-guard below always gets a chance to run.
+  history.pushState({screen:'screen-dashboard'}, '', '#screen-dashboard');
+}
+
 window.addEventListener('popstate', (e)=>{
-  const wasOnHome = isHomeScreenActive();
+  if(isHomeScreenActive()){
+    // On the home screen, back NEVER navigates anywhere — it only ever
+    // arms or confirms the "tap again to exit" warning. This check runs
+    // first and ignores whatever screen the popped history entry claims,
+    // so a stale/missing entry can never route this case to login.
+    ensureHomeBackGuardEntry();
+    armHomeBackExit();
+    return;
+  }
   let id = (e.state && e.state.screen) || 'screen-login';
   if(!session && id!=='screen-login') id = 'screen-login';
-  // Once logged in, back-navigation should never resolve to the login
-  // screen — land on the dashboard instead of a stray/uninitialized entry.
   if(session && id==='screen-login') id = 'screen-dashboard';
   if(document.getElementById('screen-camera').classList.contains('active') && id!=='screen-camera' && mediaStream){
     mediaStream.getTracks().forEach(t=>t.stop());
     mediaStream = null;
-  }
-  if(wasOnHome && id==='screen-dashboard'){
-    // Nothing left to go back to except the home screen itself — this is
-    // an exit request, not a real navigation, so require a second tap.
-    history.pushState({screen:'screen-dashboard'}, '', '#screen-dashboard');
-    armHomeBackExit();
-    return;
   }
   renderScreen(id, 'back');
 });
