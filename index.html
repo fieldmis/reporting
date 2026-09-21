@@ -806,11 +806,46 @@ function replaceScreen(id, direction){
   history.replaceState({screen:id}, '', '#'+id);
 }
 function goBack(){ history.back(); }
+
+let homeBackArmed = false;
+let homeBackArmTimer = null;
+function isHomeScreenActive(){
+  const el = document.getElementById('screen-dashboard');
+  return !!(el && el.classList.contains('active') && session);
+}
+function exitAppNow(){
+  const AppPlugin = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+  if(AppPlugin) AppPlugin.exitApp();
+}
+function armHomeBackExit(){
+  if(homeBackArmed){
+    clearTimeout(homeBackArmTimer);
+    homeBackArmed = false;
+    exitAppNow();
+    return;
+  }
+  homeBackArmed = true;
+  toast('Tap again to exit');
+  homeBackArmTimer = setTimeout(()=>{ homeBackArmed = false; }, 2000);
+}
+
 window.addEventListener('popstate', (e)=>{
+  const wasOnHome = isHomeScreenActive();
   let id = (e.state && e.state.screen) || 'screen-login';
   if(!session && id!=='screen-login') id = 'screen-login';
+  // Once logged in, back-navigation should never resolve to the login
+  // screen — land on the dashboard instead of a stray/uninitialized entry.
+  if(session && id==='screen-login') id = 'screen-dashboard';
   if(document.getElementById('screen-camera').classList.contains('active') && id!=='screen-camera' && mediaStream){
     mediaStream.getTracks().forEach(t=>t.stop());
+    mediaStream = null;
+  }
+  if(wasOnHome && id==='screen-dashboard'){
+    // Nothing left to go back to except the home screen itself — this is
+    // an exit request, not a real navigation, so require a second tap.
+    history.pushState({screen:'screen-dashboard'}, '', '#screen-dashboard');
+    armHomeBackExit();
+    return;
   }
   renderScreen(id, 'back');
 });
@@ -831,12 +866,15 @@ history.replaceState({screen:'screen-login'}, '', location.href);
   AppPlugin.addListener('backButton', ({ canGoBack }) => {
     if(document.getElementById('screen-camera').classList.contains('active') && mediaStream){
       mediaStream.getTracks().forEach(t=>t.stop());
+      mediaStream = null;
+    }
+    if(isHomeScreenActive()){
+      armHomeBackExit();
+      return;
     }
     if(canGoBack){
       history.back();
     } else {
-      // Already at the root screen (login) — a back gesture here is
-      // expected to exit, same as it would on any other Android app.
       AppPlugin.exitApp();
     }
   });
