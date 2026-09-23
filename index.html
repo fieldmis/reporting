@@ -1053,13 +1053,19 @@ async function startCameraStream(facingMode){
 
   let stream;
   try{
-    stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:facingMode}}, audio:false});
+    stream = await navigator.mediaDevices.getUserMedia({
+      video:{facingMode:{ideal:facingMode}, width:{ideal:1920}, height:{ideal:1080}},
+      audio:false
+    });
   }catch(e1){
     if(previousStream && previousFacing !== facingMode){
       // Could not get the requested camera — restore whatever was working before
       // rather than leaving the preview frozen/black.
       await new Promise(r=>setTimeout(r, 350));
-      stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:previousFacing}}, audio:false});
+      stream = await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:{ideal:previousFacing}, width:{ideal:1920}, height:{ideal:1080}},
+        audio:false
+      });
       facingMode = previousFacing;
     } else {
       throw e1;
@@ -1305,6 +1311,8 @@ async function doCaptureSelfie(){
   canvas.width = logicalW * PHOTO_SCALE;
   canvas.height = logicalH * PHOTO_SCALE;
   const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
   ctx.scale(PHOTO_SCALE, PHOTO_SCALE);
   if(currentFacingMode === 'user'){
     ctx.save();
