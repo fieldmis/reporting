@@ -1680,6 +1680,22 @@ const VisitForm = (function(){
   ];
   const SEGMENTS = ["MCO","CVO","PCO","LCV","AGRI"];
 
+  // Maps a logged-in user's login ID to the Distributor(s) they're tagged
+  // against. This lives in the app (not Apps Script) so it's easy to edit
+  // here directly. A user with exactly one tagged DB gets it auto-filled
+  // and the wizard opens straight on Question 2; a user with more than one
+  // sees just their tagged DBs in the Question 1 dropdown. Any user not
+  // listed here falls back to seeing the full DISTRIBUTORS list, so a
+  // newly added rep never gets stuck before being tagged.
+  const USER_DB_MAP = {
+    "D69884": ["Concept Motorbike Company Pvt Limited"],
+    "D92446": ["Gode Engineering Private Limited"],
+    "D91689": ["JS Diesel Spares"],
+    "D74545": ["MANISHA ENTERPRISES"],
+    "D69561": ["MUKTI TRADERS", "SHREE KRISHNA AGENCIES"],
+    "D73116": ["Rajdeep Automotives", "SRI SAINATH AGENCIES"]
+  };
+
   const Q = {
     1:{ type:"select", label:"DistributorName", required:true, options:DISTRIBUTORS.map(o=>({label:o,value:o})) },
     2:{ type:"radio", label:"Type of Visit", required:true,
@@ -1814,6 +1830,7 @@ const VisitForm = (function(){
   let history = [];
   let answers = {};
   let awaitingCapture = false; // true while the location selfie is being captured mid-submit
+  let autoDB = null; // set in reset() when the logged-in user has exactly one tagged DB
 
   let card, btnBack, btnNext, btnClear, navBar;
 
@@ -1893,7 +1910,17 @@ const VisitForm = (function(){
     let extraIds = [];
     if(page.conditional){ extraIds = page.conditional.extraIds; mainIds = page.ids.filter(id=>!extraIds.includes(id)); }
 
-    mainIds.forEach(qid=>{ html += qblockHtml(qid); });
+    mainIds.forEach(qid=>{
+      const blockHtml = qblockHtml(qid);
+      // Question 1 (DistributorName) is auto-filled and kept in the DOM
+      // (for validation/submission) but visually hidden when the user
+      // has exactly one tagged DB, so the wizard appears to start at Q2.
+      if(pageId === 'p1' && qid === 1 && autoDB){
+        html += `<div style="display:none">${blockHtml}</div>`;
+      } else {
+        html += blockHtml;
+      }
+    });
 
     if(page.conditional){
       const trig = answers[page.conditional.trigger];
@@ -2156,6 +2183,22 @@ const VisitForm = (function(){
     answers = {};
     history = [];
     currentPage = 'p1';
+
+    // ---- DB tagging (Question 1) ----
+    const uid = (session && session.userId) ? String(session.userId).trim() : '';
+    const tagged = USER_DB_MAP[uid];
+    if(tagged && tagged.length === 1){
+      Q[1].options = [{label: tagged[0], value: tagged[0]}];
+      answers[1] = tagged[0];
+      autoDB = tagged[0];
+    } else if(tagged && tagged.length > 1){
+      Q[1].options = tagged.map(o=>({label:o, value:o}));
+      autoDB = null;
+    } else {
+      Q[1].options = DISTRIBUTORS.map(o=>({label:o, value:o}));
+      autoDB = null;
+    }
+
     card = document.getElementById('vfCard');
     btnBack = document.getElementById('vfBtnBack');
     btnNext = document.getElementById('vfBtnNext');
