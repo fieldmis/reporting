@@ -752,6 +752,7 @@ let captureInProgress = false;
 let nativeShareCooldown = false;
 let dayStarted = false;
 let dayEnded = false;
+let pjpPending = false; // true from login until the beat plan is confirmed or updated
 
 // Only these capture instances feed KM-travelled tracking (todayLog / logPoint):
 // Start of Day selfie, Visit Report selfies (dashboard button + form-submit selfie), End of Day selfie.
@@ -794,13 +795,16 @@ function renderScreen(id, direction){
   const el = document.getElementById(id);
   if(direction==='back') el.classList.add('dir-back');
   el.classList.add('active');
+  if(session && id!=='screen-login') localStorage.setItem('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
   if(id==='screen-dashboard' && session) loadDashboardStats();
   if(id==='screen-dashboard') ensureHomeBackGuardEntry();
 }
+let suppressHistoryPush = false; // true only while restoring a page after reload
 function showScreen(id){
   renderScreen(id);
-  history.pushState({screen:id}, '', '#'+id);
+  if(suppressHistoryPush) history.replaceState({screen:id}, '', '#'+id);
+  else history.pushState({screen:id}, '', '#'+id);
 }
 function replaceScreen(id, direction){
   renderScreen(id, direction);
@@ -814,9 +818,14 @@ function isHomeScreenActive(){
   const el = document.getElementById('screen-dashboard');
   return !!(el && el.classList.contains('active'));
 }
+let homeExiting = false;
 function exitAppNow(){
   const AppPlugin = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
-  if(AppPlugin) AppPlugin.exitApp();
+  if(AppPlugin){ AppPlugin.exitApp(); return; }
+  // Browser / installed PWA: walk back out of the app's history entries.
+  homeExiting = true;
+  setTimeout(()=>{ homeExiting = false; }, 1500);
+  history.back();
 }
 function armHomeBackExit(){
   if(homeBackArmed){
@@ -826,19 +835,52 @@ function armHomeBackExit(){
     return;
   }
   homeBackArmed = true;
-  toast('Tap again to exit');
+  toast('Tap Back again to exit');
   homeBackArmTimer = setTimeout(()=>{ homeBackArmed = false; }, 2000);
 }
 
+/* Browsers flag history entries added WITHOUT a user gesture and then skip
+   them on Back (which is what made Back leave the app after a reload, and
+   made the exit warning appear only once). So entries are only pushed while
+   a gesture is active; otherwise the push is deferred to the next tap/key. */
+let historyRepair = null; // 'home' | 'sub' — history fix waiting for a gesture
+function hasUserGesture(){
+  return navigator.userActivation ? navigator.userActivation.isActive : true;
+}
 function ensureHomeBackGuardEntry(){
   // Keeps one extra history entry sitting above the dashboard so a back
-  // press always fires popstate (rather than escaping the page/app),
-  // guaranteeing the exit-guard below always gets a chance to run.
+  // press fires popstate (rather than escaping the page/app).
+  if(suppressHistoryPush || !hasUserGesture()){ historyRepair = 'home'; return; }
+  historyRepair = null;
   history.pushState({screen:'screen-dashboard'}, '', '#screen-dashboard');
 }
+function flushHistoryRepair(){
+  if(!historyRepair || !session) return;
+  const kind = historyRepair;
+  const active = document.querySelector('.screen.active');
+  const id = active ? active.id : '';
+  historyRepair = null;
+  if(kind === 'home' && id === 'screen-dashboard'){
+    history.pushState({screen:'screen-dashboard'}, '', '#screen-dashboard');
+  } else if(kind === 'sub' && id && id !== 'screen-dashboard' && id !== 'screen-login'){
+    // Restored sub-page: make Back from it land on the dashboard.
+    history.replaceState({screen:'screen-dashboard'}, '', '#screen-dashboard');
+    history.pushState({screen:id}, '', '#'+id);
+  }
+}
+['pointerup','click','touchend','keydown'].forEach(t=>document.addEventListener(t, flushHistoryRepair, true));
 
 window.addEventListener('popstate', (e)=>{
+  // Beat plan not yet confirmed/updated: stay on the PJP screen.
+  if(pjpPending && session && document.getElementById('screen-pjp').classList.contains('active')){
+    if(!(e.state && e.state.screen === 'screen-pjp')){
+      toast('Please confirm or update your Beat Plan first.');
+      history.go(1); // undo the back step (no new history entry needed)
+    }
+    return;
+  }
   if(isHomeScreenActive()){
+    if(homeExiting){ history.back(); return; }
     // On the home screen, back NEVER navigates anywhere — it only ever
     // arms or confirms the "tap again to exit" warning. This check runs
     // first and ignores whatever screen the popped history entry claims,
@@ -875,8 +917,18 @@ history.replaceState({screen:'screen-login'}, '', location.href);
       mediaStream.getTracks().forEach(t=>t.stop());
       mediaStream = null;
     }
+    if(pjpPending && session && document.getElementById('screen-pjp').classList.contains('active')){
+      toast('Please confirm or update your Beat Plan first.');
+      return;
+    }
     if(isHomeScreenActive()){
       armHomeBackExit();
+      return;
+    }
+    const childIds = ['screen-docslocker','screen-summary','screen-mastersearch','screen-visitreport'];
+    if(childIds.some(id=>document.getElementById(id).classList.contains('active'))){
+      // Don't depend on WebView history (it can be empty after a reload).
+      replaceScreen('screen-dashboard', 'back');
       return;
     }
     if(canGoBack){
@@ -947,6 +999,8 @@ async function doLogin(){
     document.getElementById('confirmPjpBtn').style.display = 'block';
     document.getElementById('updatePjpBtn').style.display = 'block';
     msgEl.innerHTML = '';
+    pjpPending = true;
+    localStorage.setItem('sfos_pjp_pending', '1');
     showScreen('screen-pjp');
   }catch(e){ msgEl.textContent = 'Could not reach server. Check API_URL.'; }
   finally{ setBtnLoading(btn, false); }
@@ -956,6 +1010,8 @@ async function doLogin(){
 function confirmPjp(){
   const planText = String(session.pjp || '').trim();
   shareTextToWhatsApp(`*Todays Plan*\n\n${planText || 'No beat plan set for today.'}`).catch(()=>{});
+  pjpPending = false;
+  localStorage.removeItem('sfos_pjp_pending');
   replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
@@ -991,6 +1047,8 @@ async function submitPjpUpdate(){
   document.getElementById('updatePjpBtn').style.display = 'block';
   toast('Beat plan updated!');
   shareTextToWhatsApp(`*Updated Plan*\n\n${newPlan}`).catch(()=>{});
+  pjpPending = false;
+  localStorage.removeItem('sfos_pjp_pending');
   replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
@@ -1754,7 +1812,7 @@ const VisitForm = (function(){
            {label:"Issue Resolution", value:"Issue Resolution"},
            {label:"Other", value:"__other__", other:true}
          ]},
-    25:{ type:"textarea", label:"Remarks of the Outcome ( Mentioned Number of Coupons Scanned against Target )", required:true, rx:RX.other, err:"Enter a remark of at least 5 characters." },
+    25:{ type:"textarea", label:"Remarks of the Outcome ( Mentioned Number of Coupons Scanned against Target )", placeholder:"For Inactive to Active & Activate with 5 Coupons, Only mention number of coupons scanned e.g. 4. And for MLP Mention Target=Actual e.g. 5=3", required:true, rx:RX.other, err:"Enter a remark of at least 5 characters." },
 
     26:{ type:"text", label:"Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
     27:{ type:"text", label:"Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name." },
@@ -1876,7 +1934,7 @@ const VisitForm = (function(){
     }
     else if(q.type === 'textarea'){
       const val = answers[qid] || '';
-      inner = `<textarea id="vfInput_${qid}" data-qid="${qid}" placeholder="Type your answer">${vfEsc(val)}</textarea>`;
+      inner = `<textarea id="vfInput_${qid}" data-qid="${qid}" placeholder="${vfEsc(q.placeholder || 'Type your answer')}">${vfEsc(val)}</textarea>`;
     }
     else {
       const val = answers[qid] || '';
@@ -2488,7 +2546,7 @@ function formatHoursWorked(hours){
   const m = Math.round((hours - h) * 60);
   return `${h}h ${m}m`;
 }
-async function buildDayEndTimeline(){
+async function buildDayEndTimeline(skipSave){
   const sorted = [...todayLog].sort((a,b)=> new Date(a.time)-new Date(b.time));
   document.getElementById('timelineList').innerHTML = sorted.map(p=>`
     <div class="timelineItem">
@@ -2528,6 +2586,7 @@ async function buildDayEndTimeline(){
   kmTotalNote.textContent = usedFallback
     ? 'Road distance via routing (straight-line estimate used for some legs).'
     : 'Road distance between capture points via routing.';
+  if(skipSave) return; // restoring after a reload: summary was already saved
   api('saveDaySummary', {
     userId: session.userId,
     date: todayStr(),
@@ -2546,7 +2605,9 @@ function goToDashboardAfterDayEnd(){
 function finishLogout(){
   localStorage.removeItem('sfos_session');
   localStorage.removeItem('sfos_today_log');
-  session = null; todayLog = []; dayStarted = false; dayEnded = false;
+  localStorage.removeItem('sfos_screen');
+  localStorage.removeItem('sfos_pjp_pending');
+  session = null; todayLog = []; dayStarted = false; dayEnded = false; pjpPending = false;
   document.getElementById('loginPin').value='';
   replaceScreen('screen-login', 'back');
 }
@@ -2569,13 +2630,44 @@ scheduleMidnightLogout();
 function todayStr(){ return new Date().toISOString().slice(0,10); }
 
 /* Resume session */
+function restoreScreenAfterReload(){
+  // Read before any renderScreen() call, since rendering overwrites it.
+  const saved = localStorage.getItem('sfos_screen');
+  pjpPending = localStorage.getItem('sfos_pjp_pending') === '1';
+
+  suppressHistoryPush = true; // no gesture yet after a reload: don't add history entries
+  try{
+    if(pjpPending){
+      document.getElementById('pjpContent').innerHTML = formatPJP(session.pjp);
+      document.getElementById('pjpUpdateBox').style.display = 'none';
+      document.getElementById('confirmPjpBtn').style.display = 'block';
+      document.getElementById('updatePjpBtn').style.display = 'block';
+      replaceScreen('screen-pjp');
+      return;
+    }
+    if(saved === 'screen-dayend' && dayEnded){
+      buildDayEndTimeline(true);
+      return;
+    }
+    replaceScreen('screen-dashboard'); // sets historyRepair = 'home'
+    let sub = true;
+    if(saved === 'screen-docslocker') openDocsLocker();
+    else if(saved === 'screen-summary') openSummary();
+    else if(saved === 'screen-mastersearch') showScreen('screen-mastersearch');
+    else if(saved === 'screen-visitreport' && dayStarted && !dayEnded) showScreen('screen-visitreport');
+    else sub = false; // camera / anything else: stay on the dashboard
+    if(sub) historyRepair = 'sub'; // on first tap: dashboard entry + this page entry
+  } finally {
+    suppressHistoryPush = false;
+  }
+}
 if(session && session.date === todayStr()){
   setGreeting();
   const log = JSON.parse(localStorage.getItem('sfos_today_log') || '[]');
   if(log.some(p=>p.type==='start')) dayStarted = true;
   if(log.some(p=>p.type==='end')) dayEnded = true;
   updateDashboardButtons();
-  replaceScreen('screen-dashboard');
+  restoreScreenAfterReload();
 } else if(session && session.date !== todayStr()){
   // Session left over from a previous day (app was closed before the
   // midnight auto-logout could run) — clear it so PIN is required again.
