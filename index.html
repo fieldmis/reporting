@@ -1469,7 +1469,8 @@ async function doCaptureSelfie(){
     api('logPoint', {userId: session.userId, date: todayStr(), ...point}).catch(()=>{});
   }
 
-  try{ await shareToWhatsApp(blob, 'selfie.jpg'); }
+  const captionText = pendingCaptureType === 'visitform' ? VisitForm.getCaption() : '';
+  try{ await shareToWhatsApp(blob, 'selfie.jpg', captionText); }
   catch(e){ /* sharing is best-effort — never block finishing the capture flow */ }
 
   if(pendingCaptureType === 'start'){
@@ -1497,7 +1498,7 @@ async function doCaptureSelfie(){
    can't reliably open as a new window/tab — that's the "couldn't open
    this chat link" issue. The native share sheet works for WhatsApp or
    any other installed app and never depends on window.open(). */
-async function shareFileNative(blob, fileName){
+async function shareFileNative(blob, fileName, caption){
   const { Filesystem, Directory, Share } = window.Capacitor.Plugins;
   const dataUrl = await new Promise((resolve, reject)=>{
     const reader = new FileReader();
@@ -1511,17 +1512,19 @@ async function shareFileNative(blob, fileName){
     data: base64Data,
     directory: Directory.Cache
   });
-  await Share.share({ title: 'Shell FOS', files: [written.uri], dialogTitle: 'Share via' });
+  const opts = { title: 'Shell FOS', files: [written.uri], dialogTitle: 'Share via' };
+  if(caption) opts.text = caption; // pre-fills as the WhatsApp caption
+  await Share.share(opts);
 }
 
-async function shareToWhatsApp(blob, fileName='selfie.jpg'){
+async function shareToWhatsApp(blob, fileName='selfie.jpg', caption=''){
   const mimeType = blob.type || 'image/jpeg';
   const Plugins = window.Capacitor && window.Capacitor.Plugins;
   if(Plugins && Plugins.Share && Plugins.Filesystem){
     if(nativeShareCooldown){ toast('Opening share sheet…'); return; }
     nativeShareCooldown = true;
     try{
-      await shareFileNative(blob, fileName);
+      await shareFileNative(blob, fileName, caption);
     }catch(e){
       // The user closing the native share sheet without picking an app
       // also rejects this promise — that's not a real failure, so only
@@ -1536,8 +1539,9 @@ async function shareToWhatsApp(blob, fileName='selfie.jpg'){
   // fall back to the Web Share API, then a manual download.
   try{
     const file = new File([blob], fileName, {type:mimeType});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
-      await navigator.share({files:[file]});
+    const shareData = caption ? {files:[file], text:caption} : {files:[file]};
+    if(navigator.canShare && navigator.canShare(shareData)){
+      await navigator.share(shareData);
       return;
     }
   }catch(e){}
@@ -2373,7 +2377,55 @@ const VisitForm = (function(){
     }
   }
 
-  return { reset: reset, finishSubmit: finishSubmit };
+  function captionAnswerText(qid){
+    const a = answers[qid];
+    if(a === undefined || a === null) return '';
+    if(typeof a === 'object'){ // radio answers are stored as {choice, otherText}
+      if(!a.choice) return '';
+      return (a.choice === '__other__' ? a.otherText : a.choice || '').trim();
+    }
+    return String(a).trim();
+  }
+
+  function captionJoin(parts){
+    return parts.filter(p=>p).join(' – ');
+  }
+
+  // Builds the WhatsApp caption for the visit-end selfie: one line per
+  // header, each from whichever mapped question group was actually
+  // answered on this visit (only one branch of the form is ever filled
+  // in for a given visit, so the other group is simply blank).
+  function getCaption(){
+    const lines = [];
+
+    // Share ID/Bizom ID: 18&22 (Focus Outlet Linked / Existing Mechanic)
+    // or 26&27 (Focus/Existing Outlet)
+    let idLine = captionJoin([captionAnswerText(18), captionAnswerText(22)]);
+    if(!idLine) idLine = captionJoin([captionAnswerText(26), captionAnswerText(27)]);
+    if(idLine) lines.push(`Share ID/Bizom ID: ${idLine}`);
+
+    // Outcome: 24&25 (Focus Outlet Linked / Existing Mechanic) or
+    // 30&(31 Ltr / "Volume Plan"&32) (Focus/Existing Outlet)
+    let outcomeLine = captionJoin([captionAnswerText(24), captionAnswerText(25)]);
+    if(!outcomeLine){
+      const q30 = captionAnswerText(30);
+      const q31 = captionAnswerText(31);
+      const q32 = captionAnswerText(32);
+      let tail = '';
+      if(q31) tail = `${q31} Ltr`;
+      else if(q32) tail = captionJoin(['Volume Plan', q32]);
+      outcomeLine = tail ? captionJoin([q30, tail]) : q30;
+    }
+    if(outcomeLine) lines.push(`Outcome: ${outcomeLine}`);
+
+    // Remarks: 33 (Final Remarks — always the last page before submit)
+    const remarks = captionAnswerText(33);
+    if(remarks) lines.push(`Remarks: ${remarks}`);
+
+    return lines.join('\n');
+  }
+
+  return { reset: reset, finishSubmit: finishSubmit, getCaption: getCaption };
 })();
 
 /* ====================== MASTER SEARCH ====================== */
