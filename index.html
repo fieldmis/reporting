@@ -2397,6 +2397,9 @@ const VisitForm = (function(){
   // in for a given visit, so the other group is simply blank).
   function getCaption(){
     const lines = [];
+    
+    const visitType = captionAnswerText(2);
+    if(visitType) lines.push(visitType);
 
     // Share ID/Bizom ID: 18&22 (Focus Outlet Linked / Existing Mechanic)
     // or 26&27 (Focus/Existing Outlet)
