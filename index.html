@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Used by the Excel Lookup tool: SheetJS reads/writes the uploaded and
+       downloaded .xlsx files, PapaParse reads masterdata.csv. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#050810">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -370,6 +374,11 @@ body{min-height:100dvh;letter-spacing:.01em}
 .loader{width:52px}
 .orbitLoaderBox{height:120px}
 .toast{bottom:22px;padding:14px 18px;min-width:220px;text-align:center;animation:toastPop .35s cubic-bezier(.16,1,.3,1)}
+
+.xlColRow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(121,214,255,.08)}
+.xlColRow:last-child{border-bottom:none}
+.xlColRow input{width:18px;height:18px;flex:none}
+.xlColRow label{flex:1;word-break:break-word}
 @media(max-width:380px){.screen{padding-left:14px;padding-right:14px}.heroName{font-size:1.55rem}.heroTile{min-height:205px}.statGrid{gap:9px}.card{border-radius:20px}}
 @media(min-width:501px){body{display:flex;justify-content:center}#app{width:500px;box-shadow:0 0 80px rgba(0,0,0,.35);border-left:1px solid rgba(121,214,255,.06);border-right:1px solid rgba(121,214,255,.06)}}
 
@@ -691,7 +700,24 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
       <input type="text" id="searchInput" placeholder="Share Code / Mobile Number / Bizom ID">
       <button class="btn primary" style="margin:0" id="searchBtn" onclick="doMasterSearch()">Search</button>
     </div>
+    <button class="btn" style="width:100%" onclick="showScreen('screen-exceltool')">Excel Lookup ›</button>
     <div id="searchResults"></div>
+  </div>
+
+  <!-- EXCEL LOOKUP -->
+  <div class="screen" id="screen-exceltool">
+    <button class="backBtn" onclick="goBack()">‹ Back</button>
+    <h1>Excel Lookup</h1>
+    <div class="card">
+      <div>Upload an Excel file with a Share Code, Bizom ID, or Mobile Number column. Matching rows get filled in from Master Data — then you download the result.</div>
+      <input type="file" id="xlLookupFile" accept=".xlsx,.xls,.csv" style="margin-top:12px;width:100%" onchange="onExcelLookupFileSelected(event)">
+    </div>
+    <div class="card" id="xlLookupStatus" style="display:none"></div>
+    <div class="card" id="xlLookupColsCard" style="display:none">
+      <div style="font-weight:600;margin-bottom:10px">Columns to add from Master Data:</div>
+      <div id="xlLookupColsList"></div>
+    </div>
+    <button class="btn primary" id="xlLookupDownloadBtn" style="display:none" onclick="runExcelLookupAndDownload()">Process &amp; Download</button>
   </div>
 
   <!-- SUMMARY -->
@@ -734,6 +760,9 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 /* ====================== CONFIG ====================== */
 const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbxlAyVLgkA2aE0-F7gUyL0-RBzECuIGfpNSgy3Ens_kCkayH6D_oR7cS9f8LV_tlHE/exec",
+  // Path to the manually-exported MasterData CSV, relative to index.html.
+  // Update this if the file ever lives somewhere else in the repo.
+  MASTER_DATA_CSV_URL: "masterdata.csv",
   // Separate Apps Script Web App deployment — the "Daily Visit MIS" handler
   // bound to the "Daily Contribution Report" spreadsheet's "Merged Data" tab.
   // It expects a raw { answers: {...} } body (question-id keys), no "action"
@@ -968,6 +997,162 @@ async function api(action, payload){
     body: JSON.stringify({action, payload})
   });
   return res.json();
+}
+
+/* ====================== MASTER DATA (shared loader) ======================
+ * Loads CONFIG.MASTER_DATA_CSV_URL (the manually-exported MasterData CSV
+ * sitting next to index.html in the repo) once and caches it in memory.
+ * Used by both the Excel Lookup tool below and the Visit Form autofill —
+ * one shared copy, loaded lazily the first time either needs it. */
+let masterDataRows = null;    // array of row objects, keyed by CSV header, once loaded
+let masterDataHeaders = null; // CSV header names, in original order
+let masterDataLoadPromise = null;
+
+function loadMasterData(){
+  if(masterDataLoadPromise) return masterDataLoadPromise;
+  masterDataLoadPromise = new Promise((resolve, reject)=>{
+    Papa.parse(CONFIG.MASTER_DATA_CSV_URL, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: (res)=>{
+        masterDataRows = res.data;
+        masterDataHeaders = res.meta.fields || [];
+        resolve({rows: masterDataRows, headers: masterDataHeaders});
+      },
+      error: (err)=>{ masterDataLoadPromise = null; reject(err); }
+    });
+  });
+  return masterDataLoadPromise;
+}
+
+// Same three identifier columns Master Search matches against on the
+// backend (see handleMasterSearch in code.gs) — kept in sync with those
+// aliases so a column is recognized the same way on both sides. Your
+// actual MasterData sheet uses "WorkshopCode" and "Linked Bizom" rather
+// than "Share Code"/"Bizom ID", so both are included here.
+const LOOKUP_KEY_ALIASES = {
+  shareCode: ['sharecode','workshopcode'],
+  bizomId:   ['bizomid','linkedbizom'],
+  mobile:    ['mobile','mobilenumber','mobileno','phonenumber','userid']
+};
+function xlEsc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function xlNormKey(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,''); }
+function detectLookupColumns(headers){
+  const normed = headers.map(h=>({orig:h, norm:xlNormKey(h)}));
+  const out = {};
+  Object.keys(LOOKUP_KEY_ALIASES).forEach(key=>{
+    const found = normed.find(h=>LOOKUP_KEY_ALIASES[key].includes(h.norm));
+    out[key] = found ? found.orig : null;
+  });
+  return out;
+}
+
+/* ====================== EXCEL LOOKUP TOOL ======================
+ * Rep uploads an Excel/CSV file; any column recognized as a Share Code,
+ * Bizom ID, or Mobile Number is used to look each row up in MasterData;
+ * the rep picks which MasterData columns to add, then downloads the
+ * result as a new .xlsx file.
+ *
+ * Fully data-driven: nothing here hardcodes MasterData's non-identifier
+ * column names, so it works with whatever columns actually exist in
+ * masterdata.csv without needing code changes when that file's schema
+ * changes. Only the three identifier columns' NAMES are recognized by
+ * alias (mirroring the backend's Master Search matching) — their VALUES
+ * are never assumed. */
+let xlUploadHeaders = null; // uploaded file's own column headers, in order
+let xlUploadRows = null;    // uploaded rows, each keyed by xlUploadHeaders
+let xlUploadLookupCols = null;
+let xlMasterLookupCols = null;
+
+async function onExcelLookupFileSelected(e){
+  const file = e.target.files && e.target.files[0];
+  const statusEl = document.getElementById('xlLookupStatus');
+  const colsCard = document.getElementById('xlLookupColsCard');
+  const downloadBtn = document.getElementById('xlLookupDownloadBtn');
+  colsCard.style.display = 'none';
+  downloadBtn.style.display = 'none';
+  statusEl.style.display = 'block';
+  if(!file){ statusEl.textContent = ''; statusEl.style.display = 'none'; return; }
+
+  statusEl.textContent = 'Reading file…';
+  try{
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, {type:'array'});
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const aoa = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+    if(!aoa.length){ statusEl.textContent = 'That file looks empty.'; return; }
+    xlUploadHeaders = aoa[0].map(h=>String(h).trim());
+    xlUploadRows = aoa.slice(1).map(row=>{
+      const obj = {};
+      xlUploadHeaders.forEach((h,i)=> obj[h] = row[i] !== undefined ? row[i] : '');
+      return obj;
+    });
+
+    statusEl.textContent = 'Loading Master Data…';
+    await loadMasterData();
+
+    xlUploadLookupCols = detectLookupColumns(xlUploadHeaders);
+    xlMasterLookupCols = detectLookupColumns(masterDataHeaders);
+    const usableKeys = Object.keys(LOOKUP_KEY_ALIASES).filter(k=>xlUploadLookupCols[k] && xlMasterLookupCols[k]);
+
+    if(!usableKeys.length){
+      statusEl.textContent = 'No Share Code, Bizom ID, or Mobile Number column found in this file (or in masterdata.csv) to match on.';
+      return;
+    }
+
+    const foundDesc = usableKeys.map(k=>`"${xlUploadLookupCols[k]}"`).join(', ');
+    statusEl.textContent = `${xlUploadRows.length} rows loaded. Matching on: ${foundDesc}.`;
+
+    const listEl = document.getElementById('xlLookupColsList');
+    listEl.innerHTML = masterDataHeaders.map((h,i)=>`
+      <div class="xlColRow">
+        <input type="checkbox" id="xlCol_${i}" value="${xlEsc(h)}">
+        <label for="xlCol_${i}">${xlEsc(h)}</label>
+      </div>`).join('');
+    colsCard.style.display = 'block';
+    downloadBtn.style.display = 'block';
+  }catch(err){
+    statusEl.textContent = 'Could not read that file, or masterdata.csv is missing from the repo. (' + err + ')';
+  }
+}
+
+function findMasterMatch(uploadRow){
+  const order = ['shareCode','bizomId','mobile'];
+  for(const key of order){
+    const uploadCol = xlUploadLookupCols[key];
+    const masterCol = xlMasterLookupCols[key];
+    if(!uploadCol || !masterCol) continue;
+    const val = String(uploadRow[uploadCol] ?? '').trim().toLowerCase();
+    if(!val) continue;
+    const match = masterDataRows.find(r => String(r[masterCol] ?? '').trim().toLowerCase() === val);
+    if(match) return match;
+  }
+  return null;
+}
+
+function runExcelLookupAndDownload(){
+  const selectedCols = Array.from(document.querySelectorAll('#xlLookupColsList input:checked')).map(el=>el.value);
+  if(!selectedCols.length){ toast('Pick at least one column to add.'); return; }
+
+  let matchedCount = 0;
+  const outHeaders = xlUploadHeaders.concat(selectedCols);
+  const outRows = xlUploadRows.map(row=>{
+    const match = findMasterMatch(row);
+    if(match) matchedCount++;
+    const outRow = xlUploadHeaders.map(h=>row[h]);
+    selectedCols.forEach(c=> outRow.push(match ? (match[c] ?? '') : ''));
+    return outRow;
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet([outHeaders, ...outRows]);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Result');
+  XLSX.writeFile(wb, 'lookup_result.xlsx');
+
+  toast(`Done — ${matchedCount} of ${xlUploadRows.length} rows matched.`);
 }
 
 function formatPJP(raw){
@@ -2092,6 +2277,72 @@ const VisitForm = (function(){
         chk.closest('label.vfOpt').classList.toggle('checked', chk.checked);
       });
     });
+    card.querySelectorAll('input[data-qid]').forEach(inp=>{
+      if(inp.type === 'radio' || inp.type === 'checkbox') return;
+      const qid = Number(inp.dataset.qid);
+      if(AUTOFILL_RULES[qid]) inp.addEventListener('blur', ()=> handleAutofillBlur(qid));
+    });
+  }
+
+  /* Autofill: typing a known lookup value into one of these fields and
+   * tabbing out looks it up in MasterData (loaded via the shared
+   * loadMasterData() — see the global MASTER DATA section above) and
+   * fills the paired field(s) below it, using MasterData's actual column
+   * names. Only fills a field that's still empty, so it never overwrites
+   * something the rep already typed. Best-effort — if masterdata.csv
+   * hasn't been added to the repo yet, or nothing matches, it just does
+   * nothing and the rep fills those fields in by hand as before.
+   *
+   * 15/18 Share ID -> WorkshopCode; 19 Registered Mobile Number ->
+   * Mobile Number; 16/22 Linked Bizom ID -> Linked Bizom; 17/23 Linked
+   * Outlet Name -> Outletname; 26 Bizom ID -> Linked Bizom; 27 Outlet
+   * Name -> Outletname. Q3's "Outlet Name" (New Outlet Visit) is
+   * deliberately NOT included — that page is for an outlet that doesn't
+   * exist in MasterData yet, so there's nothing to look up. */
+  const AUTOFILL_RULES = {
+    15: { keyType:'shareCode', fills:{16:'Linked Bizom', 17:'Outletname'} },
+    18: { keyType:'shareCode', fills:{19:'Mobile Number', 22:'Linked Bizom', 23:'Outletname'} },
+    26: { keyType:'bizomId',   fills:{27:'Outletname'} }
+  };
+
+  // Finds the actual MasterData header matching `name`, ignoring case and
+  // stray spaces — a configured fill name like "Linked Bizom" must match
+  // whatever the real CSV header is, which is parsed exactly as it sits
+  // in the sheet (case/whitespace and all). Resolving it this way (same
+  // trim+lowercase approach used elsewhere) means a minor difference
+  // between the name Harshad gave in chat and the sheet's real header no
+  // longer silently breaks that field's autofill.
+  function resolveMasterDataHeader(name){
+    const target = String(name).trim().toLowerCase();
+    return masterDataHeaders.find(h => String(h).trim().toLowerCase() === target) || null;
+  }
+
+  async function handleAutofillBlur(qid){
+    const rule = AUTOFILL_RULES[qid];
+    const el = document.getElementById(`vfInput_${qid}`);
+    if(!rule || !el) return;
+    const keyVal = String(el.value || '').trim();
+    if(!keyVal){ console.log(`[autofill] Q${qid} blurred empty — skipping`); return; }
+    try{ await loadMasterData(); }catch(e){ console.warn('[autofill] masterdata.csv failed to load:', e); return; }
+    if(!masterDataHeaders || !masterDataHeaders.length){ console.warn('[autofill] no masterdata.csv headers loaded'); return; }
+    const masterCol = detectLookupColumns(masterDataHeaders)[rule.keyType];
+    if(!masterCol){ console.warn(`[autofill] Q${qid}: no "${rule.keyType}" column recognized in masterdata.csv headers`, masterDataHeaders); return; }
+    const match = masterDataRows.find(r => String(r[masterCol] || '').trim().toLowerCase() === keyVal.toLowerCase());
+    if(!match){ console.log(`[autofill] Q${qid}: "${keyVal}" not found in masterdata.csv column "${masterCol}"`); return; }
+    console.log(`[autofill] Q${qid}: matched "${keyVal}" — filling`, Object.keys(rule.fills));
+    Object.keys(rule.fills).forEach(targetQid=>{
+      if(answers[targetQid]){ console.log(`[autofill] Q${targetQid} already has a value — not overwriting`); return; }
+      const targetEl = document.getElementById(`vfInput_${targetQid}`);
+      if(!targetEl || targetEl.value) return;
+      const configuredName = rule.fills[targetQid];
+      const realCol = resolveMasterDataHeader(configuredName);
+      if(!realCol){ console.warn(`[autofill] Q${targetQid}: no "${configuredName}" column found in masterdata.csv headers`, masterDataHeaders); return; }
+      const val = match[realCol];
+      if(val === undefined || val === null || val === ''){ console.log(`[autofill] Q${targetQid}: matched row's "${realCol}" is blank`); return; }
+      targetEl.value = val;
+      answers[targetQid] = String(val).trim();
+      console.log(`[autofill] Q${targetQid} filled from "${realCol}":`, val);
+    });
   }
 
   function vfSetInvalid(qid, msg){
@@ -2243,6 +2494,8 @@ const VisitForm = (function(){
     answers = {};
     history = [];
     currentPage = 'p1';
+
+    loadMasterData().catch(()=> console.warn('[autofill] masterdata.csv failed to preload — autofill will be unavailable this visit')); // fire-and-forget, so it's ready well before Q15/18/26
 
     // ---- DB tagging (Question 1) ----
     const uid = (session && session.userId) ? String(session.userId).trim() : '';
@@ -2445,12 +2698,22 @@ async function doMasterSearch(){
   setBtnLoading(btn, true);
   resultsDiv.innerHTML = `<div class="card">${orbitLoaderHTML('Searching…')}</div>`;
   try{
-    const r = await api('masterSearch', {query:q});
-    if(!r.ok || !r.rows || r.rows.length===0){
+    await loadMasterData(); // reads masterdata.csv from the repo (cached after the first call)
+    if(!masterDataHeaders || !masterDataHeaders.length){
+      resultsDiv.innerHTML = '<div class="card">Master data isn\'t available — masterdata.csv may be missing from the repo.</div>';
+      return;
+    }
+    const searchCols = Object.values(detectLookupColumns(masterDataHeaders)).filter(Boolean);
+    const qLower = q.toLowerCase();
+    const matched = masterDataRows.filter(row =>
+      searchCols.some(col => String(row[col] ?? '').trim().toLowerCase() === qLower)
+    );
+    if(!matched.length){
       resultsDiv.innerHTML = '<div class="card">No result found.</div>'; return;
     }
-    resultsDiv.innerHTML = rowsToTable(r.headers, r.rows);
-  }catch(e){ resultsDiv.innerHTML = '<div class="card">Search failed. Check connection.</div>'; }
+    const rows = matched.map(row => masterDataHeaders.map(h => ({label:h, value: row[h]})));
+    resultsDiv.innerHTML = rowsToTable(masterDataHeaders, rows);
+  }catch(e){ resultsDiv.innerHTML = '<div class="card">Search failed — masterdata.csv may be missing from the repo.</div>'; }
   finally{ setBtnLoading(btn, false); }
 }
 document.getElementById('searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') doMasterSearch(); });
