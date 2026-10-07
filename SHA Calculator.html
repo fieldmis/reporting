@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sapne Honge Apne | SHA Coin Calculator & Simulator v2</title>
+<style>
+  :root {
+    --shell-red: #DD1D21;
+    --shell-yellow: #F7D117;
+    --shell-dark: #1a1a1a;
+    --shell-gray: #4a4a4a;
+    --bronze: #CD7F32;
+    --silver: #8B8D91;
+    --gold: #D4AF37;
+    --platinum: #5B6B7A;
+    --border: #e2e5ea;
+    --focus-bg: #fef7f0;
+    --main-bg: #f0f7ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(160deg, #fff9e8 0%, #f0f4f8 40%, #fff5f5 100%);
+    color: var(--shell-dark);
+    min-height: 100vh;
+    padding: 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    text-align: center;
+    margin-bottom: 18px;
+    padding: 18px 16px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    border-top: 5px solid var(--shell-red);
+  }
+  header h1 { font-size: 1.65rem; margin-bottom: 2px; }
+  header h1 span { color: var(--shell-red); }
+  header p { color: var(--shell-gray); font-size: 0.88rem; }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--shell-yellow), #ffe066);
+    color: #333;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    background: white;
+    padding: 6px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: var(--shell-gray);
+  }
+  .tab.active {
+    background: var(--shell-red);
+    color: white;
+    box-shadow: 0 4px 12px rgba(221,29,33,0.28);
+  }
+  .tab:hover:not(.active) { background: #fef2f2; color: var(--shell-red); }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 1.02rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Month accordion */
+  .month-section {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: white;
+  }
+  .month-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #fafbfc;
+    cursor: pointer;
+    user-select: none;
+  }
+  .month-header:hover { background: #f3f4f6; }
+  .month-header h3 {
+    font-size: 0.95rem;
+    color: var(--shell-red);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .month-header .chevron {
+    transition: transform 0.25s;
+    font-size: 0.8rem;
+    color: #9ca3af;
+  }
+  .month-section.open .chevron { transform: rotate(90deg); }
+  .month-summary-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.74rem;
+  }
+  .chip {
+    background: #f3f4f6;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #4b5563;
+  }
+  .chip.tier { color: white; }
+  .chip.tier-bronze { background: var(--bronze); }
+  .chip.tier-silver { background: var(--silver); }
+  .chip.tier-gold { background: var(--gold); color: #333; }
+  .chip.tier-platinum { background: var(--platinum); }
+  .chip.tier-none { background: #9ca3af; }
+  .chip.milestone { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .month-body {
+    display: none;
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .month-section.open .month-body { display: block; }
+  .cat-block {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .cat-block.mainstream { background: var(--main-bg); border: 1px solid #c7d9f0; }
+  .cat-block.focus { background: var(--focus-bg); border: 1px solid #f5d0a9; }
+  .cat-title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cat-title.mainstream { color: #1e5a9a; }
+  .cat-title.focus { color: #b45309; }
+
+  /* ===== Product row – always ONE line ===== */
+  .product-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    flex-wrap: nowrap;
+  }
+  .product-row .col-product { flex: 1 1 0; min-width: 0; }
+  .product-row .col-size    { flex: 0 0 auto; width: 66px; }
+  .product-row .col-packs   { flex: 0 0 auto; width: 52px; }
+  .product-row .col-value   { flex: 0 0 auto; min-width: 48px; text-align: right; }
+  .product-row .col-remove  { flex: 0 0 auto; }
+  body.pco-mode .col-size { display: none; }
+
+  .product-row label {
+    display: block;
+    font-size: 0.62rem;
+    color: #6b7280;
+    margin-bottom: 2px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .product-row .col-product label,
+  .product-row .col-value label { text-align: left; }
+  .product-row .col-value label { text-align: right; }
+  .product-row select {
+    width: 100%;
+    padding: 7px 4px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    background: white;
+    cursor: pointer;
+    text-overflow: ellipsis;
+  }
+  .product-row select:focus { outline: none; border-color: var(--shell-red); }
+
+  /* ===== Scroll-wheel picker ===== */
+  .wheel-wrap {
+    position: relative;
+    height: 78px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    contain: layout paint;
+  }
+  .wheel-wrap::before {            /* centre highlight band */
+    content: "";
+    position: absolute; left: 0; right: 0; top: 26px; height: 26px;
+    background: #fef2f2;
+    border-top: 1.5px solid var(--shell-red);
+    border-bottom: 1.5px solid var(--shell-red);
+    pointer-events: none;
+  }
+  .wheel {
+    position: relative; z-index: 1;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 26px;
+    padding: 26px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: contain;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+  .wheel::-webkit-scrollbar { display: none; }
+  .wheel { overflow-x: hidden; }
+  .wheel.dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+  .w-item {
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    scroll-snap-align: start;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 3px;
+    user-select: none;
+  }
+  .w-item.sel { color: var(--shell-red); font-weight: 800; font-size: 0.92rem; }
+
+  .line-value {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--shell-red);
+    white-space: nowrap;
+  }
+  .line-value .sub {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #9ca3af;
+  }
+
+  .btn-remove {
+    background: #fee2e2;
+    border: none;
+    color: #b91c1c;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-remove:hover { background: #fecaca; }
+
+  .btn-add {
+    background: white;
+    border: 1.5px dashed #9ca3af;
+    color: #4b5563;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 2px;
+  }
+  .btn-add:hover { border-color: var(--shell-red); color: var(--shell-red); background: #fef2f2; }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  button.calc {
+    background: var(--shell-red);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 140px;
+  }
+  button.calc:hover { background: #b9181c; }
+  button.secondary {
+    background: white;
+    color: var(--shell-red);
+    border: 2px solid var(--shell-red);
+    padding: 10px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .results { display: none; }
+  .results.show { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .stat {
+    background: linear-gradient(135deg, #fff 0%, #fef9e7 100%);
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .stat .value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--shell-red);
+    line-height: 1.15;
+  }
+  .stat .label { font-size: 0.72rem; color: var(--shell-gray); margin-top: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th, td { padding: 9px 7px; text-align: center; border-bottom: 1px solid var(--border); }
+  th {
+    background: #f3f4f6;
+    font-weight: 600;
+    color: var(--shell-gray);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+  }
+  .tier-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: white;
+  }
+  .tier-bronze { background: var(--bronze); }
+  .tier-silver { background: var(--silver); }
+  .tier-gold { background: var(--gold); color: #333; }
+  .tier-platinum { background: var(--platinum); }
+  .tier-none { background: #9ca3af; }
+  .rate-high { color: #059669; font-weight: 700; }
+  .rate-mid { color: #d97706; font-weight: 700; }
+  .rate-low { color: #dc2626; font-weight: 700; }
+  .note {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 10px;
+    line-height: 1.5;
+    background: #f9fafb;
+    padding: 9px 11px;
+    border-radius: 8px;
+    border-left: 3px solid var(--shell-yellow);
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 700px) {
+    .rules-grid { grid-template-columns: 1fr; }
+    body { padding: 8px; }
+    .card { padding: 10px; }
+    .month-body { padding: 8px; }
+    .cat-block { padding: 6px; }
+    .product-row { gap: 4px; padding: 5px; }
+    .product-row .col-size { width: 56px; }
+    .product-row .col-packs { width: 44px; }
+    .product-row .col-value { min-width: 38px; }
+    .product-row select { font-size: 0.74rem; padding: 6px 2px; }
+    .line-value { font-size: 0.8rem; }
+    .btn-remove { width: 24px; height: 24px; }
+  }
+  .rule-box {
+    background: #fafbfc;
+    border-radius: 8px;
+    padding: 11px;
+    border: 1px solid var(--border);
+  }
+  .rule-box h4 { font-size: 0.82rem; margin-bottom: 5px; color: var(--shell-red); }
+  .rule-box ul { padding-left: 15px; font-size: 0.75rem; color: #374151; line-height: 1.5; }
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 0.7rem;
+    color: #9ca3af;
+  }
+  .highlight { background: #fef3c7; }
+  .benefit-strip {
+    display: flex; align-items: center; gap: 4px;
+    padding: 8px 10px;
+    background: #fffbeb;
+    border-top: 1px solid #fde68a;
+    border-bottom: 1px solid #fde68a;
+  }
+  .b-item { flex: 1 1 0; min-width: 0; text-align: center; }
+  .b-label { font-size: 0.64rem; color: #6b7280; font-weight: 600; line-height: 1.2; }
+  .b-val { font-size: 1.05rem; font-weight: 800; }
+  .b-op { flex: 0 0 auto; font-size: 1rem; font-weight: 800; color: #9ca3af; }
+  .b-item.coupon .b-val { color: #1d4ed8; }
+  .b-item.milestone .b-val { color: #b45309; }
+  .b-item.coins .b-val { color: #92400e; }
+  .b-item.total { background: #fff; border: 1px solid var(--shell-red); border-radius: 8px; padding: 3px 2px; }
+  .b-item.total .b-val { color: var(--shell-red); }
+  @media (max-width: 700px) {
+    .benefit-strip { padding: 6px 4px; gap: 2px; }
+    .b-label { font-size: 0.56rem; }
+    .b-val { font-size: 0.9rem; }
+  }
+  .stat.coupon { background: linear-gradient(135deg,#fff 0%,#eff6ff 100%); border-color: #bfdbfe; }
+  .stat.coupon .value { color: #1d4ed8; }
+  .coupon-col { color: #1d4ed8; font-weight: 600; }
+  .line-value { color: #1d4ed8 !important; }
+  .empty-msg {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    font-style: italic;
+    padding: 4px 0;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Sapne Honge <span>Apne</span></h1>
+    <p>Community Building Program 2026 — Product-level SHA Coin Calculator & Simulator</p>
+    <div class="badge">SHELL ADVANTAGE REWARDS</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-program="cvo" onclick="switchProgram('cvo')">CVO — Shell Rimula (Litres)</button>
+    <button class="tab" data-program="pco" onclick="switchProgram('pco')">PCMO — Shell Helix (Scans)</button>
+  </div>
+
+  <div class="card">
+    <h2><span>✏️ Monthly Product Inputs <span style="font-size:0.75rem;font-weight:500;color:#6b7280;">— live calculation as you type</span></span></h2>
+    <div id="monthsContainer"></div>
+    <div class="btn-row">
+      <button class="calc" onclick="calculate()">Calculate Full Quarter</button>
+      <button class="secondary" onclick="resetAll()">Reset All</button>
+    </div>
+  </div>
+
+  <div class="card results" id="resultsCard">
+    <h2>🏆 Earnings Result</h2>
+    <div class="summary-grid" id="summaryStats"></div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Overall</th>
+            <th>Focused</th>
+            <th>Tier</th>
+            <th>Rate</th>
+            <th>Focus Coupon Value</th>
+            <th>Bonus SHA Coins</th>
+            <th>Milestone SHA Coins</th>
+            <th>Month SHA Coins</th>
+            <th>Month Coupon Value (All)</th>
+          </tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+        <tfoot>
+          <tr class="highlight">
+            <td colspan="5" style="text-align:right;font-weight:700;">Quarter Total</td>
+            <td id="totalFocusCoupon" class="coupon-col"></td>
+            <td id="totalBonus" style="font-weight:700;"></td>
+            <td id="totalMilestone" style="font-weight:700;"></td>
+            <td id="grandTotal" style="font-weight:800;color:var(--shell-red);font-size:1.05rem;"></td>
+            <td id="totalCouponAll" class="coupon-col" style="font-weight:800;"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="note" id="resultNote"></div>
+  </div>
+
+  <div class="card">
+    <h2><span>📊 Tier & Milestone Reference (<span id="refProgram">CVO</span>)</span></h2>
+    <div class="rules-grid">
+      <div>
+        <table id="tierTable">
+          <thead><tr><th>Tier</th><th>Qualification</th><th>M1</th><th>M2</th><th>M3</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <table id="milestoneTable">
+          <thead><tr><th>#</th><th>Requirement</th><th>Payout</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const CATALOG = {
+  cvo: {
+    focus: {
+      "EO Plus": [{ size: 8.5, coupon: 120 }],
+      "Gadus S2": [
+        { size: 1, coupon: 35 }, { size: 2, coupon: 70 },
+        { size: 5, coupon: 175 }, { size: 7, coupon: 245 }
+      ],
+      "LD3": [{ size: 3, coupon: 45 }],
+      "PickUp-Multi": [{ size: 7, coupon: 175 }],
+      "R4 L": [
+        { size: 10, coupon: 250 }, { size: 15, coupon: 350 }
+      ],
+      "R4 Plus": [
+        { size: 3, coupon: 60 }, { size: 7.5, coupon: 175 },
+        { size: 11, coupon: 275 }, { size: 15, coupon: 350 }, { size: 18, coupon: 425 }
+      ],
+      "R5": [
+        { size: 3, coupon: 60 }, { size: 10, coupon: 300 }, { size: 15, coupon: 400 }
+      ],
+      "Spirax S2": [
+        { size: 7, coupon: 75 }, { size: 10, coupon: 100 }, { size: 12, coupon: 100 }
+      ]
+    },
+    mainstream: {
+      "PickUp": [
+        { size: 5, coupon: 100 }, { size: 7, coupon: 125 }
+      ],
+      "R1": [
+        { size: 6, coupon: 60 }, { size: 7.5, coupon: 60 }, { size: 10, coupon: 60 }
+      ],
+      "R2 Extra": [{ size: 3, coupon: 20 }],
+      "R3": [
+        { size: 6, coupon: 75 }, { size: 7.5, coupon: 75 },
+        { size: 10, coupon: 75 }, { size: 15, coupon: 125 }
+      ],
+      "R4": [
+        { size: 7.5, coupon: 100 }, { size: 10, coupon: 150 }, { size: 15, coupon: 200 }
+      ],
+      "UTTO": [
+        { size: 5, coupon: 50 }, { size: 20, coupon: 200 }
+      ]
+    }
+  },
+  pco: {
+    focus: {
+      "ECO": [{ size: 1, coupon: 50 }],
+      "Helix Ultra": [{ size: 1, coupon: 200 }],
+      "HX8": [{ size: 1, coupon: 150 }],
+      "Spirax S4": [{ size: 1, coupon: 70 }],
+      "SUV": [{ size: 1, coupon: 150 }]
+    },
+    mainstream: {
+      "HX6": [{ size: 1, coupon: 50 }],
+      "HX7": [{ size: 1, coupon: 150 }],
+      "Taxi": [{ size: 1, coupon: 50 }]
+    }
+  }
+};
+
+const PROGRAMS = {
+  cvo: {
+    name: "CVO (Shell Rimula)",
+    unit: "L",
+    unitLong: "litres",
+    isVolume: true,
+    cap: 100,
+    tiers: [
+      { name: "Bronze", overall: 30, focused: 15, rates: [10, 20, 30] },
+      { name: "Silver", overall: 45, focused: 25, rates: [20, 30, 40] },
+      { name: "Gold", overall: 65, focused: 35, rates: [30, 40, 50] },
+      { name: "Platinum", overall: 85, focused: 50, rates: [40, 50, 60] }
+    ],
+    milestones: [
+      { req: 20, payout: 60 },
+      { req: 30, payout: 75 },
+      { req: 45, payout: 100 }
+    ]
+  },
+  pco: {
+    name: "PCMO (Shell Helix)",
+    unit: "scans",
+    unitLong: "scans",
+    isVolume: false,
+    cap: 30,
+    tiers: [
+      { name: "Bronze", overall: 6, focused: 3, rates: [10, 20, 30] },
+      { name: "Silver", overall: 11, focused: 5, rates: [20, 30, 40] },
+      { name: "Gold", overall: 17, focused: 8, rates: [30, 40, 50] },
+      { name: "Platinum", overall: 23, focused: 12, rates: [40, 50, 60] }
+    ],
+    milestones: [
+      { req: 4, payout: 60 },
+      { req: 6, payout: 75 },
+      { req: 10, payout: 100 }
+    ]
+  }
+};
+
+let current = "cvo";
+let rowCounter = 0;
+
+function switchProgram(p) {
+  current = p;
+  document.body.classList.toggle("pco-mode", p === "pco");
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.program === p));
+  buildMonths();
+  
+  renderReference();
+  document.getElementById("resultsCard").classList.remove("show");
+}
+
+function buildMonths() {
+  const container = document.getElementById("monthsContainer");
+  container.innerHTML = "";
+  for (let m = 1; m <= 3; m++) {
+    const sec = document.createElement("div");
+    sec.className = "month-section" + (m === 1 ? " open" : "");
+    sec.id = "monthSec" + m;
+    sec.innerHTML = `
+      <div class="month-header" onclick="toggleMonth(${m})">
+        <h3><span class="chevron">▶</span> Month ${m}</h3>
+        <div class="month-summary-chips" id="monthChips${m}">
+          <span class="chip">Overall: 0</span>
+          <span class="chip">Focus: 0</span>
+        </div>
+      </div>
+      <div class="benefit-strip" id="benefit${m}">
+        <div class="b-item coupon"><div class="b-label">Coupon Value</div><div class="b-val b-coupon">0</div></div>
+        <div class="b-op">+</div>
+        <div class="b-item milestone"><div class="b-label">Milestone Bonus</div><div class="b-val b-milestone">0</div></div>
+        <div class="b-op">+</div>
+        <div class="b-item coins"><div class="b-label">SHA Coins</div><div class="b-val b-coins">0</div></div>
+        <div class="b-op">=</div>
+        <div class="b-item total"><div class="b-label">Total Benefit</div><div class="b-val b-total">0</div></div>
+      </div>
+      <div class="month-body">
+        <div class="cat-block focus">
+          <div class="cat-title focus">
+            <span>🎯 Focus SKU</span>
+            <span style="font-size:0.72rem;font-weight:500;" id="focusTotal${m}">Coupon Value: 0</span>
+          </div>
+          <div id="focusRows${m}"></div>
+          <button class="btn-add" onclick="addProductRow(${m}, 'focus')">+ Add Focus Product</button>
+        </div>
+        <div class="cat-block mainstream">
+          <div class="cat-title mainstream">
+            <span>📦 Mainstream</span>
+            <span style="font-size:0.72rem;font-weight:500;" id="mainTotal${m}">Coupon Value: 0</span>
+          </div>
+          <div id="mainRows${m}"></div>
+          <button class="btn-add" onclick="addProductRow(${m}, 'mainstream')">+ Add Mainstream Product</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(sec);
+    addProductRow(m, "focus");
+    addProductRow(m, "mainstream");
+  }
+}
+
+function toggleMonth(m) {
+  const sec = document.getElementById("monthSec" + m);
+  sec.classList.toggle("open");
+  if (sec.classList.contains("open")) syncWheels(sec);
+}
+
+/* ===== Scroll-wheel picker helpers ===== */
+const ITEM_H = 26;
+const MAX_PACKS = 30;
+
+function wheelItems(labels, idx) {
+  return labels.map((l, i) => `<div class="w-item${i === idx ? " sel" : ""}" data-i="${i}">${l}</div>`).join("");
+}
+function setSel(wheel, i) {
+  wheel.dataset.idx = i;
+  [...wheel.children].forEach((c, k) => c.classList.toggle("sel", k === i));
+}
+function setWheel(wheel, i) {
+  setSel(wheel, i);
+  wheel.scrollTop = i * ITEM_H;
+}
+function syncWheels(scope) {
+  scope.querySelectorAll(".wheel").forEach(w => { w.scrollTop = (+w.dataset.idx || 0) * ITEM_H; });
+}
+const FINE_POINTER = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+function initWheel(wheel, onChange) {
+  let raf = null, settleTimer = null, drag = null;
+  const clampIdx = () => Math.max(0, Math.min(wheel.children.length - 1, Math.round(wheel.scrollTop / ITEM_H)));
+
+  // Highlight updates instantly (cheap); the heavier recalculation waits until the wheel stops moving.
+  wheel.addEventListener("scroll", () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      const i = clampIdx();
+      if (i === +wheel.dataset.idx) return;
+      if (wheel.offsetParent === null) return;          // hidden (collapsed month) – ignore
+      setSel(wheel, i);
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(onChange, 90);
+    });
+  }, { passive: true });
+
+  // tap on an item (touch) – jump instantly, no smooth-scroll fighting the snap
+  wheel.addEventListener("click", e => {
+    if (e.pointerType === "mouse" && FINE_POINTER) return;
+    const it = e.target.closest(".w-item");
+    if (it) wheel.scrollTop = +it.dataset.i * ITEM_H;
+  });
+
+  // mouse drag (desktop only; never on touch screens)
+  if (!FINE_POINTER) return;
+  wheel.addEventListener("pointerdown", e => {
+    if (e.pointerType !== "mouse") return;
+    drag = { y: e.clientY, top: wheel.scrollTop, moved: false, item: e.target.closest(".w-item") };
+    wheel.classList.add("dragging");
+    wheel.setPointerCapture(e.pointerId);
+  });
+  wheel.addEventListener("pointermove", e => {
+    if (!drag) return;
+    const dy = e.clientY - drag.y;
+    if (Math.abs(dy) > 3) drag.moved = true;
+    wheel.scrollTop = drag.top - dy;
+  });
+  const end = () => {
+    if (!drag) return;
+    const d = drag; drag = null;
+    wheel.classList.remove("dragging");
+    const target = (!d.moved && d.item) ? +d.item.dataset.i : clampIdx();
+    wheel.scrollTo({ top: target * ITEM_H, behavior: "smooth" });
+  };
+  wheel.addEventListener("pointerup", end);
+  wheel.addEventListener("pointercancel", end);
+}
+
+function brandOf(row) {
+  const brands = Object.keys(CATALOG[current][row.dataset.cat]);
+  return brands[+row.querySelector(".wheel-brand").dataset.idx || 0];
+}
+
+function sizeLabels(list) {
+  return list.map(p => p.size + (current === "cvo" ? " L" : ""));
+}
+
+function addProductRow(month, cat) {
+  const catalog = CATALOG[current][cat];
+  const brands = Object.keys(catalog);
+  if (brands.length === 0) return;
+
+  const container = document.getElementById(cat === "focus" ? "focusRows" + month : "mainRows" + month);
+  const empty = container.querySelector(".empty-msg");
+  if (empty) empty.remove();
+
+  const id = "row_" + (++rowCounter);
+  const div = document.createElement("div");
+  div.className = "product-row";
+  div.id = id;
+  div.dataset.month = month;
+  div.dataset.cat = cat;
+
+  const packLabels = Array.from({ length: MAX_PACKS + 1 }, (_, i) => i);
+
+  div.innerHTML = `
+    <div class="col-product">
+      <label>Product</label>
+      <div class="wheel-wrap"><div class="wheel wheel-brand" data-idx="0">${wheelItems(brands, 0)}</div></div>
+    </div>
+    <div class="col-size">
+      <label>Pack Size</label>
+      <div class="wheel-wrap"><div class="wheel wheel-size" data-idx="0">${wheelItems(sizeLabels(catalog[brands[0]]), 0)}</div></div>
+    </div>
+    <div class="col-packs">
+      <label>No. of Packs</label>
+      <div class="wheel-wrap"><div class="wheel wheel-packs" data-idx="0">${wheelItems(packLabels, 0)}</div></div>
+    </div>
+    <div class="col-value">
+      <label>Coupon</label>
+      <div class="line-value" title="Coupon Value"><span class="val">0</span><span class="sub">value</span></div>
+    </div>
+    <div class="col-remove">
+      <button class="btn-remove" onclick="removeRow('${id}')" title="Remove">×</button>
+    </div>
+  `;
+  container.appendChild(div);
+  div.querySelectorAll(".wheel").forEach(w => initWheel(w, () =>
+    w.classList.contains("wheel-brand") ? onBrandChange(id) : recalcRow(id)));
+  recalcRow(id);
+}
+
+function onBrandChange(rowId) {
+  const row = document.getElementById(rowId);
+  const list = CATALOG[current][row.dataset.cat][brandOf(row)];
+  const wheel = row.querySelector(".wheel-size");
+  wheel.innerHTML = wheelItems(sizeLabels(list), 0);
+  setWheel(wheel, 0);
+  recalcRow(rowId);
+}
+
+function removeRow(rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const month = row.dataset.month;
+  const cat = row.dataset.cat;
+  row.remove();
+  updateMonthTotals(month);
+  const cont = document.getElementById(cat === "focus" ? "focusRows" + month : "mainRows" + month);
+  if (cont.children.length === 0) {
+    cont.innerHTML = `<div class="empty-msg">No products added</div>`;
+  }
+}
+
+function recalcRow(rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const list = CATALOG[current][row.dataset.cat][brandOf(row)];
+  const sIdx = Math.min(+row.querySelector(".wheel-size").dataset.idx || 0, list.length - 1);
+  const packs = Math.min(MAX_PACKS, +row.querySelector(".wheel-packs").dataset.idx || 0);
+  const coupon = list[sIdx].coupon;
+  const size = list[sIdx].size;
+
+  let lineSHA = 0;
+  let units = 0;
+
+  if (current === "cvo") {
+    units = size * packs;
+    lineSHA = (coupon / size) * units;   // = coupon * packs
+  } else {
+    units = packs;
+    lineSHA = coupon * packs;
+  }
+
+  row.querySelector(".line-value .val").textContent = Math.round(lineSHA);
+  row.dataset.units = units;
+  row.dataset.sha = lineSHA;
+  row.dataset.packs = packs;
+
+  updateMonthTotals(row.dataset.month);
+}
+
+function updateMonthTotals(month) {
+  let focusUnits = 0, focusSHA = 0, mainUnits = 0, mainSHA = 0;
+
+  document.querySelectorAll(`.product-row[data-month="${month}"]`).forEach(row => {
+    const units = parseFloat(row.dataset.units) || 0;
+    const sha = parseFloat(row.dataset.sha) || 0;
+    if (row.dataset.cat === "focus") {
+      focusUnits += units;
+      focusSHA += sha;
+    } else {
+      mainUnits += units;
+      mainSHA += sha;
+    }
+  });
+
+  const overall = focusUnits + mainUnits;
+  const prog = PROGRAMS[current];
+  const dec = current === "cvo" ? 1 : 0;
+
+  document.getElementById("focusTotal" + month).textContent =
+    `Coupon Value: ${Math.round(focusSHA)} | ${focusUnits.toFixed(dec)} ${prog.unit}`;
+  document.getElementById("mainTotal" + month).textContent =
+    `Coupon Value: ${Math.round(mainSHA)} | ${mainUnits.toFixed(dec)} ${prog.unit}`;
+
+  // chips
+  const tier = getTier(overall, focusUnits, prog);
+  document.getElementById("monthChips" + month).innerHTML = `
+    <span class="chip">Overall: ${overall.toFixed(dec)} ${prog.unit}</span>
+    <span class="chip">Focus: ${focusUnits.toFixed(dec)} ${prog.unit}</span>
+    <span class="chip tier tier-${tier ? tier.name.toLowerCase() : "none"}">${tier ? tier.name : "No Tier"}</span>
+  `;
+  renderMonthBenefits();
+}
+
+function getTier(overall, focused, prog) {
+  if (focused < prog.tiers[0].focused || overall < prog.tiers[0].overall) return null;
+  for (let i = prog.tiers.length - 1; i >= 0; i--) {
+    const t = prog.tiers[i];
+    if (overall >= t.overall && focused >= t.focused) return t;
+  }
+  return null;
+}
+
+function getMilestonePayout(focused, prog) {
+  let total = 0;
+  for (const m of prog.milestones) {
+    if (focused >= m.req) total += m.payout;
+  }
+  return total;
+}
+
+function computeResults(prog) {
+  const monthsData = [];
+
+  for (let m = 1; m <= 3; m++) {
+    let focusUnits = 0, focusSHA = 0, mainUnits = 0, mainSHA = 0;
+    document.querySelectorAll(`.product-row[data-month="${m}"]`).forEach(row => {
+      const units = parseFloat(row.dataset.units) || 0;
+      const sha = parseFloat(row.dataset.sha) || 0;
+      if (row.dataset.cat === "focus") {
+        focusUnits += units;
+        focusSHA += sha;
+      } else {
+        mainUnits += units;
+        mainSHA += sha;
+      }
+    });
+    const focusUnitsCapped = Math.min(focusUnits, prog.cap);
+    const focusSHAForBonus = focusUnits > 0 ? focusSHA * (focusUnitsCapped / focusUnits) : 0;
+
+    monthsData.push({
+      overall: focusUnits + mainUnits,
+      focused: focusUnits,
+      focusedCapped: focusUnitsCapped,
+      focusSHA,
+      mainSHA,
+      focusSHAForBonus
+    });
+  }
+
+  let streak = 0;
+  const results = [];
+  let totalBonus = 0, totalMilestone = 0, totalFocusCoupon = 0, totalCouponAll = 0;
+
+  for (let i = 0; i < 3; i++) {
+    const d = monthsData[i];
+    const tier = getTier(d.overall, d.focused, prog);
+    let rate = 0, rateIndex = 0;
+
+    if (tier) {
+      streak += 1;
+      rateIndex = Math.min(streak - 1, 2);
+      rate = tier.rates[rateIndex];
+    } else {
+      streak = 0;
+    }
+
+    const bonusSHA = Math.round(d.focusSHAForBonus * (rate / 100));
+    const milestoneSHA = getMilestonePayout(d.focused, prog);
+    const monthTotal = bonusSHA + milestoneSHA;
+
+    totalBonus += bonusSHA;
+    totalMilestone += milestoneSHA;
+    totalFocusCoupon += Math.round(d.focusSHA);
+    totalCouponAll += Math.round(d.focusSHA + d.mainSHA);
+
+    results.push({
+      month: i + 1,
+      totalBenefit: Math.round(d.focusSHA + d.mainSHA) + bonusSHA + milestoneSHA,
+      overall: d.overall,
+      focused: d.focused,
+      tier: tier ? tier.name : "None",
+      rate,
+      rateIndex,
+      focusSHA: Math.round(d.focusSHA),
+      couponAll: Math.round(d.focusSHA + d.mainSHA),
+      bonusSHA,
+      milestoneSHA,
+      monthTotal,
+      missed: !tier
+    });
+  }
+
+  return { results, totalBonus, totalMilestone, totalFocusCoupon, totalCouponAll };
+}
+
+function renderMonthBenefits() {
+  const { results } = computeResults(PROGRAMS[current]);
+  results.forEach(r => {
+    const el = document.getElementById("benefit" + r.month);
+    if (!el) return;
+    el.querySelector(".b-coupon").textContent = r.couponAll;
+    el.querySelector(".b-milestone").textContent = r.milestoneSHA;
+    el.querySelector(".b-coins").textContent = r.bonusSHA;
+    el.querySelector(".b-total").textContent = r.totalBenefit;
+  });
+}
+
+function calculate() {
+  const prog = PROGRAMS[current];
+  const { results, totalBonus, totalMilestone, totalFocusCoupon, totalCouponAll } = computeResults(prog);
+
+  const dec = current === "cvo" ? 1 : 0;
+  document.getElementById("resultBody").innerHTML = results.map(r => {
+    const rateClass = r.rate >= 50 ? "rate-high" : r.rate >= 30 ? "rate-mid" : r.rate > 0 ? "rate-low" : "";
+    const tierClass = r.tier === "None" ? "tier-none" : "tier-" + r.tier.toLowerCase();
+    return `<tr>
+      <td><strong>M${r.month}</strong></td>
+      <td>${r.overall.toFixed(dec)}</td>
+      <td>${r.focused.toFixed(dec)}</td>
+      <td><span class="tier-badge ${tierClass}">${r.tier}</span></td>
+      <td class="${rateClass}">${r.missed ? "0% (Miss)" : r.rate + "% (C" + (r.rateIndex + 1) + ")"}</td>
+      <td class="coupon-col">${r.focusSHA}</td>
+      <td>${r.bonusSHA}</td>
+      <td>${r.milestoneSHA}</td>
+      <td><strong>${r.monthTotal}</strong></td>
+      <td class="coupon-col">${r.couponAll}</td>
+    </tr>`;
+  }).join("");
+
+  document.getElementById("totalBonus").textContent = totalBonus;
+  document.getElementById("totalMilestone").textContent = totalMilestone;
+  document.getElementById("grandTotal").textContent = totalBonus + totalMilestone;
+  document.getElementById("totalFocusCoupon").textContent = totalFocusCoupon;
+  document.getElementById("totalCouponAll").textContent = totalCouponAll;
+
+  document.getElementById("summaryStats").innerHTML = `
+    <div class="stat"><div class="value">${totalCouponAll + totalMilestone + totalBonus}</div><div class="label">Total Benefit (Quarter)</div></div>
+    <div class="stat"><div class="value">${totalBonus}</div><div class="label">🪙 SHA Coins (Quarter)</div></div>
+    <div class="stat"><div class="value">${totalMilestone}</div><div class="label">Milestone Bonus</div></div>
+    <div class="stat coupon"><div class="value">${totalCouponAll}</div><div class="label">🎟 Coupon Value (Quarter)</div></div>
+    <div class="stat"><div class="value">${results.filter(r => !r.missed).length}/3</div><div class="label">Qualifying Months</div></div>
+  `;
+
+  document.getElementById("resultNote").innerHTML = [
+    `<strong>Total Benefit = Coupon Value + Milestone Bonus + SHA Coins.</strong>`,
+    `Tier bonus SHA Coins = Focus Coupon Value × bonus rate. Milestone SHA Coins are fixed and independent of tier.`,
+    current === "cvo"
+      ? `CVO: Coupon Value = (Coupon ÷ Pack Size) × Total Litres.`
+      : `PCMO: 1 pack = 1 scan, Coupon Value = Coupon × No. of Packs.`,
+    `Focused incentive capped at ${prog.cap} ${prog.unit}/month.`,
+    `A missed month resets the bonus rate to Month 1.`
+  ].join(" ");
+
+  document.getElementById("resultsCard").classList.add("show");
+  document.getElementById("resultsCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function resetAll() {
+  buildMonths();
+  document.getElementById("resultsCard").classList.remove("show");
+}
+
+function renderReference() {
+  const prog = PROGRAMS[current];
+  document.getElementById("refProgram").textContent = prog.name;
+  document.querySelector("#tierTable tbody").innerHTML = prog.tiers.map(t => `
+    <tr>
+      <td><span class="tier-badge tier-${t.name.toLowerCase()}">${t.name}</span></td>
+      <td>${t.overall}${t.name === "Platinum" ? "+" : ""} overall | ${t.focused}+ focused</td>
+      <td>${t.rates[0]}%</td>
+      <td>${t.rates[1]}%</td>
+      <td>${t.rates[2]}%</td>
+    </tr>
+  `).join("");
+  document.querySelector("#milestoneTable tbody").innerHTML = prog.milestones.map((m, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${m.req} focused ${prog.unit}</td>
+      <td><strong>${m.payout}</strong> SHA Coins</td>
+    </tr>
+  `).join("");
+}
+
+// Init
+document.body.classList.toggle("pco-mode", current === "pco");
+buildMonths();
+
+renderReference();
+</script>
+</body>
+</html>
