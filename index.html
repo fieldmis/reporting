@@ -194,7 +194,7 @@
 
     .statGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
     .chartCard,.ringCard,.kmCard{margin-bottom:0;}
-    .chartTitle{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:22px;line-height:1.3;}
+    .chartTitle{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:22px;line-height:1.3;text-align:center;}
     .barChart{position:relative;height:90px;display:flex;align-items:flex-end;gap:5px;justify-content:space-around;padding:0 2px;}
     .barChart .bar{flex:0 0 10px;background:linear-gradient(180deg,var(--accent1),var(--accent2));
          border-radius:3px 3px 2px 2px;position:relative;min-height:4px;
@@ -379,9 +379,6 @@ body{min-height:100dvh;letter-spacing:.01em}
 .xlColRow:last-child{border-bottom:none}
 .xlColRow input{width:18px;height:18px;flex:none}
 .xlColRow label{flex:1;word-break:break-word}
-
-.docViewerFrame{width:100%;height:calc(100dvh - 140px);border:none;border-radius:16px;background:#fff}
-.docViewerImg{width:100%;border-radius:16px;display:block}
 @media(max-width:380px){.screen{padding-left:14px;padding-right:14px}.heroName{font-size:1.55rem}.heroTile{min-height:205px}.statGrid{gap:9px}.card{border-radius:20px}}
 @media(min-width:501px){body{display:flex;justify-content:center}#app{width:500px;box-shadow:0 0 80px rgba(0,0,0,.35);border-left:1px solid rgba(121,214,255,.06);border-right:1px solid rgba(121,214,255,.06)}}
 
@@ -683,13 +680,6 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
     <div id="docsLockerContent"><div class="card">Loading documents…</div></div>
   </div>
 
-  <!-- DOC VIEWER (GitHub-folder Docs Locker files) -->
-  <div class="screen" id="screen-docviewer">
-    <button class="backBtn" onclick="goBack()">‹ Back</button>
-    <h1 id="docViewerTitle">Document</h1>
-    <div id="docViewerBody"></div>
-  </div>
-
   <!-- VISIT REPORT -->
   <div class="screen" id="screen-visitreport">
     <button class="backBtn" onclick="goBack()">‹ Back</button>
@@ -773,15 +763,6 @@ const CONFIG = {
   // Path to the manually-exported MasterData CSV, relative to index.html.
   // Update this if the file ever lives somewhere else in the repo.
   MASTER_DATA_CSV_URL: "masterdata.csv",
-  // Public GitHub repo that holds the "Docs Locker" folder — fill these in
-  // with your actual GitHub username/org and repo name. Any PDF, JPEG,
-  // .xlsx, or .html file dropped into that folder (via GitHub's web UI or
-  // a push) automatically gets a Docs Locker button, named after the file
-  // (extension stripped) — nothing else to configure per file.
-  GITHUB_OWNER: "fieldmis",
-  GITHUB_REPO: "reporting",
-  GITHUB_BRANCH: "main",
-  DOCS_LOCKER_FOLDER: "Docs Locker",
   // Separate Apps Script Web App deployment — the "Daily Visit MIS" handler
   // bound to the "Daily Contribution Report" spreadsheet's "Merged Data" tab.
   // It expects a raw { answers: {...} } body (question-id keys), no "action"
@@ -1067,72 +1048,6 @@ function detectLookupColumns(headers){
     out[key] = found ? found.orig : null;
   });
   return out;
-}
-
-/* ====================== DOCS LOCKER — GITHUB FOLDER ======================
- * Lists whatever PDF/JPEG/Excel/HTML files sit in CONFIG.DOCS_LOCKER_FOLDER
- * of the public GitHub repo via GitHub's (unauthenticated, public-repo)
- * contents API, and opens them in an in-app viewer screen rather than
- * navigating out of the app. Cached for the session so re-opening Docs
- * Locker doesn't re-hit GitHub's API every time (public unauthenticated
- * calls are rate-limited per IP — fine for occasional checks, but not for
- * calling it on every single visit to the screen).
- * This is entirely separate from the existing Sheet-based DocsLocker
- * entries (forms/meeting links), which keep opening exactly as before. */
-const DOC_VIEWER_EXTS = {pdf:'pdf', jpg:'image', jpeg:'image', xlsx:'excel', xls:'excel', html:'html', htm:'html'};
-let githubDocsListPromise = null;
-
-function loadGithubDocsLockerFiles(){
-  if(githubDocsListPromise) return githubDocsListPromise;
-  const path = encodeURIComponent(CONFIG.DOCS_LOCKER_FOLDER);
-  const url = `https://api.github.com/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/contents/${path}?ref=${CONFIG.GITHUB_BRANCH}`;
-  githubDocsListPromise = fetch(url).then(r=>{
-    if(!r.ok) throw new Error('GitHub folder listing failed: ' + r.status);
-    return r.json();
-  }).then(list=>{
-    if(!Array.isArray(list)) return [];
-    return list
-      .filter(f=>f.type === 'file')
-      .map(f=>{
-        const dot = f.name.lastIndexOf('.');
-        const ext = dot === -1 ? '' : f.name.slice(dot+1).toLowerCase();
-        return {
-          name: dot === -1 ? f.name : f.name.slice(0, dot), // button label — extension stripped
-          ext,
-          kind: DOC_VIEWER_EXTS[ext] || null,
-          rawUrl: f.download_url
-        };
-      })
-      .filter(f=>f.kind); // silently skip any file type we don't know how to view
-  }).catch(err=>{ githubDocsListPromise = null; console.warn('[docslocker] GitHub folder listing failed:', err); return []; });
-  return githubDocsListPromise;
-}
-
-async function openDocViewer(file){
-  showScreen('screen-docviewer');
-  document.getElementById('docViewerTitle').textContent = file.name;
-  const body = document.getElementById('docViewerBody');
-  body.innerHTML = `<div class="card">${orbitLoaderHTML('Opening…')}</div>`;
-  try{
-    if(file.kind === 'pdf' || file.kind === 'html'){
-      body.innerHTML = `<iframe src="${xlEsc(file.rawUrl)}" class="docViewerFrame"></iframe>`;
-    } else if(file.kind === 'image'){
-      body.innerHTML = `<img src="${xlEsc(file.rawUrl)}" class="docViewerImg">`;
-    } else if(file.kind === 'excel'){
-      const res = await fetch(file.rawUrl);
-      if(!res.ok) throw new Error('download failed: ' + res.status);
-      const buf = await res.arrayBuffer();
-      const wb = XLSX.read(buf, {type:'array'});
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const aoa = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
-      if(!aoa.length){ body.innerHTML = '<div class="card">That sheet looks empty.</div>'; return; }
-      const thead = '<tr>' + aoa[0].map(h=>`<th>${xlEsc(h)}</th>`).join('') + '</tr>';
-      const tbody = aoa.slice(1).map(row => '<tr>' + row.map(c=>`<td>${xlEsc(c)}</td>`).join('') + '</tr>').join('');
-      body.innerHTML = `<div class="card" style="overflow-x:auto"><table>${thead}${tbody}</table></div>`;
-    }
-  }catch(e){
-    body.innerHTML = '<div class="card docsEmpty">Could not open this file. Check your connection and try again.</div>';
-  }
 }
 
 /* ====================== EXCEL LOOKUP TOOL ======================
@@ -1973,37 +1888,18 @@ async function openDocsLocker(){
   showScreen('screen-docslocker');
   const content = document.getElementById('docsLockerContent');
   content.innerHTML = `<div class="card">${orbitLoaderHTML('Loading documents…')}</div>`;
-  const [sheetResult, githubFiles] = await Promise.allSettled([
-    api('getDocsLocker', {userId:session.userId}),
-    loadGithubDocsLockerFiles()
-  ]);
-
-  const docs = (sheetResult.status === 'fulfilled' && sheetResult.value.ok) ? normaliseDocs(sheetResult.value) : [];
-  const files = githubFiles.status === 'fulfilled' ? githubFiles.value : [];
-
-  if(!docs.length && !files.length){
-    content.innerHTML = sheetResult.status === 'rejected'
-      ? '<div class="card docsEmpty">Could not load documents. Please try again.</div>'
-      : '<div class="card docsEmpty">No documents are available yet.</div>';
-    return;
-  }
-
-  content.innerHTML = '';
-  // Sheet-based entries (forms, meeting links, etc.) — unchanged, still
-  // plain links that navigate out exactly as before.
-  docs.forEach(doc=>{
-    const link = document.createElement('a');
-    link.className = 'btn docLink'; link.href = doc.url; link.textContent = doc.name;
-    link.rel = 'noopener';
-    content.appendChild(link);
-  });
-  // GitHub-folder files — open in the in-app viewer instead.
-  files.forEach(file=>{
-    const btn = document.createElement('button');
-    btn.className = 'btn docLink'; btn.textContent = file.name;
-    btn.onclick = ()=> openDocViewer(file);
-    content.appendChild(btn);
-  });
+  try{
+    const r = await api('getDocsLocker', {userId:session.userId});
+    const docs = normaliseDocs(r);
+    if(!r.ok || !docs.length){ content.innerHTML = '<div class="card docsEmpty">No documents are available yet.</div>'; return; }
+    content.innerHTML = '';
+    docs.forEach(doc=>{
+      const link = document.createElement('a');
+      link.className = 'btn docLink'; link.href = doc.url; link.textContent = doc.name;
+      link.rel = 'noopener';
+      content.appendChild(link);
+    });
+  }catch(e){ content.innerHTML = '<div class="card docsEmpty">Could not load documents. Please try again.</div>'; }
 }
 
 /* ====================== VISIT REPORT WIZARD ====================== */
