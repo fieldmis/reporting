@@ -2939,6 +2939,26 @@ function finishLogout(){
   replaceScreen('screen-login', 'back');
 }
 
+/* ====================== FORCE LOGOUT (admin sets ForceLogout = Y in Users sheet) ======================
+ * Checked only when the app opens or returns to the foreground — no timer
+ * polling. A failed/offline check NEVER logs the user out. */
+let _forceLogoutBusy = false;
+async function checkForceLogout(){
+  if(!session || _forceLogoutBusy) return;
+  _forceLogoutBusy = true;
+  try{
+    const r = await api('checkSession', {userId: session.userId});
+    if(r && r.ok && r.forceLogout){
+      toast('You were logged out by admin. Please log in again.');
+      finishLogout();
+    }
+  }catch(e){ /* network/backend error: stay logged in */ }
+  finally{ _forceLogoutBusy = false; }
+}
+document.addEventListener('visibilitychange', ()=>{
+  if(document.visibilityState === 'visible') checkForceLogout();
+});
+
 /* ====================== MIDNIGHT AUTO-LOGOUT ====================== */
 function scheduleMidnightLogout(){
   const now = new Date();
@@ -2995,6 +3015,7 @@ if(session && session.date === todayStr()){
   if(log.some(p=>p.type==='end')) dayEnded = true;
   updateDashboardButtons();
   restoreScreenAfterReload();
+  checkForceLogout();
 } else if(session && session.date !== todayStr()){
   // Session left over from a previous day (app was closed before the
   // midnight auto-logout could run) — clear it so PIN is required again.
