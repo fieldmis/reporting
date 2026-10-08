@@ -3,7 +3,7 @@
 // this file is deployed (currently /reporting/).
 // Bump CACHE_NAME whenever you deploy a new index.html so old clients
 // pick up the change instead of serving a stale cached copy.
-const CACHE_NAME = 'shell-fos-v2';
+const CACHE_NAME = 'shell-fos-v3';
 
 const CORE_ASSETS = [
   './',
