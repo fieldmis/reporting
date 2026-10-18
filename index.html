@@ -3639,6 +3639,44 @@ document.addEventListener('visibilitychange', ()=>{
   flushOutbox();
 });
 
+/* ====================== AUTO REFRESH ======================
+ * Every AUTO_REFRESH_MIN minutes the dashboard quietly re-reads its data (charts, KPI, day status), retries
+ * anything waiting in the outbox, re-checks for an admin force logout, and asks the browser to look for a
+ * newer version of the app. It only runs while the app is on screen, someone is logged in, and the HOME
+ * screen is showing, so it never interrupts the camera, the visit form, the beat plan or End of Day.
+ * Change the number below to change how often it happens. */
+const AUTO_REFRESH_MIN = 15;
+let _lastAutoRefresh = Date.now();
+function autoRefreshNow(){
+  if(!session || document.visibilityState !== 'visible' || !isHomeScreenActive()) return;
+  _lastAutoRefresh = Date.now();
+  loadDashboardStats();
+  loadKpi(true);
+  syncDayFromServer().then(()=>updateDashboardButtons());
+  flushOutbox();
+  checkForceLogout();   // has its own 10-minute limit
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.getRegistration().then(r=>{ if(r) r.update(); }).catch(()=>{});
+  }
+}
+setInterval(autoRefreshNow, AUTO_REFRESH_MIN * 60000);
+document.addEventListener('visibilitychange', ()=>{
+  // Coming back to the app after a long time away: refresh straight away instead of waiting for the timer.
+  if(document.visibilityState === 'visible' && Date.now() - _lastAutoRefresh >= AUTO_REFRESH_MIN * 60000) autoRefreshNow();
+});
+/* When a newer version of the app has been installed and takes over, reload once, but only from the home
+ * screen so nothing the rep is typing is lost. (Their login and today's work are kept.) */
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', ()=>{
+    if(!hadController || reloaded || !session || !isHomeScreenActive()) return;
+    reloaded = true;
+    location.reload();
+  });
+})();
+
 /* ====================== MIDNIGHT AUTO-LOGOUT ====================== */
 function scheduleMidnightLogout(){
   setTimeout(()=>{
