@@ -569,6 +569,97 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#aebbd0;white-space:pre-wrap;}
 .vfDone .btn.primary{margin-top:4px;}
 
+
+/* Pending-sync notice + share prompt */
+.syncBadge{display:none;width:100%;margin:0 0 14px;padding:10px 14px;border-radius:14px;
+  border:1px solid rgba(255,196,87,.38);background:rgba(255,196,87,.12);color:#ffd27a;
+  font:inherit;font-size:.84rem;font-weight:600;text-align:left;cursor:pointer;}
+.sharePrompt{position:fixed;inset:0;z-index:400;display:flex;align-items:flex-end;justify-content:center;
+  padding:22px;background:rgba(5,8,16,.72);}
+.sharePrompt .card{width:100%;max-width:440px;margin:0;}
+.sharePromptTitle{font-weight:700;margin-bottom:14px;color:#edf4ff;}
+.sharePrompt .btn{margin:0 0 12px;}
+
+/* Visit form: live character counter + self-drawing tick */
+.vfInputBox{position:relative;}
+.vfInputBox input[type=text],.vfInputBox textarea{padding-right:104px;display:block;}
+.vfCounter{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:none;pointer-events:none;
+  font-size:.72rem;font-weight:700;letter-spacing:.2px;white-space:nowrap;color:#ff9aa2;
+  background:rgba(255,95,109,.14);border:1px solid rgba(255,95,109,.4);border-radius:999px;padding:3px 10px;}
+.vfInputBox.isArea .vfCounter{top:50%;bottom:auto;right:26px;transform:translateY(-50%);}
+.vfFieldWrap.cx-bad .vfCounter{display:block;}
+/* red glow until the pattern is met (also while the box is focused) */
+.vfFieldWrap.cx-bad .vfInputBox input[type=text],
+.vfFieldWrap.cx-bad .vfInputBox textarea,
+.vfFieldWrap.cx-bad .vfInputBox input[type=text]:focus,
+.vfFieldWrap.cx-bad .vfInputBox textarea:focus{
+  border-color:#ff5f6d;
+  box-shadow:inset 0 5px 16px rgba(0,0,0,.3),0 0 0 3px rgba(255,95,109,.18),0 0 20px rgba(255,95,109,.4);}
+.vfTick{position:absolute;right:13px;top:50%;width:22px;height:22px;margin-top:-11px;display:none;pointer-events:none;}
+.vfInputBox.isArea .vfTick{top:50%;bottom:auto;right:27px;margin-top:-11px;}
+.vfFieldWrap.cx-ok .vfTick{display:block;}
+.vfTick svg{display:block;width:22px;height:22px;overflow:visible;}
+.vfTickRing,.vfTickCheck{fill:none;stroke:#2fd27c;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.vfTickRing{stroke-dasharray:64;stroke-dashoffset:64;transform:rotate(-90deg);transform-origin:12px 12px;}
+.vfTickCheck{stroke-dasharray:20;stroke-dashoffset:20;}
+.vfTick.draw .vfTickRing{animation:vfTickDraw .42s ease-out forwards;}
+.vfTick.draw .vfTickCheck{animation:vfTickDraw .3s ease-out .36s forwards;}
+.vfTick.still .vfTickRing,.vfTick.still .vfTickCheck{stroke-dashoffset:0;}
+@keyframes vfTickDraw{to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion:reduce){
+  .vfTick.draw .vfTickRing,.vfTick.draw .vfTickCheck{animation:none;stroke-dashoffset:0;}
+}
+
+/* KPI tile */
+.kpiTile{margin-bottom:14px;}
+.kpiHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}
+.kpiTitle{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8fa4bf;}
+.kpiSwitch{display:inline-flex;background:rgba(5,11,20,.6);border:1px solid rgba(121,214,255,.13);border-radius:999px;padding:3px;}
+.kpiSwitch button{font:inherit;font-size:.7rem;font-weight:700;color:#8d9bb3;background:transparent;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;}
+.kpiSwitch button.on{color:#06101c;background:linear-gradient(135deg,#55f7c5,#43d9ff);}
+.kpiWho{font-size:.86rem;font-weight:600;color:#edf4ff;margin:-2px 0 12px;}
+.kpiSelect{width:100%;font:inherit;font-size:.95rem;color:#f2f7ff;background:rgba(5,11,20,.72);border:1px solid rgba(121,214,255,.13);border-radius:14px;padding:12px;margin-bottom:14px;appearance:none;-webkit-appearance:none;box-shadow:inset 0 5px 16px rgba(0,0,0,.3);background-image:linear-gradient(45deg,transparent 50%,#43d9ff 50%),linear-gradient(135deg,#43d9ff 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;}
+.kpiSelect:focus{outline:none;border-color:rgba(67,217,255,.65);}
+.kpiSelect option{background:#0f1726;color:#f2f7ff;}
+.kpiHero{display:flex;align-items:center;gap:12px;}
+.kpiRing{position:relative;flex:0 0 136px;height:136px;}
+.kpiRing svg{width:136px;height:136px;transform:rotate(-90deg);filter:drop-shadow(0 0 10px rgba(67,217,255,.15));}
+.kpiRing circle{fill:none;stroke-width:12;stroke-linecap:round;}
+.kpiRing .kpiTr{stroke:rgba(121,214,255,.1);}
+.kpiRing .kpiPg{stroke:url(#kpiG);transition:stroke-dasharray .6s cubic-bezier(.16,1,.3,1);}
+.kpiCtr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.kpiBig{font-size:1.65rem;font-weight:800;line-height:1.1;background:linear-gradient(135deg,#55f7c5,#43d9ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.kpiLbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#8fa4bf;}
+.kpiSide{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;}
+.kpiSide .kpiLbl{margin-bottom:2px;}
+.kpiSr{display:flex;justify-content:space-between;gap:6px;font-size:.72rem;align-items:baseline;}
+.kpiSr span{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.kpiSr b{color:var(--kc);}
+.kpiSr.low{--kc:#ff5f6d;}.kpiSr.mid{--kc:#43d9ff;}.kpiSr.ok{--kc:#55f7c5;}.kpiSr.cap{--kc:#8b7cff;}
+.kpiTb{margin-top:2px;}
+.kpiRow{display:grid;grid-template-columns:1fr 48px 60px 64px;gap:4px;align-items:center;padding:9px 0;font-size:.8rem;border-bottom:1px solid rgba(121,214,255,.07);}
+.kpiRow:last-child{border:0;}
+.kpiRow.kpiH{padding-top:0;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:#8d9bb3;font-weight:700;}
+.kpiRow .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.kpiRow .v{text-align:right;}
+.kpiGrp{padding:12px 0 4px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#43d9ff;border-bottom:1px solid rgba(121,214,255,.13);}.kpiGrp:first-child{padding-top:2px;}.kpiRow.sub .n{padding-left:10px;font-weight:500;color:#c9d6ea;}.kpiRow.kpiHd{padding:12px 0 6px;border-bottom:1px solid rgba(121,214,255,.13);}
+.kpiRow.kpiHd .n{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#43d9ff;white-space:normal;line-height:1.25;}
+.kpiRow .sh{color:#ff5f6d;font-weight:700;}.kpiRow .su{color:#55f7c5;font-weight:700;}.kpiRow .z{color:#8d9bb3;}
+@media(max-width:380px){.kpiHero{flex-direction:column;}.kpiSide{width:100%;}}
+@media(prefers-reduced-motion:reduce){.kpiRing .kpiPg{transition:none;}}
+
+/* Dashboard pager: Visits | KPI */
+.dashPager{margin-bottom:14px;touch-action:pan-y;}
+.dashTabs{display:none;gap:4px;padding:4px;margin:0 0 12px;background:rgba(5,11,20,.6);border:1px solid rgba(121,214,255,.13);border-radius:999px;}
+.dashTabs button{flex:1;font:inherit;font-size:.78rem;font-weight:700;color:#8d9bb3;background:transparent;border:0;border-radius:999px;padding:9px 12px;cursor:pointer;}
+.dashTabs button.on{color:#06101c;background:linear-gradient(135deg,#55f7c5,#43d9ff);}
+.dashPage .statGrid{margin-bottom:0;}
+.dashPage .kpiTile{margin-bottom:0;}
+.dashPage.slideL{animation:dashInL .28s cubic-bezier(.16,1,.3,1);}
+.dashPage.slideR{animation:dashInR .28s cubic-bezier(.16,1,.3,1);}
+@keyframes dashInL{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:none;}}
+@keyframes dashInR{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.dashPage.slideL,.dashPage.slideR{animation:none;}}
 </style>
 </head>
 <body>
@@ -645,6 +736,13 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
       </button>
     </div>
 
+    <div class="dashPager" id="dashPager">
+      <div class="dashTabs" id="dashTabs" role="tablist" aria-label="Dashboard">
+        <button type="button" class="on" id="dashTabVisits" role="tab" aria-selected="true" onclick="goDashPage(0)">Visits</button>
+        <button type="button" id="dashTabKpi" role="tab" aria-selected="false" onclick="goDashPage(1)">KPI</button>
+      </div>
+      <div id="dashTrack">
+        <div class="dashPage" id="dashPageVisits">
     <div class="statGrid">
       <div class="card chartCard">
         <div class="chartTitle">Visits</div>
@@ -663,7 +761,25 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
         <div class="tileBody" id="kmStat"></div>
       </div>
     </div>
+        </div>
+        <div class="dashPage" id="dashPageKpi" style="display:none">
+    <div class="card kpiTile" id="kpiTile" style="display:none">
+      <div class="kpiHead">
+        <div class="kpiTitle">KPI Performance</div>
+        <div class="kpiSwitch" role="tablist" aria-label="KPI view">
+          <button type="button" class="on" id="kpiTabOverview" role="tab" aria-selected="true" onclick="setKpiView('overview')">Overview</button>
+          <button type="button" id="kpiTabDetails" role="tab" aria-selected="false" onclick="setKpiView('details')">Details</button>
+        </div>
+      </div>
+      <div class="kpiWho" id="kpiWho" style="display:none"></div>
+      <select class="kpiSelect" id="kpiPick" aria-label="Choose person" style="display:none" onchange="onKpiPick(this.value)"></select>
+      <div id="kpiBody"></div>
+    </div>
+        </div>
+      </div>
+    </div>
 
+    <button class="syncBadge" id="syncBadge" type="button" style="display:none" onclick="flushOutbox(true)"></button>
     <button class="btn primary" id="startDayBtn" onclick="handleStartDay()">Start the Day</button>
     <button class="btn" id="visitReportBtn" style="display:none;" onclick="showScreen('screen-visitreport')">Submit Visit Report</button>
     <button class="btn" onclick="showScreen('screen-mastersearch')">Master Search</button>
@@ -759,7 +875,7 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 <script>
 /* ====================== CONFIG ====================== */
 const CONFIG = {
-  API_URL: "https://script.google.com/macros/s/AKfycbxlAyVLgkA2aE0-F7gUyL0-RBzECuIGfpNSgy3Ens_kCkayH6D_oR7cS9f8LV_tlHE/exec",
+  API_URL: "https://script.google.com/macros/s/AKfycbwxMTIh3HXI9OMwNq3Uz3iWowz2NADGjRTpRx_zyZKJMogt4KFD5C-ZgIpoo4ebHHfT/exec",
   // Path to the manually-exported MasterData CSV, relative to index.html.
   // Update this if the file ever lives somewhere else in the repo.
   MASTER_DATA_CSV_URL: "masterdata.csv",
@@ -767,13 +883,30 @@ const CONFIG = {
   // bound to the "Daily Contribution Report" spreadsheet's "Merged Data" tab.
   // It expects a raw { answers: {...} } body (question-id keys), no "action"
   // wrapper — do not route this through API_URL/api().
-  VISIT_REPORT_SUBMIT_URL: "https://script.google.com/macros/s/AKfycby4iTnuXi_vbLAB-YgzSJ2AfIbHoa9Y5WB0GOPnZpM6PE2p3uNb8ScOtHVOnHFRmLoAFQ/exec",
-  WHATSAPP_GROUP_INVITE: "https://chat.whatsapp.com/E4R9B2fVwKW2xzJT7gCopd"
+  VISIT_REPORT_SUBMIT_URL: "https://script.google.com/macros/s/AKfycby4iTnuXi_vbLAB-YgzSJ2AfIbHoa9Y5WB0GOPnZpM6PE2p3uNb8ScOtHVOnHFRmLoAFQ/exec"
 };
 
 /* ====================== STATE ====================== */
-let session = JSON.parse(localStorage.getItem('sfos_session') || 'null');
-let todayLog = JSON.parse(localStorage.getItem('sfos_today_log') || '[]');
+/* Storage can be blocked or hold bad data (in-app browsers, private mode, corruption).
+   These wrappers never throw, so a storage problem can no longer stop the whole app. */
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+function lsJson(k, fallback){ try{ const v = lsGet(k); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+
+/* All dates are Indian Standard Time (IST, UTC+5:30, no daylight saving), whatever the phone's own zone is. */
+const IST_OFFSET_MS = 5.5 * 3600 * 1000;
+function istDateStr(d){ return new Date((d ? d.getTime() : Date.now()) + IST_OFFSET_MS).toISOString().slice(0,10); }
+function todayStr(){ return istDateStr(); }
+function msUntilISTMidnight(){
+  const n = Date.now() + IST_OFFSET_MS;
+  return (Math.floor(n / 86400000) + 1) * 86400000 + 5000 - n;
+}
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function newId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,10); }
+
+let session = lsJson('sfos_session', null);
+let todayLog = [];   // today's capture points for the logged-in user — see loadDayState()
 let pendingCaptureType = null;
 let lastSummaryData = null;
 let mediaStream = null;
@@ -824,9 +957,10 @@ function renderScreen(id, direction){
   const el = document.getElementById(id);
   if(direction==='back') el.classList.add('dir-back');
   el.classList.add('active');
-  if(session && id!=='screen-login') localStorage.setItem('sfos_screen', id); // for reload restore
+  if(session && id!=='screen-login') lsSet('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
-  if(id==='screen-dashboard' && session) loadDashboardStats();
+  if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); }
+  if(id==='screen-dashboard') renderSyncBadge();
   if(id==='screen-dashboard') ensureHomeBackGuardEntry();
 }
 let suppressHistoryPush = false; // true only while restoring a page after reload
@@ -968,9 +1102,11 @@ history.replaceState({screen:'screen-login'}, '', location.href);
   });
 })();
 
+let toastTimer = null;
 function toast(msg){
   const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.style.display='none',3000);
 }
 
 function orbitLoaderHTML(label){
@@ -990,14 +1126,131 @@ function setBtnLoading(btn, loading){
     btn.disabled = false;
   }
 }
-async function api(action, payload){
-  const res = await fetch(CONFIG.API_URL, {
-    method:'POST',
-    headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify({action, payload})
-  });
-  return res.json();
+async function api(action, payload, timeoutMs){
+  const ctrl = new AbortController();
+  const timer = setTimeout(()=>ctrl.abort(), timeoutMs || 20000);
+  try{
+    const res = await fetch(CONFIG.API_URL, {
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({action, payload}),
+      signal: ctrl.signal
+    });
+    return await res.json();
+  } finally { clearTimeout(timer); }
 }
+
+/* ====================== OUTBOX (retry queue) ======================
+ * Anything that must reach the server (location points, the visit report, the
+ * end-of-day summary) goes through this queue. It is stored on the phone, sent in
+ * order, retried with a growing delay when the network is weak, and survives the
+ * app being closed or killed. Each point carries a unique id so the server can
+ * ignore a repeat of something it already has. */
+const OUTBOX_KEY = 'sfos_outbox';
+let outbox = lsJson(OUTBOX_KEY, []);
+if(!Array.isArray(outbox)) outbox = [];
+const jobWatchers = {};   // jobId -> [callbacks]
+const jobState = {};      // jobId -> {st, res}  (last status, replayed to late watchers)
+let outboxFlushing = false;
+let outboxTimer = null;
+
+function renderSyncBadge(){
+  const el = document.getElementById('syncBadge');
+  if(!el) return;
+  const n = outbox.length;
+  if(!n){ el.style.display = 'none'; return; }
+  el.textContent = '⏳ ' + n + (n === 1 ? ' item is' : ' items are') + ' waiting to sync — tap to retry';
+  el.style.display = 'block';
+}
+function saveOutbox(){ lsSet(OUTBOX_KEY, JSON.stringify(outbox)); renderSyncBadge(); }
+
+function notifyJob(job, st, res){
+  if(st !== 'sending') jobState[job.id] = {st, res};
+  (jobWatchers[job.id] || []).slice().forEach(cb=>{ try{ cb(st, res); }catch(e){} });
+  if(st === 'sent' || st === 'failed') delete jobWatchers[job.id];
+}
+function watchJob(job, cb){
+  const last = jobState[job.id];
+  if(last) setTimeout(()=>{ try{ cb(last.st, last.res); }catch(e){} }, 0);
+  if(last && (last.st === 'sent' || last.st === 'failed')) return;
+  (jobWatchers[job.id] = jobWatchers[job.id] || []).push(cb);
+}
+function waitForJob(job, ms){
+  return new Promise(resolve=>{
+    let done = false;
+    const finish = v => { if(!done){ done = true; clearTimeout(t); resolve(v); } };
+    const t = setTimeout(()=>finish('timeout'), ms);
+    watchJob(job, st => { if(st === 'sent' || st === 'failed' || st === 'queued') finish(st); });
+  });
+}
+function enqueueJob(kind, payload){
+  const job = { id:newId(), kind, payload, tries:0, createdAt:Date.now() };
+  outbox.push(job);
+  saveOutbox();
+  flushOutbox();
+  return job;
+}
+
+async function sendJob(job){
+  try{
+    if(job.kind === 'visitReport'){
+      const res = await fetchWithTimeout(CONFIG.VISIT_REPORT_SUBMIT_URL, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify({ answers: job.payload.answers })
+      }, 25000);
+      let data = null;
+      try{ data = await res.json(); }catch(e){}
+      if(data && data.status === 'ok') return {state:'done', data};
+      return {state:'retry', message: (data && data.message) || 'No readable response'};
+    }
+    const payload = Object.assign({}, job.payload);
+    const r = await api(job.kind, payload, job.kind === 'endDay' ? 45000 : 20000);
+    if(r && r.ok) return {state:'done', data:r};
+    if(r && r.retry) return {state:'retry', message:r.message};
+    return {state:'drop', message: r && r.message};
+  }catch(e){
+    return {state:'retry', message:String((e && e.message) || e)};
+  }
+}
+
+async function flushOutbox(force){
+  if(outboxFlushing) return;
+  outboxFlushing = true;
+  clearTimeout(outboxTimer);
+  try{
+    while(outbox.length){
+      if(navigator.onLine === false){ outbox.forEach(j=>notifyJob(j, 'queued', {message:'offline'})); break; }
+      const job = outbox[0];
+      if(!force && job.nextAt && job.nextAt > Date.now()) break;
+      force = false;
+      notifyJob(job, 'sending');
+      const out = await sendJob(job);
+      if(out.state === 'done'){
+        outbox.shift(); saveOutbox();
+        notifyJob(job, 'sent', out.data);
+        continue;
+      }
+      const maxTries = job.kind === 'visitReport' ? 6 : 12;
+      if(out.state === 'drop' || ++job.tries >= maxTries){
+        outbox.shift(); saveOutbox();
+        notifyJob(job, 'failed', out);
+        continue;
+      }
+      job.nextAt = Date.now() + Math.min(15 * 60000, 15000 * Math.pow(2, job.tries));
+      saveOutbox();
+      outbox.forEach(j=>notifyJob(j, 'queued', out));   // everything waiting behind it is waiting too
+      break;
+    }
+  } finally {
+    outboxFlushing = false;
+    if(outbox.length){
+      const wait = Math.max(5000, (outbox[0].nextAt || 0) - Date.now());
+      outboxTimer = setTimeout(()=>flushOutbox(false), Math.min(wait, 5 * 60000));
+    }
+  }
+}
+window.addEventListener('online', ()=>flushOutbox(true));
 
 /* ====================== MASTER DATA (shared loader) ======================
  * Loads CONFIG.MASTER_DATA_CSV_URL (the manually-exported MasterData CSV
@@ -1161,8 +1414,8 @@ function formatPJP(raw){
   let items = text.split(/\r?\n|;/).map(s=>s.trim()).filter(Boolean);
   if(items.length <= 1) items = text.split(/(?=\d+[\.\)])/).map(s=>s.trim()).filter(Boolean);
   if(items.length <= 1) items = text.split(',').map(s=>s.trim()).filter(Boolean);
-  if(items.length <= 1) return `<div>${text}</div>`;
-  return '<ul class="pjpList">' + items.map(i=>`<li>${i.replace(/^\d+[\.\)]\s*/,'')}</li>`).join('') + '</ul>';
+  if(items.length <= 1) return `<div>${esc(text)}</div>`;
+  return '<ul class="pjpList">' + items.map(i=>`<li>${esc(i.replace(/^\d+[\.\)]\s*/,''))}</li>`).join('') + '</ul>';
 }
 
 /* ====================== LOGIN ====================== */
@@ -1178,16 +1431,18 @@ async function doLogin(){
     const r = await api('login', {userId, pin});
     if(!r.ok){ msgEl.textContent = r.message || 'Login failed.'; return; }
     session = {userId, userName:r.userName || userId, pjp:r.pjp || '', date: todayStr()};
-    localStorage.setItem('sfos_session', JSON.stringify(session));
+    lsSet('sfos_session', JSON.stringify(session));
+    loadDayState();
+    await syncDayFromServer();
     document.getElementById('pjpContent').innerHTML = formatPJP(r.pjp);
     document.getElementById('pjpUpdateBox').style.display = 'none';
     document.getElementById('confirmPjpBtn').style.display = 'block';
     document.getElementById('updatePjpBtn').style.display = 'block';
     msgEl.innerHTML = '';
     pjpPending = true;
-    localStorage.setItem('sfos_pjp_pending', '1');
+    lsSet('sfos_pjp_pending', '1');
     showScreen('screen-pjp');
-  }catch(e){ msgEl.textContent = 'Could not reach server. Check API_URL.'; }
+  }catch(e){ msgEl.textContent = (e && e.name === 'AbortError') ? 'The server is taking too long. Please try again.' : 'Could not reach the server. Check your internet and try again.'; }
   finally{ setBtnLoading(btn, false); }
 }
 
@@ -1196,7 +1451,7 @@ function confirmPjp(){
   const planText = String(session.pjp || '').trim();
   shareTextToWhatsApp(`*Todays Plan*\n\n${planText || 'No beat plan set for today.'}`).catch(()=>{});
   pjpPending = false;
-  localStorage.removeItem('sfos_pjp_pending');
+  lsDel('sfos_pjp_pending');
   replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
@@ -1216,16 +1471,21 @@ async function submitPjpUpdate(){
   const btn = document.getElementById('submitPjpUpdateBtn');
   setBtnLoading(btn, true);
   try{
-    const r = await api('updatePJP', {userId: session.userId, pjp: newPlan});
-    if(!r.ok){ toast(r.message || 'Could not save update. Try again.'); return; }
-  }catch(e){
-    toast('Could not reach server. Update not saved.');
-    return;
+    let saved = false;
+    try{
+      const r = await api('updatePJP', {userId: session.userId, pjp: newPlan}, 12000);
+      if(r && r.ok) saved = true;
+      else if(r && !r.retry){ toast(r.message || 'Could not save update. Try again.'); return; }
+    }catch(e){ /* weak network — queued below */ }
+    if(!saved){
+      enqueueJob('updatePJP', {userId: session.userId, pjp: newPlan});
+      toast('Weak network — your update is saved and will sync automatically.');
+    }
   }finally{
     setBtnLoading(btn, false);
   }
   session.pjp = newPlan;
-  localStorage.setItem('sfos_session', JSON.stringify(session));
+  lsSet('sfos_session', JSON.stringify(session));
   document.getElementById('pjpContent').innerHTML = formatPJP(newPlan);
   document.getElementById('pjpUpdateBox').style.display = 'none';
   document.getElementById('confirmPjpBtn').style.display = 'block';
@@ -1233,14 +1493,21 @@ async function submitPjpUpdate(){
   toast('Beat plan updated!');
   shareTextToWhatsApp(`*Updated Plan*\n\n${newPlan}`).catch(()=>{});
   pjpPending = false;
-  localStorage.removeItem('sfos_pjp_pending');
+  lsDel('sfos_pjp_pending');
   replaceScreen('screen-dashboard');
   setGreeting();
   updateDashboardButtons();
 }
 
 /* ====================== CAMERA / GEO-STAMP ====================== */
-let lastGeo = null;
+let geoWatchId = null;
+let geoSession = 0;        // changes every time the camera opens or closes, so late results from an earlier session are ignored
+let currentFix = null;     // newest usable GPS fix from THIS camera session only: {lat,lng,accuracy,at}
+let currentPlace = null;   // address for currentFix: {key, area, road, pincode, city, fullAddress, shortAddress}
+let geocodeBusy = false;
+let tilePrefetch = null;   // {key, promise} — satellite tile fetched while the rep lines up the selfie
+let captureRunId = 0;
+const GEO_MAX_ACCURACY_M = 500;
 let stampMapInstance = null;
 let stampClockTimer = null;
 let currentFacingMode = 'user';
@@ -1342,6 +1609,110 @@ async function flipCamera(){
   finally{ if(flipBtn) flipBtn.disabled = false; }
 }
 
+function fixKey(f){ return f.lat.toFixed(3) + ',' + f.lng.toFixed(3); }
+function placeFor(fix){ return (fix && currentPlace && currentPlace.key === fixKey(fix)) ? currentPlace : null; }
+
+/* Location as of right now. Returns null when there is no usable fix in this camera session —
+   it NEVER falls back to the location of an earlier capture. */
+function snapshotGeo(){
+  if(!currentFix || currentFix.accuracy > GEO_MAX_ACCURACY_M) return null;
+  const p = placeFor(currentFix) || {};
+  return {
+    lat: currentFix.lat, lng: currentFix.lng, accuracy: currentFix.accuracy,
+    area: p.area || '', road: p.road || '', pincode: p.pincode || '', city: p.city || '',
+    fullAddress: p.fullAddress || '', shortAddress: p.shortAddress || ''
+  };
+}
+
+function onGeoStatus(err){
+  const h = document.getElementById('stampHeading');
+  const a = document.getElementById('stampAddress');
+  const c = document.getElementById('stampCoords');
+  const loader = document.getElementById('stampLoader');
+  if(!h || !a || !c) return;
+  if(currentFix){
+    const acc = Math.round(currentFix.accuracy);
+    const note = currentFix.accuracy > 50 ? ` ⚠ ±${acc}m` : ` ±${acc}m`;
+    const place = placeFor(currentFix);
+    c.textContent = `Lat ${currentFix.lat.toFixed(6)}°  Long ${currentFix.lng.toFixed(6)}°`;
+    h.textContent = (place && place.shortAddress) ? place.shortAddress + note
+                  : (currentFix.accuracy <= 100 ? 'Location Registered' + note : 'Refining location…' + note);
+    a.textContent = place ? ([place.road, place.pincode].filter(Boolean).join(', ') || 'Street address not available') : 'Looking up address…';
+    if(loader) loader.classList.add('hide');
+    if(!stampMapInstance) renderStampMiniMap(currentFix.lat, currentFix.lng);
+  } else if(err){
+    h.textContent = 'Location unavailable';
+    a.textContent = err.code === 1 ? 'Location permission is off — you can still take the selfie.' : 'Weak signal — you can still take the selfie.';
+    if(loader) loader.classList.add('hide');
+  }
+}
+
+async function maybeResolvePlace(mySession, startedAt){
+  if(geocodeBusy || !currentFix) return;
+  const fix = currentFix, key = fixKey(fix);
+  if(currentPlace && currentPlace.key === key) return;
+  if(!(fix.accuracy <= 100 || Date.now() - startedAt > 6000)) return;
+  geocodeBusy = true;
+  let place = {key, area:'', road:'', pincode:'', city:'', fullAddress:'', shortAddress:''};
+  try{
+    const geoRes = await fetchWithTimeout(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${fix.lat}&lon=${fix.lng}&zoom=16&addressdetails=1&accept-language=en`, {}, 6000);
+    const geoJson = await geoRes.json();
+    const a = geoJson.address || {};
+    place.area = a.suburb || a.neighbourhood || a.quarter || a.village || a.county || '';
+    place.road = a.road || a.pedestrian || a.residential || '';
+    place.pincode = a.postcode || '';
+    place.city = a.city || a.town || a.state_district || a.village || '';
+    place.fullAddress = geoJson.display_name || '';
+    place.shortAddress = [place.area, place.city].filter(Boolean).join(', ');
+  }catch(e){ /* geocoding failed — keep raw coordinates */ }
+  geocodeBusy = false;
+  if(mySession === geoSession){ currentPlace = place; onGeoStatus(); }
+}
+
+function maybePrefetchTile(){
+  if(!currentFix || currentFix.accuracy > 200) return;
+  const key = fixKey(currentFix);
+  if(tilePrefetch && tilePrefetch.key === key) return;
+  tilePrefetch = { key, promise: loadSatelliteTile(currentFix.lat, currentFix.lng, 17) };
+}
+
+function startGeoWatch(){
+  stopGeoWatch();
+  currentFix = null; currentPlace = null; tilePrefetch = null; geocodeBusy = false;
+  const mySession = geoSession;
+  const startedAt = Date.now();
+  if(!navigator.geolocation){ onGeoStatus({code:2}); return; }
+  try{
+    geoWatchId = navigator.geolocation.watchPosition(pos=>{
+      if(mySession !== geoSession) return;
+      const c = pos.coords;
+      const fix = {lat:c.latitude, lng:c.longitude, accuracy:c.accuracy, at:Date.now()};
+      if(!currentFix || fix.accuracy <= currentFix.accuracy * 1.2 || fix.at - currentFix.at > 30000) currentFix = fix;
+      onGeoStatus();
+      maybeResolvePlace(mySession, startedAt);
+      maybePrefetchTile();
+    }, err=>{
+      if(mySession !== geoSession) return;
+      onGeoStatus(err);
+    }, {enableHighAccuracy:true, maximumAge:0, timeout:60000});
+  }catch(e){ onGeoStatus({code:2}); }
+  // Weak signal: don't make the rep wait — tell them they can capture right away.
+  setTimeout(()=>{
+    if(mySession !== geoSession || currentFix) return;
+    const h = document.getElementById('stampHeading'), a = document.getElementById('stampAddress'), loader = document.getElementById('stampLoader');
+    if(h) h.textContent = 'Still locating…';
+    if(a) a.textContent = 'Weak signal — you can take the selfie now without location, or wait a little.';
+    if(loader) loader.classList.add('hide');
+  }, 8000);
+}
+function stopGeoWatch(){
+  geoSession++;
+  if(geoWatchId != null){
+    try{ navigator.geolocation.clearWatch(geoWatchId); }catch(e){}
+    geoWatchId = null;
+  }
+}
+
 async function openCamera(type){
   pendingCaptureType = type;
   showScreen('screen-camera');
@@ -1356,68 +1727,16 @@ async function openCamera(type){
   stampAddress.textContent = 'Waiting for GPS fix…';
   stampCoords.textContent = 'Lat --.------°  Long --.------°';
   startStampClock();
+  startGeoWatch();   // location starts at once, in parallel with the camera
   try{
     await startCameraStream('user');
-  }catch(e){ toast('Camera permission denied.'); stopStampClock(); showScreen('screen-dashboard'); return; }
-
-  try{
-    const pos = await getAccurateLocation(100, 15000, acc=>{
-      stampHeading.textContent = `Refining location… ±${Math.round(acc)}m`;
-    });
-    const {latitude, longitude, accuracy} = pos.coords;
-    stampCoords.textContent = `Lat ${latitude.toFixed(6)}°  Long ${longitude.toFixed(6)}°`;
-    renderStampMiniMap(latitude, longitude);
-    let area = '', road = '', pincode = '', city = '', fullAddress = '';
-    try{
-      const geoRes = await fetchWithTimeout(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=16&addressdetails=1&accept-language=en`, {}, 6000);
-      const geoJson = await geoRes.json();
-      const a = geoJson.address || {};
-      area = a.suburb || a.neighbourhood || a.quarter || a.village || a.county || '';
-      road = a.road || a.pedestrian || a.residential || '';
-      pincode = a.postcode || '';
-      city = a.city || a.town || a.state_district || a.village || '';
-      fullAddress = geoJson.display_name || '';
-    }catch(e){ /* geocoding timed out or failed — proceed with raw coordinates */ }
-    const shortAddress = [area, city].filter(Boolean).join(', ');
-    lastGeo = {lat:latitude, lng:longitude, area, road, pincode, city, accuracy, time:new Date(), fullAddress, shortAddress};
-    const accNote = accuracy > 50 ? ` ⚠ ±${Math.round(accuracy)}m` : ` ±${Math.round(accuracy)}m`;
-    stampHeading.textContent = `${shortAddress || 'Location Registered'}${accNote}`;
-    stampAddress.textContent = [road, pincode].filter(Boolean).join(', ') || 'Street address not available';
-  }catch(err){
-    if(!lastGeo){
-      lastGeo = {lat:0, lng:0, area:'Location unavailable', road:'', pincode:'', city:'', accuracy:999, time:new Date(), fullAddress:'', shortAddress:'Location unavailable'};
-    }
-    stampHeading.textContent = 'Location unavailable';
-    stampAddress.textContent = 'Proceed with selfie — location unavailable.';
-  }
-  stampLoader.classList.add('hide');
+  }catch(e){ toast('Camera permission denied.'); stopStampClock(); stopGeoWatch(); showScreen('screen-dashboard'); return; }
 }
 
-function getAccurateLocation(targetAccuracy, maxWaitMs, onProgress){
-  return new Promise((resolve, reject)=>{
-    let watchId, best = null, done = false;
-    const finish = (pos)=>{
-      if(done) return; done = true;
-      navigator.geolocation.clearWatch(watchId);
-      clearTimeout(timer);
-      pos ? resolve(pos) : reject(new Error('no fix'));
-    };
-    watchId = navigator.geolocation.watchPosition(pos=>{
-      if(!best || pos.coords.accuracy < best.coords.accuracy) best = pos;
-      if(onProgress) onProgress(pos.coords.accuracy);
-      if(pos.coords.accuracy <= targetAccuracy) finish(pos);
-    }, err=>{ if(best) finish(best); else finish(null); },
-    {enableHighAccuracy:true, maximumAge:0, timeout:maxWaitMs});
-    const timer = setTimeout(()=> finish(best), maxWaitMs);
-  });
-}
-
-function goStartDayCamera(){ openCamera('start'); }
-function goVisitSelfieCamera(){ openCamera('visit'); }
-function goEndDayCamera(){ openCamera('end'); }
 function cancelCamera(){
   if(mediaStream) mediaStream.getTracks().forEach(t=>t.stop());
   stopStampClock();
+  stopGeoWatch();
   if(stampMapInstance){ stampMapInstance.remove(); stampMapInstance = null; }
   goBack();
 }
@@ -1526,11 +1845,15 @@ function withTimeout(promise, ms, message){
 async function captureSelfie(){
   if(captureInProgress) return;
   captureInProgress = true;
+  const myRun = ++captureRunId;
   const captureBtn = document.getElementById('captureBtn');
   captureBtn.disabled = true;
   try{
-    await withTimeout(doCaptureSelfie(), 25000, 'Capture is taking too long — please try again.');
+    const prepared = await withTimeout(prepareCapture(), 25000, 'Capture is taking too long — please try again.');
+    if(myRun !== captureRunId || !prepared) return;
+    await completeCapture(prepared);
   }catch(e){
+    if(myRun === captureRunId) captureRunId++;   // abandon a slow capture so it can't log or share later
     toast(e && e.message ? e.message : 'Could not save photo. Please try again.');
   }finally{
     captureInProgress = false;
@@ -1538,16 +1861,12 @@ async function captureSelfie(){
   }
 }
 
-async function doCaptureSelfie(){
+/* Draws the stamped photo. Location and time are fixed at the moment of the tap. */
+async function prepareCapture(){
+  const geo = snapshotGeo();          // null when there is no fix — never an earlier capture's location
+  const capturedAt = new Date();
   const video = document.getElementById('camVideo');
   const canvas = document.getElementById('camCanvas');
-  // +300% resolution (4x each dimension, i.e. 16x total pixels) versus
-  // the native video frame. Everything below still computes layout (mapSize,
-  // text rows, etc.) in the ORIGINAL logical width/height via `w`/`h` —
-  // PHOTO_SCALE only maps those same coordinates onto a bigger physical
-  // canvas via ctx.scale(), so geolocation, map-tile fetching, and every
-  // proportion on the stamp panel are completely unaffected; the photo
-  // just comes out sharper.
   const PHOTO_SCALE = 2;
   const logicalW = video.videoWidth || 720;
   const logicalH = video.videoHeight || 960;
@@ -1569,10 +1888,6 @@ async function doCaptureSelfie(){
 
   const w = logicalW, h = logicalH;
 
-  // Size the stamp panel relative to BOTH dimensions of the photo, not just
-  // width — on frames that come back nearly square (varies by device), a
-  // width-only fraction let the panel balloon to a third of the photo with
-  // the map hugely oversized and the text left small and cramped at the top.
   let mapSize = Math.round(Math.min(w*0.24, h*0.22));
   mapSize = Math.max(90, mapSize);
   const pad = Math.max(10, Math.round(mapSize*0.09));
@@ -1582,81 +1897,91 @@ async function doCaptureSelfie(){
   ctx.fillRect(0, h-boxH, w, boxH);
 
   const mapX = pad, mapY = h-boxH+pad;
-  try{
-    if(lastGeo && lastGeo.lat && lastGeo.lng){
-      const mapSource = await loadMapForStamp(lastGeo.lat, lastGeo.lng, mapSize);
-      mapSource.draw(ctx, mapX, mapY);
-      ctx.fillStyle = 'rgba(0,0,0,0.5)';
-      ctx.fillRect(mapX, mapY+mapSize-16, mapSize, 16);
-      ctx.fillStyle = '#ddd'; ctx.font = '10px sans-serif';
-      ctx.fillText(mapSource.attribution, mapX+4, mapY+mapSize-5);
-    } else {
-      drawPinPlaceholder(ctx, mapX, mapY, mapSize);
-    }
-  }catch(e){ drawPinPlaceholder(ctx, mapX, mapY, mapSize); }
+  let sat = null;
+  if(geo){
+    try{
+      const key = currentFix ? fixKey(currentFix) : '';
+      const tile = (tilePrefetch && tilePrefetch.key === key) ? tilePrefetch.promise : loadSatelliteTile(geo.lat, geo.lng, 17);
+      sat = await Promise.race([tile, new Promise(r=>setTimeout(()=>r(null), 2500))]);
+    }catch(e){ sat = null; }
+  }
+  if(sat){
+    ctx.drawImage(sat.bmp, mapX, mapY, mapSize, mapSize);
+    drawPinMarker(ctx, mapX+(sat.px/256)*mapSize, mapY+(sat.py/256)*mapSize);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(mapX, mapY+mapSize-16, mapSize, 16);
+    ctx.fillStyle = '#ddd'; ctx.font = '10px sans-serif';
+    ctx.fillText('Esri, Earthstar Geographics', mapX+4, mapY+mapSize-5);
+  } else {
+    drawPinPlaceholder(ctx, mapX, mapY, mapSize);
+  }
 
-  // Fill the available height with bigger TEXT rather than bigger gaps
-  // between lines: split the map's height into 4 even rows (heading,
-  // address, coordinates, time) and size each row's font off the row
-  // height itself, so extra vertical space grows the glyphs, not the
-  // whitespace between them. Each row is a single truncated line rather
-  // than wrapped, since a row's height is fixed.
   const textX = mapX + mapSize + pad;
   const textW = w - textX - pad;
   const rowH = mapSize / 4;
-  // Sized up close to the safe ceiling for this row layout: baselines sit
-  // at 0.72*rowH within each row, so ~0.85*rowH is as large as heading
-  // text can go before its ascender would crowd the row above it.
   const APP_FONT = "-apple-system, 'Segoe UI', Roboto, Arial, sans-serif";
   const headingSize = Math.max(26, Math.round(rowH*0.80));
   const bodySize = Math.max(22, Math.round(rowH*0.62));
   const monoSize = Math.max(20, Math.round(rowH*0.58));
 
-  const accNote = lastGeo && Number.isFinite(lastGeo.accuracy) ? ` ±${Math.round(lastGeo.accuracy)}m` : '';
+  const accNote = geo ? ` ±${Math.round(geo.accuracy)}m` : '';
   ctx.fillStyle = '#fff';
   ctx.font = `700 ${headingSize}px ${APP_FONT}`;
-  const heading = (lastGeo && lastGeo.shortAddress) || 'Location Registered';
+  const heading = geo ? (geo.shortAddress || 'Location Registered') : 'Location unavailable';
   ctx.fillText(fitOneLine(ctx, heading + accNote, textW), textX, mapY + rowH*0.72);
 
   ctx.font = `${bodySize}px ${APP_FONT}`;
   ctx.fillStyle = '#e4e9f0';
-  const addressLine = lastGeo ? [lastGeo.road, lastGeo.pincode].filter(Boolean).join(', ') : '';
+  const addressLine = geo ? [geo.road, geo.pincode].filter(Boolean).join(', ') : 'Weak signal — location not captured';
   ctx.fillText(fitOneLine(ctx, addressLine || 'Street address not available', textW), textX, mapY + rowH*1.72);
 
   ctx.font = `${monoSize}px ${APP_FONT}`;
   ctx.fillStyle = '#aab4c4';
-  if(lastGeo && lastGeo.lat && lastGeo.lng){
-    ctx.fillText(fitOneLine(ctx, `Lat ${lastGeo.lat.toFixed(6)}°  Long ${lastGeo.lng.toFixed(6)}°`, textW), textX, mapY + rowH*2.72);
+  if(geo){
+    ctx.fillText(fitOneLine(ctx, `Lat ${geo.lat.toFixed(6)}°  Long ${geo.lng.toFixed(6)}°`, textW), textX, mapY + rowH*2.72);
   }
-
-  const timeStr = lastGeo ? formatStampTime(lastGeo.time) : formatStampTime(new Date());
-  ctx.fillText(fitOneLine(ctx, timeStr, textW), textX, mapY + rowH*3.72);
+  ctx.fillText(fitOneLine(ctx, formatStampTime(capturedAt), textW), textX, mapY + rowH*3.72);
 
   if(mediaStream) mediaStream.getTracks().forEach(t=>t.stop());
   stopStampClock();
+  stopGeoWatch();
   if(stampMapInstance){ stampMapInstance.remove(); stampMapInstance = null; }
 
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
-  if(!blob){ toast('Could not save photo.'); return; }
+  if(!blob){ toast('Could not save photo.'); return null; }
+  return { blob, geo, capturedAt };
+}
 
+/* Records the point, hands it to the retry queue, shares the photo, and moves on. */
+async function completeCapture(prepared){
+  const { blob, geo, capturedAt } = prepared;
   const point = {
+    id: newId(),
     type: pendingCaptureType,
-    lat: lastGeo?.lat || 0,
-    lng: lastGeo?.lng || 0,
-    accuracy: Number.isFinite(lastGeo?.accuracy) ? lastGeo.accuracy : 999,
-    address: lastGeo?.fullAddress || lastGeo?.area || 'Location unknown',
-    shortAddress: lastGeo?.shortAddress || lastGeo?.area || '',
-    time: (lastGeo?.time || new Date()).toISOString()
+    lat: geo ? geo.lat : null,
+    lng: geo ? geo.lng : null,
+    accuracy: geo ? geo.accuracy : null,
+    address: geo ? (geo.fullAddress || geo.area || '') : 'Location unavailable (weak signal)',
+    shortAddress: geo ? (geo.shortAddress || geo.area || '') : '',
+    time: capturedAt.toISOString()
   };
+  let endJob = null;
   if(KM_TRACKED_TYPES.includes(pendingCaptureType)){
     todayLog.push(point);
-    localStorage.setItem('sfos_today_log', JSON.stringify(todayLog));
-    api('logPoint', {userId: session.userId, date: todayStr(), ...point}).catch(()=>{});
+    saveDayState();
+    enqueueJob('logPoint', {
+      userId: session.userId, id: point.id, type: point.type,
+      lat: point.lat, lng: point.lng, accuracy: point.accuracy, address: point.address,
+      date: istDateStr(capturedAt), time: point.time     // the phone's own date (IST) and time
+    });
+    if(pendingCaptureType === 'end'){
+      endJob = enqueueJob('endDay', { userId: session.userId, date: istDateStr(capturedAt) });
+    }
   }
 
   const captionText = pendingCaptureType === 'visitform' ? VisitForm.getCaption() : '';
   try{ await shareToWhatsApp(blob, 'selfie.jpg', captionText); }
-  catch(e){ /* sharing is best-effort — never block finishing the capture flow */ }
+  catch(e){ /* best-effort */ }
 
   if(pendingCaptureType === 'start'){
     dayStarted = true;
@@ -1666,23 +1991,15 @@ async function doCaptureSelfie(){
   } else if(pendingCaptureType === 'selfie'){
     replaceScreen('screen-dashboard');
   } else if(pendingCaptureType === 'visitform'){
-    // Location selfie captured at the end of the visit-report wizard —
-    // return to the wizard and let it finish validating/submitting.
     replaceScreen('screen-visitreport');
-    VisitForm.finishSubmit();
+    VisitForm.afterSelfie();
   } else if(pendingCaptureType === 'end'){
-    await buildDayEndTimeline();
+    await buildDayEndTimeline(endJob);
   } else {
     replaceScreen('screen-dashboard');
   }
 }
 
-/* Writes a blob into the app's private cache dir and hands it to the
-   native Android share sheet via @capacitor/share. This replaces the old
-   window.open('https://wa.me/...') fallback, which Capacitor's WebView
-   can't reliably open as a new window/tab — that's the "couldn't open
-   this chat link" issue. The native share sheet works for WhatsApp or
-   any other installed app and never depends on window.open(). */
 async function shareFileNative(blob, fileName, caption){
   const { Filesystem, Directory, Share } = window.Capacitor.Plugins;
   const dataUrl = await new Promise((resolve, reject)=>{
@@ -1702,6 +2019,26 @@ async function shareFileNative(blob, fileName, caption){
   await Share.share(opts);
 }
 
+function isShareAbort(e){ return !!e && (e.name === 'AbortError' || /abort|cancel/i.test(e.message || '')); }
+
+/* Some browsers want a fresh tap before they will open the share sheet. */
+function askShareTap(label){
+  return new Promise(resolve=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'sharePrompt';
+    wrap.innerHTML = `<div class="card"><div class="sharePromptTitle">${esc(label)}</div>` +
+      `<button class="btn primary" type="button" data-act="go">Share on WhatsApp</button>` +
+      `<button class="btn" type="button" data-act="skip">Skip</button></div>`;
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', e=>{
+      const act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
+      if(!act) return;
+      wrap.remove();
+      resolve(act === 'go');
+    });
+  });
+}
+
 async function shareToWhatsApp(blob, fileName='selfie.jpg', caption=''){
   const mimeType = blob.type || 'image/jpeg';
   const Plugins = window.Capacitor && window.Capacitor.Plugins;
@@ -1711,30 +2048,34 @@ async function shareToWhatsApp(blob, fileName='selfie.jpg', caption=''){
     try{
       await shareFileNative(blob, fileName, caption);
     }catch(e){
-      // The user closing the native share sheet without picking an app
-      // also rejects this promise — that's not a real failure, so only
-      // toast for anything that doesn't look like a cancel.
       if(!(e && /cancel/i.test(e.message||''))) toast('Could not open the share sheet.');
     }finally{
       setTimeout(()=>{ nativeShareCooldown = false; }, 1500);
     }
     return;
   }
-  // Not running inside the Android app (plain browser / installed PWA) —
-  // fall back to the Web Share API, then a manual download.
+  let file = null, data = null;
   try{
-    const file = new File([blob], fileName, {type:mimeType});
-    const shareData = caption ? {files:[file], text:caption} : {files:[file]};
-    if(navigator.canShare && navigator.canShare(shareData)){
-      await navigator.share(shareData);
-      return;
-    }
+    file = new File([blob], fileName, {type:mimeType});
+    data = caption ? {files:[file], text:caption} : {files:[file]};
   }catch(e){}
+  if(data && navigator.canShare && navigator.canShare(data)){
+    try{ await navigator.share(data); return; }
+    catch(e){
+      if(isShareAbort(e)) return;                       // rep closed the share sheet — nothing more to do
+      if(e && e.name === 'NotAllowedError'){            // browser wants a fresh tap
+        const go = await askShareTap('Share your selfie on WhatsApp');
+        if(!go) return;
+        try{ await navigator.share(data); return; }
+        catch(e2){ if(isShareAbort(e2)) return; }
+      }
+    }
+  }
+  // Sharing files isn't available here: save the photo and open WhatsApp.
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = fileName; a.click();
-  toast('Photo saved. Choose it in WhatsApp to attach.');
-  const waUrl = CONFIG.WHATSAPP_GROUP_INVITE || "https://chat.whatsapp.com/E4R9B2fVwKW2xzJT7gCopd";
-  window.open(waUrl, '_blank');
+  toast('Photo saved. Attach it in WhatsApp.');
+  window.open('https://wa.me/?text=' + encodeURIComponent(caption || ''), '_blank');
 }
 
 async function shareTextToWhatsApp(text){
@@ -1751,14 +2092,11 @@ async function shareTextToWhatsApp(text){
     }
     return;
   }
-  try{
-    if(navigator.share){
-      await navigator.share({text});
-      return;
-    }
-  }catch(e){}
-  const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
-  window.open(waUrl, '_blank');
+  if(navigator.share){
+    try{ await navigator.share({text}); return; }
+    catch(e){ if(isShareAbort(e)) return; }
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 }
 
 /* ====================== DASHBOARD ====================== */
@@ -1771,7 +2109,7 @@ function setGreeting(){
   const btn = hero.querySelector('.heroCameraBtn');
   hero.innerHTML = `
     <div class="heroGreeting">${g},</div>
-    <div class="heroName">${session.userName}</div>
+    <div class="heroName">${esc(session.userName)}</div>
     <div class="heroDivider"></div>
     <div class="heroPjpLabel">Today's Beat Plan</div>
     ${formatPJP(session.pjp)}
@@ -1849,6 +2187,213 @@ function buildKmStat(containerId, km){
     `<div class="kmBig">${display} <span class="kmLabel">km</span></div>`;
 }
 
+/* ====================== KPI TILE ======================
+ * Shows the rep's KPI performance from the "KPIDashboard" tab (getKpi action). A rep sees only their own row;
+ * the "Admin" login sees the Team row first and can switch to any rep. The tile stays hidden for any ID that
+ * is not in the tab. Each KPI is scored as Achievement / Target, counted up to 125%, and the overall score is
+ * the average of the KPIs. */
+const KPI_CAP = 1.25;
+const KPI_CACHE_KEY = 'sfos_kpi2';   // bumped so an older saved copy (without Overall) is not reused
+const KPI_FRESH_MS = 5 * 60 * 1000;      // re-read the sheet at most every 5 minutes
+const KPI_LABELS = {                      // heading in the sheet (lower case) -> name shown in the app
+  'hx8 mlp': 'HX8 MLP',
+  'focus tertiary': 'Focus Outlet Volume', 'focus outlet volume': 'Focus Outlet Volume',
+  'acitve mechanics': 'Active Mechanic', 'active mechanics': 'Active Mechanic', 'active mechanic': 'Active Mechanic',
+  'inactive to active': 'Inactive → Active',
+  'sha mco': 'SHA / New MCO', 'sha / new mco': 'SHA / New MCO'
+};
+function kpiBlank(){ return {userId:null, mains:[], rows:[], isAdmin:false, pick:0, view:'overview', at:0, loading:false, sig:''}; }
+let kpi = kpiBlank();
+
+function kpiLabel(h){ const k = String(h == null ? '' : h).trim(); return KPI_LABELS[k.toLowerCase()] || k; }
+function kpiFmt(n, d){ return Number(n).toLocaleString('en-IN', {maximumFractionDigits: d == null ? 1 : d}); }
+function kpiPctText(x){ return kpiFmt(x * 100, 1) + '%'; }
+/* % values come from the sheet exactly as displayed there (e.g. "88%", "100.84%"); the app never calculates them.
+ * kpiPv() only reads the number back out of that text to pick a colour / ring length. */
+function kpiPv(txt){ const n = parseFloat(String(txt == null ? '' : txt).replace('%','').replace(/,/g,'')); return isFinite(n) ? n / 100 : 0; }
+function kpiPtxt(txt){ const t = String(txt == null ? '' : txt).trim(); return t || '0%'; }
+function kpiScore(a, t){ return t > 0 ? Math.min(a / t, KPI_CAP) : 0; }
+function kpiClass(p){ return p >= KPI_CAP - 1e-9 ? 'cap' : p >= 1 ? 'ok' : p >= 0.7 ? 'mid' : 'low'; }
+
+function kpiReset(){
+  kpi = kpiBlank();
+  const tile = document.getElementById('kpiTile');
+  if(tile) tile.style.display = 'none';
+  setPagerHasKpi(false);
+}
+
+function setKpiView(v){
+  kpi.view = (v === 'details') ? 'details' : 'overview';
+  renderKpiTile();
+}
+function onKpiPick(i){
+  kpi.pick = Number(i) || 0;
+  renderKpiTile();
+}
+
+function renderKpiTile(){
+  const tile = document.getElementById('kpiTile');
+  if(!tile) return;
+  if(!kpi.rows.length || !kpi.mains.length){ tile.style.display = 'none'; kpi.sig = ''; setPagerHasKpi(false); return; }
+  tile.style.display = 'block';
+  setPagerHasKpi(true);
+  const sig = JSON.stringify([kpi.userId, kpi.pick, kpi.view, kpi.mains, kpi.rows]);
+  if(sig === kpi.sig) return;            // same data, same view: don't redraw (keeps the tile steady)
+  kpi.sig = sig;
+
+  const row = kpi.rows[kpi.pick] || kpi.rows[0];
+  const M = k => (row.m && row.m[k]) || {};
+  const num = v => Number(v) || 0;
+
+  // who is being shown
+  const pickEl = document.getElementById('kpiPick');
+  const whoEl = document.getElementById('kpiWho');
+  if(kpi.isAdmin && kpi.rows.length > 1){
+    pickEl.innerHTML = kpi.rows.map((r, i) => `<option value="${i}"${i === kpi.pick ? ' selected' : ''}>${esc(r.name || r.userId)}</option>`).join('');
+    pickEl.style.display = 'block';
+    whoEl.style.display = 'none';
+  } else {
+    pickEl.style.display = 'none';
+    whoEl.textContent = row.name || row.userId || '';
+    whoEl.style.display = whoEl.textContent ? 'block' : 'none';
+  }
+
+  // Overview / Details switch
+  const tabO = document.getElementById('kpiTabOverview'), tabD = document.getElementById('kpiTabDetails');
+  tabO.classList.toggle('on', kpi.view === 'overview'); tabO.setAttribute('aria-selected', kpi.view === 'overview');
+  tabD.classList.toggle('on', kpi.view === 'details');  tabD.setAttribute('aria-selected', kpi.view === 'details');
+
+  const body = document.getElementById('kpiBody');
+  const shortSurplus = (t, a) => {
+    const d = a - t, r = Math.round(d * 10) / 10;
+    return `<span class="v ${r < 0 ? 'sh' : r > 0 ? 'su' : 'z'}">${r > 0 ? '+' : r < 0 ? '−' : ''}${kpiFmt(Math.abs(d))}</span>`;
+  };
+  if(kpi.view === 'details'){
+    // Details: Target / Achievement for every KPI. Sub-KPIs (Sub-Target / Sub-Achievement) are listed here only.
+    let h = '<div class="kpiTb"><div class="kpiRow kpiH"><span>KPI</span><span class="v">Target</span><span class="v">Ach.</span><span class="v">Short / Surplus</span></div>';
+    kpi.mains.forEach((m, k) => {
+      const d = M(k);
+      if(m.subs && m.subs.length){
+        h += `<div class="kpiGrp">${esc(m.name)}</div>`;
+        m.subs.forEach((sn, j) => {
+          const sd = (d.s && d.s[j]) || {}, t = num(sd.t), a = num(sd.a);
+          h += `<div class="kpiRow sub"><span class="n">${esc(sn)}</span><span class="v">${kpiFmt(t)}</span><span class="v">${kpiFmt(a)}</span>${shortSurplus(t, a)}</div>`;
+        });
+      } else {
+        const t = num(d.t), a = num(d.a);      // no sub KPIs: the numbers sit on the heading line itself
+        h += `<div class="kpiRow kpiHd"><span class="n">${esc(m.name)}</span><span class="v">${kpiFmt(t)}</span><span class="v">${kpiFmt(a)}</span>${shortSurplus(t, a)}</div>`;
+      }
+    });
+    body.innerHTML = h + '</div>';
+  } else {
+    // Overview: only the main KPIs' achievement %, exactly as shown in the sheet
+    const C = 2 * Math.PI * 64;
+    const oTxt = String(row.o == null ? '' : row.o).trim() || '\u2014', oVal = kpiPv(row.o);
+    body.innerHTML =
+      '<div class="kpiHero"><div class="kpiRing"><svg viewBox="0 0 150 150"><defs><linearGradient id="kpiG" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#55f7c5"/><stop offset=".6" stop-color="#43d9ff"/><stop offset="1" stop-color="#8b7cff"/></linearGradient></defs>' +
+      '<circle class="kpiTr" cx="75" cy="75" r="64"/><circle class="kpiPg" id="kpiPg" cx="75" cy="75" r="64" stroke-dasharray="0 ' + C + '"/></svg>' +
+      '<div class="kpiCtr"><div class="kpiBig" id="kpiOverall">' + esc(oTxt) + '</div><div class="kpiLbl">Overall</div></div></div>' +
+      '<div class="kpiSide"><div class="kpiLbl">KPI achievement</div>' +
+      kpi.mains.map((m, k) => { const p = M(k).p; return `<div class="kpiSr ${kpiClass(kpiPv(p))}"><span>${esc(m.name)}</span><b>${esc(kpiPtxt(p))}</b></div>`; }).join('') +
+      '</div></div>';
+    const dash = (Math.min(oVal, KPI_CAP) / KPI_CAP) * C;
+    requestAnimationFrame(() => {                        // let the ring grow from empty
+      const pg = document.getElementById('kpiPg');
+      if(pg) pg.setAttribute('stroke-dasharray', dash + ' ' + C);
+    });
+  }
+}
+
+function applyKpi(r, at){
+  if(!r || !Array.isArray(r.mains)) return;   // ignore an old-format saved copy; fresh data replaces it
+  kpi.mains = r.mains;
+  kpi.rows = Array.isArray(r.rows) ? r.rows : [];
+  kpi.isAdmin = !!r.isAdmin;
+  kpi.at = at || Date.now();
+  if(kpi.pick >= kpi.rows.length) kpi.pick = 0;
+  renderKpiTile();
+}
+
+async function loadKpi(force){
+  if(!session) return;
+  const uid = session.userId;
+  if(kpi.userId !== uid){                                // a different person is logged in: start clean, show their saved copy first
+    kpiReset();
+    kpi.userId = uid;
+    const saved = lsJson(KPI_CACHE_KEY, null);
+    if(saved && saved.userId === uid && saved.data) applyKpi(saved.data, saved.at);
+  }
+  if(kpi.loading) return;
+  if(!force && kpi.at && Date.now() - kpi.at < KPI_FRESH_MS){ renderKpiTile(); return; }
+  kpi.loading = true;
+  try{
+    const r = await api('getKpi', {userId: uid}, 15000);
+    if(session && session.userId === uid && r && r.ok){
+      applyKpi(r, Date.now());
+      lsSet(KPI_CACHE_KEY, JSON.stringify({userId: uid, at: kpi.at, data: r}));
+    }
+  }catch(e){ /* keep whatever is on screen; it is tried again next time the dashboard opens */ }
+  finally{ kpi.loading = false; }
+}
+
+/* ====================== DASHBOARD PAGER (Visits | KPI) ======================
+ * The Visits dashboard (the four tiles) and the KPI dashboard share one tab: swipe left/right, or tap the
+ * Visits / KPI switch. The switch and the KPI page appear only for people who are tagged in the KPIDashboard
+ * tab; everyone else just sees the Visits dashboard, as before. */
+let dashIdx = 0;          // 0 = Visits, 1 = KPI
+let dashHasKpi = false;
+
+function paintDash(animate, dir){
+  const pV = document.getElementById('dashPageVisits'), pK = document.getElementById('dashPageKpi');
+  const tabV = document.getElementById('dashTabVisits'), tabK = document.getElementById('dashTabKpi');
+  if(!pV || !pK) return;
+  const showK = dashHasKpi && dashIdx === 1;
+  pV.style.display = showK ? 'none' : 'block';
+  pK.style.display = showK ? 'block' : 'none';
+  tabV.classList.toggle('on', !showK); tabV.setAttribute('aria-selected', String(!showK));
+  tabK.classList.toggle('on', showK);  tabK.setAttribute('aria-selected', String(showK));
+  if(animate){
+    const pg = showK ? pK : pV;
+    pg.classList.remove('slideL', 'slideR');
+    void pg.offsetWidth;                                    // restart the little slide-in
+    pg.classList.add(dir > 0 ? 'slideL' : 'slideR');
+  }
+}
+function goDashPage(i, animate){
+  const target = (dashHasKpi && i) ? 1 : 0;
+  if(target === dashIdx){ paintDash(false); return; }
+  const dir = target > dashIdx ? 1 : -1;
+  dashIdx = target;
+  paintDash(animate !== false, dir);
+}
+function setPagerHasKpi(has){
+  dashHasKpi = !!has;
+  const tabs = document.getElementById('dashTabs');
+  if(tabs) tabs.style.display = has ? 'flex' : 'none';
+  if(!has) dashIdx = 0;
+  paintDash(false);
+}
+(function initPager(){
+  const pager = document.getElementById('dashPager');
+  if(!pager) return;
+  let x0 = 0, y0 = 0, t0 = 0, tracking = false;
+  pager.addEventListener('touchstart', e=>{
+    if(!dashHasKpi || !e.touches || e.touches.length !== 1) return;
+    if(e.target && e.target.closest && e.target.closest('select,input,textarea')) return;    // let the person picker work normally
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now(); tracking = true;
+  }, {passive:true});
+  pager.addEventListener('touchend', e=>{
+    if(!tracking) return;
+    tracking = false;
+    const t = e.changedTouches && e.changedTouches[0];
+    if(!t) return;
+    const dx = t.clientX - x0, dy = t.clientY - y0;
+    if(Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - t0 < 800) goDashPage(dx < 0 ? 1 : 0);
+  }, {passive:true});
+  pager.addEventListener('touchcancel', ()=>{ tracking = false; }, {passive:true});
+})();
+
 async function loadDashboardStats(){
   try{
     const r = await api('getDashboard', {userId: session.userId});
@@ -1906,13 +2451,14 @@ async function openDocsLocker(){
 const VisitForm = (function(){
 
   const RX = {
-    name:   /^[A-Za-z0-9][A-Za-z0-9 .,&\/'-]{1,99}$/,
+    name:   /^[A-Za-z0-9][A-Za-z0-9 .,_*&\/'-]{5,50}$/,
     mobile: /^(?!.*\s)[0-9]{10}$/,
     bizom:  /^(?!.*\s)[0-9]{4,6}$/,
     share:  /^(?!.*\s)[a-zA-Z0-9]{8,10}$/,
     ltr:    /^[0-9]{1,4}$/,
-    other:  /^[\s\S]{1,100}$/,
-    para:   /^[\s\S]{1,300}$/
+    scan:   /^[A-Za-z0-9=]{1,9}$/,
+    other:  /^[\s\S]{1,50}$/,
+    para:   /^[\s\S]{2,150}$/
   };
 
   const DISTRIBUTORS = [
@@ -1923,8 +2469,8 @@ const VisitForm = (function(){
     "MUKTI TRADERS",
     "Rajdeep Automotives",
     "SHREE KRISHNA AGENCIES",
-    "Sukan Incorporation(Surat)",
-    "SRI SAINATH AGENCIES"
+    "SRI SAINATH AGENCIES",
+    "Sukan Incorporation(Surat)"
   ];
   const SEGMENTS = ["MCO","CVO","PCO","LCV","AGRI"];
 
@@ -1941,8 +2487,8 @@ const VisitForm = (function(){
     "D91689": ["JS Diesel Spares"],
     "D74545": ["MANISHA ENTERPRISES"],
     "D69561": ["MUKTI TRADERS", "SHREE KRISHNA AGENCIES"],
-    "D97501": ["Sukan Incorporation(Surat)"],
-    "D73116": ["Rajdeep Automotives", "SRI SAINATH AGENCIES"]
+    "D73116": ["Rajdeep Automotives", "SRI SAINATH AGENCIES"],
+    "D97501": ["Sukan Incorporation(Surat)"]
   };
 
   const Q = {
@@ -1950,48 +2496,45 @@ const VisitForm = (function(){
     2:{ type:"radio", label:"Type of Visit", required:true,
         options:[
           {label:"New Outlet Visit", value:"New Outlet Visit"},
+          {label:"Existing Outlet Visit", value:"Existing Outlet Visit"},
           {label:"New Mechanic Visit", value:"New Mechanic Visit"},
-          {label:"Focus Outlet Visit", value:"Focus Outlet Visit"},
-          {label:"Focus Outlet Linked Mechanic Visit", value:"Focus Outlet Linked Mechanic Visit"},
-          {label:"Existing Retailer / IWS Visit", value:"Existing Retailer / IWS Visit"},
           {label:"Existing Mechanic Visit", value:"Existing Mechanic Visit"},
-          {label:"DB Meet", value:"DB Meet"}
+          {label:"Distributor Meet", value:"Distributor Meet"}
         ]},
 
-    3:{ type:"text", label:"Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name (2-100 characters)." },
+    3:{ type:"text", label:"Outlet Name", required:true, rx:RX.name, err:"Enter valid outlet name (5-50 characters)." },
     4:{ type:"tel", label:"Mobile Number", required:true, rx:RX.mobile, maxLen:10, err:"Enter a valid 10-digit mobile number." },
     5:{ type:"checkbox", label:"Segment", required:true, options:SEGMENTS.map(o=>({label:o,value:o})) },
-    6:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
+    6:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
     7:{ type:"radio", label:"Outcome of the Visit", required:true,
         options:[
           {label:"Order Collected", value:"Order Collected"},
-          {label:"Follow Up", value:"Follow Up"},
+          {label:"Follow Up Required", value:"Follow Up Required"},
           {label:"Support Required for Conversion to Shell", value:"Support Required for Conversion to Shell"}
         ]},
-    8:{ type:"number", label:"Collected Order Volume ( In Liters )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
-    9:{ type:"text", label:"Bizom Id ( If Not Generated then Mention Remarks )", required:true, rx:RX.name, err:"Enter a valid outlet name (2-100 characters)." },
+    8:{ type:"number", label:"Collected Order Volume ( In Liters )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
+    9:{ type:"text", label:"Bizom Id ( If Not Generated then Mention Remarks )", required:true, rx:RX.name, err:"Enter valid Data (5-50 characters)." },
 
-    10:{ type:"text", label:"Mechanic / Workshop Name", required:true, rx:RX.name, err:"Enter a valid name (2-100 characters)." },
+    10:{ type:"text", label:"Mechanic / Workshop Name", required:true, rx:RX.name, err:"Enter a valid name (5-50 characters)." },
     11:{ type:"tel", label:"Mobile Number", required:true, rx:RX.mobile, maxLen:10, err:"Enter a valid 10-digit mobile number." },
     12:{ type:"checkbox", label:"Segment", required:true, options:SEGMENTS.map(o=>({label:o,value:o})) },
-    13:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
+    13:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
     14:{ type:"radio", label:"Outcome of the Visit", required:true,
          options:[
            {label:"New Enrollment", value:"New Enrollment"},
-           {label:"New Enrollment-Focus Outlet", value:"New Enrollment-Focus Outlet"},
-           {label:"Follow Up", value:"Follow Up"},
+           {label:"Follow Up Required", value:"Follow Up Required"},
            {label:"Support Required for Conversion to Shell", value:"Support Required for Conversion to Shell"}
          ]},
 
     15:{ type:"text", label:"Share ID", required:true, rx:RX.share, maxLen:10, err:"Enter a valid Share ID (8-10 letters/numbers)." },
-    16:{ type:"text", label:"Linked Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
+    16:{ type:"tel", label:"Linked Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
     17:{ type:"text", label:"Linked Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name." },
 
     18:{ type:"text", label:"Share ID", required:true, rx:RX.share, maxLen:10, err:"Enter a valid Share ID (8-10 letters/numbers)." },
-    19:{ type:"tel", label:"Registered Mobile Number", required:true, rx:RX.mobile, maxLen:10, err:"Enter a valid 10-digit mobile number." },
+    19:{ type:"number", label:"Registered Mobile Number", required:true, rx:RX.mobile, maxLen:10, err:"Enter a valid 10-digit mobile number." },
     20:{ type:"checkbox", label:"Segment", required:true, options:SEGMENTS.map(o=>({label:o,value:o})) },
-    21:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
-    22:{ type:"text", label:"Linked Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
+    21:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
+    22:{ type:"number", label:"Linked Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
     23:{ type:"text", label:"Linked Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name." },
     24:{ type:"radio", label:"Purpose of the Visit", required:true,
          options:[
@@ -2001,12 +2544,12 @@ const VisitForm = (function(){
            {label:"Issue Resolution", value:"Issue Resolution"},
            {label:"Other", value:"__other__", other:true}
          ]},
-    25:{ type:"textarea", label:"Remarks of the Outcome ( Mentioned Number of Coupons Scanned against Target )", placeholder:"For Inactive to Active & Activate with 5 Coupons, Only mention number of coupons scanned e.g. 4. And for MLP Mention Target=Actual e.g. 5=3", required:true, rx:RX.other, err:"Enter a remark of at least 5 characters." },
+    25:{ type:"text", label:"Mention No of Coupons Scanned", required:true, rx:RX.scan, maxLen:9, err:"Mention no of Scans Only." },
 
-    26:{ type:"text", label:"Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
+    26:{ type:"number", label:"Bizom ID", required:true, rx:RX.bizom, maxLen:6, err:"Enter a valid Bizom ID (4-6 digits)." },
     27:{ type:"text", label:"Outlet Name", required:true, rx:RX.name, err:"Enter a valid outlet name." },
     28:{ type:"checkbox", label:"Segment", required:true, options:SEGMENTS.map(o=>({label:o,value:o})) },
-    29:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
+    29:{ type:"number", label:"Monthly Potential ( In Ltr )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
     30:{ type:"radio", label:"Outcome of the Visit", required:true,
          options:[
            {label:"Order Collected", value:"Order Collected"},
@@ -2014,28 +2557,26 @@ const VisitForm = (function(){
            {label:"First Time Premium Product Placement", value:"First Time Premium Product Placement"},
            {label:"Order Already Collected by DSR", value:"Order Already Collected by DSR"},
            {label:"Stock Available", value:"Stock Available"},
-           {label:"Payment / Outstanding Issue", value:"Payment / Outstanding Issue"},
-           {label:"Follow up", value:"Follow up"},
            {label:"Issue Resolution", value:"Issue Resolution"},
+           {label:"Payment / Outstanding Issue", value:"Payment / Outstanding Issue"},
+           {label:"Follow Up Required", value:"Follow Up Required"},           
            {label:"Other", value:"__other__", other:true}
          ]},
 
-    31:{ type:"number", label:"Collected Order Volume ( In Liters )", required:true, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
-    32:{ type:"number", label:"Volume Plan for the Month If Outlet Plans to order More at the Month End ( Mention In Ltr Only )", required:false, rx:RX.ltr, maxLen:4, err:"Enter a valid 4-digit number." },
-    33:{ type:"textarea", label:"Mention Your Contribution | Visit Remarks | Issues | Support Required in Details.", required:true, rx:RX.para, err:"Enter at least 5 characters." }
+    31:{ type:"number", label:"Collected Order Volume ( In Liters )", required:true, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
+    32:{ type:"number", label:"Volume Plan for the Month If Outlet Plans to order More at the Month End ( Mention In Ltr Only )",required:false, rx:RX.ltr, maxLen:4, err:"Enter no of Litres only." },
+    33:{ type:"textarea", label:"Mention Your Contribution | Visit Remarks | Issues | Support Required in Details.", required:true, rx:RX.para, err:"Enter at least 2 characters." }
   };
 
   const PAGES = {
     p1:{ title:"Daily Visit MIS", ids:[1,2],
          branch:(a)=>{
            const v = a[2] && a[2].choice;
-           if(v === "DB Meet") return "SUBMIT";
+           if(v === "Distributor Meet") return "SUBMIT";
            const map = {
              "New Outlet Visit":"p2",
-             "New Mechanic Visit":"p3",
-             "Focus Outlet Visit":"p6",
-             "Focus Outlet Linked Mechanic Visit":"p5",
-             "Existing Retailer / IWS Visit":"p6",
+             "New Mechanic Visit":"p3",             
+             "Existing Outlet Visit":"p6",
              "Existing Mechanic Visit":"p5"
            };
            return map[v] || "p2";
@@ -2048,24 +2589,25 @@ const VisitForm = (function(){
     p3:{ title:"New Mechanic Visit Details", ids:[10,11,12,13,14],
          branch:(a)=>{
            const v = a[14] && a[14].choice;
-           return (v === "New Enrollment" || v === "New Enrollment-Focus Outlet") ? "p4" : "pFinal";
+           return (v === "New Enrollment" ) ? "p4" : "pFinal";
          }},
 
     p4:{ title:"New Enrollment Details", ids:[15,16,17], branch:()=>"pFinal" },
 
-    p5:{ title:"Focus Outlet Linked / Existing Mechanic Details", ids:[18,19,20,21,22,23,24,25],
+    p5:{ title:"Mechanic Details", ids:[18,19,20,21,22,23,24],
+         conditional:{ trigger:24, showValue:["SHA Campaign","Inactive to Active","Activate With 5 Coupons"], extraIds:[25] },
          branch:()=>"pFinal" },
 
-    p6:{ title:"Focus/Existing Outlet Details", ids:[26,27,28,29,30],
+    p6:{ title:"Outlet Details", ids:[26,27,28,29,30],
          branch:(a)=>{
            const v = a[30] && a[30].choice;
-           const toP8 = ["Order Already Collected by DSR","Stock Available","Payment / Outstanding Issue","Follow up"];
+           const toP8 = ["Order Already Collected by DSR","Stock Available","Payment / Outstanding Issue","Follow Up Required"];
            if(v === "Issue Resolution" || v === "__other__") return "pFinal";
            if(toP8.includes(v)) return "p8";
            return "p7";
          }},
 
-    p7:{ title:"Ordered Volume for Focus / Existing Outlet", ids:[31], branch:()=>"pFinal" },
+    p7:{ title:"Ordered Volume in Ltrs", ids:[31], branch:()=>"pFinal" },
 
     p8:{ title:"Next Course Of Action", ids:[32], branch:()=>"pFinal" },
 
@@ -2075,7 +2617,8 @@ const VisitForm = (function(){
   let currentPage = "p1";
   let history = [];
   let answers = {};
-  let awaitingCapture = false; // true while the location selfie is being captured mid-submit
+  let awaitingCapture = false;   // true while the camera step of a submission is open
+  let reportSubmitted = false;   // true once this visit's report has been handed to the retry queue
   let autoDB = null; // set in reset() when the logged-in user has exactly one tagged DB
 
   let card, btnBack, btnNext, btnClear, navBar;
@@ -2122,13 +2665,13 @@ const VisitForm = (function(){
     }
     else if(q.type === 'textarea'){
       const val = answers[qid] || '';
-      inner = `<textarea id="vfInput_${qid}" data-qid="${qid}" placeholder="${vfEsc(q.placeholder || 'Type your answer')}">${vfEsc(val)}</textarea>`;
+      inner = cxWrap(qid, q, `<textarea id="vfInput_${qid}" data-qid="${qid}" placeholder="${vfEsc(q.placeholder || 'Type your answer')}">${vfEsc(val)}</textarea>`, true);
     }
     else {
       const val = answers[qid] || '';
       const inputmode = (q.type === 'number' || q.type === 'tel') ? 'numeric' : 'text';
       const maxlen = q.maxLen ? ` maxlength="${q.maxLen}"` : '';
-      inner = `<input type="text" id="vfInput_${qid}" data-qid="${qid}" inputmode="${inputmode}"${maxlen} placeholder="Type your answer" value="${vfEsc(val)}">`;
+      inner = cxWrap(qid, q, `<input type="text" id="vfInput_${qid}" data-qid="${qid}" inputmode="${inputmode}"${maxlen} placeholder="Type your answer" value="${vfEsc(val)}">`, false);
     }
     return `<div class="vfFieldWrap" id="vfFieldWrap_${qid}">${inner}<p class="vfErrorMsg" id="vfErrorMsg_${qid}"></p></div>`;
   }
@@ -2170,7 +2713,7 @@ const VisitForm = (function(){
 
     if(page.conditional){
       const trig = answers[page.conditional.trigger];
-      const show = trig && trig.choice === page.conditional.showValue;
+      const show = trig && ( Array.isArray(page.conditional.showValue) ? page.conditional.showValue.includes(trig.choice) : trig.choice === page.conditional.showValue );
       html += `<div class="vfExtraGroup ${show?'':'hidden'}" id="vfExtraGroup_${pageId}">`;
       extraIds.forEach(qid=>{ html += qblockHtml(qid); });
       html += `</div>`;
@@ -2260,7 +2803,7 @@ const VisitForm = (function(){
         if(page.conditional && Number(qid) === page.conditional.trigger){
           const extraGroup = document.getElementById(`vfExtraGroup_${pageId}`);
           if(extraGroup){
-            extraGroup.classList.toggle('hidden', radio.value !== page.conditional.showValue);
+            extraGroup.classList.toggle( 'hidden', Array.isArray(page.conditional.showValue) ? !page.conditional.showValue.includes(radio.value) : radio.value !== page.conditional.showValue );
           }
         }
         if(BRANCH_TRIGGER[pageId] === Number(qid)) maybeAutoAdvance(pageId);
@@ -2282,6 +2825,14 @@ const VisitForm = (function(){
       if(inp.type === 'radio' || inp.type === 'checkbox') return;
       const qid = Number(inp.dataset.qid);
       if(AUTOFILL_RULES[qid]) inp.addEventListener('blur', ()=> handleAutofillBlur(qid));
+    });
+    card.querySelectorAll('input[data-qid], textarea[data-qid]').forEach(inp=>{
+      if(inp.type === 'radio' || inp.type === 'checkbox' || inp.dataset.cxWired) return;
+      const qid = Number(inp.dataset.qid);
+      if(!Q[qid] || !Q[qid].rx) return;
+      inp.dataset.cxWired = '1';
+      inp.addEventListener('input', ()=> updateCounter(qid));
+      updateCounter(qid, true);
     });
   }
 
@@ -2342,8 +2893,90 @@ const VisitForm = (function(){
       if(val === undefined || val === null || val === ''){ console.log(`[autofill] Q${targetQid}: matched row's "${realCol}" is blank`); return; }
       targetEl.value = val;
       answers[targetQid] = String(val).trim();
+      updateCounter(Number(targetQid));
       console.log(`[autofill] Q${targetQid} filled from "${realCol}":`, val);
     });
+  }
+
+  /* ---- Live character counter ----
+   * The counter is driven by the SAME regular expression the field is validated with (q.rx), so it can
+   * never disagree with the Next button's check. rxBounds() reads the shortest and longest length the
+   * pattern accepts straight from the regex text, so changing a pattern in RX changes the counter too. */
+  const _rxBoundsCache = new Map();
+  function rxBounds(rx){
+    if(!rx) return null;
+    if(_rxBoundsCache.has(rx)) return _rxBoundsCache.get(rx);
+    let src = rx.source.replace(/^\^/, '').replace(/\$$/, '').replace(/\(\?[!=][^)]*\)/g, '');   // drop ^ $ and look-aheads like (?!.*\s)
+    let min = 0, max = 0, i = 0, ok = true;
+    while(i < src.length){
+      const c = src[i];
+      let end;
+      if(c === '['){
+        let j = i + 1;
+        while(j < src.length && src[j] !== ']'){ if(src[j] === '\\') j++; j++; }
+        end = j + 1;
+      } else if(c === '\\'){ end = i + 2; }
+      else if(c === '(' || c === ')' || c === '|'){ ok = false; break; }
+      else { end = i + 1; }
+      let qmin = 1, qmax = 1, k = end;
+      const m = src.slice(k).match(/^\{(\d+)(?:,(\d*))?\}/);
+      if(m){ qmin = +m[1]; qmax = (m[2] === undefined) ? qmin : (m[2] === '' ? Infinity : +m[2]); k += m[0].length; }
+      else if(src[k] === '?'){ qmin = 0; qmax = 1; k++; }
+      else if(src[k] === '*'){ qmin = 0; qmax = Infinity; k++; }
+      else if(src[k] === '+'){ qmin = 1; qmax = Infinity; k++; }
+      min += qmin; max += qmax; i = k;
+    }
+    const out = ok ? {min, max} : null;
+    _rxBoundsCache.set(rx, out);
+    return out;
+  }
+
+  function cxWrap(qid, q, fieldMarkup, isArea){
+    if(!q.rx) return fieldMarkup;
+    return `<div class="vfInputBox${isArea ? ' isArea' : ''}">${fieldMarkup}` +
+      `<span class="vfCounter" id="vfCounter_${qid}"></span>` +
+      `<span class="vfTick" id="vfTick_${qid}" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="vfTickRing" cx="12" cy="12" r="10"/><path class="vfTickCheck" d="M7 12.5l3.2 3.2L17 8.8"/></svg></span></div>`;
+  }
+
+  /* untouched: nothing shown | short or wrong: red glow + counter | matches the pattern: counter hidden,
+     normal border, green tick draws itself */
+  function updateCounter(qid, initial){
+    const q = Q[qid];
+    if(!q || !q.rx) return;
+    const el = document.getElementById(`vfInput_${qid}`);
+    const wrap = document.getElementById(`vfFieldWrap_${qid}`);
+    const counter = document.getElementById(`vfCounter_${qid}`);
+    const tick = document.getElementById(`vfTick_${qid}`);
+    if(!el || !wrap || !counter || !tick) return;
+    const raw = el.value || '';
+    const b = rxBounds(q.rx) || {min:1, max: q.maxLen || Infinity};
+    const len = raw.length;
+    const empty = raw.trim() === '';
+    const wasOk = wrap.classList.contains('cx-ok');
+
+    if(empty && (initial || !q.required)){            // nothing typed yet (or an optional field left blank)
+      wrap.classList.remove('cx-bad', 'cx-ok');
+      counter.textContent = '';
+      tick.classList.remove('draw', 'still');
+      return;
+    }
+    if(!empty && q.rx.test(raw)){                      // pattern met
+      wrap.classList.remove('cx-bad', 'invalid');
+      wrap.classList.add('cx-ok');
+      counter.textContent = '';
+      if(!wasOk){
+        tick.classList.remove('draw', 'still');
+        if(initial){ tick.classList.add('still'); }    // value already valid when the page shows: tick without replaying the drawing
+        else { void tick.getBoundingClientRect(); tick.classList.add('draw'); }
+      }
+      return;
+    }
+    wrap.classList.remove('cx-ok');
+    wrap.classList.add('cx-bad');
+    tick.classList.remove('draw', 'still');
+    if(len < b.min) counter.textContent = (b.min - len) + ' more';
+    else if(len > b.max) counter.textContent = (len - b.max) + ' over';
+    else counter.textContent = 'Check format';
   }
 
   function vfSetInvalid(qid, msg){
@@ -2419,7 +3052,7 @@ const VisitForm = (function(){
       // block below deleted answers[8]/answers[9] before they were ever
       // read — the values never reached finishSubmit() or the Sheet.
       const triggerEl = card.querySelector(`input[name="vfRadio_${page.conditional.trigger}"]:checked`);
-      extraActive = !!triggerEl && triggerEl.value === page.conditional.showValue;
+      extraActive = !!triggerEl && ( Array.isArray(page.conditional.showValue) ? page.conditional.showValue.includes(triggerEl.value) : triggerEl.value === page.conditional.showValue );
     }
     let valid = true;
     let firstInvalidId = null;
@@ -2447,12 +3080,7 @@ const VisitForm = (function(){
       // below also appends currentPage itself, so pushing it here as well
       // made the final page's question ids (and answers) appear twice in
       // the submitted payload and the on-screen summary.
-      lockActiveBlock();
-      navBar.style.display = 'none';
-      // Capture a location selfie (shared to WhatsApp, same as other app
-      // selfies) before the report is actually submitted.
-      awaitingCapture = true;
-      openCamera('visitform');
+      submitReportThenCamera();
       return;
     }
     history.push(currentPage);
@@ -2480,18 +3108,13 @@ const VisitForm = (function(){
 
   function reset(){
     if(awaitingCapture){
-      // We're returning from the location-selfie capture that's part of
-      // finishing a submission — the form's answers, history and rendered
-      // sections must survive this screen transition, so skip a real reset.
-      // If the capture succeeded, finishSubmit() (called right after this)
-      // takes over immediately. If the user cancelled the camera instead,
-      // this restores the UI so they can pick up where they left off.
+      // Coming back from the camera: the report is already submitted, so keep the result on screen.
       awaitingCapture = false;
-      navBar.style.display = 'flex';
-      unlockLastBlock();
-      btnNext.textContent = (currentPage === 'pFinal') ? 'Review & Submit' : 'Next';
+      const sb = document.getElementById('vfSelfieBtn');
+      if(sb) sb.style.display = 'block';
       return;
     }
+    reportSubmitted = false;
     answers = {};
     history = [];
     currentPage = 'p1';
@@ -2540,7 +3163,7 @@ const VisitForm = (function(){
         const extraIds = page.conditional.extraIds;
         mainIds = page.ids.filter(id=>!extraIds.includes(id));
         const trig = answers[page.conditional.trigger];
-        const extraActive = trig && trig.choice === page.conditional.showValue;
+        const extraActive = trig && ( Array.isArray(page.conditional.showValue) ? page.conditional.showValue.includes(trig.choice) : trig.choice === page.conditional.showValue );
         if(extraActive) mainIds = mainIds.concat(extraIds);
       }
       ids = ids.concat(mainIds);
@@ -2548,9 +3171,7 @@ const VisitForm = (function(){
     return ids;
   }
 
-  async function finishSubmit(){
-    navBar.style.display = 'none';
-
+  function buildReport(){
     const pathIds = getPathQuestionIds();
     const pathAnswers = {};
     const lines = [];
@@ -2572,11 +3193,27 @@ const VisitForm = (function(){
       }
       lines.push(`${String(id).padStart(2,'0')}. ${q.label}\n    -> ${display}`);
     });
+    return { pathAnswers, lines };
+  }
 
-    // Remove the earlier (now-locked) wizard pages so only the final
-    // summary + "Back to Dashboard" button remain on screen.
+  function setDoneStatus(title, msg){
+    const t = document.getElementById('vfDoneTitle'), m = document.getElementById('vfDoneMsg');
+    if(t) t.textContent = title;
+    if(m) m.textContent = msg;
+  }
+  function showReportStatus(st){
+    if(st === 'sent') setDoneStatus('Visit report submitted', 'Saved to the tracker sheet.');
+    else if(st === 'queued') setDoneStatus('Saved on this phone', 'Weak network — your report will be sent automatically. You can keep working.');
+    else if(st === 'failed') setDoneStatus('Report could not be delivered', 'Please inform your admin and share the details below.');
+  }
+
+  /* Submit the report first (it can never be lost to the camera or WhatsApp step), then open the camera. */
+  async function submitReportThenCamera(){
+    navBar.style.display = 'none';
+    const { pathAnswers, lines } = buildReport();
+    reportSubmitted = true;
+
     card.innerHTML = '';
-
     const doneBlock = document.createElement('div');
     doneBlock.className = 'vfSection active';
     doneBlock.innerHTML = `
@@ -2584,51 +3221,38 @@ const VisitForm = (function(){
         <div class="vfDoneMark">&#10003;</div>
         <h2 id="vfDoneTitle">Submitting…</h2>
         <p id="vfDoneMsg">Sending your responses to the tracker sheet…</p>
-        <div class="vfSummary">${lines.length ? vfEsc(lines.join('\n\n')) : '(DB Meet — no further details required.)'}</div>
+        <div class="vfSummary">${lines.length ? vfEsc(lines.join('\n\n')) : '(Distributor Meet — no further details required.)'}</div>
+        <button class="btn primary" type="button" id="vfSelfieBtn" style="display:none" onclick="VisitForm.retakeSelfie()">Take location selfie</button>
         <button class="btn primary" type="button" onclick="showScreen('screen-dashboard')">Back to Dashboard</button>
       </div>
     `;
     card.appendChild(doneBlock);
     doneBlock.scrollIntoView({behavior:'smooth', block:'start'});
 
-    // Routed directly to the Daily Visit MIS Apps Script (VISIT_REPORT_SUBMIT_URL),
-    // matching the { answers: {...} } shape its doPost() actually parses.
-    // We attempt a normal (cors-mode) fetch so we can read back a real
-    // status instead of guessing — Apps Script Web Apps sometimes can't be
-    // read this way due to how script.google.com redirects to
-    // script.googleusercontent.com, in which case the request still reaches
-    // doPost and the row still gets appended server-side; we just can't
-    // confirm it from here, so that case gets an honest "unconfirmed"
-    // message rather than a false "success" or false "failure".
-    const titleEl = document.getElementById('vfDoneTitle');
-    const msgEl = document.getElementById('vfDoneMsg');
     const submitUrl = CONFIG.VISIT_REPORT_SUBMIT_URL;
     if(!submitUrl || submitUrl.startsWith('PASTE_')){
-      titleEl.textContent = 'Not submitted';
-      msgEl.textContent = 'VISIT_REPORT_SUBMIT_URL is not configured.';
+      setDoneStatus('Not submitted', 'VISIT_REPORT_SUBMIT_URL is not configured.');
       return;
     }
-    try{
-      const res = await fetch(submitUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ answers: pathAnswers })
-      });
-      const data = await res.json();
-      if(data && data.status === 'ok'){
-        titleEl.textContent = 'Visit report submitted';
-        msgEl.textContent = 'Your responses were saved to the tracker sheet.';
-      } else {
-        titleEl.textContent = 'Submission failed';
-        msgEl.textContent = (data && data.message) || 'The server reported an error saving your responses.';
-      }
-    }catch(e){
-      // Could not read the response (often a CORS/redirect quirk with Apps
-      // Script, not necessarily a real failure) — the row may still have
-      // been written. Say so plainly rather than claiming success.
-      titleEl.textContent = 'Submitted — could not confirm';
-      msgEl.textContent = 'Your responses were sent, but we could not confirm the server received them. Please check the tracker sheet.';
-    }
+    const job = enqueueJob('visitReport', { answers: pathAnswers });
+    watchJob(job, showReportStatus);
+    const st = await waitForJob(job, 12000);     // short wait; a slow network never blocks the rep
+    showReportStatus(st === 'timeout' ? 'queued' : st);
+    if(st === 'sent') await new Promise(r=>setTimeout(r, 700));
+    awaitingCapture = true;
+    openCamera('visitform');
+  }
+
+  function retakeSelfie(){
+    const sb = document.getElementById('vfSelfieBtn');
+    if(sb) sb.style.display = 'none';
+    awaitingCapture = true;
+    openCamera('visitform');
+  }
+
+  function afterSelfie(){
+    const sb = document.getElementById('vfSelfieBtn');
+    if(sb) sb.style.display = 'none';
   }
 
   function captionAnswerText(qid){
@@ -2645,50 +3269,62 @@ const VisitForm = (function(){
     return parts.filter(p=>p).join(' – ');
   }
 
-  // Builds the WhatsApp caption for the visit-end selfie: one line per
-  // header, each from whichever mapped question group was actually
-  // answered on this visit (only one branch of the form is ever filled
-  // in for a given visit, so the other group is simply blank).
+  // Builds the WhatsApp caption for the visit-end selfie. The lines are
+  // chosen by the Type of Visit that was picked (question 2), so answers
+  // from a different branch can never leak into the caption.
+  //   New Outlet Visit        -> Outlet Name (3), Outcome (7)
+  //   New Mechanic Visit      -> Mechanic Name (10), Linked Outlet (17, only
+  //                              when New Enrollment), Outcome (14)
+  //   Existing Mechanic Visit -> Share ID-Linked Bizom (18 & 22), Linked
+  //                              Outlet (23), Outcome (24 & 25)
+  //   Existing Outlet Visit   -> Bizom ID (26 & 27), Outcome (30 + 31/32)
+  //   Distributor Meet        -> visit type only
+  // Remarks (33) are added last whenever they were answered.
   function getCaption(){
     const lines = [];
-    
+    const add = (label, value) => { if(value) lines.push(`${label}: ${value}`); };
+
     const visitType = captionAnswerText(2);
     if(visitType) lines.push(visitType);
 
-    // Share ID/Bizom ID: 18&22 (Focus Outlet Linked / Existing Mechanic)
-    // or 26&27 (Focus/Existing Outlet)
-    let idLine = captionJoin([captionAnswerText(18), captionAnswerText(22)]);
-    if(!idLine) idLine = captionJoin([captionAnswerText(26), captionAnswerText(27)]);
-    if(idLine) lines.push(`Share ID/Bizom ID: ${idLine}`);
+    if(visitType === 'New Outlet Visit'){
+      add('Outlet Name', captionAnswerText(3));
+      add('Outcome', captionAnswerText(7));
 
-    // Outcome: 24&25 (Focus Outlet Linked / Existing Mechanic) or
-    // 30&(31 Ltr / "Volume Plan"&32) (Focus/Existing Outlet)
-    let outcomeLine = captionJoin([captionAnswerText(24), captionAnswerText(25)]);
-    if(!outcomeLine){
+    } else if(visitType === 'New Mechanic Visit'){
+      add('Mechanic Name', captionAnswerText(10));
+      add('Linked Outlet', captionAnswerText(17));
+      add('Outcome', captionAnswerText(14));
+
+    } else if(visitType === 'Existing Mechanic Visit'){
+      add('Share ID-Linked Bizom', captionJoin([captionAnswerText(18), captionAnswerText(22)]));
+      add('Linked Outlet', captionAnswerText(23));
+      add('Outcome', captionJoin([captionAnswerText(24), captionAnswerText(25)]));
+
+    } else if(visitType === 'Existing Outlet Visit'){
+      add('Bizom ID', captionJoin([captionAnswerText(26), captionAnswerText(27)]));
       const q30 = captionAnswerText(30);
       const q31 = captionAnswerText(31);
       const q32 = captionAnswerText(32);
       let tail = '';
       if(q31) tail = `${q31} Ltr`;
       else if(q32) tail = captionJoin(['Volume Plan', q32]);
-      outcomeLine = tail ? captionJoin([q30, tail]) : q30;
+      add('Outcome', tail ? captionJoin([q30, tail]) : q30);
     }
-    if(outcomeLine) lines.push(`Outcome: ${outcomeLine}`);
 
     // Remarks: 33 (Final Remarks — always the last page before submit)
-    const remarks = captionAnswerText(33);
-    if(remarks) lines.push(`Remarks: ${remarks}`);
+    add('Remarks', captionAnswerText(33));
 
     return lines.join('\n');
   }
 
-  return { reset: reset, finishSubmit: finishSubmit, getCaption: getCaption };
+  return { reset: reset, afterSelfie: afterSelfie, retakeSelfie: retakeSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
 })();
 
 /* ====================== MASTER SEARCH ====================== */
 function rowsToTable(headers, rows){
-  const thead = '<tr>' + headers.map(h=>`<th>${h}</th>`).join('') + '</tr>';
-  const tbody = rows.map(row => '<tr>' + row.map(c=>`<td>${c.value ?? '-'}</td>`).join('') + '</tr>').join('');
+  const thead = '<tr>' + headers.map(h=>`<th>${esc(h)}</th>`).join('') + '</tr>';
+  const tbody = rows.map(row => '<tr>' + row.map(c=>`<td>${c.value == null || c.value === '' ? '-' : esc(c.value)}</td>`).join('') + '</tr>').join('');
   return `<div class="card" style="overflow-x:auto"><table>${thead}${tbody}</table></div>`;
 }
 async function doMasterSearch(){
@@ -2732,7 +3368,7 @@ async function openSummary(){
     if(!r.ok || !r.rows || r.rows.length===0){ el.innerHTML = 'No summary available yet.'; return; }
     el.innerHTML = r.rows.map(pairs => `
       <table style="margin-bottom:10px">
-        ${pairs.map(p=>`<tr><th style="width:45%">${p.label}</th><td>${p.value}</td></tr>`).join('')}
+        ${pairs.map(p=>`<tr><th style="width:45%">${esc(p.label)}</th><td>${esc(p.value)}</td></tr>`).join('')}
       </table>`).join('');
     lastSummaryData = r.rows;
     shareBtn.style.display = 'block';
@@ -2851,17 +3487,6 @@ function haversineKm(a,b){
   const x = Math.sin(dLat/2)**2 + Math.cos(toRad(a.lat))*Math.cos(toRad(b.lat))*Math.sin(dLng/2)**2;
   return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
-async function routeDistanceKm(a, b){
-  // OSRM's free public routing server returns the actual road-network
-  // driving distance between two points (not a straight line).
-  const url = `https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=false`;
-  const res = await fetchWithTimeout(url, {}, 7000);
-  if(!res.ok) throw new Error('routing failed');
-  const data = await res.json();
-  const meters = data?.routes?.[0]?.distance;
-  if(!Number.isFinite(meters)) throw new Error('no route');
-  return meters / 1000;
-}
 function computeHoursWorked(sorted){
   const startPt = sorted.find(p=>p.type==='start');
   const endPt = [...sorted].reverse().find(p=>p.type==='end');
@@ -2874,7 +3499,21 @@ function formatHoursWorked(hours){
   const m = Math.round((hours - h) * 60);
   return `${h}h ${m}m`;
 }
-async function buildDayEndTimeline(skipSave){
+function applyEndDayResult(r){
+  if(!r) return;
+  const km = Number(r.totalKm);
+  if(Number.isFinite(km)){
+    document.getElementById('kmTotalText').textContent = km.toFixed(1) + ' km';
+    document.getElementById('kmTotalNote').textContent = r.estimatedLegs > 0
+      ? 'Road distance (estimated for some legs).'
+      : 'Road distance between capture points.';
+  }
+  const hrs = Number(r.hoursWorked);
+  if(Number.isFinite(hrs) && hrs > 0) document.getElementById('daySummaryHours').textContent = formatHoursWorked(hrs);
+  const vis = Number(r.visits);
+  if(Number.isFinite(vis)) document.getElementById('daySummaryVisits').textContent = vis;
+}
+async function buildDayEndTimeline(job){
   const sorted = [...todayLog].sort((a,b)=> new Date(a.time)-new Date(b.time));
   document.getElementById('timelineList').innerHTML = sorted.map(p=>`
     <div class="timelineItem">
@@ -2882,47 +3521,35 @@ async function buildDayEndTimeline(skipSave){
       <span class="muted">${new Date(p.time).toLocaleTimeString()}</span>
     </div>`).join('');
 
+  // Shown straight away from this phone; replaced by the server's figures as soon as they arrive.
   const visitsToday = sorted.filter(p=>VISIT_COUNT_TYPES.includes(p.type)).length;
-  const hoursWorked = computeHoursWorked(sorted);
   document.getElementById('daySummaryVisits').textContent = visitsToday;
-  document.getElementById('daySummaryHours').textContent = formatHoursWorked(hoursWorked);
+  document.getElementById('daySummaryHours').textContent = formatHoursWorked(computeHoursWorked(sorted));
 
   const kmTotalText = document.getElementById('kmTotalText');
   const kmTotalNote = document.getElementById('kmTotalNote');
   kmTotalText.textContent = 'Calculating…';
-  kmTotalNote.textContent = 'Working out road distance via routing…';
+  kmTotalNote.textContent = 'Working out the distance on the server…';
 
   dayEnded = true;
   updateDashboardButtons();
   replaceScreen('screen-dayend');
 
-  let totalKm = 0;
-  let usedFallback = false;
-  for(let i=1;i<sorted.length;i++){
-    const a = sorted[i-1], b = sorted[i];
-    if(!a.lat || !a.lng || !b.lat || !b.lng) continue;
-    try{
-      totalKm += await routeDistanceKm(a, b);
-    }catch(e){
-      // Routing service unreachable/slow for this leg — fall back to a
-      // straight-line estimate for just that leg rather than failing entirely.
-      totalKm += haversineKm(a, b);
-      usedFallback = true;
-    }
+  if(!job){   // screen restored after a reload — make sure the summary is on the server and show it
+    const endPt = [...sorted].reverse().find(p=>p.type==='end');
+    job = outbox.find(j=>j.kind==='endDay' && j.payload && j.payload.userId===session.userId)
+       || (endPt ? enqueueJob('endDay', {userId: session.userId, date: istDateStr(new Date(endPt.time))}) : null);
   }
-  kmTotalText.textContent = totalKm.toFixed(1) + ' km';
-  kmTotalNote.textContent = usedFallback
-    ? 'Road distance via routing (straight-line estimate used for some legs).'
-    : 'Road distance between capture points via routing.';
-  if(skipSave) return; // restoring after a reload: summary was already saved
-  api('saveDaySummary', {
-    userId: session.userId,
-    date: todayStr(),
-    totalKm: totalKm.toFixed(2),
-    hoursWorked: hoursWorked.toFixed(2),
-    visits: visitsToday,
-    points: sorted
-  }).catch(()=>{});
+  if(!job) return;
+  watchJob(job, (st, res)=>{
+    if(st === 'sent') applyEndDayResult(res);
+    else if(st === 'queued' || st === 'failed'){
+      kmTotalText.textContent = 'Pending';
+      kmTotalNote.textContent = st === 'failed'
+        ? 'Distance could not be calculated. Please inform your admin.'
+        : 'Saved — the distance is calculated automatically once your network is back.';
+    }
+  });
 }
 function labelFor(t){ return t==='start'?'Start of Day': t==='end'?'End of Day':'Visit Selfie'; }
 function goToDashboardAfterDayEnd(){
@@ -2930,12 +3557,54 @@ function goToDashboardAfterDayEnd(){
   setGreeting();
   updateDashboardButtons();
 }
+/* Today's points are kept per user and per day, so a logout (admin force logout, midnight, or the rep)
+   never wipes the day — logging back in the same day carries on where it left off. */
+const DAY_KEY = 'sfos_day';
+function loadDayState(){
+  todayLog = []; dayStarted = false; dayEnded = false;
+  const d = lsJson(DAY_KEY, null);
+  if(d && session && d.userId === session.userId && d.date === todayStr() && Array.isArray(d.points)) todayLog = d.points;
+  if(todayLog.some(p=>p.type==='start')) dayStarted = true;
+  if(todayLog.some(p=>p.type==='end')) dayEnded = true;
+}
+function saveDayState(){
+  if(session) lsSet(DAY_KEY, JSON.stringify({userId: session.userId, date: todayStr(), points: todayLog}));
+}
+/* Another phone or browser may already have started (or finished) today for this person. Ask the server what is
+   stored for today and merge it in, so a second login carries on the same day instead of asking to
+   "Start the Day" again. If the network is down, the phone's own record is used. */
+function mergeServerPoints(points){
+  const key = p => p.type + '|' + new Date(p.time).getTime();
+  const have = new Set(todayLog.map(key));
+  let added = 0;
+  points.forEach(sp=>{
+    if(!sp || !KM_TRACKED_TYPES.includes(sp.type) || isNaN(new Date(sp.time))) return;
+    const k = key(sp);
+    if(have.has(k)) return;
+    todayLog.push({id:'srv-' + k, type:sp.type, lat:sp.lat, lng:sp.lng, accuracy:null, address:'', shortAddress:'', time:new Date(sp.time).toISOString()});
+    have.add(k); added++;
+  });
+  if(added){
+    todayLog.sort((a,b)=> new Date(a.time) - new Date(b.time));
+    saveDayState();
+  }
+  dayStarted = todayLog.some(p=>p.type === 'start');
+  dayEnded = todayLog.some(p=>p.type === 'end');
+}
+async function syncDayFromServer(){
+  if(!session) return;
+  const uid = session.userId;
+  try{
+    const r = await api('getDayState', {userId: uid, date: todayStr()}, 8000);
+    if(session && session.userId === uid && r && r.ok && Array.isArray(r.points)) mergeServerPoints(r.points);
+  }catch(e){ /* offline: keep what this phone knows */ }
+}
 function finishLogout(){
-  localStorage.removeItem('sfos_session');
-  localStorage.removeItem('sfos_today_log');
-  localStorage.removeItem('sfos_screen');
-  localStorage.removeItem('sfos_pjp_pending');
+  lsDel('sfos_session');
+  lsDel('sfos_screen');
+  lsDel('sfos_pjp_pending');
   session = null; todayLog = []; dayStarted = false; dayEnded = false; pjpPending = false;
+  kpiReset();
   document.getElementById('loginPin').value='';
   replaceScreen('screen-login', 'back');
 }
@@ -2944,8 +3613,11 @@ function finishLogout(){
  * Checked only when the app opens or returns to the foreground — no timer
  * polling. A failed/offline check NEVER logs the user out. */
 let _forceLogoutBusy = false;
-async function checkForceLogout(){
+let _lastForceCheck = 0;
+async function checkForceLogout(force){
   if(!session || _forceLogoutBusy) return;
+  if(!force && Date.now() - _lastForceCheck < 10 * 60 * 1000) return;   // at most once every 10 minutes
+  _lastForceCheck = Date.now();
   _forceLogoutBusy = true;
   try{
     const r = await api('checkSession', {userId: session.userId});
@@ -2957,31 +3629,33 @@ async function checkForceLogout(){
   finally{ _forceLogoutBusy = false; }
 }
 document.addEventListener('visibilitychange', ()=>{
-  if(document.visibilityState === 'visible') checkForceLogout();
+  if(document.visibilityState !== 'visible') return;
+  if(session && session.date !== todayStr()){          // phone slept through midnight (IST)
+    toast("It's a new day — please log in again.");
+    finishLogout();
+    return;
+  }
+  checkForceLogout();
+  flushOutbox();
 });
 
 /* ====================== MIDNIGHT AUTO-LOGOUT ====================== */
 function scheduleMidnightLogout(){
-  const now = new Date();
-  const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 0, 0, 5, 0);
-  const ms = nextMidnight - now;
   setTimeout(()=>{
     if(session){
       toast("It's midnight — logging you out for the day.");
       finishLogout();
     }
     scheduleMidnightLogout();
-  }, ms);
+  }, msUntilISTMidnight());
 }
 scheduleMidnightLogout();
-
-function todayStr(){ return new Date().toISOString().slice(0,10); }
 
 /* Resume session */
 function restoreScreenAfterReload(){
   // Read before any renderScreen() call, since rendering overwrites it.
-  const saved = localStorage.getItem('sfos_screen');
-  pjpPending = localStorage.getItem('sfos_pjp_pending') === '1';
+  const saved = lsGet('sfos_screen');
+  pjpPending = lsGet('sfos_pjp_pending') === '1';
 
   suppressHistoryPush = true; // no gesture yet after a reload: don't add history entries
   try{
@@ -2994,7 +3668,7 @@ function restoreScreenAfterReload(){
       return;
     }
     if(saved === 'screen-dayend' && dayEnded){
-      buildDayEndTimeline(true);
+      buildDayEndTimeline(null);
       return;
     }
     replaceScreen('screen-dashboard'); // sets historyRepair = 'home'
@@ -3009,17 +3683,25 @@ function restoreScreenAfterReload(){
     suppressHistoryPush = false;
   }
 }
+/* One-time move from the old single-day log format to the per-user day state. */
+(function migrateDayLog(){
+  const legacy = lsJson('sfos_today_log', null);
+  if(Array.isArray(legacy) && session && !lsGet(DAY_KEY)){
+    lsSet(DAY_KEY, JSON.stringify({userId: session.userId, date: session.date, points: legacy}));
+  }
+  lsDel('sfos_today_log');
+})();
+renderSyncBadge();
+flushOutbox();
 if(session && session.date === todayStr()){
+  loadDayState();
+  syncDayFromServer().then(()=>updateDashboardButtons());
   setGreeting();
-  const log = JSON.parse(localStorage.getItem('sfos_today_log') || '[]');
-  if(log.some(p=>p.type==='start')) dayStarted = true;
-  if(log.some(p=>p.type==='end')) dayEnded = true;
   updateDashboardButtons();
   restoreScreenAfterReload();
-  checkForceLogout();
+  checkForceLogout(true);
 } else if(session && session.date !== todayStr()){
-  // Session left over from a previous day (app was closed before the
-  // midnight auto-logout could run) — clear it so PIN is required again.
+  // Session left over from a previous day — clear it so the PIN is required again.
   finishLogout();
 }
 </script>
