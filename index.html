@@ -13,12 +13,7 @@
   <meta name="apple-mobile-web-app-title" content="FOS">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="theme-color" content="#0a0f1a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Shell FOS">
   <title>Shell FOS</title>
-  <link rel="manifest" href="manifest.json">
   <!-- Paste the Google verification tag here -->
   <meta name="google-site-verification" content="twJS5k3z0Ipr2JvgFM-Ow1sAcFdSIbBINfCtqNGxxhA" />
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
@@ -3600,6 +3595,11 @@ async function syncDayFromServer(){
   }catch(e){ /* offline: keep what this phone knows */ }
 }
 function finishLogout(){
+  // Tell the server this user is logged out (Users column D = "No").
+  // Fire-and-forget: if the network is down the logout still happens on the phone.
+  if(session && session.userId){
+    api('logout', {userId: session.userId}, 8000).catch(()=>{});
+  }
   lsDel('sfos_session');
   lsDel('sfos_screen');
   lsDel('sfos_pjp_pending');
@@ -3720,13 +3720,5 @@ if(session && session.date === todayStr()){
       });
     }
   </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .catch(err => console.warn('SW registration failed:', err));
-    });
-  }
-</script>
 </body>
 </html>
