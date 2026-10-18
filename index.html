@@ -760,7 +760,7 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
         <div class="dashPage" id="dashPageKpi" style="display:none">
     <div class="card kpiTile" id="kpiTile" style="display:none">
       <div class="kpiHead">
-        <div class="kpiTitle">KPI Performance</div>
+        <div class="kpiTitle">Performance Dashboard</div>
         <div class="kpiSwitch" role="tablist" aria-label="KPI view">
           <button type="button" class="on" id="kpiTabOverview" role="tab" aria-selected="true" onclick="setKpiView('overview')">Overview</button>
           <button type="button" id="kpiTabDetails" role="tab" aria-selected="false" onclick="setKpiView('details')">Details</button>
@@ -777,17 +777,17 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
     <button class="syncBadge" id="syncBadge" type="button" style="display:none" onclick="flushOutbox(true)"></button>
     <button class="btn primary" id="startDayBtn" onclick="handleStartDay()">Start the Day</button>
     <button class="btn" id="visitReportBtn" style="display:none;" onclick="showScreen('screen-visitreport')">Submit Visit Report</button>
-    <button class="btn" onclick="showScreen('screen-mastersearch')">Master Search</button>
+    <button class="btn" onclick="showScreen('screen-mastersearch')">Workshop Master</button>
     <button class="btn" onclick="openSummary()">Summary</button>
-    <button class="btn" onclick="openDocsLocker()">Docs Locker</button>
+    <button class="btn" onclick="openDocsLocker()">Document Vault</button>
     <button class="btn danger" id="endDayBtn" onclick="handleEndDay()">End the Day</button>
     <button class="btn danger" id="logoutBtn" style="display:none;" onclick="finishLogout()">Log Out</button>
   </div>
 
-  <!-- DOCS LOCKER -->
+  <!-- Document Vault -->
   <div class="screen" id="screen-docslocker">
     <button class="backBtn" onclick="goBack()">‹ Back</button>
-    <h1>Docs Locker</h1>
+    <h1>Document Vault</h1>
     <div id="docsLockerContent"><div class="card">Loading documents…</div></div>
   </div>
 
@@ -803,10 +803,10 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
     </div>
   </div>
 
-  <!-- MASTER SEARCH -->
+  <!-- Workshop Master -->
   <div class="screen" id="screen-mastersearch">
     <button class="backBtn" onclick="goBack()">‹ Back</button>
-    <h1>Master Search</h1>
+    <h1>Workshop Master</h1>
     <div class="card">
       <input type="text" id="searchInput" placeholder="Share Code / Mobile Number / Bizom ID">
       <button class="btn primary" style="margin:0" id="searchBtn" onclick="doMasterSearch()">Search</button>
@@ -1274,7 +1274,7 @@ function loadMasterData(){
   return masterDataLoadPromise;
 }
 
-// Same three identifier columns Master Search matches against on the
+// Same three identifier columns Workshop Master matches against on the
 // backend (see handleMasterSearch in code.gs) — kept in sync with those
 // aliases so a column is recognized the same way on both sides. Your
 // actual MasterData sheet uses "WorkshopCode" and "Linked Bizom" rather
@@ -1308,7 +1308,7 @@ function detectLookupColumns(headers){
  * column names, so it works with whatever columns actually exist in
  * masterdata.csv without needing code changes when that file's schema
  * changes. Only the three identifier columns' NAMES are recognized by
- * alias (mirroring the backend's Master Search matching) — their VALUES
+ * alias (mirroring the backend's Workshop Master matching) — their VALUES
  * are never assumed. */
 let xlUploadHeaders = null; // uploaded file's own column headers, in order
 let xlUploadRows = null;    // uploaded rows, each keyed by xlUploadHeaders
@@ -2410,7 +2410,7 @@ function handleEndDay(){
   openCamera('end');
 }
 
-/* ====================== DOCS LOCKER ====================== */
+/* ====================== Document Vault ====================== */
 function safeHttpUrl(value){
   try{
     const url = new URL(String(value || '').trim());
@@ -3316,7 +3316,7 @@ const VisitForm = (function(){
   return { reset: reset, afterSelfie: afterSelfie, retakeSelfie: retakeSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
 })();
 
-/* ====================== MASTER SEARCH ====================== */
+/* ====================== Workshop Master ====================== */
 function rowsToTable(headers, rows){
   const thead = '<tr>' + headers.map(h=>`<th>${esc(h)}</th>`).join('') + '</tr>';
   const tbody = rows.map(row => '<tr>' + row.map(c=>`<td>${c.value == null || c.value === '' ? '-' : esc(c.value)}</td>`).join('') + '</tr>').join('');
