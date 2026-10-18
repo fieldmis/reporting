@@ -1,21 +1,25 @@
-// Shell FOS — minimal service worker.
-// Scope matches manifest.json's "scope"/"start_url": relative to wherever
-// this file is deployed (currently /reporting/).
-// Bump CACHE_NAME whenever you deploy a new index.html so old clients
-// pick up the change instead of serving a stale cached copy.
-const CACHE_NAME = 'shell-fos-v3';
-
-const CORE_ASSETS = [
-  './',
-  './index.html',
-  './manifest.json'
-];
+// Shell FOS — service worker.
+// Bump VERSION whenever you deploy a new index.html so phones pick up the change.
+//
+// - The app page (index.html) is fetched from the network FIRST, so a new version reaches reps on
+//   their next open instead of one launch later. If the network is slow (3.5 s) or down, the saved
+//   copy is used, so the app still opens.
+// - Other same-site files (manifest, masterdata.csv ...) are served from the saved copy and
+//   refreshed in the background.
+// - Cache names include this app's own address, so /reporting/ and /testing/ (same website) no
+//   longer delete each other's saved files.
+const VERSION = 'v14';
+const SCOPE = self.registration.scope;                       // e.g. https://fieldmis.github.io/reporting/
+const CACHE_PREFIX = 'shell-fos:' + SCOPE + ':';
+const CACHE_NAME = CACHE_PREFIX + VERSION;
+const CORE_ASSETS = ['./', './index.html', './manifest.json'];
+const NAV_TIMEOUT_MS = 3500;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(CORE_ASSETS))
-      .catch(() => { /* offline-first install shouldn't hard-fail the SW */ })
+      .catch(() => { /* a failed pre-save must not stop the worker installing */ })
   );
   self.skipWaiting();
 });
@@ -23,34 +27,49 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys
+        .filter((k) => (k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME) || /^shell-fos-v\d+$/.test(k))
+        .map((k) => caches.delete(k)))
     )
   );
   self.clients.claim();
 });
 
-// Stale-while-revalidate: serve from cache instantly if available, and
-// refresh the cache in the background from the network. Only same-origin
-// GET requests are handled — third-party requests (map tiles, geocoding,
-// the Apps Script API, etc.) always go straight to the network, since
-// those are live/dynamic data this app already handles failure for.
+async function networkFirst(req) {
+  const cache = await caches.open(CACHE_NAME);
+  const net = fetch(req).then((res) => {
+    if (res && res.status === 200) cache.put('./index.html', res.clone());   // keep one copy of the app page
+    return res;
+  });
+  net.catch(() => {});                                       // no unhandled error if we already answered from the saved copy
+  try {
+    return await Promise.race([
+      net,
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), NAV_TIMEOUT_MS))
+    ]);
+  } catch (e) {
+    const saved = (await cache.match('./index.html')) || (await cache.match('./'));
+    if (saved) return saved;
+    try { return await net; } catch (e2) { return Response.error(); }
+  }
+}
+
+async function staleWhileRevalidate(req) {
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(req);
+  const refresh = fetch(req)
+    .then((res) => {
+      if (res && res.status === 200) cache.put(req, res.clone()).catch(() => {});
+      return res;
+    })
+    .catch(() => cached);
+  return cached || refresh;
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
-  if (new URL(req.url).origin !== self.location.origin) return;
-
-  event.respondWith(
-    caches.match(req).then((cached) => {
-      const networkFetch = fetch(req)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-          }
-          return response;
-        })
-        .catch(() => cached);
-      return cached || networkFetch;
-    })
-  );
+  if (new URL(req.url).origin !== self.location.origin) return;   // maps, geocoding, Apps Script etc. go straight to the network
+  if (req.mode === 'navigate') { event.respondWith(networkFirst(req)); return; }
+  event.respondWith(staleWhileRevalidate(req));
 });
