@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Used by the Excel Lookup tool: SheetJS reads/writes the uploaded and
+  <!-- Used by the Workshop Lookup tool: SheetJS reads/writes the uploaded and
        downloaded .xlsx files, PapaParse reads masterdata.csv. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -811,14 +811,14 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
       <input type="text" id="searchInput" placeholder="Share Code / Mobile Number / Bizom ID">
       <button class="btn primary" style="margin:0" id="searchBtn" onclick="doMasterSearch()">Search</button>
     </div>
-    <button class="btn" style="width:100%" onclick="showScreen('screen-exceltool')">Excel Lookup ›</button>
+    <button class="btn" style="width:100%" onclick="showScreen('screen-exceltool')">Workshop Lookup</button>
     <div id="searchResults"></div>
   </div>
 
-  <!-- EXCEL LOOKUP -->
+  <!-- Workshop Lookup -->
   <div class="screen" id="screen-exceltool">
     <button class="backBtn" onclick="goBack()">‹ Back</button>
-    <h1>Excel Lookup</h1>
+    <h1>Workshop Lookup</h1>
     <div class="card">
       <div>Upload an Excel file with a Share Code, Bizom ID, or Mobile Number column. Matching rows get filled in from Master Data — then you download the result.</div>
       <input type="file" id="xlLookupFile" accept=".xlsx,.xls,.csv" style="margin-top:12px;width:100%" onchange="onExcelLookupFileSelected(event)">
@@ -1250,7 +1250,7 @@ window.addEventListener('online', ()=>flushOutbox(true));
 /* ====================== MASTER DATA (shared loader) ======================
  * Loads CONFIG.MASTER_DATA_CSV_URL (the manually-exported MasterData CSV
  * sitting next to index.html in the repo) once and caches it in memory.
- * Used by both the Excel Lookup tool below and the Visit Form autofill —
+ * Used by both the Workshop Lookup tool below and the Visit Form autofill —
  * one shared copy, loaded lazily the first time either needs it. */
 let masterDataRows = null;    // array of row objects, keyed by CSV header, once loaded
 let masterDataHeaders = null; // CSV header names, in original order
@@ -1298,7 +1298,7 @@ function detectLookupColumns(headers){
   return out;
 }
 
-/* ====================== EXCEL LOOKUP TOOL ======================
+/* ====================== Workshop Lookup TOOL ======================
  * Rep uploads an Excel/CSV file; any column recognized as a Share Code,
  * Bizom ID, or Mobile Number is used to look each row up in MasterData;
  * the rep picks which MasterData columns to add, then downloads the
