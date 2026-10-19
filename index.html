@@ -656,6 +656,27 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 @keyframes dashInR{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.dashPage.slideL,.dashPage.slideR{animation:none;}}
 </style>
+  <style id="docViewerStyles">
+    #docsLockerContent .docLink{cursor:pointer;}
+    #screen-docviewer.screen{position:fixed;inset:0;z-index:60;padding:0 !important;min-height:0 !important;gap:0;overflow:hidden;background:#05080f;}
+    #screen-docviewer.screen::before,#screen-docviewer.screen::after{display:none !important;}
+    #screen-docviewer.screen.active{animation:none;}
+    .dvBar{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 8px) 10px 8px;background:rgba(8,13,22,.97);border-bottom:1px solid rgba(137,196,255,.12);}
+    .dvBtn{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.07);color:#eaf3ff;font-size:1.7rem;line-height:1;display:flex;align-items:center;justify-content:center;padding:0 0 3px;cursor:pointer;}
+    #dvShare{padding:0;}
+    .dvTitle{flex:1;min-width:0;font-weight:600;font-size:.98rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .dvPage{flex:0 0 auto;font-size:.78rem;color:var(--muted);white-space:nowrap;}
+    .dvBody{flex:1;min-height:0;position:relative;overflow:hidden;}
+    .dvStage{position:absolute;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;background:#05080f;}
+    .dvImg{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0;pointer-events:none;user-select:none;-webkit-user-drag:none;}
+    .dvScroll{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior:contain;background:#0b1220;}
+    .dvPages{display:flex;flex-direction:column;gap:8px;padding:8px;box-sizing:border-box;transform-origin:0 0;}
+    .dvPg{position:relative;flex:0 0 auto;width:100%;background:#fff;border-radius:3px;box-shadow:0 2px 10px rgba(0,0,0,.45);overflow:hidden;}
+    .dvCanvas{display:block;width:100%;height:100%;}
+    .dvCenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;color:var(--muted);font-size:.92rem;}
+    .dvZoom{position:absolute;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:3;flex-direction:column;gap:8px;}
+    .dvZoom button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(137,196,255,.22);background:rgba(10,15,26,.86);color:#eaf3ff;font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 0 2px;}
+  </style>
 </head>
 <body>
 <div id="app">
@@ -789,6 +810,21 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
     <button class="backBtn" onclick="goBack()">‹ Back</button>
     <h1>Document Vault</h1>
     <div id="docsLockerContent"><div class="card">Loading documents…</div></div>
+  </div>
+
+  <!-- Document viewer (opens vault files inside the app) -->
+  <div class="screen" id="screen-docviewer">
+    <div class="dvBar">
+      <button class="dvBtn" id="dvBack" type="button" onclick="goBack()" aria-label="Back">‹</button>
+      <div class="dvTitle" id="dvTitle"></div>
+      <div class="dvPage" id="dvPage"></div>
+      <button class="dvBtn" id="dvShare" type="button" aria-label="Share" style="display:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button>
+    </div>
+    <div class="dvBody" id="dvBody"></div>
+    <div class="dvZoom" id="dvZoom" style="display:none">
+      <button type="button" id="dvZoomIn" aria-label="Zoom in">+</button>
+      <button type="button" id="dvZoomOut" aria-label="Zoom out">−</button>
+    </div>
   </div>
 
   <!-- VISIT REPORT -->
@@ -948,13 +984,14 @@ document.getElementById('installBtn').addEventListener('click', async ()=>{
 
 /* ---- Navigation ---- */
 function renderScreen(id, direction){
+  if(id !== 'screen-docviewer' && window.DocViewerAPI) window.DocViewerAPI.close();   // frees the open picture / PDF
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','dir-back'));
   const el = document.getElementById(id);
   if(direction==='back') el.classList.add('dir-back');
   el.classList.add('active');
   if(session && id!=='screen-login') lsSet('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
-  if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); }
+  if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); prefetchDocs(); }
   if(id==='screen-dashboard') renderSyncBadge();
   if(id==='screen-dashboard') ensureHomeBackGuardEntry();
 }
@@ -1083,6 +1120,7 @@ history.replaceState({screen:'screen-login'}, '', location.href);
       armHomeBackExit();
       return;
     }
+    if(document.getElementById('screen-docviewer').classList.contains('active')){ replaceScreen('screen-docslocker', 'back'); return; }
     const childIds = ['screen-docslocker','screen-summary','screen-mastersearch','screen-visitreport'];
     if(childIds.some(id=>document.getElementById(id).classList.contains('active'))){
       // Don't depend on WebView history (it can be empty after a reload).
@@ -1725,7 +1763,12 @@ async function openCamera(type){
   startGeoWatch();   // location starts at once, in parallel with the camera
   try{
     await startCameraStream('user');
-  }catch(e){ toast('Camera permission denied.'); stopStampClock(); stopGeoWatch(); showScreen('screen-dashboard'); return; }
+  }catch(e){
+    toast('Camera permission denied.'); stopStampClock(); stopGeoWatch();
+    if(type === 'visitform') goBack();     // back to the filled-in form, nothing sent
+    else showScreen('screen-dashboard');
+    return;
+  }
 }
 
 function cancelCamera(){
@@ -1974,6 +2017,7 @@ async function completeCapture(prepared){
     }
   }
 
+  if(pendingCaptureType === 'visitform') VisitForm.submitReport();     // photo taken: now the report is sent
   const captionText = pendingCaptureType === 'visitform' ? VisitForm.getCaption() : '';
   try{ await shareToWhatsApp(blob, 'selfie.jpg', captionText); }
   catch(e){ /* best-effort */ }
@@ -2424,23 +2468,560 @@ function normaliseDocs(payload){
     return {name:row.name || row.title || row.label || row.buttonName, url:row.url || row.link || row.href};
   }).map(doc=>({name:String(doc.name || '').trim(), url:safeHttpUrl(doc.url)})).filter(doc=>doc.name && doc.url);
 }
+/* ====================== DOCUMENT VAULT ======================
+ * The vault shows whatever files are in the repo's "Document Vault" folder: one button per file, named after
+ * the file without its extension. Nothing is typed into the Google Sheet any more.
+ *   - The list comes from GitHub's folder listing (a few KB), is saved on the phone, and refreshes in the background.
+ *   - The files themselves are served by GitHub Pages from the same site as the app, so the service worker keeps
+ *     a copy on the phone: after the first time they open instantly and also work offline.
+ *   - Files open inside the app (DocViewer below): images with pinch / drag / double-tap zoom, PDFs page by page. */
+const DOCS_FOLDER = 'Document Vault';
+const DOCS_FALLBACK_REPO = { owner: 'fieldmis', repo: 'reporting' };   // used only when the app is not running from github.io
+const DOCS_CACHE_KEY = 'sfos_docs_list_v2';
+const DOCS_FRESH_MS = 60 * 1000;
+const DOCS_KINDS = { pdf:'pdf', jpg:'img', jpeg:'img', png:'img', webp:'img', gif:'img' };   // other file types are ignored
+const DOCS_MIME = { pdf:'application/pdf', jpg:'image/jpeg', jpeg:'image/jpeg', png:'image/png', webp:'image/webp', gif:'image/gif' };
+const PDFJS_DIR = 'vendor/pdfjs-3.11.174/';
+let docsFetching = null;
+let docsWarmedSig = '';
+lsDel('sfos_docs_cache');   // list saved by an earlier version of the app
+
+/* Where the folder lives: taken from the address the app is running from (https://OWNER.github.io/REPO/), so a
+ * test copy of the app lists its own folder. */
+function docsSource(){
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+  const seg = location.pathname.split('/').filter(Boolean)[0];
+  if(m && seg && !/\.[a-z0-9]+$/i.test(seg)){
+    return { owner: m[1], repo: seg, base: new URL('./', location.href).href };
+  }
+  const f = DOCS_FALLBACK_REPO;
+  return { owner: f.owner, repo: f.repo, base: 'https://' + f.owner + '.github.io/' + f.repo + '/' };
+}
+/* GitHub's folder listing -> the app's list. The short "v" tag is the file's fingerprint: replace a file and it changes,
+ * so phones fetch the new version instead of showing the saved old one. */
+function buildDocsFromListing(items, src){
+  return (Array.isArray(items) ? items : [])
+    .filter(it => it && it.type === 'file' && it.name && it.name.charAt(0) !== '.')
+    .map(it => {
+      const dot = it.name.lastIndexOf('.');
+      if(dot < 1) return null;
+      const ext = it.name.slice(dot + 1).toLowerCase();
+      const kind = DOCS_KINDS[ext];
+      if(!kind) return null;
+      return {
+        name: it.name.slice(0, dot), file: it.name, ext: ext, kind: kind, size: Number(it.size) || 0,
+        url: src.base + encodeURIComponent(DOCS_FOLDER) + '/' + encodeURIComponent(it.name) + '?v=' + String(it.sha || '').slice(0, 8)
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+}
+function fetchDocs(){
+  if(docsFetching) return docsFetching;
+  docsFetching = (async ()=>{
+    try{
+      const src = docsSource();
+      const saved = lsJson(DOCS_CACHE_KEY, null);
+      const headers = { 'Accept': 'application/vnd.github+json' };
+      // "Has it changed?" requests that come back 304 do not count against GitHub's hourly limit.
+      if(saved && saved.etag && saved.owner === src.owner && saved.repo === src.repo) headers['If-None-Match'] = saved.etag;
+      const res = await fetchWithTimeout('https://api.github.com/repos/' + src.owner + '/' + src.repo + '/contents/' + encodeURIComponent(DOCS_FOLDER), { headers: headers }, 10000);
+      if(res.status === 304 && saved && Array.isArray(saved.docs)){
+        lsSet(DOCS_CACHE_KEY, JSON.stringify(Object.assign({}, saved, { at: Date.now() })));
+        return saved.docs;
+      }
+      let docs;
+      if(res.status === 404) docs = [];                    // folder does not exist (yet)
+      else if(res.ok) docs = buildDocsFromListing(await res.json(), src);
+      else return null;                                    // rate limit / GitHub trouble: keep showing what is saved
+      lsSet(DOCS_CACHE_KEY, JSON.stringify({ at: Date.now(), etag: res.headers.get('ETag') || '', owner: src.owner, repo: src.repo, docs: docs }));
+      return docs;
+    }catch(e){ return null; }
+    finally{ docsFetching = null; }
+  })();
+  return docsFetching;
+}
+
+/* Links typed in the sheet's DocsLocker tab (A = button name, B = link). They open as links, as before.
+ * Same idea as the files: saved on the phone, shown at once, refreshed in the background. */
+const DOCS_LINKS_KEY = 'sfos_docs_links';
+let linksFetching = null;
+function fetchLinks(){
+  if(linksFetching) return linksFetching;
+  linksFetching = (async ()=>{
+    try{
+      const r = await api('getDocsLocker', { userId: session && session.userId }, 15000);
+      if(!r || !r.ok) return null;
+      const links = normaliseDocs(r);
+      lsSet(DOCS_LINKS_KEY, JSON.stringify({ at: Date.now(), links: links }));
+      return links;
+    }catch(e){ return null; }
+    finally{ linksFetching = null; }
+  })();
+  return linksFetching;
+}
+function savedDocsState(){
+  const f = lsJson(DOCS_CACHE_KEY, null), l = lsJson(DOCS_LINKS_KEY, null);
+  return {
+    files: (f && Array.isArray(f.docs)) ? f.docs : [], filesAt: (f && f.at) || 0,
+    links: (l && Array.isArray(l.links)) ? l.links : [], linksAt: (l && l.at) || 0
+  };
+}
+
+function renderDocs(files, links){
+  const content = document.getElementById('docsLockerContent');
+  if(!content) return;
+  files = files || []; links = links || [];
+  if(!files.length && !links.length){ content.innerHTML = '<div class="card docsEmpty">No documents are available yet.</div>'; return; }
+  content.innerHTML = '';
+  const add = (tagText, name, onClick, href)=>{
+    const b = document.createElement(href ? 'a' : 'button');
+    b.className = 'btn docLink';
+    if(href){ b.href = href; b.rel = 'noopener'; } else { b.type = 'button'; b.addEventListener('click', onClick); }
+    b.textContent = name;
+    content.appendChild(b);
+  };
+  links.forEach(l => add('', l.name, null, l.url));
+  files.forEach(d => add('', d.name, ()=> DocViewer.open(d)));
+}
 async function openDocsLocker(){
   showScreen('screen-docslocker');
   const content = document.getElementById('docsLockerContent');
-  content.innerHTML = `<div class="card">${orbitLoaderHTML('Loading documents…')}</div>`;
-  try{
-    const r = await api('getDocsLocker', {userId:session.userId});
-    const docs = normaliseDocs(r);
-    if(!r.ok || !docs.length){ content.innerHTML = '<div class="card docsEmpty">No documents are available yet.</div>'; return; }
-    content.innerHTML = '';
-    docs.forEach(doc=>{
-      const link = document.createElement('a');
-      link.className = 'btn docLink'; link.href = doc.url; link.textContent = doc.name;
-      link.rel = 'noopener';
-      content.appendChild(link);
-    });
-  }catch(e){ content.innerHTML = '<div class="card docsEmpty">Could not load documents. Please try again.</div>'; }
+  const st = savedDocsState();
+  const hasSaved = !!(st.files.length || st.links.length);
+  if(hasSaved) renderDocs(st.files, st.links);
+  else content.innerHTML = '<div class="card">' + orbitLoaderHTML('Loading documents…') + '</div>';
+  const now = Date.now();
+  const filesFresh = st.filesAt && now - st.filesAt < DOCS_FRESH_MS;
+  const linksFresh = st.linksAt && now - st.linksAt < DOCS_FRESH_MS;
+  if(filesFresh && linksFresh){ warmDocs(st.files); return; }
+  const [files, links] = await Promise.all([
+    filesFresh ? st.files : fetchDocs(),
+    linksFresh ? st.links : fetchLinks()
+  ]);
+  if(files === null && links === null){
+    if(!hasSaved) content.innerHTML = '<div class="card docsEmpty">Could not load documents. Please try again.</div>';
+    else warmDocs(st.files);
+    return;                                                // saved list stays on screen
+  }
+  const f = files === null ? st.files : files, l = links === null ? st.links : links;
+  if(!hasSaved || JSON.stringify(f) !== JSON.stringify(st.files) || JSON.stringify(l) !== JSON.stringify(st.links)) renderDocs(f, l);
+  warmDocs(f);
 }
+/* Called a moment after the dashboard opens, so the list and the files are already on the phone when the rep taps the button. */
+function prefetchDocs(){
+  const st = savedDocsState();
+  const fresh = Date.now() - Math.min(st.filesAt || 0, st.linksAt || 0) < 5 * 60 * 1000;
+  if(fresh && st.filesAt && st.linksAt){
+    setTimeout(()=> warmDocs(st.files), 4000);
+    return;
+  }
+  setTimeout(async ()=>{
+    if(!session) return;
+    const [d] = await Promise.all([fetchDocs(), fetchLinks()]);
+    if(d) setTimeout(()=> warmDocs(d), 2000);
+  }, 1500);
+}
+
+/* ---- the saved copies of the files (kept by the service worker) ---- */
+async function eachAppCache(fn){
+  if(!('caches' in window)) return;
+  const keys = await caches.keys();
+  for(const k of keys){ if(k.indexOf('shell-fos:') === 0) await fn(await caches.open(k)); }
+}
+async function purgeDocFromCache(url){
+  try{ await eachAppCache(c => c.delete(url)); }catch(e){}
+}
+/* Throw away saved copies of files that were replaced or deleted in the folder. */
+async function pruneDocCache(docs){
+  const keep = new Set(docs.map(d => new URL(d.url).href));
+  const marker = '/' + encodeURIComponent(DOCS_FOLDER) + '/';
+  await eachAppCache(async c=>{
+    const reqs = await c.keys();
+    for(const r of reqs){ if(r.url.indexOf(marker) !== -1 && !keep.has(r.url)) await c.delete(r); }
+  });
+}
+/* Download the file and check it is complete. GitHub Pages can take about a minute to publish a file that was just
+ * uploaded; a wrong-sized (old) copy is thrown away instead of being saved on the phone. */
+async function fetchDocBlob(doc){
+  const res = await fetch(doc.url);
+  if(!res.ok) throw new Error(res.status === 404 ? 'notfound' : 'http' + res.status);
+  let blob = await res.blob();
+  if(doc.size && blob.size !== doc.size){ await purgeDocFromCache(doc.url); throw new Error('stale'); }
+  const mime = DOCS_MIME[doc.ext];
+  if(mime && blob.type !== mime) blob = blob.slice(0, blob.size, mime);
+  return blob;
+}
+/* Quietly save every file (and the PDF reader) on the phone, small files only. */
+async function warmDocs(docs){
+  if(!docs || !docs.length) return;
+  const sig = docs.map(d => d.url).join('|');
+  if(sig === docsWarmedSig) return;
+  docsWarmedSig = sig;
+  try{
+    if(navigator.connection && navigator.connection.saveData) return;
+    await pruneDocCache(docs);
+    if(docs.some(d => d.kind === 'pdf')){
+      const base = docsSource().base;
+      await Promise.all([fetch(base + PDFJS_DIR + 'pdf.min.js'), fetch(base + PDFJS_DIR + 'pdf.worker.min.js')].map(p => p.catch(()=>{})));
+    }
+    let budget = 25 * 1024 * 1024;
+    for(const d of docs){
+      if(d.size > 8 * 1024 * 1024 || d.size > budget) continue;
+      budget -= d.size;
+      try{ await fetchDocBlob(d); }catch(e){}
+    }
+  }catch(e){ docsWarmedSig = ''; }
+}
+
+/* ====================== DOC VIEWER (in-app) ====================== */
+const DocViewer = (function(){
+  const $ = id => document.getElementById(id);
+  let cur = null;          // the document on screen
+  let token = 0;           // changes on every open / close, so a slow download can never draw into the wrong document
+  let cleanup = null;      // frees whatever the current document holds (pictures, PDF pages, listeners)
+  let curBlob = null;
+  let zoomFn = null;       // used by the + / - buttons
+  let pdfLibPromise = null;
+
+  function setBody(node){
+    const body = $('dvBody');
+    body.innerHTML = '';
+    if(node) body.appendChild(node);
+  }
+  function showCenter(html){
+    const d = document.createElement('div'); d.className = 'dvCenter'; d.innerHTML = html; setBody(d); return d;
+  }
+  function showError(code){
+    $('dvShare').style.display = 'none'; $('dvZoom').style.display = 'none'; $('dvPage').textContent = '';
+    const msg = (code === 'notfound' || code === 'stale')
+      ? 'This file is not available yet. If it was just uploaded, please try again in a minute.'
+      : (code === 'badfile' ? 'This file could not be displayed.' : 'Could not open this file. Check your connection and try again.');
+    const d = showCenter('<div>' + msg + '</div>');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Try again';
+    b.style.maxWidth = '220px';
+    b.addEventListener('click', ()=>{ if(cur) load(cur); });
+    d.appendChild(b);
+  }
+  function close(){
+    token++;
+    if(cleanup){ try{ cleanup(); }catch(e){} cleanup = null; }
+    cur = null; curBlob = null; zoomFn = null;
+    const body = $('dvBody'); if(body) body.innerHTML = '';
+    const z = $('dvZoom'); if(z) z.style.display = 'none';
+    const sh = $('dvShare'); if(sh) sh.style.display = 'none';
+  }
+  function open(doc){
+    close();
+    cur = doc;
+    $('dvTitle').textContent = doc.name;
+    $('dvPage').textContent = '';
+    showScreen('screen-docviewer');
+    load(doc);
+  }
+  async function load(doc){
+    if(cleanup){ try{ cleanup(); }catch(e){} cleanup = null; }
+    const my = ++token;
+    cur = doc; curBlob = null; zoomFn = null;
+    $('dvShare').style.display = 'none'; $('dvZoom').style.display = 'none'; $('dvPage').textContent = '';
+    showCenter(orbitLoaderHTML('Opening…'));
+    try{
+      const blob = await fetchDocBlob(doc);
+      if(my !== token) return;
+      curBlob = blob;
+      if(doc.kind === 'pdf') await showPdf(blob, my);
+      else await showImage(blob, my);
+      if(my !== token) return;
+      $('dvShare').style.display = '';
+      $('dvZoom').style.display = 'flex';
+    }catch(e){
+      if(my !== token) return;
+      showError(e && e.message);
+    }
+  }
+
+  /* ---- pictures: pinch / drag / double-tap ---- */
+  function showImage(blob, my){
+    return new Promise((resolve, reject)=>{
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.className = 'dvImg'; img.draggable = false; img.alt = cur ? cur.name : '';
+      img.onerror = ()=>{ URL.revokeObjectURL(url); reject(new Error('badfile')); };
+      img.onload = ()=>{
+        if(my !== token){ URL.revokeObjectURL(url); resolve(); return; }
+        const stage = document.createElement('div'); stage.className = 'dvStage';
+        stage.appendChild(img);
+        setBody(stage);
+        const nw = img.naturalWidth || 1, nh = img.naturalHeight || 1;
+        img.style.width = nw + 'px'; img.style.height = nh + 'px';
+        const MAXZ = 6;                        // up to 6 x the "fit to screen" size
+        let W = 0, H = 0, fit = 1, s = 1, tx = 0, ty = 0;
+        const measure = ()=>{ const r = stage.getBoundingClientRect(); W = r.width; H = r.height; fit = Math.min(W / nw, H / nh, 2); };
+        const clampPos = ()=>{
+          const w = nw * s, h = nh * s;
+          tx = w <= W ? (W - w) / 2 : Math.min(0, Math.max(W - w, tx));
+          ty = h <= H ? (H - h) / 2 : Math.min(0, Math.max(H - h, ty));
+        };
+        const apply = ()=>{ img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')'; };
+        const zoomAt = (ns, cx, cy)=>{
+          ns = Math.min(fit * MAXZ, Math.max(fit, ns));
+          const k = ns / s; tx = cx - (cx - tx) * k; ty = cy - (cy - ty) * k; s = ns; clampPos(); apply();
+        };
+        measure(); s = fit; clampPos(); apply();
+
+        const ptrs = new Map();
+        let pinch = null, pan = null, moved = false, lastTap = 0, lastX = 0, lastY = 0;
+        stage.addEventListener('pointerdown', e=>{
+          try{ stage.setPointerCapture(e.pointerId); }catch(_){}
+          ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          const r = stage.getBoundingClientRect();
+          if(ptrs.size === 2){
+            const [a, b] = Array.from(ptrs.values());
+            pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, s: s, tx: tx, ty: ty, mx: (a.x + b.x) / 2 - r.left, my: (a.y + b.y) / 2 - r.top };
+            pan = null; moved = true;
+          } else if(ptrs.size === 1){
+            pan = { x: e.clientX, y: e.clientY, tx: tx, ty: ty }; moved = false;
+          }
+        });
+        stage.addEventListener('pointermove', e=>{
+          if(!ptrs.has(e.pointerId)) return;
+          ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          const r = stage.getBoundingClientRect();
+          if(pinch && ptrs.size >= 2){
+            const [a, b] = Array.from(ptrs.values());
+            const d = Math.hypot(a.x - b.x, a.y - b.y) || 1;
+            const mx = (a.x + b.x) / 2 - r.left, my2 = (a.y + b.y) / 2 - r.top;
+            const ns = Math.min(fit * MAXZ, Math.max(fit, pinch.s * d / pinch.d));
+            const cx = (pinch.mx - pinch.tx) / pinch.s, cy = (pinch.my - pinch.ty) / pinch.s;   // the picture point under the fingers
+            s = ns; tx = mx - cx * ns; ty = my2 - cy * ns; clampPos(); apply();
+          } else if(pan && ptrs.size === 1){
+            const dx = e.clientX - pan.x, dy = e.clientY - pan.y;
+            if(Math.abs(dx) + Math.abs(dy) > 6) moved = true;
+            tx = pan.tx + dx; ty = pan.ty + dy; clampPos(); apply();
+          }
+        });
+        const end = e=>{
+          if(!ptrs.has(e.pointerId)) return;
+          const isTap = ptrs.size === 1 && !!pan && !moved && e.type === 'pointerup';
+          ptrs.delete(e.pointerId);
+          if(ptrs.size < 2) pinch = null;
+          if(ptrs.size === 1){ const p = Array.from(ptrs.values())[0]; pan = { x: p.x, y: p.y, tx: tx, ty: ty }; moved = true; }   // carry on dragging with the other finger, no jump
+          else if(ptrs.size === 0) pan = null;
+          if(isTap){
+            const r = stage.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top, now = Date.now();
+            if(now - lastTap < 320 && Math.hypot(x - lastX, y - lastY) < 32){ lastTap = 0; zoomAt(s > fit * 1.05 ? fit : fit * 2.5, x, y); }
+            else { lastTap = now; lastX = x; lastY = y; }
+          }
+        };
+        stage.addEventListener('pointerup', end);
+        stage.addEventListener('pointercancel', end);
+        stage.addEventListener('wheel', e=>{
+          e.preventDefault();
+          const r = stage.getBoundingClientRect();
+          zoomAt(s * Math.exp(-e.deltaY * 0.0015), e.clientX - r.left, e.clientY - r.top);
+        }, { passive: false });
+        const onResize = ()=>{
+          const wasFit = s <= fit * 1.001;
+          measure();
+          if(wasFit) s = fit; else s = Math.min(fit * MAXZ, Math.max(fit, s));
+          clampPos(); apply();
+        };
+        window.addEventListener('resize', onResize);
+        zoomFn = f => zoomAt(s * f, W / 2, H / 2);
+        cleanup = ()=>{ window.removeEventListener('resize', onResize); URL.revokeObjectURL(url); img.removeAttribute('src'); };
+        resolve();
+      };
+      img.src = url;
+    });
+  }
+
+  /* ---- PDFs: pages are drawn only when they are near the screen ---- */
+  function loadPdfLib(){
+    if(window.pdfjsLib && window.pdfjsLib.getDocument){
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = docsSource().base + PDFJS_DIR + 'pdf.worker.min.js';
+      return Promise.resolve(window.pdfjsLib);
+    }
+    if(!pdfLibPromise){
+      pdfLibPromise = new Promise((resolve, reject)=>{
+        const base = docsSource().base;
+        const sc = document.createElement('script');
+        sc.src = base + PDFJS_DIR + 'pdf.min.js';
+        sc.onload = ()=>{
+          try{ window.pdfjsLib.GlobalWorkerOptions.workerSrc = base + PDFJS_DIR + 'pdf.worker.min.js'; resolve(window.pdfjsLib); }
+          catch(e){ pdfLibPromise = null; reject(e); }
+        };
+        sc.onerror = ()=>{ pdfLibPromise = null; reject(new Error('lib')); };
+        document.head.appendChild(sc);
+      });
+    }
+    return pdfLibPromise;
+  }
+  async function showPdf(blob, my){
+    const lib = await loadPdfLib();
+    if(my !== token) return;
+    const data = new Uint8Array(await new Response(blob).arrayBuffer());
+    const task = lib.getDocument({ data: data, isEvalSupported: false });
+    let pdf;
+    try{ pdf = await task.promise; }
+    catch(e){ try{ task.destroy(); }catch(_){} throw new Error('badfile'); }
+    if(my !== token){ try{ task.destroy(); }catch(_){} return; }
+    const n = pdf.numPages;
+    const first = await pdf.getPage(1);
+    if(my !== token){ try{ task.destroy(); }catch(_){} return; }
+    const vp1 = first.getViewport({ scale: 1 });
+
+    const scroller = document.createElement('div'); scroller.className = 'dvScroll';
+    const wrap = document.createElement('div'); wrap.className = 'dvPages';
+    scroller.appendChild(wrap);
+    const pages = [];
+    for(let i = 1; i <= n; i++){
+      const el = document.createElement('div'); el.className = 'dvPg'; wrap.appendChild(el);
+      pages.push({ el: el, num: i, ratio: vp1.height / vp1.width, page: i === 1 ? first : null, canvas: null, task: null, renderedW: 0, gen: 0 });
+    }
+    setBody(scroller);
+
+    const MAXZ = 5;
+    let zoom = 1, destroyed = false, raf = 0;
+    const layout = ()=>{
+      const W = Math.max(200, scroller.clientWidth);
+      wrap.style.width = Math.round(W * zoom) + 'px';
+      const pw = Math.round(W * zoom) - 16;
+      pages.forEach(p=>{ p.el.style.height = Math.round(pw * p.ratio) + 'px'; });
+    };
+    const release = p=>{
+      p.gen++;
+      if(p.task){ try{ p.task.cancel(); }catch(_){} p.task = null; }
+      if(p.canvas){ p.canvas.width = 0; p.canvas.height = 0; p.canvas.remove(); p.canvas = null; }
+      p.renderedW = 0;
+    };
+    const renderPage = async p=>{
+      const pw = p.el.clientWidth || 1;
+      const target = Math.min(Math.round(pw * Math.min(window.devicePixelRatio || 1, 2.5)), 3200);
+      if(p.renderedW === target) return;
+      p.renderedW = target;
+      const gen = ++p.gen;
+      if(p.task){ try{ p.task.cancel(); }catch(_){} p.task = null; }
+      try{
+        if(!p.page) p.page = await pdf.getPage(p.num);
+        if(destroyed || my !== token || gen !== p.gen) return;
+        const vp0 = p.page.getViewport({ scale: 1 });
+        const ratio = vp0.height / vp0.width;
+        if(Math.abs(ratio - p.ratio) > 0.001){ p.ratio = ratio; p.el.style.height = Math.round(pw * ratio) + 'px'; }
+        const vp = p.page.getViewport({ scale: target / vp0.width });
+        const cv = document.createElement('canvas');
+        cv.className = 'dvCanvas'; cv.width = Math.round(vp.width); cv.height = Math.round(vp.height);
+        const ctx = cv.getContext('2d', { alpha: false });
+        p.task = p.page.render({ canvasContext: ctx, viewport: vp, background: '#ffffff' });
+        await p.task.promise;
+        p.task = null;
+        if(destroyed || my !== token || gen !== p.gen) return;
+        if(p.canvas){ p.canvas.width = 0; p.canvas.height = 0; p.canvas.remove(); }
+        p.el.appendChild(cv); p.canvas = cv;      // swapped in only when finished, so zooming never flashes blank
+      }catch(e){
+        if(e && e.name === 'RenderingCancelledException') return;
+        if(gen === p.gen) p.renderedW = 0;
+      }
+    };
+    const pass = ()=>{
+      if(destroyed) return;
+      const sr = scroller.getBoundingClientRect(), H = sr.height;
+      let curPage = 1, best = Infinity;
+      pages.forEach(p=>{
+        const r = p.el.getBoundingClientRect();
+        const top = r.top - sr.top, bot = r.bottom - sr.top;
+        if(bot > -H && top < H * 2) renderPage(p);
+        else if(bot < -H * 2.5 || top > H * 3.5) release(p);
+        const d = Math.abs((top + bot) / 2 - H / 2);
+        if(d < best){ best = d; curPage = p.num; }
+      });
+      $('dvPage').textContent = n > 1 ? curPage + ' / ' + n : '';
+    };
+    const schedule = ()=>{ if(raf) return; raf = requestAnimationFrame(()=>{ raf = 0; pass(); }); };
+    const setZoom = (nz, cx, cy, mx, my2)=>{
+      nz = Math.min(MAXZ, Math.max(1, nz));
+      if(Math.abs(nz - zoom) < 0.001) return;
+      const f = nz / zoom;
+      if(cx == null){ mx = scroller.clientWidth / 2; my2 = scroller.clientHeight / 2; cx = scroller.scrollLeft + mx; cy = scroller.scrollTop + my2; }
+      zoom = nz; layout();
+      scroller.scrollLeft = cx * f - mx; scroller.scrollTop = cy * f - my2;     // keep the spot under the fingers where it was
+      pass();
+    };
+    scroller.addEventListener('scroll', schedule, { passive: true });
+
+    // pinch to zoom (touch events: the page's own scrolling is switched off only while two fingers are down)
+    let pz = null, tapT = 0, tapX = 0, tapY = 0, t0 = 0, sx = 0, sy = 0;
+    scroller.addEventListener('touchstart', e=>{
+      if(e.touches.length === 2){
+        const a = e.touches[0], b = e.touches[1], r = scroller.getBoundingClientRect();
+        const mx = (a.clientX + b.clientX) / 2 - r.left, my2 = (a.clientY + b.clientY) / 2 - r.top;
+        pz = { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1, zoom: zoom, mx: mx, my: my2, cx: scroller.scrollLeft + mx, cy: scroller.scrollTop + my2, k: 1 };
+        wrap.style.transformOrigin = pz.cx + 'px ' + pz.cy + 'px';
+        t0 = 0;
+      } else if(e.touches.length === 1){
+        t0 = Date.now(); sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      }
+    }, { passive: true });
+    scroller.addEventListener('touchmove', e=>{
+      if(pz && e.touches.length === 2){
+        if(e.cancelable) e.preventDefault();
+        const a = e.touches[0], b = e.touches[1];
+        const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1;
+        const nz = Math.min(MAXZ, Math.max(1, pz.zoom * d / pz.d));
+        pz.k = nz / pz.zoom;
+        wrap.style.transform = 'scale(' + pz.k + ')';
+      } else if(t0 && Math.hypot(e.touches[0].clientX - sx, e.touches[0].clientY - sy) > 10){ t0 = 0; }
+    }, { passive: false });
+    const endTouch = e=>{
+      if(pz && e.touches.length < 2){
+        const p = pz; pz = null;
+        wrap.style.transform = ''; wrap.style.transformOrigin = '';
+        if(Math.abs(p.k - 1) > 0.02) setZoom(p.zoom * p.k, p.cx, p.cy, p.mx, p.my);
+        return;
+      }
+      if(t0 && e.touches.length === 0 && e.changedTouches.length === 1 && Date.now() - t0 < 300){       // a quick tap: two in a row zoom in / out
+        const c = e.changedTouches[0], now = Date.now(), r = scroller.getBoundingClientRect();
+        if(now - tapT < 320 && Math.hypot(c.clientX - tapX, c.clientY - tapY) < 32){
+          tapT = 0;
+          const mx = c.clientX - r.left, my2 = c.clientY - r.top;
+          setZoom(zoom > 1.05 ? 1 : 2.5, scroller.scrollLeft + mx, scroller.scrollTop + my2, mx, my2);
+        } else { tapT = now; tapX = c.clientX; tapY = c.clientY; }
+      }
+      t0 = 0;
+    };
+    scroller.addEventListener('touchend', endTouch, { passive: true });
+    scroller.addEventListener('touchcancel', ()=>{ pz = null; wrap.style.transform = ''; wrap.style.transformOrigin = ''; t0 = 0; }, { passive: true });
+    scroller.addEventListener('wheel', e=>{          // laptop: pinch on the trackpad or Ctrl + wheel
+      if(!e.ctrlKey) return;
+      e.preventDefault();
+      const r = scroller.getBoundingClientRect(), mx = e.clientX - r.left, my2 = e.clientY - r.top;
+      setZoom(zoom * Math.exp(-e.deltaY * 0.01), scroller.scrollLeft + mx, scroller.scrollTop + my2, mx, my2);
+    }, { passive: false });
+
+    const onResize = ()=>{ layout(); pass(); };
+    window.addEventListener('resize', onResize);
+    layout(); pass();
+    zoomFn = f => setZoom(zoom * f);
+    cleanup = ()=>{
+      destroyed = true;
+      window.removeEventListener('resize', onResize);
+      if(raf){ cancelAnimationFrame(raf); raf = 0; }
+      pages.forEach(release);
+      try{ pdf.destroy(); }catch(_){}
+      try{ task.destroy(); }catch(_){}
+    };
+  }
+
+  function init(){
+    $('dvZoomIn').addEventListener('click', ()=>{ if(zoomFn) zoomFn(1.4); });
+    $('dvZoomOut').addEventListener('click', ()=>{ if(zoomFn) zoomFn(1 / 1.4); });
+    $('dvShare').addEventListener('click', ()=>{
+      if(curBlob && cur) shareToWhatsApp(curBlob, cur.file, cur.name);
+    });
+  }
+  init();
+  window.DocViewerAPI = { close: close };
+  return { open: open, close: close };
+})();
 
 /* ====================== VISIT REPORT WIZARD ====================== */
 const VisitForm = (function(){
@@ -2614,6 +3195,8 @@ const VisitForm = (function(){
   let answers = {};
   let awaitingCapture = false;   // true while the camera step of a submission is open
   let reportSubmitted = false;   // true once this visit's report has been handed to the retry queue
+  let reportJob = null;          // that queued job
+  let submittedLines = [];       // the filled-in answers, for the summary screen
   let autoDB = null; // set in reset() when the logged-in user has exactly one tagged DB
 
   let card, btnBack, btnNext, btnClear, navBar;
@@ -3075,7 +3658,7 @@ const VisitForm = (function(){
       // below also appends currentPage itself, so pushing it here as well
       // made the final page's question ids (and answers) appear twice in
       // the submitted payload and the on-screen summary.
-      submitReportThenCamera();
+      startSubmit();
       return;
     }
     history.push(currentPage);
@@ -3103,13 +3686,14 @@ const VisitForm = (function(){
 
   function reset(){
     if(awaitingCapture){
-      // Coming back from the camera: the report is already submitted, so keep the result on screen.
+      // Coming back from the camera: keep the form as it is. With a photo, afterSelfie() shows the summary;
+      // without one (camera closed) the rep simply carries on with all answers still filled in.
       awaitingCapture = false;
-      const sb = document.getElementById('vfSelfieBtn');
-      if(sb) sb.style.display = 'block';
       return;
     }
     reportSubmitted = false;
+    reportJob = null;
+    submittedLines = [];
     answers = {};
     history = [];
     currentPage = 'p1';
@@ -3202,12 +3786,30 @@ const VisitForm = (function(){
     else if(st === 'failed') setDoneStatus('Report could not be delivered', 'Please inform your admin and share the details below.');
   }
 
-  /* Submit the report first (it can never be lost to the camera or WhatsApp step), then open the camera. */
-  async function submitReportThenCamera(){
-    navBar.style.display = 'none';
-    const { pathAnswers, lines } = buildReport();
-    reportSubmitted = true;
+  /* Submit opens the camera. The report is sent only once the photo has actually been taken (submitReport,
+   * called from completeCapture). Closing the camera without a photo brings the rep back to the form with every
+   * answer still filled in, and nothing has been sent. */
+  function startSubmit(){
+    awaitingCapture = true;
+    openCamera('visitform');
+  }
 
+  /* Called the moment the photo is taken, before the WhatsApp share step, so the report can never be lost to it.
+   * It goes through the same retry queue as before, so a weak network never loses it either. */
+  function submitReport(){
+    if(reportSubmitted) return;
+    reportSubmitted = true;
+    const { pathAnswers, lines } = buildReport();
+    submittedLines = lines;
+    const submitUrl = CONFIG.VISIT_REPORT_SUBMIT_URL;
+    if(!submitUrl || submitUrl.startsWith('PASTE_')){ reportJob = null; return; }
+    reportJob = enqueueJob('visitReport', { answers: pathAnswers });
+  }
+
+  /* Back from the camera with a photo: show what was filled in, and whether the report went through. */
+  async function afterSelfie(){
+    if(!reportSubmitted) return;
+    navBar.style.display = 'none';
     card.innerHTML = '';
     const doneBlock = document.createElement('div');
     doneBlock.className = 'vfSection active';
@@ -3216,38 +3818,20 @@ const VisitForm = (function(){
         <div class="vfDoneMark">&#10003;</div>
         <h2 id="vfDoneTitle">Submitting…</h2>
         <p id="vfDoneMsg">Sending your responses to the tracker sheet…</p>
-        <div class="vfSummary">${lines.length ? vfEsc(lines.join('\n\n')) : '(Distributor Meet — no further details required.)'}</div>
-        <button class="btn primary" type="button" id="vfSelfieBtn" style="display:none" onclick="VisitForm.retakeSelfie()">Take location selfie</button>
+        <div class="vfSummary">${submittedLines.length ? vfEsc(submittedLines.join('\n\n')) : '(Distributor Meet — no further details required.)'}</div>
         <button class="btn primary" type="button" onclick="showScreen('screen-dashboard')">Back to Dashboard</button>
       </div>
     `;
     card.appendChild(doneBlock);
     doneBlock.scrollIntoView({behavior:'smooth', block:'start'});
-
-    const submitUrl = CONFIG.VISIT_REPORT_SUBMIT_URL;
-    if(!submitUrl || submitUrl.startsWith('PASTE_')){
+    if(!reportJob){
       setDoneStatus('Not submitted', 'VISIT_REPORT_SUBMIT_URL is not configured.');
       return;
     }
-    const job = enqueueJob('visitReport', { answers: pathAnswers });
+    const job = reportJob;
     watchJob(job, showReportStatus);
     const st = await waitForJob(job, 12000);     // short wait; a slow network never blocks the rep
     showReportStatus(st === 'timeout' ? 'queued' : st);
-    if(st === 'sent') await new Promise(r=>setTimeout(r, 700));
-    awaitingCapture = true;
-    openCamera('visitform');
-  }
-
-  function retakeSelfie(){
-    const sb = document.getElementById('vfSelfieBtn');
-    if(sb) sb.style.display = 'none';
-    awaitingCapture = true;
-    openCamera('visitform');
-  }
-
-  function afterSelfie(){
-    const sb = document.getElementById('vfSelfieBtn');
-    if(sb) sb.style.display = 'none';
   }
 
   function captionAnswerText(qid){
@@ -3313,7 +3897,7 @@ const VisitForm = (function(){
     return lines.join('\n');
   }
 
-  return { reset: reset, afterSelfie: afterSelfie, retakeSelfie: retakeSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
+  return { reset: reset, submitReport: submitReport, afterSelfie: afterSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
 })();
 
 /* ====================== Workshop Master ====================== */
@@ -3730,7 +4314,7 @@ function restoreScreenAfterReload(){
     }
     replaceScreen('screen-dashboard'); // sets historyRepair = 'home'
     let sub = true;
-    if(saved === 'screen-docslocker') openDocsLocker();
+    if(saved === 'screen-docslocker' || saved === 'screen-docviewer') openDocsLocker();
     else if(saved === 'screen-summary') openSummary();
     else if(saved === 'screen-mastersearch') showScreen('screen-mastersearch');
     else if(saved === 'screen-visitreport' && dayStarted && !dayEnded) showScreen('screen-visitreport');
