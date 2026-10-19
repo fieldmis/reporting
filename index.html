@@ -3360,7 +3360,7 @@ const VisitForm = (function(){
     const page = PAGES[pageId];
     if(!validatePage(pageId, true)) return;
     const target = page.branch(answers);
-    if(target === 'SUBMIT') return;
+    if(target === 'SUBMIT'){ btnNext.textContent = 'Review & Submit'; return; }   // e.g. Distributor Meet: nothing more to fill
     history.push(pageId);
     render(target, true);
   }
@@ -3702,7 +3702,7 @@ const VisitForm = (function(){
 
     // ---- DB tagging (Question 1) ----
     const uid = (session && session.userId) ? String(session.userId).trim() : '';
-    const tagged = USER_DB_MAP[uid];
+    const tagged = USER_DB_MAP[uid.toUpperCase()];
     if(tagged && tagged.length === 1){
       Q[1].options = [{label: tagged[0], value: tagged[0]}];
       answers[1] = tagged[0];
@@ -3851,12 +3851,12 @@ const VisitForm = (function(){
   // Builds the WhatsApp caption for the visit-end selfie. The lines are
   // chosen by the Type of Visit that was picked (question 2), so answers
   // from a different branch can never leak into the caption.
-  //   New Outlet Visit        -> Outlet Name (3), Outcome (7)
+  //   New Outlet / IWS Visit  -> Outlet Name (3), Outcome (7)
   //   New Mechanic Visit      -> Mechanic Name (10), Linked Outlet (17, only
   //                              when New Enrollment), Outcome (14)
   //   Existing Mechanic Visit -> Share ID-Linked Bizom (18 & 22), Linked
   //                              Outlet (23), Outcome (24 & 25)
-  //   Existing Outlet Visit   -> Bizom ID (26 & 27), Outcome (30 + 31/32)
+  //   Existing Outlet / IWS Visit -> Bizom ID (26 & 27), Outcome (30 + 31/32)
   //   Distributor Meet        -> visit type only
   // Remarks (33) are added last whenever they were answered.
   function getCaption(){
@@ -3866,7 +3866,7 @@ const VisitForm = (function(){
     const visitType = captionAnswerText(2);
     if(visitType) lines.push(visitType);
 
-    if(visitType === 'New Outlet Visit'){
+    if(visitType === 'New Outlet / IWS Visit'){
       add('Outlet Name', captionAnswerText(3));
       add('Outcome', captionAnswerText(7));
 
@@ -3880,7 +3880,7 @@ const VisitForm = (function(){
       add('Linked Outlet', captionAnswerText(23));
       add('Outcome', captionJoin([captionAnswerText(24), captionAnswerText(25)]));
 
-    } else if(visitType === 'Existing Outlet Visit'){
+    } else if(visitType === 'Existing Outlet / IWS Visit'){
       add('Bizom ID', captionJoin([captionAnswerText(26), captionAnswerText(27)]));
       const q30 = captionAnswerText(30);
       const q31 = captionAnswerText(31);
