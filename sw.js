@@ -6,9 +6,12 @@
 //   copy is used, so the app still opens.
 // - Other same-site files (manifest, masterdata.csv ...) are served from the saved copy and
 //   refreshed in the background.
+// - Document Vault files (their address ends in ?v=<fingerprint>, so a replaced file has a new address) and the
+//   PDF reader in /vendor/ never change under the same address: they are saved on first use and then served
+//   straight from the phone, instantly and offline.
 // - Cache names include this app's own address, so /reporting/ and /testing/ (same website) no
 //   longer delete each other's saved files.
-const VERSION = 'v14';
+const VERSION = 'v16';
 const SCOPE = self.registration.scope;                       // e.g. https://fieldmis.github.io/reporting/
 const CACHE_PREFIX = 'shell-fos:' + SCOPE + ':';
 const CACHE_NAME = CACHE_PREFIX + VERSION;
@@ -54,6 +57,15 @@ async function networkFirst(req) {
   }
 }
 
+async function cacheFirst(req) {
+  const cache = await caches.open(CACHE_NAME);
+  const hit = await cache.match(req);
+  if (hit) return hit;
+  const res = await fetch(req);
+  if (res && res.status === 200) cache.put(req, res.clone()).catch(() => {});
+  return res;
+}
+
 async function staleWhileRevalidate(req) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(req);
@@ -71,5 +83,9 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   if (new URL(req.url).origin !== self.location.origin) return;   // maps, geocoding, Apps Script etc. go straight to the network
   if (req.mode === 'navigate') { event.respondWith(networkFirst(req)); return; }
+  const u = new URL(req.url);
+  if (/\/vendor\//i.test(u.pathname) || (/\/Document%20Vault\//i.test(u.pathname) && u.searchParams.has('v'))) {
+    event.respondWith(cacheFirst(req)); return;
+  }
   event.respondWith(staleWhileRevalidate(req));
 });
