@@ -3150,15 +3150,15 @@ const VisitForm = (function(){
            const v = a[2] && a[2].choice;
            if(v === "Distributor Meet") return "SUBMIT";
            const map = {
-             "New Outlet Visit":"p2",
+             "New Outlet / IWS Visit":"p2",
              "New Mechanic Visit":"p3",             
-             "Existing Outlet Visit":"p6",
+             "Existing Outlet / IWS Visit":"p6",
              "Existing Mechanic Visit":"p5"
            };
            return map[v] || "p2";
          }},
 
-    p2:{ title:"New Outlet Visit Details", ids:[3,4,5,6,7],
+    p2:{ title:"New Outlet / IWS Visit Details", ids:[3,4,5,6,7],
          conditional:{ trigger:7, showValue:"Order Collected", extraIds:[8,9] },
          branch:()=>"pFinal" },
 
