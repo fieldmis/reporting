@@ -19,6 +19,8 @@
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <style>
+    /* Remove the square tap-highlight box Android draws while pressing buttons/tabs (ignores border-radius). Visual only: no effect on clicks, focus, scrolling or text selection. */
+    *{-webkit-tap-highlight-color:transparent;}
     :root{
       --bg:#e6e9ef; --text:#4d5061; --muted:#8b8fa3; --danger:#e0644f;
       --accent1:#55f7c5; --accent2:#43d9ff; --accent3:#8b7cff; --below:#9aa3b5;
