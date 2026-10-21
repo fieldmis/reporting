@@ -655,6 +655,33 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 @keyframes dashInL{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:none;}}
 @keyframes dashInR{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.dashPage.slideL,.dashPage.slideR{animation:none;}}
+
+/* ===== TAP FEEDBACK / PAGE TRANSITIONS / SCROLL STABILITY ===== */
+/* 1. No square tap box: kill the WebView's default tap highlight everywhere, keep ripples clipped to the button shape. */
+*{-webkit-tap-highlight-color:transparent;}
+button,.btn,.backBtn,.dashTabs button,.kpiSwitch button,.heroCameraBtn,.docLink,[role=button]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation;}
+button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none;}
+.btn,.backBtn{overflow:hidden;}
+.heroCameraBtn .uiRipple{display:none;}
+/* Touch screens keep :hover "stuck" after a tap, which made tapped buttons/cards stay lifted. */
+@media (hover:none){
+  .btn:hover:not(:active),.backBtn:hover:not(:active){transform:none !important;}
+  .btn:hover::before{left:-90px !important;}
+  .card:hover{transform:translateZ(0) !important;}
+  .timelineItem:hover{padding-left:2px;padding-right:2px;background:none;}
+  #screen-dashboard>.btn:hover::after{transform:none;}
+  .backBtn:hover{transform:none;}
+}
+/* 2. ONE entry animation for every screen, ONE exit animation for every screen. */
+@keyframes fosEnter{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+@keyframes fosExit{from{opacity:1;transform:none;}to{opacity:0;transform:translateY(-6px);}}
+html body .screen.active,
+html body .screen.active.dir-back,
+html body #screen-docviewer.screen.active{animation:fosEnter .3s cubic-bezier(.16,1,.3,1) backwards;}
+.screen.leaving{display:flex;pointer-events:none;animation:fosExit .18s ease-in forwards;}
+.screen.leaving:not(#screen-docviewer){position:fixed;top:0;bottom:0;left:2px;right:2px;margin:0 auto;max-width:496px;min-height:0;overflow:hidden;z-index:5;}
+/* 3. Smooth-scroll made every automatic scroll reset visibly "glide"; page changes must land instantly. */
+html{scroll-behavior:auto !important;}
 </style>
   <style id="docViewerStyles">
     #docsLockerContent .docLink{cursor:pointer;}
@@ -983,12 +1010,30 @@ document.getElementById('installBtn').addEventListener('click', async ()=>{
 });
 
 /* ---- Navigation ---- */
+const screenScroll = {};   // last scroll position of each screen, restored when coming Back to it
+let leaveTimer = null;
 function renderScreen(id, direction){
   if(id !== 'screen-docviewer' && window.DocViewerAPI) window.DocViewerAPI.close();   // frees the open picture / PDF
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','dir-back'));
   const el = document.getElementById(id);
+  const prev = document.querySelector('.screen.active');
+  const changing = !!prev && prev !== el;
+  const prevY = window.pageYOffset || 0;
+  if(changing) screenScroll[prev.id] = prevY;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','dir-back','leaving'));
+  if(changing && !suppressHistoryPush){
+    // Exit: the old screen fades out in place (pinned at the scroll position it was left at) while the new one enters.
+    prev.classList.add('leaving');
+    if(prev.id !== 'screen-docviewer') prev.scrollTop = prevY;
+    clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(()=>{ document.querySelectorAll('.screen.leaving').forEach(s=>s.classList.remove('leaving')); }, 220);
+  }
   if(direction==='back') el.classList.add('dir-back');
   el.classList.add('active');
+  if(changing){
+    // New page opens at the top; going Back returns to where that page was left. Always instant, never animated.
+    const y = direction==='back' ? (screenScroll[id] || 0) : 0;
+    window.scrollTo({top:y, left:0, behavior:'instant'});
+  }
   if(session && id!=='screen-login') lsSet('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
   if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); prefetchDocs(); }
@@ -1065,7 +1110,18 @@ function flushHistoryRepair(){
 }
 ['pointerup','click','touchend','keydown'].forEach(t=>document.addEventListener(t, flushHistoryRepair, true));
 
+let vfPopGuard = false;
 window.addEventListener('popstate', (e)=>{
+  // The undo step below (history.go(1)) raises one more popstate; ignore that one.
+  if(vfPopGuard){ vfPopGuard = false; return; }
+  // Visit report with an earlier question page: Back/swipe goes to that page, not out to the home screen.
+  if(session && document.getElementById('screen-visitreport').classList.contains('active') && VisitForm.canStepBack()){
+    vfPopGuard = true;
+    setTimeout(()=>{ vfPopGuard = false; }, 800);   // safety: never leave the guard armed
+    history.go(1);                                  // undo the browser step so the form's own history entry stays
+    VisitForm.stepBack();
+    return;
+  }
   // Beat plan not yet confirmed/updated: stay on the PJP screen.
   if(pjpPending && session && document.getElementById('screen-pjp').classList.contains('active')){
     if(!(e.state && e.state.screen === 'screen-pjp')){
@@ -1093,6 +1149,8 @@ window.addEventListener('popstate', (e)=>{
   }
   renderScreen(id, 'back');
 });
+// The app restores scroll itself per screen; the browser's automatic per-history-entry restore fought it (wrong offsets after Back).
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
 history.replaceState({screen:'screen-login'}, '', location.href);
 
 /* ---- Android hardware/gesture back button ----
@@ -1121,6 +1179,7 @@ history.replaceState({screen:'screen-login'}, '', location.href);
       return;
     }
     if(document.getElementById('screen-docviewer').classList.contains('active')){ replaceScreen('screen-docslocker', 'back'); return; }
+    if(document.getElementById('screen-visitreport').classList.contains('active') && VisitForm.canStepBack()){ VisitForm.stepBack(); return; }
     const childIds = ['screen-docslocker','screen-summary','screen-mastersearch','screen-visitreport'];
     if(childIds.some(id=>document.getElementById(id).classList.contains('active'))){
       // Don't depend on WebView history (it can be empty after a reload).
@@ -2182,6 +2241,9 @@ function updateDashboardButtons(){
 
 function buildBarChart(containerId, days, field, unit){
   const el = document.getElementById(containerId);
+  const sig = JSON.stringify([days, field, unit]);
+  if(el.dataset.sig === sig && el.innerHTML) return;   // same data: leave the tile untouched (no flicker)
+  el.dataset.sig = sig;
   if(!Array.isArray(days) || !days.length){ el.innerHTML = '<div class="muted">No data yet.</div>'; return; }
   const values = days.map(d=>{ const v = Number(d[field]); return Number.isFinite(v) ? v : 0; });
   const max = Math.max(...values, 1);
@@ -2203,6 +2265,7 @@ function buildBarChart(containerId, days, field, unit){
 }
 
 function buildRing(containerId, value, target){
+  { const el0 = document.getElementById(containerId), sig = value + '/' + target; if(el0.dataset.sig === sig && el0.innerHTML) return; el0.dataset.sig = sig; }
   const pct = target>0 ? Math.min(1, value/target) : 0;
   const r = 42, c = 2*Math.PI*r;
   document.getElementById(containerId).innerHTML = `
@@ -2220,6 +2283,7 @@ function buildRing(containerId, value, target){
 }
 
 function buildKmStat(containerId, km){
+  { const el0 = document.getElementById(containerId), sig = String(km); if(el0.dataset.sig === sig && el0.innerHTML) return; el0.dataset.sig = sig; }
   const v = Number(km);
   const display = Number.isFinite(v) ? v.toFixed(1) : '0.0';
   document.getElementById(containerId).innerHTML =
@@ -3897,7 +3961,12 @@ const VisitForm = (function(){
     return lines.join('\n');
   }
 
-  return { reset: reset, submitReport: submitReport, afterSelfie: afterSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
+  /* Back inside the form: true while there is an earlier question page to return to (and the report is not already sent). */
+  function canStepBack(){
+    return !!(btnBack && navBar && !btnBack.disabled && history.length > 0 && !reportSubmitted && navBar.style.display !== 'none');
+  }
+  function stepBack(){ if(canStepBack()) goBackForm(); }
+  return { canStepBack: canStepBack, stepBack: stepBack, reset: reset, submitReport: submitReport, afterSelfie: afterSelfie, getCaption: getCaption, rxBounds: rxBounds, RX: RX };
 })();
 
 /* ====================== Workshop Master ====================== */
@@ -4349,7 +4418,7 @@ if(session && session.date === todayStr()){
 <script>
 (function(){
  document.addEventListener('click',function(e){const b=e.target.closest('.btn,.heroCameraBtn,#captureBtn,.backBtn');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;const q=document.createElement('i');q.className='uiRipple';q.style.left=x+'px';q.style.top=y+'px';b.appendChild(q);setTimeout(()=>q.remove(),650)},{passive:true});
- const st=document.createElement('style');st.textContent='.uiRipple{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;background:rgba(120,225,255,.3);transform:translate(-50%,-50%) scale(1);animation:uiRipple .62s ease-out forwards;z-index:20}@keyframes uiRipple{to{transform:translate(-50%,-50%) scale(22);opacity:0}}.screen.active .card{animation:cardReveal .42s cubic-bezier(.16,1,.3,1) both}@keyframes cardReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}';document.head.appendChild(st);
+ const st=document.createElement('style');st.textContent='.uiRipple{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;background:rgba(120,225,255,.3);transform:translate(-50%,-50%) scale(1);animation:uiRipple .62s ease-out forwards;z-index:20}@keyframes uiRipple{to{transform:translate(-50%,-50%) scale(22);opacity:0}}';document.head.appendChild(st);
 })();
 </script>
   <script>
