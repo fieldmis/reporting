@@ -32,39 +32,10 @@
     body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);}
     #app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
     .screen{display:none;flex-direction:column;flex:1;padding:22px;}
-    /* ONE page transition for the whole app. Forward = slides in from the right; Back = the exact mirror (from the left).
-       Transform only: no opacity, scale or blur on the screen, because cards use backdrop-filter and any fade/filter on a
-       parent makes them pop when the animation ends (that was the flicker). Change the feel here, in one place. */
-    :root{--nav-dur:.36s;--nav-ease:cubic-bezier(.16,1,.3,1);--nav-shift:32px;}
-    .screen.active{display:flex;animation:navIn var(--nav-dur) var(--nav-ease) backwards;}
-    .screen.active.dir-back{animation-name:navInBack;}
-    @keyframes navIn{from{transform:translate3d(var(--nav-shift),0,0);}to{transform:translate3d(0,0,0);}}
-    @keyframes navInBack{from{transform:translate3d(calc(var(--nav-shift) * -1),0,0);}to{transform:translate3d(0,0,0);}}
-    @media (prefers-reduced-motion:reduce){.screen.active,.screen.active.dir-back{animation:none;}}
-
-    /* ===== Tab-expand transition (dashboard tab <-> its page). Approved spring sample, ported. =====
-       Only transform/opacity move; no blur/clip-path/backdrop-filter on anything animating; text is never scaled. */
-    :root{--fx-spring:cubic-bezier(.34,1.3,.5,1);--fx-spring2:cubic-bezier(.3,1.6,.5,1);--fx-ease:cubic-bezier(.4,0,.2,1);}
-    .screen.active.fx{animation:none;}                       /* the page uses the tab-expand motion instead of the slide */
-    html.fx-lock{overflow:hidden;}
-    #fxLayer{position:fixed;inset:0;z-index:45;visibility:hidden;pointer-events:none;}
-    #fxLayer.on{visibility:visible;pointer-events:auto;}      /* also swallows stray taps while animating */
-    #fxBg{position:absolute;inset:0;overflow:hidden;transform-origin:0 0;
-      transform:translate(var(--tx,0px),var(--ty,0px)) scale(var(--sx,1),var(--sy,1));border-radius:var(--br,0);
-      transition:transform .42s var(--fx-ease),border-radius .2s ease .22s;will-change:transform;}
-    #fxLayer.open #fxBg{transform:none;border-radius:0;transition:transform .62s var(--fx-spring),border-radius .2s ease-out;}
-    #fxLayer.instant,#fxLayer.instant *{transition:none!important;}
-    /* dashboard blocks: above the tab pushed up, below pushed down, then spring back */
-    #screen-dashboard.fx-live>*{will-change:transform;transition:transform .42s var(--fx-ease)!important;}
-    #screen-dashboard.fx-out>*{transform:translate3d(0,var(--push,0px),0)!important;transition:transform .62s var(--fx-spring)!important;}
-    #screen-dashboard.fx-instant>*{transition:none!important;}
-    #screen-dashboard>.fx-src{visibility:hidden;}
-    /* page content bounces in once the page has filled the screen */
-    .screen.fx-in>*{animation:fxRise .75s var(--fx-spring2) backwards;animation-delay:calc(var(--i,0) * 45ms + 60ms);}
-    @keyframes fxRise{from{opacity:0;transform:translate3d(0,46px,0);}to{opacity:1;transform:none;}}
-    /* fixed/sticky bars (Visit form Back/Clear/Next) keep their own position/transform: opacity-only entrance */
-    .screen.fx-in>.fx-still{animation:fxFade .4s ease .25s backwards;}
-    @keyframes fxFade{from{opacity:0;}to{opacity:1;}}
+    .screen.active{display:flex;animation:screenEnterFwd .42s cubic-bezier(.16,1,.3,1);}
+    .screen.active.dir-back{animation:screenEnterBack .42s cubic-bezier(.16,1,.3,1);}
+    @keyframes screenEnterFwd{from{opacity:0;transform:translate(28px,10px) scale(.98);}to{opacity:1;transform:translate(0,0) scale(1);}}
+    @keyframes screenEnterBack{from{opacity:0;transform:translate(-28px,10px) scale(.98);}to{opacity:1;transform:translate(0,0) scale(1);}}
     h1{font-size:1.25rem;margin:0 0 18px;font-weight:700;color:var(--text);}
     .loginBrand{display:block;width:104px;height:104px;object-fit:contain;margin:2px auto 12px;}
     .docsEmpty{text-align:center;padding:26px 12px;color:var(--muted);font-size:.9rem;}
@@ -271,6 +242,7 @@ body::after{content:"";position:fixed;width:280px;height:280px;border-radius:50%
 #app{position:relative;z-index:1;max-width:500px;padding:0 2px;}
 .screen{padding:20px 18px;position:relative;}
 .screen::before{content:"";position:absolute;top:0;left:14%;right:14%;height:1px;background:linear-gradient(90deg,transparent,var(--accent3),transparent);opacity:.55;}
+.screen.active{animation:screenEnterFwd .55s cubic-bezier(.16,1,.3,1);}
 .card,.formCard{background:linear-gradient(145deg,rgba(24,35,54,.88),rgba(10,16,28,.78));border:1px solid var(--line);box-shadow:0 20px 45px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
 .card{overflow:hidden;}
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.06),transparent 28%,transparent 72%,rgba(67,217,255,.025));}
@@ -329,6 +301,8 @@ input[type=text]:focus,input[type=password]:focus,.pjpUpdateBox textarea:focus{o
 body{min-height:100dvh;letter-spacing:.01em}
 #app{min-height:100dvh}
 .screen{min-height:100dvh;padding:18px 18px 30px;gap:0}
+.screen.active{animation:surfaceIn .48s cubic-bezier(.16,1,.3,1)}
+@keyframes surfaceIn{from{opacity:0;transform:translateY(16px) scale(.985);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
 .screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -10%,rgba(67,217,255,.07),transparent 34%)}
 .screen>h1{position:relative;z-index:2;display:flex;align-items:center;gap:10px;padding:8px 4px 16px;margin:0 0 12px;font-size:1.18rem}
 .screen>h1::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon);animation:statusBlink 1.8s infinite}
@@ -678,8 +652,10 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 .dashTabs button.on{color:#06101c;background:linear-gradient(135deg,#55f7c5,#43d9ff);}
 .dashPage .statGrid{margin-bottom:0;}
 .dashPage .kpiTile{margin-bottom:0;}
-.dashPage.slideL{animation:navIn var(--nav-dur) var(--nav-ease) backwards;}
-.dashPage.slideR{animation:navInBack var(--nav-dur) var(--nav-ease) backwards;}
+.dashPage.slideL{animation:dashInL .28s cubic-bezier(.16,1,.3,1);}
+.dashPage.slideR{animation:dashInR .28s cubic-bezier(.16,1,.3,1);}
+@keyframes dashInL{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:none;}}
+@keyframes dashInR{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.dashPage.slideL,.dashPage.slideR{animation:none;}}
 </style>
   <style id="docViewerStyles">
@@ -1008,155 +984,13 @@ document.getElementById('installBtn').addEventListener('click', async ()=>{
   deferredInstallPrompt = null;
 });
 
-/* ---- Tab-expand transition ----
- * Tapping Visit Report / Workshop Master / Summary / Document Vault on the dashboard: the tab's own rectangle grows to
- * full screen (dashboard blocks pushed away), the real page then appears with a small bounce. Back reverses it into the
- * same tab. Everything else keeps the normal slide. The real screen change is only DELAYED (never skipped), so all
- * existing page logic still runs exactly as before. */
-const NavFX = (function(){
-  const PAGES = {'screen-visitreport':1,'screen-mastersearch':1,'screen-summary':1,'screen-docslocker':1};
-  const reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-  const root = document.documentElement;
-  const dash = () => document.getElementById('screen-dashboard');
-  let layer=null, bg=null, tab=null, tabAt=0, src=null, srcId='', savedY=0, busy=false, swapFn=null, timers=[];
-  const later = (fn, ms) => { timers.push(setTimeout(fn, ms)); };
-
-  /* real damped springs as CSS linear() curves (page fill ~10% overshoot, content bounce ~16%) */
-  (function(){
-    try{
-      if(!(window.CSS && CSS.supports('animation-timing-function','linear(0,1)'))) return;
-      const make=(z,D)=>{const w0=(4.2/D)/z, wd=w0*Math.sqrt(1-z*z), N=44, p=[];
-        for(let i=0;i<=N;i++){const t=D*i/N; p.push(i===N?1:+(1-Math.exp(-z*w0*t)*(Math.cos(wd*t)+(z*w0/wd)*Math.sin(wd*t))).toFixed(4));}
-        return 'linear('+p.join(',')+')';};
-      root.style.setProperty('--fx-spring', make(.6,.62));
-      root.style.setProperty('--fx-spring2', make(.5,.75));
-    }catch(e){}
-  })();
-
-  /* remember which dashboard tab was tapped (capture phase: runs before the tab's own onclick) */
-  document.addEventListener('click', e=>{
-    const b = e.target.closest && e.target.closest('#screen-dashboard > .btn');
-    if(b && b.id!=='startDayBtn' && !b.classList.contains('danger')){ tab = b; tabAt = Date.now(); }
-  }, true);
-
-  function ensure(){
-    if(layer) return;
-    layer = document.createElement('div'); layer.id = 'fxLayer';
-    bg = document.createElement('div'); bg.id = 'fxBg';
-    layer.appendChild(bg); document.body.appendChild(layer);
-  }
-  function paint(el){                                   // the page layer takes the tapped tab's colour
-    const cs = getComputedStyle(el);
-    bg.style.backgroundImage = cs.backgroundImage;
-    bg.style.backgroundColor = cs.backgroundColor;
-  }
-  function place(el){                                   // park the layer exactly over the tab
-    const r = el.getBoundingClientRect(), sx = r.width/innerWidth, sy = r.height/innerHeight, st = bg.style;
-    const rad = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 18;
-    st.setProperty('--tx', r.left+'px'); st.setProperty('--ty', r.top+'px');
-    st.setProperty('--sx', sx); st.setProperty('--sy', sy);
-    st.setProperty('--br', (rad/sx)+'px / '+(rad/sy)+'px');   // counter-scaled so corners look round
-  }
-  function setPush(el){                                 // blocks above go up, blocks below go down, by the distance the tab's edges travel
-    const r = el.getBoundingClientRect(), mid = r.top + r.height/2;
-    [...dash().children].forEach(c=>{
-      if(c === el) return c.style.setProperty('--push','0px');
-      const e = c.getBoundingClientRect(); if(!e.height) return;
-      c.style.setProperty('--push', ((e.top + e.height/2 < mid) ? (-r.top-4) : (innerHeight - r.bottom + 4)) + 'px');
-    });
-  }
-  function reset(){
-    timers.forEach(clearTimeout); timers = [];
-    const d = dash();
-    if(d) d.classList.remove('fx-live','fx-out','fx-instant');
-    if(src) src.classList.remove('fx-src');
-    if(layer){ layer.classList.remove('on','open','instant'); layer.style.opacity=''; layer.style.transition=''; }
-    root.classList.remove('fx-lock');
-    busy = false; swapFn = null;
-  }
-  function flush(){                                     // finish instantly (e.g. Android Back pressed mid-animation)
-    if(!busy) return;
-    const f = swapFn; swapFn = null;
-    timers.forEach(clearTimeout); timers = [];
-    if(f) f();
-    reset();
-  }
-  function plan(id, direction){
-    if(busy) flush();
-    if(reduce && reduce.matches) return null;
-    const a = document.querySelector('.screen.active'); if(!a) return null;
-    if(direction !== 'back' && a.id === 'screen-dashboard' && PAGES[id] && tab && tab.isConnected && tab.offsetParent && Date.now()-tabAt < 1000){
-      const t = tab; tab = null; return {kind:'open', id:id, tab:t};
-    }
-    if(direction === 'back' && id === 'screen-dashboard' && PAGES[a.id] && src && src.isConnected && a.id === srcId) return {kind:'close'};
-    return null;
-  }
-  function rise(el){                                    // page content springs in after the page fills
-    [...el.children].forEach((c,i)=>{
-      const pos = getComputedStyle(c).position;
-      if(pos === 'fixed' || pos === 'sticky') c.classList.add('fx-still');
-      else c.style.setProperty('--i', Math.min(i,8));
-    });
-    el.classList.add('fx-in');
-    setTimeout(()=>el.classList.remove('fx-in'), 1300);
-  }
-  function open(fx, swap){
-    busy = true; swapFn = swap; src = fx.tab; srcId = fx.id; savedY = window.scrollY || 0;
-    ensure(); const d = dash();
-    paint(src);
-    layer.classList.add('on','instant'); root.classList.add('fx-lock');
-    place(src); setPush(src); src.classList.add('fx-src'); d.classList.add('fx-live');
-    d.offsetHeight; layer.classList.remove('instant'); d.offsetHeight;      // commit the start state, then animate
-    layer.classList.add('open'); d.classList.add('fx-out');
-    later(()=>{
-      d.classList.add('fx-instant'); d.classList.remove('fx-out','fx-live'); src.classList.remove('fx-src');
-      const f = swapFn; swapFn = null; if(f) f();                            // real screen change: dashboard hides, page shows
-      window.scrollTo(0,0);
-      layer.style.transition = 'opacity .32s ease .04s'; layer.style.opacity = '0';
-      later(reset, 420);
-    }, 340);
-    later(flush, 2200);                                                      // watchdog: never leave the layer stuck
-  }
-  function close(swap){
-    busy = true; swapFn = swap;
-    ensure(); paint(src);
-    layer.classList.add('on','open','instant'); root.classList.add('fx-lock');
-    layer.style.opacity = '0'; layer.offsetHeight;
-    layer.classList.remove('instant'); layer.style.transition = 'opacity .16s ease'; layer.offsetHeight;
-    layer.style.opacity = '1';
-    later(()=>{
-      const f = swapFn; swapFn = null; if(f) f();                            // dashboard shows (hidden behind the layer)
-      window.scrollTo(0, savedY);
-      const d = dash();
-      setPush(src);
-      d.classList.add('fx-instant','fx-live','fx-out'); src.classList.add('fx-src');
-      d.offsetHeight; d.classList.remove('fx-instant');
-      layer.style.transition = '';
-      place(src); layer.classList.remove('open'); d.classList.remove('fx-out');   // layer shrinks into the tab, blocks spring back
-      later(reset, 480);
-    }, 180);
-    later(flush, 2200);
-  }
-  return {
-    plan: plan, flush: flush, rise: rise,
-    start: function(fx, swap){ (fx.kind === 'open' ? open : close)(fx, swap); }
-  };
-})();
-
 /* ---- Navigation ---- */
 function renderScreen(id, direction){
-  const fx = NavFX.plan(id, direction);
-  if(fx){ NavFX.start(fx, ()=>doRenderScreen(id, direction, fx.kind)); return; }
-  doRenderScreen(id, direction, null);
-}
-function doRenderScreen(id, direction, fxKind){
   if(id !== 'screen-docviewer' && window.DocViewerAPI) window.DocViewerAPI.close();   // frees the open picture / PDF
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','dir-back','fx','fx-in'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','dir-back'));
   const el = document.getElementById(id);
   if(direction==='back') el.classList.add('dir-back');
-  if(fxKind) el.classList.add('fx');
   el.classList.add('active');
-  if(fxKind === 'open') NavFX.rise(el);
   if(session && id!=='screen-login') lsSet('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
   if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); prefetchDocs(); }
@@ -1234,7 +1068,6 @@ function flushHistoryRepair(){
 ['pointerup','click','touchend','keydown'].forEach(t=>document.addEventListener(t, flushHistoryRepair, true));
 
 window.addEventListener('popstate', (e)=>{
-  NavFX.flush();   // Back pressed mid-animation: finish it instantly, then handle Back normally
   // Beat plan not yet confirmed/updated: stay on the PJP screen.
   if(pjpPending && session && document.getElementById('screen-pjp').classList.contains('active')){
     if(!(e.state && e.state.screen === 'screen-pjp')){
@@ -4518,7 +4351,7 @@ if(session && session.date === todayStr()){
 <script>
 (function(){
  document.addEventListener('click',function(e){const b=e.target.closest('.btn,.heroCameraBtn,#captureBtn,.backBtn');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;const q=document.createElement('i');q.className='uiRipple';q.style.left=x+'px';q.style.top=y+'px';b.appendChild(q);setTimeout(()=>q.remove(),650)},{passive:true});
- const st=document.createElement('style');st.textContent='.uiRipple{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;background:rgba(120,225,255,.3);transform:translate(-50%,-50%) scale(1);animation:uiRipple .62s ease-out forwards;z-index:20}@keyframes uiRipple{to{transform:translate(-50%,-50%) scale(22);opacity:0}}';document.head.appendChild(st);
+ const st=document.createElement('style');st.textContent='.uiRipple{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;background:rgba(120,225,255,.3);transform:translate(-50%,-50%) scale(1);animation:uiRipple .62s ease-out forwards;z-index:20}@keyframes uiRipple{to{transform:translate(-50%,-50%) scale(22);opacity:0}}.screen.active .card{animation:cardReveal .42s cubic-bezier(.16,1,.3,1) both}@keyframes cardReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}';document.head.appendChild(st);
 })();
 </script>
   <script>
