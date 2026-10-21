@@ -4298,7 +4298,7 @@ document.addEventListener('visibilitychange', ()=>{
  * newer version of the app. It only runs while the app is on screen, someone is logged in, and the HOME
  * screen is showing, so it never interrupts the camera, the visit form, the beat plan or End of Day.
  * Change the number below to change how often it happens. */
-const AUTO_REFRESH_MIN = 10;
+const AUTO_REFRESH_MIN = 120;
 let _lastAutoRefresh = Date.now();
 function autoRefreshNow(){
   if(!session || document.visibilityState !== 'visible' || !isHomeScreenActive()) return;
@@ -4336,7 +4336,7 @@ document.addEventListener('visibilitychange', ()=>{
  * form, the beat plan or End of Day), and nothing being sent to the server or captured. If it is not safe yet,
  * it tries again a minute later. After the reload the rep is still logged in and lands back on the dashboard;
  * anything waiting to sync is kept on the phone and sent as normal. */
-const RELOAD_EVERY_MIN = 60;
+const RELOAD_EVERY_MIN = 10;
 const _pageLoadedAt = Date.now();
 function reloadIfDue(){
   if(Date.now() - _pageLoadedAt < RELOAD_EVERY_MIN * 60000) return;
