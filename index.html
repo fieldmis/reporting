@@ -1289,8 +1289,8 @@ async function sendJob(job){
       const res = await fetchWithTimeout(CONFIG.VISIT_REPORT_SUBMIT_URL, {
         method:'POST',
         headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify({ answers: job.payload.answers })
-      }, 25000);
+        body: JSON.stringify({ submissionId: job.id, answers: job.payload.answers })
+      }, 45000);
       let data = null;
       try{ data = await res.json(); }catch(e){}
       if(data && data.status === 'ok') return {state:'done', data};
