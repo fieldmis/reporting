@@ -621,7 +621,7 @@ label.vfOpt.checked{border-color:rgba(67,217,255,.75);background:rgba(67,217,255
 .kpiRing svg{width:136px;height:136px;transform:rotate(-90deg);filter:drop-shadow(0 0 10px rgba(67,217,255,.15));}
 .kpiRing circle{fill:none;stroke-width:12;stroke-linecap:round;}
 .kpiRing .kpiTr{stroke:rgba(121,214,255,.1);}
-.kpiRing .kpiPg{stroke:url(#kpiG);transition:stroke-dasharray .6s cubic-bezier(.16,1,.3,1);}
+.kpiRing .kpiPg{stroke:url(#kpiG);}
 .kpiCtr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .kpiBig{font-size:1.65rem;font-weight:800;line-height:1.1;background:linear-gradient(135deg,#55f7c5,#43d9ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
 .kpiLbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#8fa4bf;}
@@ -871,7 +871,7 @@ html{scroll-behavior:auto !important;}
     <button class="backBtn" onclick="goBack()">‹ Back</button>
     <h1>Workshop Master</h1>
     <div class="card">
-      <input type="text" id="searchInput" placeholder="Share Code / Mobile Number / Bizom ID">
+      <input type="text" id="searchInput" placeholder="Bizom ID / Share Code / Mobile — commas for many" autocomplete="off">
       <button class="btn primary" style="margin:0" id="searchBtn" onclick="doMasterSearch()">Search</button>
     </div>
     <button class="btn" style="width:100%" onclick="showScreen('screen-exceltool')">Workshop Lookup</button>
@@ -882,8 +882,12 @@ html{scroll-behavior:auto !important;}
   <div class="screen" id="screen-exceltool">
     <button class="backBtn" onclick="goBack()">‹ Back</button>
     <h1>Workshop Lookup</h1>
+    <div class="card" id="dbDownloadCard">
+      <div style="font-weight:600;margin-bottom:6px">Download Workshop List</div>
+      <div id="dbDownloadBody"></div>
+    </div>
     <div class="card">
-      <div>Upload an Excel file with a Share Code, Bizom ID, or Mobile Number column. Matching rows get filled in from Master Data — then you download the result.</div>
+      <div>Upload an Excel file with a WorkshopCode.</div>
       <input type="file" id="xlLookupFile" accept=".xlsx,.xls,.csv" style="margin-top:12px;width:100%" onchange="onExcelLookupFileSelected(event)">
     </div>
     <div class="card" id="xlLookupStatus" style="display:none"></div>
@@ -942,6 +946,43 @@ const CONFIG = {
   // It expects a raw { answers: {...} } body (question-id keys), no "action"
   // wrapper — do not route this through API_URL/api().
   VISIT_REPORT_SUBMIT_URL: "https://script.google.com/macros/s/AKfycby4iTnuXi_vbLAB-YgzSJ2AfIbHoa9Y5WB0GOPnZpM6PE2p3uNb8ScOtHVOnHFRmLoAFQ/exec"
+};
+
+/* ====================== DISTRIBUTORS (DBs) & WHO IS TAGGED TO WHICH ======================
+ * One shared copy: the Visit Report form (Question 1) and the Workshop Lookup "Download Workshop List"
+ * card both read it. Edit it here. */
+const DISTRIBUTORS = [
+  "Concept Motorbike Company Pvt Limited",
+  "Gode Engineering Private Limited",
+  "JS Diesel Spares",
+  "MANISHA ENTERPRISES",
+  "MUKTI TRADERS",
+  "Rajdeep Automotives",
+  "SHREE KRISHNA AGENCIES",
+  "SRI SAINATH AGENCIES",
+  "Sukan Incorporation(Surat)"
+];
+
+// Maps a logged-in user's login ID to the Distributor(s) they're tagged
+// against. This lives in the app (not Apps Script) so it's easy to edit
+// here directly. A user with exactly one tagged DB gets it auto-filled
+// and the wizard opens straight on Question 2; a user with more than one
+// sees just their tagged DBs in the Question 1 dropdown. Any user not
+// listed here falls back to seeing the full DISTRIBUTORS list, so a
+// newly added rep never gets stuck before being tagged.
+const USER_DB_MAP = {
+  "D69884": ["Concept Motorbike Company Pvt Limited"],
+  "D92446": ["Gode Engineering Private Limited"],
+  "D91689": ["JS Diesel Spares"],
+  "D74545": ["MANISHA ENTERPRISES"],
+  "D69561": ["MUKTI TRADERS", "SHREE KRISHNA AGENCIES"],
+  "D73116": ["Rajdeep Automotives", "SRI SAINATH AGENCIES"],
+  "D97501": ["Sukan Incorporation(Surat)"]
+};
+// Other spellings of a DB's name that appear in masterdata.csv. A DB's workshop list also includes the
+// workshops filed under these names. Add a line here if a DB shows up under a second name.
+const DB_NAME_ALIASES = {
+  "Rajdeep Automotives": ["RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar"]
 };
 
 /* ====================== STATE ====================== */
@@ -1036,7 +1077,8 @@ function renderScreen(id, direction){
   }
   if(session && id!=='screen-login') lsSet('sfos_screen', id); // for reload restore
   if(id==='screen-visitreport') VisitForm.reset();
-  if(id==='screen-dashboard' && session){ loadDashboardStats(); loadKpi(); prefetchDocs(); }
+  if(id==='screen-exceltool' && session) renderDbDownloadCard();
+  if(id==='screen-dashboard' && session){ dashPlayParked(el); loadDashboardStats(); loadKpi(); prefetchDocs(); }
   if(id==='screen-dashboard') renderSyncBadge();
   if(id==='screen-dashboard') ensureHomeBackGuardEntry();
 }
@@ -1395,6 +1437,46 @@ function detectLookupColumns(headers){
   return out;
 }
 
+/* ====================== EXCEL FILE HELPERS (shared by Workshop Master + Workshop Lookup downloads) ======================
+ * Files are written as .xlsx, which opens in Excel and in Google Sheets (Drive > Open with > Google Sheets).
+ * Every value is saved as TEXT, exactly as it is in masterdata.csv, so Share Codes / Bizom IDs / Mobile Numbers
+ * keep their leading zeros and are never turned into dates or scientific numbers, and nothing can run as a formula. */
+function xlMakeSheet(headers, rows){
+  const ws = XLSX.utils.aoa_to_sheet([headers].concat(rows));
+  ws['!cols'] = headers.map((h, c) => {
+    let w = String(h).length;
+    for(let r = 0; r < Math.min(rows.length, 300); r++){ const l = String(rows[r][c] == null ? '' : rows[r][c]).length; if(l > w) w = l; }
+    return {wch: Math.min(Math.max(w + 2, 10), 45)};
+  });
+  if(rows.length) ws['!autofilter'] = {ref: XLSX.utils.encode_range({s:{r:0,c:0}, e:{r:rows.length, c:headers.length - 1}})};
+  return ws;
+}
+// Sheet names: max 31 characters, none of  [ ] : * ? / \  and no two the same.
+function xlSheetName(name, used){
+  let base = String(name || 'Sheet').replace(/[\[\]:*?\/\\]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 31) || 'Sheet';
+  let out = base, n = 2;
+  while(used[out.toLowerCase()]){ const suffix = ' (' + n++ + ')'; out = base.slice(0, 31 - suffix.length) + suffix; }
+  used[out.toLowerCase()] = true;
+  return out;
+}
+function xlFileSafe(s){ return String(s || '').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40); }
+
+/* ====================== DB (DISTRIBUTOR) LISTS ====================== */
+function dbNameKey(s){ return String(s == null ? '' : s).trim().replace(/\s+/g, ' ').toLowerCase(); }
+// The DBs the logged-in rep is tagged to (USER_DB_MAP). Like the Visit form, a rep who is not tagged yet sees every DB.
+function getUserDBs(){
+  const uid = (session && session.userId) ? String(session.userId).trim().toUpperCase() : '';
+  const t = uid && USER_DB_MAP[uid];
+  return (t && t.length) ? {dbs: t.slice(), tagged: true} : {dbs: DISTRIBUTORS.slice(), tagged: false};
+}
+function dbColumn(){ return (masterDataHeaders || []).find(h => xlNormKey(h) === 'distributorname') || null; }
+function dbWorkshopRows(dbName){
+  const col = dbColumn();
+  if(!col) return [];
+  const keys = [dbName].concat(DB_NAME_ALIASES[dbName] || []).map(dbNameKey);
+  return masterDataRows.filter(r => keys.indexOf(dbNameKey(r[col])) !== -1);
+}
+
 /* ====================== Workshop Lookup TOOL ======================
  * Rep uploads an Excel/CSV file; any column recognized as a Share Code,
  * Bizom ID, or Mobile Number is used to look each row up in MasterData;
@@ -1498,6 +1580,57 @@ function runExcelLookupAndDownload(){
   XLSX.writeFile(wb, 'lookup_result.xlsx');
 
   toast(`Done — ${matchedCount} of ${xlUploadRows.length} rows matched.`);
+}
+
+/* ====================== WORKSHOP LIST DOWNLOAD (DB-wise) ======================
+ * On the Workshop Lookup screen. Shows the DB(s) the rep is tagged to (USER_DB_MAP) with their workshop counts.
+ * One DB: a single "Download Workshop List" button. Several DBs: a list with a Download button for each DB, plus
+ * "Download Workshop List" for all of them (one sheet per DB). Workshops with no DistributorName in
+ * masterdata.csv belong to no DB, so they are not in these lists (they are still found by Workshop Master). */
+let dbCardItems = [];
+async function renderDbDownloadCard(){
+  const body = document.getElementById('dbDownloadBody');
+  if(!body) return;
+  body.innerHTML = orbitLoaderHTML('Loading…');
+  try{ await loadMasterData(); }
+  catch(e){ body.innerHTML = '<div class="muted">Master data isn\'t available — masterdata.csv may be missing from the repo.</div>'; return; }
+  if(!dbColumn()){ body.innerHTML = '<div class="muted">masterdata.csv has no DistributorName column, so DB lists are not available.</div>'; return; }
+  const {dbs, tagged} = getUserDBs();
+  dbCardItems = dbs.map(name => ({name, count: dbWorkshopRows(name).length}));
+  const nf = n => n.toLocaleString('en-IN');
+  let html = '';
+  if(!tagged) html += '<div class="muted" style="margin-bottom:8px">Select the DB name and Download.</div>';
+  if(dbCardItems.length === 1){
+    html += `<div style="margin-bottom:12px"><div style="font-weight:600;word-break:break-word">${esc(dbCardItems[0].name)}</div><div class="muted">${nf(dbCardItems[0].count)} workshops</div></div>`;
+  } else {
+    html += '<div style="margin-bottom:6px">' + dbCardItems.map((it, i) =>
+      `<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(121,214,255,.1)">` +
+      `<div style="min-width:0"><div style="font-weight:600;word-break:break-word">${esc(it.name)}</div><div class="muted">${nf(it.count)} workshops</div></div>` +
+      `<button class="btn" style="width:auto;margin:0;flex:0 0 auto;padding:9px 14px" ${it.count ? '' : 'disabled'} onclick="downloadDbList(${i})">Download</button></div>`
+    ).join('') + '</div>';
+  }
+  const label = dbCardItems.length === 1 ? 'Download Workshop List' : `Download Workshop List (all ${dbCardItems.length} DBs)`;
+  html += `<button class="btn primary" style="width:100%;margin:8px 0 0" onclick="downloadDbList(-1)">${label}</button>`;
+  body.innerHTML = html;
+}
+// index >= 0: just that DB (one sheet).  -1: every DB in the card (one sheet per DB, in one file).
+function downloadDbList(index){
+  if(!masterDataRows || !dbColumn()){ toast('Master data is not loaded yet. Please try again in a moment.'); return; }
+  const picked = index === -1 ? dbCardItems : [dbCardItems[index]].filter(Boolean);
+  try{
+    const wb = XLSX.utils.book_new(), used = Object.create(null);
+    let total = 0;
+    picked.forEach(it => {
+      const rows = dbWorkshopRows(it.name);
+      if(!rows.length) return;
+      total += rows.length;
+      XLSX.utils.book_append_sheet(wb, xlMakeSheet(masterDataHeaders, rows.map(r => masterDataHeaders.map(h => r[h] == null ? '' : r[h]))), xlSheetName(it.name, used));
+    });
+    if(!total){ toast('No workshops found for this DB.'); return; }
+    const tag = picked.length === 1 ? xlFileSafe(picked[0].name) : (getUserDBs().tagged ? 'My_DBs' : 'All_DBs');
+    XLSX.writeFile(wb, `Workshop_List_${tag}_${istDateStr()}.xlsx`);
+    toast(`Downloaded ${total.toLocaleString('en-IN')} workshops.`);
+  }catch(e){ toast('Could not create the file. Please try again.'); }
 }
 
 function formatPJP(raw){
@@ -2239,47 +2372,143 @@ function updateDashboardButtons(){
   }
 }
 
+/* ====================== DASHBOARD ANIMATION (Visits page + KPI page) ======================
+ * Bars and rings move with ONE clock and ONE cubic ease-out curve (fast at first, slowing as they reach the
+ * final value) while their numbers count up. Only motion lives here - colours and layout are untouched.
+ *
+ * WHEN IT PLAYS: once per page load, for each chart - the first time you can see it after the app (re)loads.
+ *  - At startup the tiles are drawn at once from the figures saved on the last visit (see loadDashboardStats), so
+ *    they are never blank while the server answers. The animation runs on those, and the fresh figures blend in
+ *    when they arrive.
+ *  - After that first play, new figures just appear. Switching between the Visits and KPI pages, or between KPI
+ *    Overview and Details, does not replay it. A chart on a page you have not opened yet waits, and plays the
+ *    first time you open that page.
+ *  - Logging out resets this, so the next person to log in sees it play again.
+ * To change the speed, edit DASH_ANIM_MS. */
+const DASH_ANIM_MS = 4000;
+const DASH_BLEND_MS = 800;     // shortest time for fresh figures to blend in while the first animation is still running
+function easeOutCubic(x){ return 1 - Math.pow(1 - x, 3); }
+function dashReduceMotion(){ return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+function dashOnScreen(host){ return host.getClientRects().length > 0; }
+
+// host: the element that owns one chart. targets: the final numbers, one per animated channel (a bar's height and its
+// value, a ring's length and its number ...). draw(values, isFinal) puts a set of numbers on screen.
+// A host keeps its state in host._tw: {vals, from, to, t0, dur, raf, parked, draw}.
+function dashTween(host, targets, draw){
+  const st = host._tw;
+  if(!st){                                          // first time this page load: play from empty
+    host._tw = {vals: [], from: [], to: targets.slice(), t0: 0, dur: DASH_ANIM_MS, raf: 0, parked: false, draw};
+    host.setAttribute('data-dash-anim', '1');
+    if(dashReduceMotion()){ host._tw.vals = targets.slice(); draw(host._tw.vals, true); }
+    else if(!dashOnScreen(host)){ host._tw.vals = targets.slice(); host._tw.parked = true; draw(host._tw.vals, true); }   // not visible yet: waits for the first time it is shown
+    else dashPlay(host);
+    return;
+  }
+  st.draw = draw;
+  if(st.raf){                                       // the first animation is still running: blend the fresh figures in (no jump)
+    st.from = (st.vals.length === targets.length) ? st.vals.slice() : targets.map(() => 0);
+    st.to = targets.slice();
+    st.dur = Math.max(DASH_BLEND_MS, st.dur - (performance.now() - st.t0));
+    st.t0 = performance.now();
+    draw(st.from, false);                           // the chart may have been rebuilt: show where it is right now
+    return;
+  }
+  st.to = targets.slice(); st.vals = targets.slice(); // already played (or waiting to be shown): just show the figures
+  draw(st.vals, true);
+}
+function dashPlay(host){
+  const st = host._tw;
+  st.parked = false;
+  st.from = st.to.map(() => 0);
+  st.vals = st.from.slice();
+  st.t0 = performance.now(); st.dur = DASH_ANIM_MS;
+  st.draw(st.vals, false);
+  const frame = () => {
+    const p = Math.min((performance.now() - st.t0) / st.dur, 1), e = easeOutCubic(p);
+    st.vals = (p >= 1) ? st.to.slice() : st.to.map((to, i) => st.from[i] + (to - st.from[i]) * e);
+    st.draw(st.vals, p >= 1);
+    st.raf = p < 1 ? requestAnimationFrame(frame) : 0;
+  };
+  st.raf = requestAnimationFrame(frame);
+}
+function dashTweenStop(host){                       // the chart is being replaced by something else (e.g. KPI Details)
+  const st = host._tw;
+  if(!st) return;
+  if(st.raf){ cancelAnimationFrame(st.raf); st.raf = 0; }
+  st.parked = false;
+}
+// Plays the charts that were drawn while out of sight, the first time they are in view.
+function dashPlayParked(root){
+  root.querySelectorAll('[data-dash-anim]').forEach(h => {
+    const st = h._tw;
+    if(st && st.parked && !st.raf && dashOnScreen(h)) dashPlay(h);
+  });
+}
+// Logout: forget everything, so the next login starts fresh and never shows the previous person's figures.
+function dashAnimReset(){
+  ['visitsChart', 'hoursChart', 'visitRing', 'kmStat'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    dashTweenStop(el); el._tw = null; el.innerHTML = ''; el.dataset.sig = '';
+  });
+  const kb = document.getElementById('kpiBody');
+  if(kb){ dashTweenStop(kb); kb._tw = null; }
+  dashStatsDrawn = false;
+}
+
 function buildBarChart(containerId, days, field, unit){
   const el = document.getElementById(containerId);
   const sig = JSON.stringify([days, field, unit]);
   if(el.dataset.sig === sig && el.innerHTML) return;   // same data: leave the tile untouched (no flicker)
   el.dataset.sig = sig;
-  if(!Array.isArray(days) || !days.length){ el.innerHTML = '<div class="muted">No data yet.</div>'; return; }
+  if(!Array.isArray(days) || !days.length){ dashTweenStop(el); el._tw = null; el.innerHTML = '<div class="muted">No data yet.</div>'; return; }
   const values = days.map(d=>{ const v = Number(d[field]); return Number.isFinite(v) ? v : 0; });
   const max = Math.max(...values, 1);
   const avg = values.reduce((a,b)=>a+b,0) / (values.length || 1);
   const avgPct = Math.min(96, (avg/max)*100);
+  const targetPct = values.map(v => Math.max(4, (v/max)*100));
+  const finalText = values.map(v => ((field === 'hours') ? v.toFixed(1) : v) + unit);
   el.innerHTML = `
     <div class="avgLine" style="bottom:${avgPct}%"></div>
     ${days.map((d,i)=>{
-      const v = values[i];
-      const pct = Math.max(4, (v/max)*100);
-      const belowAvg = v < avg;
-      const displayVal = (field === 'hours') ? v.toFixed(1) : v;
-      return `<div class="bar${belowAvg?' below':''}" style="height:${pct}%">
-                <span class="barValue">${displayVal}${unit}</span>
+      const belowAvg = values[i] < avg;
+      return `<div class="bar${belowAvg?' below':''}" style="height:${targetPct[i]}%">
+                <span class="barValue">${finalText[i]}</span>
                 <span class="barLabel">${(d.label||'').charAt(0)}</span>
               </div>`;
     }).join('')}
   `;
+  const n = days.length, bars = el.querySelectorAll('.bar'), labels = el.querySelectorAll('.bar .barValue');
+  dashTween(el, targetPct.concat(values), (v, fin) => {      // v = n bar heights, then n bar values
+    for(let i = 0; i < n; i++){
+      bars[i].style.height = v[i] + '%';
+      labels[i].textContent = fin ? finalText[i] : (((field === 'hours') ? v[n + i].toFixed(1) : Math.round(v[n + i])) + unit);
+    }
+  });
 }
 
 function buildRing(containerId, value, target){
   { const el0 = document.getElementById(containerId), sig = value + '/' + target; if(el0.dataset.sig === sig && el0.innerHTML) return; el0.dataset.sig = sig; }
+  const host = document.getElementById(containerId);
   const pct = target>0 ? Math.min(1, value/target) : 0;
   const r = 42, c = 2*Math.PI*r;
-  document.getElementById(containerId).innerHTML = `
+  host.innerHTML = `
     <svg viewBox="0 0 100 100" width="118" height="118">
       <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" style="stop-color:var(--accent1)"/>
         <stop offset="100%" style="stop-color:var(--accent2)"/>
       </linearGradient></defs>
       <circle cx="50" cy="50" r="${r}" fill="none" style="stroke:rgba(163,177,198,.35)" stroke-width="10"/>
-      <circle cx="50" cy="50" r="${r}" fill="none" stroke="url(#ringGrad)" stroke-width="10"
+      <circle class="ringArc" cx="50" cy="50" r="${r}" fill="none" stroke="url(#ringGrad)" stroke-width="10"
         stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct)}"
-        transform="rotate(-90 50 50)" style="transition:stroke-dashoffset .6s ease"/>
-      <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="19" font-weight="700" style="fill:var(--text)">${value}/${target}</text>
+        transform="rotate(-90 50 50)"/>
+      <text class="ringText" x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="19" font-weight="700" style="fill:var(--text)">${value}/${target}</text>
     </svg>`;
+  const arc = host.querySelector('.ringArc'), txt = host.querySelector('.ringText');
+  dashTween(host, [pct, value], (v, fin) => {                // v = how full the ring is (0-1), then its number
+    arc.setAttribute('stroke-dashoffset', c * (1 - v[0]));
+    txt.textContent = fin ? `${value}/${target}` : `${Math.round(v[1])}/${target}`;
+  });
 }
 
 function buildKmStat(containerId, km){
@@ -2371,6 +2600,7 @@ function renderKpiTile(){
     const d = a - t, r = Math.round(d * 10) / 10;
     return `<span class="v ${r < 0 ? 'sh' : r > 0 ? 'su' : 'z'}">${r > 0 ? '+' : r < 0 ? '−' : ''}${kpiFmt(Math.abs(d))}</span>`;
   };
+  dashTweenStop(body);                                  // Details has nothing to animate
   if(kpi.view === 'details'){
     // Details: Target / Achievement for every KPI. Sub-KPIs (Sub-Target / Sub-Achievement) are listed here only.
     let h = '<div class="kpiTb"><div class="kpiRow kpiH"><span>KPI</span><span class="v">Target</span><span class="v">Ach.</span><span class="v">Short / Surplus</span></div>';
@@ -2401,9 +2631,15 @@ function renderKpiTile(){
       kpi.mains.map((m, k) => { const p = M(k).p; return `<div class="kpiSr ${kpiClass(kpiPv(p))}"><span>${esc(m.name)}</span><b>${esc(kpiPtxt(p))}</b></div>`; }).join('') +
       '</div></div>';
     const dash = (Math.min(oVal, KPI_CAP) / KPI_CAP) * C;
-    requestAnimationFrame(() => {                        // let the ring grow from empty
-      const pg = document.getElementById('kpiPg');
-      if(pg) pg.setAttribute('stroke-dasharray', dash + ' ' + C);
+    const pg = document.getElementById('kpiPg'), big = document.getElementById('kpiOverall');
+    // "57.16%" -> prefix "", number 57.16 (2 decimals), suffix "%". While counting up it shows the same number of
+    // decimals; once finished it shows the sheet's own text exactly, so nothing is ever calculated or rounded.
+    const parts = oTxt.match(/^(\D*?)(\d[\d,]*\.?\d*)(\D*)$/);
+    const decs = parts ? (parts[2].split('.')[1] || '').length : 0;
+    const numv = parts ? parseFloat(parts[2].replace(/,/g, '')) : 0;
+    dashTween(body, [dash, numv], (v, fin) => {          // v = ring length, then the centre number
+      pg.setAttribute('stroke-dasharray', v[0] + ' ' + C);
+      big.textContent = (fin || !parts) ? oTxt : (parts[1] + v[1].toFixed(decs) + parts[3]);
     });
   }
 }
@@ -2461,6 +2697,7 @@ function paintDash(animate, dir){
     pg.classList.remove('slideL', 'slideR');
     void pg.offsetWidth;                                    // restart the little slide-in
     pg.classList.add(dir > 0 ? 'slideL' : 'slideR');
+    dashPlayParked(pg);                                     // a chart that was waiting out of sight plays now, the first time it is shown
   }
 }
 function goDashPage(i, animate){
@@ -2497,14 +2734,36 @@ function setPagerHasKpi(has){
   pager.addEventListener('touchcancel', ()=>{ tracking = false; }, {passive:true});
 })();
 
+/* The Visits tiles used to stay blank until the server answered. Now the figures from the last visit are saved on the
+ * phone and drawn the moment the dashboard opens, so the animation plays straight away; the fresh figures blend in when
+ * they arrive. Saved figures are only used for the same person. From an earlier day, today's count is shown as 0 until
+ * the real one arrives (the earlier days still help), and the month's km is skipped if the month has changed. */
+const DASH_CACHE_KEY = 'sfos_dash1';
+let dashStatsDrawn = false;      // true once the tiles have been drawn since the page loaded / since login
+function drawDashStats(d, withKm){
+  buildBarChart('visitsChart', d.days, 'visits', '');
+  buildBarChart('hoursChart', d.days, 'hours', '');
+  buildRing('visitRing', Number(d.todayVisits) || 0, 15);
+  if(withKm !== false) buildKmStat('kmStat', d.monthKm);
+}
 async function loadDashboardStats(){
+  const uid = session.userId;
+  if(!dashStatsDrawn){
+    dashStatsDrawn = true;
+    const saved = lsJson(DASH_CACHE_KEY, null);
+    if(saved && saved.userId === uid && saved.data && Array.isArray(saved.data.days) && saved.data.days.length){
+      const today = todayStr(), sameDay = saved.date === today, sameMonth = String(saved.date || '').slice(0, 7) === today.slice(0, 7);
+      drawDashStats({days: saved.data.days, todayVisits: sameDay ? saved.data.todayVisits : 0, monthKm: saved.data.monthKm}, sameMonth);
+    }
+  }
   try{
-    const r = await api('getDashboard', {userId: session.userId});
+    const r = await api('getDashboard', {userId: uid});
     if(!r.ok) return;
-    buildBarChart('visitsChart', r.days, 'visits', '');
-    buildBarChart('hoursChart', r.days, 'hours', '');
-    buildRing('visitRing', Number(r.todayVisits) || 0, 15);
-    buildKmStat('kmStat', r.monthKm);
+    if(!session || session.userId !== uid) return;       // logged out (or someone else logged in) while waiting
+    drawDashStats(r);
+    if(Array.isArray(r.days) && r.days.length){
+      lsSet(DASH_CACHE_KEY, JSON.stringify({userId: uid, date: todayStr(), data: {days: r.days, todayVisits: r.todayVisits, monthKm: r.monthKm}}));
+    }
   }catch(e){}
 }
 
@@ -3101,35 +3360,10 @@ const VisitForm = (function(){
     para:   /^[\s\S]{2,150}$/
   };
 
-  const DISTRIBUTORS = [
-    "Concept Motorbike Company Pvt Limited",
-    "Gode Engineering Private Limited",
-    "JS Diesel Spares",
-    "MANISHA ENTERPRISES",
-    "MUKTI TRADERS",
-    "Rajdeep Automotives",
-    "SHREE KRISHNA AGENCIES",
-    "SRI SAINATH AGENCIES",
-    "Sukan Incorporation(Surat)"
-  ];
   const SEGMENTS = ["MCO","CVO","PCO","LCV","AGRI"];
 
-  // Maps a logged-in user's login ID to the Distributor(s) they're tagged
-  // against. This lives in the app (not Apps Script) so it's easy to edit
-  // here directly. A user with exactly one tagged DB gets it auto-filled
-  // and the wizard opens straight on Question 2; a user with more than one
-  // sees just their tagged DBs in the Question 1 dropdown. Any user not
-  // listed here falls back to seeing the full DISTRIBUTORS list, so a
-  // newly added rep never gets stuck before being tagged.
-  const USER_DB_MAP = {
-    "D69884": ["Concept Motorbike Company Pvt Limited"],
-    "D92446": ["Gode Engineering Private Limited"],
-    "D91689": ["JS Diesel Spares"],
-    "D74545": ["MANISHA ENTERPRISES"],
-    "D69561": ["MUKTI TRADERS", "SHREE KRISHNA AGENCIES"],
-    "D73116": ["Rajdeep Automotives", "SRI SAINATH AGENCIES"],
-    "D97501": ["Sukan Incorporation(Surat)"]
-  };
+  // (DISTRIBUTORS and USER_DB_MAP now live at the top of the file, next to CONFIG, because the
+  //  Workshop Lookup screen reads them too.)
 
   const Q = {
     1:{ type:"select", label:"DistributorName", required:true, options:DISTRIBUTORS.map(o=>({label:o,value:o})) },
@@ -3971,16 +4205,67 @@ const VisitForm = (function(){
 })();
 
 /* ====================== Workshop Master ====================== */
+/* ====================== WORKSHOP MASTER SEARCH (one ID, or many separated by commas) ======================
+ * Each ID (Bizom ID, Share Code or Mobile Number) is matched exactly against those three columns of
+ * masterdata.csv. A Bizom ID can be linked to several workshops, so one ID may give several rows. */
+const MASTER_MAX_IDS = 2000;     // most IDs accepted in one search
+const MASTER_SHOW_ROWS = 200;    // rows drawn on screen (the downloaded file always has every row)
+let lastMasterSearch = null;     // what the Download button saves: {headers, rows, notFound, idCount, multi}
+let masterIndexCache = null;
+
+// "123456, 234567 345678;456789" -> ['123456','234567','345678','456789']  (commas, spaces, new lines and ; all separate; repeats dropped)
+function parseSearchIds(text){
+  const seen = Object.create(null), out = [];
+  String(text || '').split(/[\s,;]+/).forEach(t => {
+    const id = t.trim(), k = id.toLowerCase();
+    if(id && !seen[k]){ seen[k] = true; out.push(id); }
+  });
+  return out;
+}
+// value -> list of master row numbers, over the Share Code / Bizom ID / Mobile columns. Built once, so many IDs stay fast.
+function getMasterIndex(){
+  if(masterIndexCache && masterIndexCache.rows === masterDataRows) return masterIndexCache.map;
+  const cols = Object.values(detectLookupColumns(masterDataHeaders)).filter(Boolean);
+  const map = Object.create(null);
+  masterDataRows.forEach((row, i) => {
+    const seen = Object.create(null);
+    cols.forEach(c => {
+      const k = String(row[c] == null ? '' : row[c]).trim().toLowerCase();
+      if(k && !seen[k]){ seen[k] = true; (map[k] || (map[k] = [])).push(i); }
+    });
+  });
+  masterIndexCache = {rows: masterDataRows, map};
+  return map;
+}
+
 function rowsToTable(headers, rows){
   const thead = '<tr>' + headers.map(h=>`<th>${esc(h)}</th>`).join('') + '</tr>';
   const tbody = rows.map(row => '<tr>' + row.map(c=>`<td>${c.value == null || c.value === '' ? '-' : esc(c.value)}</td>`).join('') + '</tr>').join('');
   return `<div class="card" style="overflow-x:auto"><table>${thead}${tbody}</table></div>`;
 }
+function renderMasterResults(){
+  const s = lastMasterSearch, div = document.getElementById('searchResults');
+  const total = s.rows.length, shown = Math.min(total, MASTER_SHOW_ROWS);
+  const foundIds = s.idCount - s.notFound.length;
+  let head = s.multi
+    ? `<b>${total}</b> workshop${total === 1 ? '' : 's'} found for <b>${foundIds}</b> of ${s.idCount} IDs.`
+    : `<b>${total}</b> workshop${total === 1 ? '' : 's'} found.`;
+  if(s.notFound.length){
+    const list = s.notFound.slice(0, 30).map(esc).join(', ') + (s.notFound.length > 30 ? ` … +${s.notFound.length - 30} more` : '');
+    head += `<div class="muted" style="margin-top:8px;word-break:break-word">Not found: ${list}</div>`;
+  }
+  if(total > shown) head += `<div class="muted" style="margin-top:8px">Showing the first ${shown} of ${total} rows. The download has all of them.</div>`;
+  div.innerHTML =
+    `<div class="card">${head}` +
+    `<button class="btn primary" style="width:100%;margin:12px 0 0" onclick="downloadMasterSearch()">Download</button></div>` +
+    rowsToTable(s.headers, s.rows.slice(0, shown).map(r => r.map(v => ({value: v}))));
+}
 async function doMasterSearch(){
-  const q = document.getElementById('searchInput').value.trim();
+  const ids = parseSearchIds(document.getElementById('searchInput').value);
   const resultsDiv = document.getElementById('searchResults');
   const btn = document.getElementById('searchBtn');
-  if(!q){ return; }
+  if(!ids.length){ return; }
+  if(ids.length > MASTER_MAX_IDS){ toast(`Too many IDs — search up to ${MASTER_MAX_IDS} at a time.`); return; }
   setBtnLoading(btn, true);
   resultsDiv.innerHTML = `<div class="card">${orbitLoaderHTML('Searching…')}</div>`;
   try{
@@ -3989,18 +4274,34 @@ async function doMasterSearch(){
       resultsDiv.innerHTML = '<div class="card">Master data isn\'t available — masterdata.csv may be missing from the repo.</div>';
       return;
     }
-    const searchCols = Object.values(detectLookupColumns(masterDataHeaders)).filter(Boolean);
-    const qLower = q.toLowerCase();
-    const matched = masterDataRows.filter(row =>
-      searchCols.some(col => String(row[col] ?? '').trim().toLowerCase() === qLower)
-    );
-    if(!matched.length){
-      resultsDiv.innerHTML = '<div class="card">No result found.</div>'; return;
-    }
-    const rows = matched.map(row => masterDataHeaders.map(h => ({label:h, value: row[h]})));
-    resultsDiv.innerHTML = rowsToTable(masterDataHeaders, rows);
+    const index = getMasterIndex();
+    const multi = ids.length > 1;
+    const matchedBy = Object.create(null);   // master row number -> the IDs that found it
+    const order = [], notFound = [];
+    ids.forEach(id => {
+      const hits = index[id.toLowerCase()];
+      if(!hits){ notFound.push(id); return; }
+      hits.forEach(i => { if(!matchedBy[i]){ matchedBy[i] = []; order.push(i); } matchedBy[i].push(id); });
+    });
+    if(!order.length){ lastMasterSearch = null; resultsDiv.innerHTML = '<div class="card">No result found.</div>'; return; }
+    // With several IDs, a first "Matched ID" column says which of your IDs found each row.
+    const headers = (multi ? ['Matched ID'] : []).concat(masterDataHeaders);
+    const rows = order.map(i => (multi ? [matchedBy[i].join(', ')] : []).concat(masterDataHeaders.map(h => masterDataRows[i][h] == null ? '' : masterDataRows[i][h])));
+    lastMasterSearch = {headers, rows, notFound, idCount: ids.length, multi};
+    renderMasterResults();
   }catch(e){ resultsDiv.innerHTML = '<div class="card">Search failed — masterdata.csv may be missing from the repo.</div>'; }
   finally{ setBtnLoading(btn, false); }
+}
+function downloadMasterSearch(){
+  const s = lastMasterSearch;
+  if(!s || !s.rows.length){ toast('Nothing to download yet — run a search first.'); return; }
+  try{
+    const wb = XLSX.utils.book_new(), used = Object.create(null);
+    XLSX.utils.book_append_sheet(wb, xlMakeSheet(s.headers, s.rows), xlSheetName('Workshops', used));
+    if(s.notFound.length) XLSX.utils.book_append_sheet(wb, xlMakeSheet(['Not found'], s.notFound.map(x => [x])), xlSheetName('Not found', used));
+    XLSX.writeFile(wb, `Workshop_Master_${istDateStr()}.xlsx`);
+    toast(`Downloaded ${s.rows.length} row${s.rows.length === 1 ? '' : 's'}.`);
+  }catch(e){ toast('Could not create the file. Please try again.'); }
 }
 document.getElementById('searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') doMasterSearch(); });
 
@@ -4259,6 +4560,7 @@ function finishLogout(){
   lsDel('sfos_pjp_pending');
   session = null; todayLog = []; dayStarted = false; dayEnded = false; pjpPending = false;
   kpiReset();
+  dashAnimReset();
   document.getElementById('loginPin').value='';
   replaceScreen('screen-login', 'back');
 }
