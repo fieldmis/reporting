@@ -11,7 +11,7 @@
 //   straight from the phone, instantly and offline.
 // - Cache names include this app's own address, so /reporting/ and /testing/ (same website) no
 //   longer delete each other's saved files.
-const VERSION = 'v19';
+const VERSION = 'v20';
 const SCOPE = self.registration.scope;                       // e.g. https://fieldmis.github.io/reporting/
 const CACHE_PREFIX = 'shell-fos:' + SCOPE + ':';
 const CACHE_NAME = CACHE_PREFIX + VERSION;
