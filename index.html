@@ -1658,7 +1658,9 @@ async function doLogin(){
     session = {userId, userName:r.userName || userId, pjp:r.pjp || '', date: todayStr()};
     lsSet('sfos_session', JSON.stringify(session));
     loadDayState();
-    await syncDayFromServer();
+    // Day state is fetched in the background: the beat plan opens straight away instead of waiting for a
+    // second server round-trip. Buttons refresh themselves the moment it arrives.
+    syncDayFromServer().then(()=>{ try{ updateDashboardButtons(); }catch(e){} });
     document.getElementById('pjpContent').innerHTML = formatPJP(r.pjp);
     document.getElementById('pjpUpdateBox').style.display = 'none';
     document.getElementById('confirmPjpBtn').style.display = 'block';
@@ -4575,11 +4577,16 @@ async function checkForceLogout(force){
   if(!force && Date.now() - _lastForceCheck < 10 * 60 * 1000) return;   // at most once every 10 minutes
   _lastForceCheck = Date.now();
   _forceLogoutBusy = true;
+  const uid = session.userId;
   try{
-    const r = await api('checkSession', {userId: session.userId});
+    // This call also keeps Users column D at "Yes" while the rep is logged in (server-side self-heal).
+    const r = await api('checkSession', {userId: uid});
     if(r && r.ok && r.forceLogout){
       toast('You were logged out by admin. Please log in again.');
       finishLogout();
+    } else if(!session && r && r.ok){
+      // The rep logged out while this check was in flight: make sure the sheet ends on "No".
+      api('logout', {userId: uid}, 8000).catch(()=>{});
     }
   }catch(e){ /* network/backend error: stay logged in */ }
   finally{ _forceLogoutBusy = false; }
@@ -4664,6 +4671,22 @@ function scheduleMidnightLogout(){
 }
 scheduleMidnightLogout();
 
+/* ====================== BACKEND WARM-UP ======================
+ * Apps Script sleeps when idle and the first request after a pause can take several seconds. While the rep
+ * is still typing their ID and PIN, a tiny request (touches no sheet) wakes it up, so Log In itself is quick.
+ * Fire-and-forget: any failure is ignored and nothing in the app depends on it. */
+let _lastWarm = 0;
+function warmBackend(){
+  if(session || Date.now() - _lastWarm < 90000) return;
+  _lastWarm = Date.now();
+  api('ping', {}, 15000).catch(()=>{});
+}
+['loginUserId','loginPin'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('focus', warmBackend);
+});
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible') warmBackend(); });
+
 /* Resume session */
 function restoreScreenAfterReload(){
   // Read before any renderScreen() call, since rendering overwrites it.
@@ -4716,6 +4739,8 @@ if(session && session.date === todayStr()){
 } else if(session && session.date !== todayStr()){
   // Session left over from a previous day — clear it so the PIN is required again.
   finishLogout();
+} else {
+  warmBackend();   // on the login screen: wake the server while the rep types
 }
 </script>
 <script>
