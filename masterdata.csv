@@ -1,4 +1,4 @@
-DistributorName,DSR Name,WorkshopName,WorkshopType,WorkshopCode,Linked Bizom,Mobile Number,CompanyCategory,Address,OutletName
+DistributorName,DSR Name,WorkshopName,WorkshopType,Share Code,Linked Bizom,Mobile Number,CompanyCategory,Address,Outletname
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Ajay  Jaiswal ,IM-Independent Mechanic,8D2E7135,,9137332478,MCO,Vashi Sector 17  Vashi Sector 17  Vashi Sector 17,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sultan Khan,IM-Independent Mechanic,FAA026D7,,7400365287,MCO,vashi Sector 17  vashi Sector 17  Vashi sector 17,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Arman  Shaikh ,IM-Independent Mechanic,DA3CC98C,,9082795217,MCO,Vashi Sector 17  Vashi Sector 17  Vashi Sector 17,
@@ -100,7 +100,7 @@ Gode Engineering Private Limited,Ayush vilas  Khaparde,shree enterprise ,IM-Inde
 MANISHA ENTERPRISES,Kiran Indal  Chavan,Imran Ansari ,IM-Independent Mechanic,E6CBECA5,34684,9110165664,PCMO,Nerul  Nerul,Pushpak Motor Parts
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,Japa Muneender,BIWS-Branded Workshop,C1413581,254841,9583127456,PCMO,Near NTR statue  Karimnagar  Karimnagar,ANJANA MOTORS  KARIMNAGAR
 Anushka Trading,Shaikh Talha  Shaikh Javed,janta garage ,IM-Independent Mechanic,6348FBB6,,9960329299,PCMO,waluj  waluj  waluj,
-SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MD  SAFAILAM,IM-Independent Mechanic,8.33527E+12,201271,7995612654,HDEO-Commercial Vehicle,gandiguda  shamshabad autonagar  Hyderabad,Baba Traders-Rtc ''x Road
+SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MD  SAFAILAM,IM-Independent Mechanic,8.34E+12,201271,7995612654,HDEO-Commercial Vehicle,gandiguda  shamshabad autonagar  Hyderabad,Baba Traders-Rtc ''x Road
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MD  SAFIALAM,IM-Independent Mechanic,8BCD8EDA,201271,7995612652,HDEO-Commercial Vehicle,gandiguda  shamshabad autonagar  Hyderabad,Baba Traders-Rtc ''x Road
 MUKTI TRADERS,Kishor  Mahant,Solanki  Kunal,IM-Independent Mechanic,B56D2D1F,206970,9664789574,MCO,Kunal Auto Jawaharnager near Shakti Park Society. ,Umiya Batteries
 MUKTI TRADERS,Mukesh  Rana,P M SALSE & SERVICE,IM-Independent Mechanic,55BD034D,206970,8780297634,MCO,"35,SHUDARSAN NAGAR SOCIETY NEW SAMA  VADODARA  VAD",Umiya Batteries
@@ -401,7 +401,7 @@ SRI SAINATH AGENCIES,Someshwar  .,JVR AUTO MOBILE ,IM-Independent Mechanic,E8253
 SRI SAINATH AGENCIES,Someshwar  .,JVR AUTO MOBILE ,IM-Independent Mechanic,099F7216,241218,9392975988,PCMO,"Vijayawada road, kodada  Vijayawada road, kodada  ",JVR AUTOMOBILES&LUBRICANTS-KODAD
 JS Diesel Spares,Digambar  Waghmare,Rupali  bhalerao ,IM-Independent Mechanic,E1EADA09,33122,7507046091,MCO,karave nagar  Pune,HARIOM AUTOMOBILE
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Amar Prajapati ,IM-Independent Mechanic,BEA09A20,102827,9638823259,PCMO,ved road  shiv Chhaya  surat,Jay Enterprise Paras(Surat)
-MUKTI TRADERS,Kishor  Mahant,Mahida Paresh Shantilal,IM-Independent Mechanic,1.7138E+31,35617,9427055585,MCO,"Mahima Auto Garage, Shop,No 19 Santram Shoping Cen",Ghanshyam Auto Parts
+MUKTI TRADERS,Kishor  Mahant,Mahida Paresh Shantilal,IM-Independent Mechanic,1.71E+31,35617,9427055585,MCO,"Mahima Auto Garage, Shop,No 19 Santram Shoping Cen",Ghanshyam Auto Parts
 Rajdeep Automotives,Thallapally  Raju Goud,MD Fayyaz Ahmed ,Retail,FF517871,264832,8121389124,Retail,Medchal Check Post  Medchal  Hyderabad,HINDUSTAN AUTO PARTS
 Concept Motorbike Company Pvt Limited,GOHEL DIXITKUMAR  MUKESHBHAI-MO,Abid Bhai,IM-Independent Mechanic,40AC1F9A,218823,9429966902,PCMO,"modasa garage,sector 11, nr. suman tower  Gandhina",Suman Tyres
 MANISHA ENTERPRISES,Kiran Indal  Chavan,Lokesh Kolhe,IM-Independent Mechanic,16ADF9D8,252146,7977498048,PCMO,Airoli  Airoli,Om Sai Automobiles
@@ -544,7 +544,7 @@ JS Diesel Spares,Digambar  Waghmare,Tejas Chaudhari ,IM-Independent Mechanic,DC9
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,BOLLAM SAI KIRAN,IM-Independent Mechanic,ECBE4662,91690,9603957627,PCMO,NALGONDA  BAY PASS ROAD  NALGONDA,Sri Surya Auto Servicestation-Nlg
 Rajdeep Automotives,Anasoori  Brahmachary,Prakash  V,IM-Independent Mechanic,07C9B954,,8520804658,PCMO,kothirampur  karimnagar  karimnagar,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sanjay Prajapati ,IM-Independent Mechanic,AE8B2B0E,,8097171874,MCO,90feet road kashish glx building kachore goan  tha,
-JS Diesel Spares,Digambar  Waghmare,Rahul  sapkal,IM-Independent Mechanic,3.8105E+26,33310,8669214394,MCO,Shivane  pune,SHRI AUTO SPARES and REPAIRING WORKS BANER
+JS Diesel Spares,Digambar  Waghmare,Rahul  sapkal,IM-Independent Mechanic,3.81E+26,33310,8669214394,MCO,Shivane  pune,SHRI AUTO SPARES and REPAIRING WORKS BANER
 Sukan Incorporation,Atik  Kachara,RAJDHANI MOTORS ,IM-Independent Mechanic,128725D5,68063,8780361960,PCMO,VERAVAL ROAD  MANGROL  MANGROL,RAJDHANI AUTO and ELECTIC PARTS MANGROL
 Sukan Incorporation,Atik  Kachara,RAMESVER GARAGE ,IM-Independent Mechanic,D0019014,67844,7863800462,HDEO-Commercial Vehicle,BANDAR ROAD  MANGOL  MANGROL,M M AND CO MANGROL
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Umesh Lundtode,IM-Independent Mechanic,E9E11100,240252,9404074781,MCO,trimurti nagar  Nagpur,GPJ Automove Pvt Ltd
@@ -642,7 +642,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,AQEELABIBI  Pathan,IM-Independent Mechanic
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MOHAMMED MATEEN SHAMS,IM-Independent Mechanic,1D4A87B1,58196,9019070470,PCMO,tadbun  tadbun  Hyderabad,Vishnu TradersTadban
 Concept Motorbike Company Pvt Limited,GOHEL DIXITKUMAR  MUKESHBHAI-MO,Mahammad  Vijapura,IM-Independent Mechanic,4D837AEA,212923,8000440442,PCMO,"Nr. toll plaza, himatnagar bypass road  Himatnagar",vijapura motors
 Rajdeep Automotives,Thallapally  Raju Goud,Syed Ghouse,IM-Independent Mechanic,F6AA6AA6,250648,9949462859,HDEO-Commercial Vehicle,Medchal Chek post  Medchal  Hyderabad,Sri Srinivasa Automobiles - Medchal
-Rajdeep Automotives,Thallapally  Raju Goud,Sayaad Fayaz,IM-Independent Mechanic,8.8944E+85,250648,9966976935,HDEO-Commercial Vehicle,Medchal Chek post  Medchal  Hyderabad,Sri Srinivasa Automobiles - Medchal
+Rajdeep Automotives,Thallapally  Raju Goud,Sayaad Fayaz,IM-Independent Mechanic,8.89E+85,250648,9966976935,HDEO-Commercial Vehicle,Medchal Chek post  Medchal  Hyderabad,Sri Srinivasa Automobiles - Medchal
 SRI SAINATH AGENCIES,Srinivas  Perumalla,vasanth Bike point  KPHB,BIWS-Branded Workshop,D5AB8CC5,264039,9652450284,MCO,hig 57 opp water tank temple busstop kphb colony  ,vasanth Bike point  KPHB
 Rajdeep Automotives,Thallapally  Raju Goud,Syed Hameed ,IM-Independent Mechanic,B449180F,250648,9182725742,HDEO-Commercial Vehicle,Medchal Chek post  Medchal  Hyderabad,Sri Srinivasa Automobiles - Medchal
 Rajdeep Automotives,Thallapally  Raju Goud,Shaik Masthan,IM-Independent Mechanic,E6134D7B,264832,9391262161,HDEO-Commercial Vehicle,Medchal Chek post  Medchal  Hyderabad,HINDUSTAN AUTO PARTS
@@ -652,7 +652,7 @@ SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SYED SHABAZ,IM-Independent Mechanic
 Rajdeep Automotives,Anasoori  Brahmachary,Ravinder  P,Retail,4FD5AF00,59616,9866537571,Retail,kama. road  karimnagar  karimnagar,SM ENTERPRISES - KNR
 Sukan Incorporation,Virendra  Rathod,Dhanlaxmi Auto parts,IWS-Independent Workshop,02E202E4,260020,9033561684,MCO,Rajkot  Kothariya,Dhanlaxmi Auto parts
 MUKTI TRADERS,Kishor  Mahant,Yadav Arunkumar  Chotelal,IM-Independent Mechanic,5DEECEF3,35722,8200008559,PCMO,"Maruti Motors Gf. 37Maruti Infinity ,Chhani Bajwa ",Ganesh Automobiles
-George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Gargi Auto Parts Kasa,Retail,3E+23,262742,7768828884,Retail,"AT Post-Kasa, Ghatal Pada, Dahanu Jawahar Road,  P",Gargi Auto Parts Kasa
+George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Gargi Auto Parts Kasa,Retail,3.00E+23,262742,7768828884,Retail,"AT Post-Kasa, Ghatal Pada, Dahanu Jawahar Road,  P",Gargi Auto Parts Kasa
 JS Diesel Spares,Neeraj  Mehta,S S Motors ,IM-Independent Mechanic,F6B3F291,97691,7020755181,PCMO,"Thergaon, PCMC  Pune  Pune",S S MOTORS
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Mohmad  shakir,IM-Independent Mechanic,D5609AA2,203914,9970721419,PCMO,Bhiwandi  Bhiwandi  Bhiwandi,New Mahavir Auto parts
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SHIVA MONNI MOTORS OIL STORE ,Retail,B426D17F,263998,9553830238,Retail,Nagole  sameta pura colony road no 4  Hyderabad,SHIVA MANI MOTORS OIL STORE
@@ -1281,7 +1281,7 @@ George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Sagar Soni,IM-Independent Me
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Vishal Sharma,IM-Independent Mechanic,EF945C9D,249371,7028673974,PCMO,Virar east  Gadakapada  palghar,Ragini automobiles
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Vishalbhai Raval,IM-Independent Mechanic,EFC9B4C7,225045,7600612082,MCO,"shop no-01 Saswatnagar., Kheda Highway.,  Dholaka ",SHREE GANESH AUTO PARTS
 Rajdeep Automotives,Thallapally  Raju Goud,C Shiva,BIWS-Branded Workshop,FFC3B473,261223,6309191409,MCO,Malkajgiri  Anandbag  Hyderabad,Sri Vigneswara Bike Clinic
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Jagdish  Chavda,BIWS-Branded Workshop,9.4242E+102,261222,7600922592,PCMO,"GF-8, Shivdhara campus,,bilasiya,dehgam-Ahmdabad r",DELUX MOTORS
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Jagdish  Chavda,BIWS-Branded Workshop,9.42E+102,261222,7600922592,PCMO,"GF-8, Shivdhara campus,,bilasiya,dehgam-Ahmdabad r",DELUX MOTORS
 Rajdeep Automotives,Thallapally  Raju Goud,B Shivaram,IM-Independent Mechanic,74FAC891,251753,9000127485,MCO,Sathupally  Sathupally  Khammam,Sri Dhanalakshmi Automobiles   Sathupalli
 Rajdeep Automotives,Anasoori  Brahmachary,Sai Deep  A,IM-Independent Mechanic,63421862,,6301395780,PCMO,near ntr stachu  Karimnagar  Karimnagar,
 SHUBHAM ENTERPRISES,Sachin  Deshmukh,Mr. Mechanic,IM-Independent Mechanic,38B61605,,7620398383,PCMO,Nashik  Pimpalgaon  Pimpalgaon,
@@ -1599,7 +1599,7 @@ Devghar Agencies,Karam Chand  ' Patel,Shiv Shakti Auto Saria ,IM-Independent Mec
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Shaikh,Retail,9E55B287,256147,9422825674,Retail,Dondaicha Road Nandurbar  Nandurbar,Kohinoor Tyers
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Hakim Pathan,IM-Independent Mechanic,5E6664D8,250873,8401754293,PCMO,"narol vatva road,vatva  Narol Ahmedabad  Ahmedabad",Hindustan oil Depo
 Rajdeep Automotives,Thallapally  Raju Goud,M Naga Sai,BIWS-Branded Workshop,5472E726,257330,9010068239,MCO,Sujatha nagar  kothagudem  Khammam,NAGA TWO WHEELER MECHANIC
-Super Lubricants,Shahnawaz  Mirza,Chauhan Motors,BIWS-Branded Workshop,9.611E+197,259989,8469610819,PCMO,"Sardar Park, Ankleshwar  Sardar Park, Ankleshwar  ",Chauhan Motors
+Super Lubricants,Shahnawaz  Mirza,Chauhan Motors,BIWS-Branded Workshop,9.61E+197,259989,8469610819,PCMO,"Sardar Park, Ankleshwar  Sardar Park, Ankleshwar  ",Chauhan Motors
 Sukan Incorporation,Jaydeep  Pandya,Shreejii  Auto Garage & Servic,IWS-Independent Workshop,408D6370,259312,9727647477,MCO,"Opp.Maruti Dal Pakvan,Kalavad  Near Marketing Yard",Shreeji Auto & Service Station
 JS Diesel Spares,Vishal  Kamble,SHRI BALAJI AUTOMOTIVE AND SPA,BIWS-Branded Workshop,FCF382B5,223549,9921888478,PCMO,"Gat no195,moshi-AlandiRoad,Dudulgaon moshi  Gat no",SHRI BALAJI AUTOMOTIVE AND SPARES
 Sukan Incorporation,Atik  Kachara,NEW APAGIGA AUTO GAREGE ,IM-Independent Mechanic,B04BCC62,226167,9157484484,MCO,DHARI ROAD  VISAVADAR  VISAVADAR,AAPAGIGA AUTO GARAGE
@@ -1668,7 +1668,7 @@ Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Pareshbhai Rana.,IWS
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Mohammad  Kaif,IM-Independent Mechanic,8DB13E3E,241381,7208141005,PCMO,Thane  Thane,Devansh tours and travels
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Wasim Shaikh ,IM-Independent Mechanic,A2327D48,213893,8788760633,PCMO,Bhiwandi  Bhiwandi,National auto spare parts and Accessories
 MUKTI TRADERS,Yogesh  Patel,Gayatri Krupa Tractor Spare Pa,Retail,F62E1C37,257107,8160614860,Retail,"SHOP NO. 8, MAHADEV PLAZA  DABHOI ROAD, WAGHODIA  ",Gayatri Krupa Tractor Spare Part
-Anushka Trading,Rafiq  Shaikh,Shri Seva Motors (By Pass),IWS-Independent Workshop,1.4011E+78,227547,7030292300,PCMO,by pass  Aurangabad  Aurangabad,Shri Seva Motors (By Pass)
+Anushka Trading,Rafiq  Shaikh,Shri Seva Motors (By Pass),IWS-Independent Workshop,1.40E+78,227547,7030292300,PCMO,by pass  Aurangabad  Aurangabad,Shri Seva Motors (By Pass)
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,VENKATASAI AUTO STORES - CHOPP,Retail,8E436B5E,259606,9014312876,Retail,Karimnagar Road  Near Udipi Hotel  Choppadandi,VENKATASAI AUTO STORES - CHOPPADANDI
 Anushka Trading,Shaikh Talha  Shaikh Javed,hind lubricant,Retail,07288D19,259336,9156027669,Retail,Aurangabad  Aurangabad  Aurangabad,hind lubricant
 Anushka Trading,Rafiq  Shaikh,"Om sai Motors& Auto Parts,Mant",IWS-Independent Workshop,6AA36BF7,242192,9561586333,PCMO,Jalna road  Mantga  Mantha,"Om sai Motors& Auto Parts,Mantha"
@@ -1846,7 +1846,7 @@ MUKTI TRADERS,Kishor  Mahant,Patel Rajanbhai Maheshbhai Chh,IM-Independent Mecha
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,K Madhu,IM-Independent Mechanic,1163AE74,226190,9666320183,MCO,Sikh wadi circle  Karimnagar  Karimnagar,SRI SATHYA SPARE PARTS
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Mohammad Ismailbhai Momin,IM-Independent Mechanic,940B71D2,14643,9998977834,MCO,Opp. Lalwani Hardware  Nr. Shyam Enterprise  Nadia,Shyam Enterprise  1
 Rajdeep Automotives,Thallapally  Raju Goud,D Sudhakar Babu,BIWS-Branded Workshop,76F4E3F7,258998,8247697509,PCMO,uppal  Asian theyatar  Hyderabad,SSR MOTORS - UPPAL
-Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Karthik Marketing Chandarapur ,IM-Independent Mechanic,7.9233E+74,251176,9890507038,MCO, balaji ward Chandarapur  ' balaji sabhagruh  Chan,KARTIK MARKETING CHANDRAPUR
+Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Karthik Marketing Chandarapur ,IM-Independent Mechanic,7.92E+74,251176,9890507038,MCO, balaji ward Chandarapur  ' balaji sabhagruh  Chan,KARTIK MARKETING CHANDRAPUR
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Super Motor Garage,Retail,86767BCA,256119,9420601334,Retail,Main Road  Akkalkuwa,Super Motor Garage
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Vishnu Auto Parts,Retail,BDC64062,256113,7387769797,Retail,Main Road Khapar  Akkalkuwa,Vishnu Auto Parts
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sameer  Khan,Retail,B2C9713C,103136,8369792594,Retail,Panvel  Panvel,S K AUTOMOBILE
@@ -2324,7 +2324,7 @@ Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Ravibhai Prajapati,B
 MUKTI TRADERS,Mukesh  Rana,GANESH AUTO PARTS,IM-Independent Mechanic,3D7D42D8,206970,8160173436,MCO,"KUBHARWADA OPP, GOTRI TRAV  VADODARA  VADODARA",Umiya Batteries
 SHUBHAM ENTERPRISES,Sharad  Deore,Rajdev Auto Store ,IM-Independent Mechanic,63C42C5E,69196,9404797242,PCMO,saride Crikle  Pune Road  Nashik,RAJDEV AUTO STORES
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Sanjaybhai Thummar.,IM-Independent Mechanic,37FB7C24,235353,9374319310,PCMO,"Shop No--08 Sahaj Recidancy.,  Nikol., Ahmedabad  ",Khodal Auto Parts.
-MUNOT BROTHERS,Prabhakar  Jadhav,Satyam auto Raver ,IM-Independent Mechanic,8.49668E+13,249571,9407144001,PCMO,Burhanpur  Raver,Satyam Automobile Raver
+MUNOT BROTHERS,Prabhakar  Jadhav,Satyam auto Raver ,IM-Independent Mechanic,8.50E+13,249571,9407144001,PCMO,Burhanpur  Raver,Satyam Automobile Raver
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sahil Mohammad ,IM-Independent Mechanic,D086F36E,203637,9699263044,HDEO-Commercial Vehicle,Bhiwandi  Bhiwandi,Vandana Auto Centre
 Devghar Agencies,Ambika Prasad  Mishra,Reet Auto Patthalgao ,Retail,E205CF29,257367,6261834683,Retail,Raigarh Road  Raigarh Road  Patthalgao,Reet Auto Patthalgao
 Rajdeep Automotives,Thallapally  Raju Goud,J Suresh,BIWS-Branded Workshop,91966BE9,257357,9676371759,PCMO,"Devi Nagar  Pochamma Temple,Cherivugattu, Kukatpal",Laxmi Narashimha Motors
@@ -2531,7 +2531,7 @@ RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,sai ram busa,I
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,BAGGA LUXURY MOTORCARS LLP,IWS-Independent Workshop,3B520DF5,249704,9029500112,PCMO,maol  ANDHIR,BAGGA LUXURY MOTORCARS LLP
 MUNOT BROTHERS,Prabhakar  Jadhav,Gurumauli auto parts,IWS-Independent Workshop,DFE83307,251278,9130772901,MCO,Infront of Nagar parishad  Chandur Bazaar  Chandur,Gurumauli auto parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shivkripa Automobile ,IM-Independent Mechanic,0BE2D759,237659,9307522166,HDEO-Commercial Vehicle,Dattawadi  Amravati Road  Nagpur,Shiv kripa automobile
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Mohammad  Suhel,IM-Independent Mechanic,1.9128E+55,34044,7380657149,MCO,Thane Kalwa  Thane Kalwa,Siddhivinayak Auto Parts
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Mohammad  Suhel,IM-Independent Mechanic,1.91E+55,34044,7380657149,MCO,Thane Kalwa  Thane Kalwa,Siddhivinayak Auto Parts
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,parsharamulu  jakkula,IM-Independent Mechanic,6500DF28,255574,9440462229,PCMO,kothirampoor  kothirampoor  Karimnagar,SRI SATHYA AGRO PARTS KARIMNAGAR
 Rajdeep Automotives,Thallapally  Raju Goud,Vijaya Kumar  P,Retail,12AFDCC0,256462,9666522249,Retail,khammam  Khammam  Khammam,SRI  KANAKADURGA AUTOMOBILES
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Arif Shaikh ,IM-Independent Mechanic,92164495,34368,9819668258,PCMO,Kharghar  Kharghar,Car Mart
@@ -2729,7 +2729,7 @@ Anushka Trading,SHUBHAM  VAISHNAV,jamir pathan ,IM-Independent Mechanic,32444600
 SRI SAINATH AGENCIES,Uppunuthala  Mahesh,THE GARAGE SHOPPE_VANADTALIPUR,Retail,8ECA38CB,237380,9642680690,Retail,"plot no 19& 20, Beside hotel kinara Grand lane  Pr",THE GARAGE SHOPPE_VANADTALIPURAM
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shree Ram Automobile,IWS-Independent Workshop,C0374D2C,255243,8329461202,PCMO,"Dahegaon Rangari  NH 47, Bhopal Highway  Khaparkhe",Shree Ram Automobile
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,SURAJ AUTO PARTS,Retail,A1C31610,252893,8879493470,Retail,link road  DASHIRE,SURAJ AUTO PARTS
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),Ramesh  patel ,IM-Independent Mechanic,4.6873E+57,207031,9714989205,MCO,Surat  Surat  Surat,KRISHNA MOTORS
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),Ramesh  patel ,IM-Independent Mechanic,4.69E+57,207031,9714989205,MCO,Surat  Surat  Surat,KRISHNA MOTORS
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),pratik  sutariya ,IM-Independent Mechanic,11A68DCA,83588,9427832283,MCO,Surat  Surat  Surat,JAY AMBEY AUTO GARAGE & SARVICE STATION-V
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Umang  prajapati ,IM-Independent Mechanic,BD45B033,83605,7874042104,MCO,Surat  Surat  Surat,MAHESHWARI AUTO AGENCY
 Anushka Trading,SHUBHAM  VAISHNAV,akshay  Dagadu,IWS-Independent Workshop,FC680BC7,255026,7219765873,MCO,waluj  waluj  Chhatrapati Sambhajinagar,Shree Ganesh Automobile
@@ -2759,7 +2759,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),Surat,IM-Independent Mechanic,D2
 Sukan Incorporation(Surat),Mitu  Badatya,Surat,IM-Independent Mechanic,D4940AA9,,9898246202,MCO,GHB Rd  Surat,
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,GURA NANK AUTO SPARE,IM-Independent Mechanic,C04BF4F1,252430,8898178745,PCMO,j. b nagar  andhir,GURU NANAK AUTO SPARES
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,MANOJ REDDY,Retail,86EF2C8E,255551,9966490199,Retail,Korutla To Metpally Road  KORUTLA,MANIKANTA AUTO STORE-KORUTLA
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Irfan Ansari ,IM-Independent Mechanic,3.309E+14,202510,9527821067,MCO,Bhiwandi  Bhiwandi,Paresh Auto parts
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Irfan Ansari ,IM-Independent Mechanic,3.31E+14,202510,9527821067,MCO,Bhiwandi  Bhiwandi,Paresh Auto parts
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Lavkush  Chavan,IM-Independent Mechanic,AB47A804,34005,8425056873,MCO,Thane  Thane,Shiv Shambhu Auto Parts
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Ronak  Motors ,IM-Independent Mechanic,3C72A5F4,243676,9821011773,HDEO-Commercial Vehicle,Thane  Thane,DB Retail Ventures
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Harshit pareek ,IM-Independent Mechanic,FEE1EFB5,200326,9106304539,PCMO,Surat  Surat  Surat,SANJAY OIL AGENCY (PANDESARA)
@@ -2838,7 +2838,7 @@ RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,BABA MD,BIWS-B
 Rajdeep Automotives,Thallapally  Raju Goud,D Sharanappa,IM-Independent Mechanic,9CFA7D93,,7483938482,PCMO,sainikpuri  Hyderabad  Hyderabad,
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,SURESH N,IM-Independent Mechanic,33182823,260584,9032748112,HDEO-Tractor,Metpally to Korutla road  Metpally,SATYADEV AUTOMOBILES-MANTHANI
 Anushka Trading,SHUBHAM  VAISHNAV,abdul  irfan ,IWS-Independent Workshop,573CC339,254506,8208406116,PCMO,vaijapur  vaijapur  vaijapur,new Quadri motors
-Rajdeep Automotives,Thallapally  Raju Goud,Shalom Motors,BIWS-Branded Workshop,9E+213,243910,9573657858,PCMO,near diamond point  bowenpally,Shalom Motors
+Rajdeep Automotives,Thallapally  Raju Goud,Shalom Motors,BIWS-Branded Workshop,9.00E+213,243910,9573657858,PCMO,near diamond point  bowenpally,Shalom Motors
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,VIJAY Gandi,BIWS-Branded Workshop,DFBF8A32,59460,9985353486,PCMO,Karimnaagar to Metpally road  Metpally,OM NANDINI MOTORSMETPALLY
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,DAYARAM CHOWDARY ,Retail,AE0AC4C7,251553,8618242641,Retail,NSF Road  Metpally,"RAMDEV AUTO CENTRE, Metpally"
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,NAVINDAR N,Retail,D261BC0F,251106,9959879503,Retail,KHANAPUR ROAD  Metpally,SRI LAXMINARASIMHA AUTO STORE.Metpally
@@ -3052,7 +3052,7 @@ SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,CHAKRATANI C,IM-Independent Mechani
 Anushka Trading,Jagdish  Gangadas Vaishnav,modi nitin,IM-Independent Mechanic,C53F7E31,,9850374767,MCO,Aurangabad  Aurangabad  Aurangabad,
 MUNOT BROTHERS,Prabhakar  Jadhav,Jai Siya Ram Auto Jamner ,IM-Independent Mechanic,62E2AC8A,250806,9359505528,PCMO,Pachora Road Jamner  Jamner,Jai Siya Ram Auto Garege
 MUNOT BROTHERS,Prabhakar  Jadhav,Jai Siya Ram Auto Garege,Retail,6FDD0B31,250806,9226332771,Retail,pachora Road jamner  Jamner,Jai Siya Ram Auto Garege
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Jayantibhai Jethva.,IWS-Independent Workshop,5.2144E+46,245621,9714376337,PCMO,"Goga Road., Akwada.  Bhavnagar.  Bhavnagar.",SAHYOG MOTOR GAREGE
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Jayantibhai Jethva.,IWS-Independent Workshop,5.21E+46,245621,9714376337,PCMO,"Goga Road., Akwada.  Bhavnagar.  Bhavnagar.",SAHYOG MOTOR GAREGE
 Rajdeep Automotives,Thallapally  Raju Goud,RAJU CAR MECHANIC ,IM-Independent Mechanic,FDE6F988,238100,9705734284,PCMO,main road Bhupalpally  Bhupalpally  Bhupalpally,Sri Laxmi Narasimha Automobile -  Bhupalpally
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,trilok automotive,BIWS-Branded Workshop,74E5EDDE,253125,7383038570,PCMO,sthapan road  opp.radiant school. sargasan Gandhin,Trilok Automative
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,Dev Motors. Harij,Retail,02FA7AD6,89739,9879681499,Retail,Dev Motors  Harij  Harij,Dev Motors. Harij
@@ -3123,7 +3123,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,Javed  Pathan,IM-Independent
 Rajdeep Automotives,Thallapally  Raju Goud,Prasad  v,IM-Independent Mechanic,9DAE14EF,,6379158928,PCMO,Alwal Alwal  Hyderabad,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Stability Motors,IWS-Independent Workshop,EF0A61E3,251711,7359569883,PCMO,"vip Circle  Mota Varachha,Surat  Surat",Stability Motors
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Ajamali Shaikh,Retail,87137A29,252834,8140727184,Retail,"Bhalej Road, Samarkha Crossing  Anand  Anand",shaikh enterprise
-OM ENTERPRISES,Vikas  Laxman Jugdar,shree ganesha auto parts ,IM-Independent Mechanic,4.7034E+14,60820,8055970751,MCO,ichalkaranji  ichalkaranji,Suraj Auto Spares    Ich
+OM ENTERPRISES,Vikas  Laxman Jugdar,shree ganesha auto parts ,IM-Independent Mechanic,4.70E+14,60820,8055970751,MCO,ichalkaranji  ichalkaranji,Suraj Auto Spares    Ich
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Dhruvinkumar Shaileshbhai Pate,IM-Independent Mechanic,89A830FF,14786,9925768914,PCMO,Shop no. 10 shivam Complex  Nr. Jambua check post ,Yogi Automobiles MPura
 Sukan Incorporation,Pranav  Trivedi,J M CAR CARE  JUNAGADH,BIWS-Branded Workshop,F0E833A3,67439,9824060870,PCMO,VADLA FATAK ROAD  JUNAGADH  JUNAGADH,J M CAR CARE  JUNAGADH
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Mohd  Imran ,IM-Independent Mechanic,922151F5,233745,9966321988,PCMO,Hayathnagar  Hyderabad  Hyderabad,DOSTI MOTORS_HAYATHNAGAR
@@ -3209,7 +3209,7 @@ SHUBHAM ENTERPRISES,Vinod  Patil,Metro carlines,BIWS-Branded Workshop,D4F244A0,2
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Shivam auto parts and garage,Retail,C3DFFA4B,249446,8177968757,Retail,kuldevi mata Mandir unr 5  Gandhi road  ulhasnagar,Shivam auto parts and garage
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,THANA AUTO TREDERS,Retail,A6EB3506,251170,9892351409,Retail,thane  thane  mumbai,THANA AUTO TREDERS
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,ALWALA NAVEEN  GOUD,Retail,50B9DADF,252571,8008110036,Retail,IBRAHIM PATNAM  main road  hyderabad,ALWALA PRAWALIKA ENTERPRISES-IBP
-SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,POLEPALLY  PRABHAKAR,IM-Independent Mechanic,7.806E+91,234034,8074510165,HDEO-Commercial Vehicle,uppal  uppal  hyderabad,SRI BALAJI AUTO AGENCY_UPPAL
+SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,POLEPALLY  PRABHAKAR,IM-Independent Mechanic,7.81E+91,234034,8074510165,HDEO-Commercial Vehicle,uppal  uppal  hyderabad,SRI BALAJI AUTO AGENCY_UPPAL
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MOHD ISMAIL  UDDIN,IM-Independent Mechanic,B23051E8,58282,6281021407,PCMO,farooq nagar  falaknuma  hyderabad,New Metro MotorsChadrayana Gutta
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,sageer car garege ,IM-Independent Mechanic,C5FB46E3,209014,8180807423,PCMO,nevali naka kalyan east  malangad road  kalyan,jai bhawani three wheeler spare parts
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,ali mahmoodh,IM-Independent Mechanic,E331E04A,250549,8801149182,HDEO-Commercial Vehicle,Sagar ring road  Hyderabad,TELANGANA TEMPO HOUSE_CHINTHALKUNTA
@@ -3263,7 +3263,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,Srinivas  Cheela,Retail,C8571F60,2471
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Manish Kumar ,IM-Independent Mechanic,FCCCE273,34221,9027231852,MCO,Kharghar  Kharghar,Pravin Auto Parts
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Afrozahmed Pathan,IM-Independent Mechanic,E3D50A97,15051,7698499082,HDEO-Commercial Vehicle,Ranoli Nh. 8  Vadodara,Punjab Automobiles
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,gajanan motors,Retail,CDCFA98D,243051,9820986499,Retail,wadala  wadala  mumbai,gajanan motors
-Rajdeep Automotives,Thallapally  Raju Goud,N. Kashaya ,BIWS-Branded Workshop,9.8984E+32,251925,8555039981,HDEO-Tractor,Beside Masjid kusumanchi main road  kusumanchi  ku,Sri Sai Ram Automobiles Kusumanchi
+Rajdeep Automotives,Thallapally  Raju Goud,N. Kashaya ,BIWS-Branded Workshop,9.90E+32,251925,8555039981,HDEO-Tractor,Beside Masjid kusumanchi main road  kusumanchi  ku,Sri Sai Ram Automobiles Kusumanchi
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Gaya Nishad ,IM-Independent Mechanic,089252A3,34368,8932023973,PCMO,Nerul  Nerul,Car Mart
 Rajdeep Automotives,Thallapally  Raju Goud,MADHU,IM-Independent Mechanic,ADC2BED0,238917,9160015070,PCMO,Hanamkonda  Hanamkonda  Hanamkonda,Sln Car Care
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Ashokbhai  Chauhan. ,IWS-Independent Workshop,BC22246D,251070,9924281316,MCO,"Outside Kamidana Darwaja.,  Barvala.  Barvada",VIKAS AUTO GAREGE
@@ -4086,7 +4086,7 @@ JS Diesel Spares,DEEPAK  HODE,Ram Hanumante ,IM-Independent Mechanic,EB398454,10
 JS Diesel Spares,DEEPAK  HODE,Ram Hanumante,IM-Independent Mechanic,A7645FDC,100074,9146503693,PCMO,"JQ78+4RC, Aditya Birla Hospital Marg, Mangal Nagar",ANAND AUTO SPARES
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Rikenkumar Ashokbhai Kapatel,IM-Independent Mechanic,DA6EDF11,14544,9033661131,MCO,"Opp. City point complex  Vaso Alindra Road, Vaso  ",Sunil Auto Parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,SIMRAT  SINGH,IM-Independent Mechanic,F41375B5,,9373117290,MCO,10 NO PULLIYA IN FRONT OF INDIA PATROL PUMP  10 NO,
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,MAHADEV KRUPA MOTORS,IWS-Independent Workshop,8.1346E+74,250296,8347890101,PCMO,Nilkamal Sosaity  Bhavnagar  Bhavnagar,MAHADEV KRUPA MOTORS
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,MAHADEV KRUPA MOTORS,IWS-Independent Workshop,8.13E+74,250296,8347890101,PCMO,Nilkamal Sosaity  Bhavnagar  Bhavnagar,MAHADEV KRUPA MOTORS
 JS Diesel Spares,DEEPAK  HODE,Popat Magdum,IM-Independent Mechanic,FD860C69,33371,9511639728,PCMO,"Vanaz Corner,Paud Road  Anup Motors  PUNE",ANUP MOTORSPAUD RD
 MUNOT BROTHERS,Mahendra  Dusane,Akil auto parts shahada,Retail,D90C231B,249230,9545486194,Retail,khetiya Road  shahada,Akil auto parts shahada
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,Srikanth ,IM-Independent Mechanic,BC336022,260345,9133439864,PCMO,RR GANDES  Rr gandas hnk  warangal,SHIVA ENGINEERING AND AUTO STORES-CHOPPADNADI
@@ -4530,7 +4530,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,SRI VIJAYA AGENCIES,Retail,1AB3467C,2
 Rajdeep Automotives,Thallapally  Raju Goud,ROOPA AUTOMOBILES,Retail,A7A38910,248694,9885376162,Retail,ambedkar center bhadrachalam  bhadrachalam  bhadra,Roopa Automobiles
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Nyajuddnbhai Shaikh. ,IWS-Independent Workshop,18EC70E4,249257,9265251840,MCO,"Opp. Parishram Estate.  Ramol., Ahmedabad  Ahmedab",Raj Auto Service
 MUNOT BROTHERS,Prabhakar  Jadhav,Sapna auto Chalisgaon ,Retail,AE57DED8,249181,7304398682,Retail,Near Court Chalisgaon  Chalisgaon,Sapna auto Chalisgaon
-OM ENTERPRISES,Vikas  Laxman Jugdar,Snehal jadhav ,IM-Independent Mechanic,2.6521E+42,234665,9117976555,MCO,near jaysingpur college  jaysingpur,Aastha Enterprise
+OM ENTERPRISES,Vikas  Laxman Jugdar,Snehal jadhav ,IM-Independent Mechanic,2.65E+42,234665,9117976555,MCO,near jaysingpur college  jaysingpur,Aastha Enterprise
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mohsin Ansari,IM-Independent Mechanic,37089C69,237388,8657876143,MCO,Rameshvri chowk  Rameshvri Chowk  Nagpur,New Balaji automobile
 Rajdeep Automotives,Thallapally  Raju Goud,A R car care,BIWS-Branded Workshop,EEEF8D19,249178,7659810125,PCMO,plot no 14 slns hills opp bharat kunta chengicherl,A R Car Care
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,jayveer motors,IWS-Independent Workshop,E12F5E92,245652,9016735524,PCMO,no1 sharnam paradise vastral behind maruti ring ro,jayveer motors
@@ -4579,7 +4579,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Arif Shaikh ,IWS-Independent Work
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Raju Varma,IM-Independent Mechanic,CF1D6F88,227516,9082749755,PCMO,"Arete garage , near belpada metro station belpada ",J.B DAY CHEM
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Yogesh Ramlautan Benvansi,IM-Independent Mechanic,A7CA374D,15481,8401041830,PCMO,Tarsali by pass  Tarsali  Vadodara,Shree Durga Lubricants
 Sukan Incorporation,Pranav  Trivedi,Baban Auto Garage ,IM-Independent Mechanic,0E932B11,96655,9879899755,MCO,Baban Auto Garage  Porbandar Road Khbhaliya  Khbha,Car Age Motors  
-Sukan Incorporation,Pranav  Trivedi,Kanjariya Motors Garage ,IM-Independent Mechanic,6.169E+26,96655,9909998916,PCMO,Kanjariya Motors Garage  Jamnagar Highway Near By ,Car Age Motors  
+Sukan Incorporation,Pranav  Trivedi,Kanjariya Motors Garage ,IM-Independent Mechanic,6.17E+26,96655,9909998916,PCMO,Kanjariya Motors Garage  Jamnagar Highway Near By ,Car Age Motors  
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,AUTO VISION.,IWS-Independent Workshop,1AB0EA41,215091,9825448247,PCMO,OPP. RADIO MIRCHI TOWER. B/H DHANANJAY BUNGLOWS. S,AUTO VISION.
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,New Tofik Automobile Wadasa,Retail,DB4253DA,237616,9673618736,Retail,Main Road  Desaiganj  Wadsa,New Tofik Automobile Wadasa
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Bhilala Ahmed,IM-Independent Mechanic,E9FEDC86,247432,7666311999,HDEO-Commercial Vehicle,Kalamboli  Kalamboli Roadpali,Patel Motor Parts
@@ -4636,7 +4636,7 @@ Sukan Incorporation,Pranav  Trivedi,NILKHATH AUTO Garage Service ,IM-Independent
 JS Diesel Spares,DEEPAK  HODE,National Oil Center,Retail,EAD38F24,11149,9370627093,Retail,Sainath nagar  Nigdi  Pune,National Oil Center
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Mukeshbhai Borad,IWS-Independent Workshop,1B9C78A9,248154,9924897577,MCO,"9 vijay Nagar v1  yogi chock , varachha  surat",Parth Auto Garage & Service
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,DINESH  TIWARI,Retail,3AFF0CBE,242051,8806565794,Retail,AT PAUNI  TEHSIL RAMTEK  AT PAUNI TEHSIL RAMTEK  P,"Ganraj Automobile,pawani"
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),Raghvendra Maurya,IWS-Independent Workshop,7.077E+59,247894,9925423872,MCO,"323 ,Krishna Nagar, Laxman Nagar Road  Varachha  s",Sunil Auto Garage & Auto Parts
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),Raghvendra Maurya,IWS-Independent Workshop,7.08E+59,247894,9925423872,MCO,"323 ,Krishna Nagar, Laxman Nagar Road  Varachha  s",Sunil Auto Garage & Auto Parts
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli, Ramesh Honda Works Shop,Retail,1B273ACC,92396,9848914902,Retail,mulugu  mulugu  mulugu, Ramesh Honda Works Shop
 Anushka Trading,Jagdish  Gangadas Vaishnav,tushar malkar,IM-Independent Mechanic,878907B7,89216,8329292182,PCMO,chikalthana  aurangabad,Shree laxmi auto
 MUNOT BROTHERS,Prabhakar  Jadhav,Deepak auto jalgaon,Retail,3ED6D0E7,248885,7776021283,Retail,B J Market jalgaon  Jalgaon,Deepak auto jalgaon
@@ -5033,7 +5033,7 @@ Sukan Incorporation,Pranav  Trivedi,KAILASH AUTO CENTER (PORBANDAR,Retail,5FDCB8
 OM ENTERPRISES,Vikas  Laxman Jugdar,padmavati bike care,IM-Independent Mechanic,E0AEE4EF,61243,9403350292,MCO,jaysingpur  jaysingpur,Disha LubricantsJaysingpur
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,chamunda auto center ,IM-Independent Mechanic,720C60A1,250436,9586768862,MCO,gaganvihar society  opp gokuldham apparent new vad,Veer Marketing
 Rajdeep Automotives,Thallapally  Raju Goud,S Satish,IM-Independent Mechanic,12E5410B,234583,9705787253,HDEO-Commercial Vehicle,near Priyadarshini hotel  old Bowenpally  Hyderaba,Sri Srinivasa Auto Mobiles-Boenpally
-Rajdeep Automotives,Thallapally  Raju Goud,S Babu,IM-Independent Mechanic,8.3108E+47,234583,9640920492,HDEO-Commercial Vehicle,"Near priyadarshini hotel , phoolbagh  Old Bowenpal",Sri Srinivasa Auto Mobiles-Boenpally
+Rajdeep Automotives,Thallapally  Raju Goud,S Babu,IM-Independent Mechanic,8.31E+47,234583,9640920492,HDEO-Commercial Vehicle,"Near priyadarshini hotel , phoolbagh  Old Bowenpal",Sri Srinivasa Auto Mobiles-Boenpally
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,New Saini Motors ,IM-Independent Mechanic,99396CCE,237683,8055262066,HDEO-Commercial Vehicle,"Bhandara road, kapsi  Nagpur  umiya transport",NEW SAINI MOTORS
 Rajdeep Automotives,Thallapally  Raju Goud,KRUSHI AUTOMOBILES - KHAMMAM,IWS-Independent Workshop,0AEE9BC5,203653,8886669844,PCMO,rotary nagar khammam  wyra road khammam  khammam,Krushi Automobiles - Khammam
 Sukan Incorporation,Pranav  Trivedi,DVARKADHISH TYREandOIL JUNAGAD,Retail,630584EC,67915,9979288784,Retail,MADURAM BAYPASS  JUNAGADH  JUNAGADH,DVARKADHISH TYREandOIL JUNAGADH
@@ -5319,7 +5319,7 @@ Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Manish bhai. Desai.,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Jignesh Balkrishna Kamle,IM-Independent Mechanic,654C8B46,14882,9913353636,PCMO,"Shree Sai Motors, Tarsali  Tarsali  Vadodara",Shree Sai Motors
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,VINAYAK TRACTOR ,IM-Independent Mechanic,C277B3C4,227392,8200144915,HDEO-Tractor,modasa  modasa,VINAYAK TRACTORS
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Vishal automobile ,IM-Independent Mechanic,B8D7E3ED,215840,9822446973,MCO,kalyan badlapur road  kalyan badlapur road  Ambarn,maharashtra motorcycle house
-Rajdeep Automotives,Thallapally  Raju Goud,Khaza  Pasha,IM-Independent Mechanic,2.51483E+11,234187,7989128585,PCMO,Gajularamaram  Gajularamaram  Hyderabad,Moin Motor'S
+Rajdeep Automotives,Thallapally  Raju Goud,Khaza  Pasha,IM-Independent Mechanic,2.51E+11,234187,7989128585,PCMO,Gajularamaram  Gajularamaram  Hyderabad,Moin Motor'S
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Ranjit  Thakor.,IM-Independent Mechanic,BDF1D829,225045,9328050584,MCO,"2., Devam Complex.  Dholka.  Dholka.",SHREE GANESH AUTO PARTS
 Rajdeep Automotives,Thallapally  Raju Goud,Sri Maruthi Auto Care,IM-Independent Mechanic,70554A0F,55688,9666302796,PCMO,"2-7,Wadwat Waganoor  Mahbubnagar  Mahbubnagar",Sri Maruthi Auto Care - Mahabubnagar
 Rajdeep Automotives,Thallapally  Raju Goud,Sri Maruthi Auto Care,IM-Independent Mechanic,5E04A695,55688,8886900765,PCMO,"H.No 3-51  Appannapally,Yedira,Mahbubnagar  Mahbub",Sri Maruthi Auto Care - Mahabubnagar
@@ -5381,7 +5381,7 @@ MUKTI TRADERS,Kishor  Mahant,SHREE ANSOYA  AUTOMBIELS,IM-Independent Mechanic,48
 Super Lubricants,Faruk  ' Raliya,Star auto parts,IM-Independent Mechanic,A4A4A8F2,37268,8799247347,HDEO-Commercial Vehicle,Sagbara  Sagbara  Sagbara,Tawakkal Auto Parts
 Super Lubricants,Faruk  ' Raliya,Royal auto parts,Retail,A9597E5E,247770,9925819434,Retail,mosali chokdi  mosali chokadi  mosali chokdi,Royal auto Parts & oil
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,sagar auto garage ,IM-Independent Mechanic,5CA61A04,204261,8108727810,MCO,manpada road  near d mart dombivali east  Dombival,Care Care Mobile
-Rajdeep Automotives,Thallapally  Raju Goud,Auto lite  Auto mobiles ,Retail,3.2636E+80,237542,9849104474,Retail,Bowenpally  Bowenpally  Hyderabad,AUTOLITE AUTOMOBILES
+Rajdeep Automotives,Thallapally  Raju Goud,Auto lite  Auto mobiles ,Retail,3.26E+80,237542,9849104474,Retail,Bowenpally  Bowenpally  Hyderabad,AUTOLITE AUTOMOBILES
 Sukan Incorporation,Pranav  Trivedi,gurukrupa moters diu,BIWS-Branded Workshop,58BFB61D,241929,9737254606,PCMO,near Triveni hotel  near Triveni  Diu,GURUKRUPA MOTORS DIU
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Swami bike point,IM-Independent Mechanic,86783A62,207530,8948307873,MCO,tandan road dombivali east  dombivali east  Dombiv,swami bike point
 SHUBHAM ENTERPRISES,Vinod  Patil,Sultan  Haneef,IM-Independent Mechanic,96F30A47,,9767651312,PCMO,Ambad  Nashik,
@@ -5823,7 +5823,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Nihar,IM-Independent Mechanic,DE5
 tal  karjat raigarh  Mahara",NATIONAL OIL DEPOT
 OM ENTERPRISES,Vikas  Laxman Jugdar,s m auto spare part,IM-Independent Mechanic,7F80FE8D,,7447867863,MCO,"deccan road,near fire brigdage  0",
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,ma auto parts,IWS-Independent Workshop,42CFD7E3,244141,9998757875,MCO,shivadhara gry nite ni same  botad  botad,MA AUTO PARTS
-GOODLUCK AUTO PARTS,Ashishkumar  Patel,? ????????? ???? ?????,IM-Independent Mechanic,8.626E+301,,9558174261,PCMO,HP petrol pump  Radhanpur haiwe  0,
+GOODLUCK AUTO PARTS,Ashishkumar  Patel,? ????????? ???? ?????,IM-Independent Mechanic,8.63E+301,,9558174261,PCMO,HP petrol pump  Radhanpur haiwe  0,
 JS Diesel Spares,DEEPAK  HODE,pragati motors,IM-Independent Mechanic,B6B15BF4,205138,9307474760,MCO,aund ravet road  laxman nagar brt bus stop  0,MATOSHRI MOTORS - AMBEGAON 
 OM ENTERPRISES,Vikas  Laxman Jugdar,Rajendra Auto,IM-Independent Mechanic,C912BDDA,,7249021234,MCO,Sangli  sangli  0,
 JS Diesel Spares,DEEPAK  HODE,bbm vinter,IM-Independent Mechanic,0809C6B8,207799,7507411688,HDEO-Commercial Vehicle,aanand nagar  mudhwa  0,FOURTECH AUTO INDUSTRIES PVT LTD - KATRAJ 
@@ -5867,7 +5867,7 @@ JS Diesel Spares,DEEPAK  HODE,Ansari automobile ,IM-Independent Mechanic,0409AA0
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Kartiksinh Rathod,IM-Independent Mechanic,FFDD9280,46276,6354858964,MCO,"s p ring road,vinzol  Ahmedabad  Ahmedabad",JAY MATAJI AUTO and TRACTOR PARTS
 JS Diesel Spares,DEEPAK  HODE,Bharat motors parts,IM-Independent Mechanic,78902B98,33046,9822429453,HDEO-Commercial Vehicle,"Transport nagar, Nigdi, Pune  Pune",INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,Bharat motor parts ,IM-Independent Mechanic,2C046238,10945,7040198833,HDEO-Commercial Vehicle,"Transport nagar ,Nigdi, Pune  pune",Bharat Motor Parts N
-Concept Motorbike Company Pvt Limited,Jasmin  Patel,Ankit Prajapati ,Retail,1.64044E+14,241332,9328133045,Retail,"near bharti ashram,dholka road  Sarkhej, Ahmedabad",R B OIL CENTER
+Concept Motorbike Company Pvt Limited,Jasmin  Patel,Ankit Prajapati ,Retail,1.64E+14,241332,9328133045,Retail,"near bharti ashram,dholka road  Sarkhej, Ahmedabad",R B OIL CENTER
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MOHAMMED  MAZHAR,IM-Independent Mechanic,42EDAE62,201271,8099491069,HDEO-Commercial Vehicle,outer ring road auto nagar  gandiguda shamshabad  ,Baba Traders-Rtc ''x Road
 SRI SAINATH AGENCIES,Srinivas  Goud,Reena Motors,IWS-Independent Workshop,8EA2A3DD,244930,9550706314,PCMO,Near RTC Bus stop  Y junction Kukatpally  Kukatpal,Reena Motors
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SYED AIJAZ,IM-Independent Mechanic,6475EBEE,58144,9346366913,HDEO-Commercial Vehicle,outer ring road auto nagar  gandiguda shamshabad  ,G N B TRADERS
@@ -5934,7 +5934,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,MOHAMMED  SULEMAN,IM-Independent Mech
 Sukan Incorporation,Pranav  Trivedi,HINDUSTAN MOTOR ,IM-Independent Mechanic,EB05958B,,9129382815,HDEO-Commercial Vehicle,TIMBDI PATIYA  MORBI  MORBI,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,m k work shop,BIWS-Branded Workshop,64477CE0,237567,9422838386,HDEO-Tractor,h d f c bank near  gadchiroli road  mul,M K automobile Mul
 SRI SAINATH AGENCIES,Uppunuthala  Mahesh,Sri Balaji Bike Point,IWS-Independent Workshop,47F887A7,244135,9848199698,MCO,sushma road  vanasthalipuram,Sri Balaji Bike Point
-Sukan Incorporation,Pranav  Trivedi,NEW JODHPUR MOTOR GARAGE ,IM-Independent Mechanic,8.7853E+44,,6377329175,HDEO-Commercial Vehicle,"KANDLA EXPRESS HIGHWAY,TIMBDI PATIYA  MORBI  MORBI",
+Sukan Incorporation,Pranav  Trivedi,NEW JODHPUR MOTOR GARAGE ,IM-Independent Mechanic,8.79E+44,,6377329175,HDEO-Commercial Vehicle,"KANDLA EXPRESS HIGHWAY,TIMBDI PATIYA  MORBI  MORBI",
 Super Lubricants,Default DSR  Super Lubricants,Krishna Automabil,IM-Independent Mechanic,05AE45B3,,9909238787,PCMO,netrang  Mandvi road  0,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Mahadev 0to paths,IM-Independent Mechanic,5FC2DE82,223938,7623081852,MCO,"N20, Bus Station Rd  kk bilding  0",INDUSTRIAL  TOOLS & HARDWARE
 JS Diesel Spares,DEEPAK  HODE,morya auto garaj,IM-Independent Mechanic,AB341A8C,221421,9623472016,MCO,suyog nager  suyog nager  0,VIGHNESH AUTOMOBILE
@@ -6043,7 +6043,7 @@ Anushka Trading,Jagdish  Gangadas Vaishnav,deva car garage,IM-Independent Mechan
 OM ENTERPRISES,Vikas  Laxman Jugdar,Gaikawad motros,IM-Independent Mechanic,55A01209,,9867627576,PCMO,Pandharpur  0,
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,car care point,IM-Independent Mechanic,F4F328B3,,8432280084,PCMO,Osmanabad  khwaja nagar  0,
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,6355 234 130,IM-Independent Mechanic,AB4AE6F8,224629,6355234130,HDEO-Commercial Vehicle,ahead  Adnan sandhi  0,shree umiya auto parts
-OM ENTERPRISES,Vikas  Laxman Jugdar,premium cars,IM-Independent Mechanic,7.751E+244,,8122994601,PCMO,VOC Street  vengadamangalam  0,
+OM ENTERPRISES,Vikas  Laxman Jugdar,premium cars,IM-Independent Mechanic,7.75E+244,,8122994601,PCMO,VOC Street  vengadamangalam  0,
 Anushka Trading,Jagdish  Gangadas Vaishnav,Nadeem automobiles,IM-Independent Mechanic,C36BDCFD,,9198235991,HDEO-Commercial Vehicle,champa chok  Aurangabad  0,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,MS GEARAGE,IM-Independent Mechanic,D1FA2C81,217299,7777997794,MCO,DARYAPUR JORDAN RIAD  DARYAPUR JORDAN ROAD  0,SANJAR AUTO CENTRE
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,rupawala gereg,IM-Independent Mechanic,2B6481F4,217299,9316339960,MCO,rewdi nazar  RILIF ROAD  0,SANJAR AUTO CENTRE
@@ -6296,7 +6296,7 @@ George Oakes Limited ( Mumbai),Bhavesh  Vashiya,krishna,IM-Independent Mechanic,
 OM ENTERPRISES,Vikas  Laxman Jugdar,no,IM-Independent Mechanic,9F2D20CF,,9840950216,MCO,"no.12/430,annanagar 4th street,kovilambakkam,chenn",
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Sadik khanasiya,IM-Independent Mechanic,1456702F,212923,9773154831,PCMO,"Near RTO office, Aman motors  Himatnagar  Himatnag",vijapura motors
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,KHUSHI MOTOR,IWS-Independent Workshop,7C87FF4F,244524,9408407330,PCMO,modasa  aravlli,KHUSHI MOTOR
-OM ENTERPRISES,Vikas  Laxman Jugdar,car Garj,IM-Independent Mechanic,8.6358E+72,,9527859822,PCMO,Mayni  mayni  0,
+OM ENTERPRISES,Vikas  Laxman Jugdar,car Garj,IM-Independent Mechanic,8.64E+72,,9527859822,PCMO,Mayni  mayni  0,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shriram auto work ,IM-Independent Mechanic,79469EC0,238112,9423401403,HDEO-Tractor,mevana complex  nagpur road  Armori,Bharat Automobile Alapalli
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Krunal Patel ,IM-Independent Mechanic,8B328995,200266,8511539638,MCO,kargil chowk piplod  surat  l-36 indrlok apartment,Shaswat Automotive (SURAT)
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sharvan Yadav,IM-Independent Mechanic,C3B6BC2A,34222,9224283371,PCMO,Shahil Hospital Khopat Thane  Shahil Hospital Khop,Navnit Auto Agency
@@ -6326,7 +6326,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,Afzal Pathan ,IM-Independent
 OM ENTERPRISES,Vikas  Laxman Jugdar,vel work shop,IM-Independent Mechanic,A028CD09,,8682070474,MCO,3rd cross street j j nagar sivanthangal  Sriperumb,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),jalaram auto,IM-Independent Mechanic,9553391E,,9427255508,MCO,lal darwaja gotala vadi  lal darwaja gotala vadi  ,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,NATVAR BHAI  PATEL,BIWS-Branded Workshop,261885CE,206188,9586386772,HDEO-Tractor,Vrundavan Complex dakor Road  sevaliya Road  KHEDA,Patel Tractor Garage  (Sevaliya)
-OM ENTERPRISES,Vikas  Laxman Jugdar,balajimotors,IM-Independent Mechanic,6.2045E+31,,7028621795,PCMO,jain mandir  0,
+OM ENTERPRISES,Vikas  Laxman Jugdar,balajimotors,IM-Independent Mechanic,6.20E+31,,7028621795,PCMO,jain mandir  0,
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,SR motors,IM-Independent Mechanic,28990038,96224,7731058581,PCMO,Hyderabad road SR Motors yellamma temple  Hyderaba,Sri Sainath Enterprises
 OM ENTERPRISES,Vikas  Laxman Jugdar,balajimotors,IM-Independent Mechanic,36927581,,7020621795,PCMO,jain mandir  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,9629735585,IM-Independent Mechanic,2057FD29,,9629735588,MCO,16 road. street manampathi  0,
@@ -6385,7 +6385,7 @@ JS Diesel Spares,DEEPAK  HODE,FCS,IM-Independent Mechanic,7451289E,33634,9561678
 OM ENTERPRISES,Vikas  Laxman Jugdar,jpautomobiles,IM-Independent Mechanic,25B01124,,7373239826,MCO,8/192 jeeva Nagar 5th Street pareri spkoil  8/192 ,
 OM ENTERPRISES,Vikas  Laxman Jugdar,jana bikers,IM-Independent Mechanic,B2C0EDCD,,8754656257,MCO,sogandi main road 603405  sogandi main road 603405,
 OM ENTERPRISES,Vikas  Laxman Jugdar,jana bikers,IM-Independent Mechanic,48F44432,,8270635832,MCO,sogandi main road 603405  sogandi main road 603405,
-MUNOT BROTHERS,AZARUDDIN  SHAIKH,shree auto services,IM-Independent Mechanic,9.3668E+38,,9325380113,PCMO,chopda  chopda  0,
+MUNOT BROTHERS,AZARUDDIN  SHAIKH,shree auto services,IM-Independent Mechanic,9.37E+38,,9325380113,PCMO,chopda  chopda  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,S. k. automobile,IM-Independent Mechanic,B2CF627C,,8148823576,HDEO-Commercial Vehicle,55 /  thir veedhi amman koil street near  koyambed,
 Sukan Incorporation,Pranav  Trivedi,best motor works,IM-Independent Mechanic,4FE5B0D1,,7284852761,PCMO,best motor works  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,kunal,IM-Independent Mechanic,3F3766D4,203903,7977178774,PCMO,bhiwandi narpoli  0,Mahalaxmi Automobiles
@@ -6550,7 +6550,7 @@ Anushka Trading,Jagdish  Gangadas Vaishnav,sopan jadhav,IM-Independent Mechanic,
 Anushka Trading,Jagdish  Gangadas Vaishnav,jeevan kale,IM-Independent Mechanic,D361AB0D,,9096673227,PCMO,mantha  jalna,
 Anushka Trading,Jagdish  Gangadas Vaishnav,atefkhan pathan,Retail,BFEE943A,112404,9921320324,Retail,ambad  jalna,R k automoiles
 MUKTI TRADERS,Kishor  Mahant,YESH AUTO GARAGE,IM-Independent Mechanic,EEA4011E,35722,9724016720,PCMO,"9. PDMINI COMPLEX, GURUKUL CHAR RASTA WAGHODIYA RO",Ganesh Automobiles
-Sukan Incorporation,Pranav  Trivedi,Kalvat Vahid,IM-Independent Mechanic,3.212E+34,67844,9624329184,HDEO-Commercial Vehicle,KISHAN TRACTOR GARAGE MANGROL  VERAVAL BAY PASS MA,M M AND CO MANGROL
+Sukan Incorporation,Pranav  Trivedi,Kalvat Vahid,IM-Independent Mechanic,3.21E+34,67844,9624329184,HDEO-Commercial Vehicle,KISHAN TRACTOR GARAGE MANGROL  VERAVAL BAY PASS MA,M M AND CO MANGROL
 Sukan Incorporation,Pranav  Trivedi,KISHAN TRECTOR GARAGE,IM-Independent Mechanic,01CB503A,67844,9624329181,HDEO-Commercial Vehicle,KISHAN TRECTOR GARAGE  VERAVAL BAY PASS MANGROL  M,M M AND CO MANGROL
 Sukan Incorporation,Pranav  Trivedi,vadalia foods,IM-Independent Mechanic,3A77C222,,8866158101,HDEO-Commercial Vehicle,Navin tower  bhagawatipara main road  0,
 JS Diesel Spares,DEEPAK  HODE,vivek,IM-Independent Mechanic,16D9880B,202500,7666575288,MCO,1  2  0,PREMIUM AUTO- TILAK ROAD
@@ -6578,7 +6578,7 @@ JS Diesel Spares,DEEPAK  HODE,IMRAN KHAN,IM-Independent Mechanic,D2AF2512,33046,
 Rajdeep Automotives,Thallapally  Raju Goud,Shaik  Sohail,BIWS-Branded Workshop,DF530437,243985,8185011993,PCMO,Rampally  nagarsm  Hyderabad,Nr Automotive
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,NITESHWAR J PATEL,BIWS-Branded Workshop,7A397492,242159,9922872071,PCMO,TUMSAR NEAR HANUMAN MANDIR  TUMSAR NEAR HANUMAN MA,patle Auto Mobail Tumsar
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,AMOL BALPANDE,BIWS-Branded Workshop,0CD9E8AB,239611,7972712205,HDEO-Commercial Vehicle,NEAR GOV HOSPITAL BHIWAPUR  NEAR GOV HOSPITAL BHIW,"Shree  Enterprise, Bhiwapur"
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Vishwakarma Motors,IWS-Independent Workshop,7.9503E+66,217338,9427324270,PCMO,opp. jaldeep Icon. B/H Anavya flats. Makarba  Ahem,Vishwakarma Motors
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Vishwakarma Motors,IWS-Independent Workshop,7.95E+66,217338,9427324270,PCMO,opp. jaldeep Icon. B/H Anavya flats. Makarba  Ahem,Vishwakarma Motors
 OM ENTERPRISES,Vikas  Laxman Jugdar,Salem auto diesel works,IM-Independent Mechanic,545A3E62,,7550271043,HDEO-Commercial Vehicle,"9/166A, eswari nagar periya street singaperumal ko",
 OM ENTERPRISES,Vikas  Laxman Jugdar,armaan motors,IM-Independent Mechanic,5E24D14B,,8767583949,PCMO,mahadev nagar murgud  mahadev nagar murgud  0,
 JS Diesel Spares,DEEPAK  HODE,Vishu patil Work Shop,IM-Independent Mechanic,2C77E843,216455,9325815149,MCO,Hinjewadi  Hinjewadi maan  0,S K TRADING CO-CHD
@@ -6723,7 +6723,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),shah auto,IM-Independent Mechani
 Sukan Incorporation,Pranav  Trivedi,UMIYA MARIN ,IM-Independent Mechanic,15D6DAFE,,9429488689,HDEO-Commercial Vehicle,VANAKBARA  DIU  DIU,
 Sukan Incorporation,Pranav  Trivedi,krushnam enterprise,IM-Independent Mechanic,FEDAF46B,,8000737371,PCMO,rajkot  0,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,MOSIN  JUBER,IM-Independent Mechanic,E36AAF7D,110425,9371089075,MCO,NEAR KHARBI ROAD NAGPUR  NEAR KHARBI ROAD NAGPUR  ,
-JS Diesel Spares,DEEPAK  HODE,Jyoti  PATIL,IM-Independent Mechanic,4E+279,33053,9828787283,MCO,pune  Tilak road,SHETTYS MARUTI SERVICE AUNDH
+JS Diesel Spares,DEEPAK  HODE,Jyoti  PATIL,IM-Independent Mechanic,4.00E+279,33053,9828787283,MCO,pune  Tilak road,SHETTYS MARUTI SERVICE AUNDH
 JS Diesel Spares,DEEPAK  HODE,MANGAL  PATIL,IM-Independent Mechanic,E7A6508C,33053,9579003100,MCO,pune  pune  PCMC,SHETTYS MARUTI SERVICE AUNDH
 SHUBHAM ENTERPRISES,Vinod  Patil,Roshan  Marathe ,IM-Independent Mechanic,EDF1933F,,9011911055,HDEO-Commercial Vehicle,sakal sarkal  Nashik,
 OM ENTERPRISES,Vikas  Laxman Jugdar,SRI VELAN MOTORS,IM-Independent Mechanic,0D3C92F5,,6369885343,MCO,43 kattur  thiruporur road  0,
@@ -7190,7 +7190,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,Jai Auto Mobiles - New Hafeezp,Retail
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,AUTOCARE WORKSHOP,IM-Independent Mechanic,8832145D,,9106717259,PCMO,HARIJ LINK ROAD  RAMLEELA HOTEL NI SAME  0,
 SHUBHAM ENTERPRISES,Vinod  Patil,aarushi car service,IM-Independent Mechanic,B5363BEB,,8108363171,PCMO,rto office nashik  st workshop  0,
 Sukan Incorporation,Pranav  Trivedi,Bombay,IM-Independent Mechanic,4CA9B899,,7506119188,MCO,hospital road  0,
-George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,siddhivinayak,IM-Independent Mechanic,5.5549E+52,230715,7715021244,MCO,b12 arvindo sec 9  0,
+George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,siddhivinayak,IM-Independent Mechanic,5.55E+52,230715,7715021244,MCO,b12 arvindo sec 9  0,
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Sagar auto parts,IM-Independent Mechanic,C21D166D,230697,9820535191,MCO,jogeshwari w  jogeshwari w  0,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Cargo motors,IM-Independent Mechanic,4677276D,220137,8347234763,HDEO-Commercial Vehicle,gota  jagatpur  0,NEW HARI OM SERVICE CENTER (VATVA)
 JS Diesel Spares,DEEPAK  HODE,SUMIT NALAWADE,BIWS-Branded Workshop,0C311A70,230624,8390039474,PCMO,pune  pune  NANAPET,CAR CLUB - RASTA PETH
@@ -7507,7 +7507,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,Salmanbhai Vahora,IM-Independent Mechanic,
 SRI SAINATH AGENCIES,Srinivas goud  burra,NEHA MOTORS,IWS-Independent Workshop,6B9AF8F1,233877,9010087810,MCO,madhura nagar colony  opp sai rangatheater miya pu,Neha Motors
 SRI SAINATH AGENCIES,Srinivas goud  burra,BULLET WORLD,BIWS-Branded Workshop,A5089BEF,219595,9700081108,MCO,prem nagar  erragadda  '-HYDERABAD,Bullet World
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,jaiswal auto parts,IM-Independent Mechanic,0263037C,216344,8576007380,MCO,mansarovar complex building no 10 shop no28  0,Kartvya Kiya Auto Parts
-Concept Motorbike Company Pvt Limited,Jasmin  Patel,JANTA GERAJ,IM-Independent Mechanic,1.1836E+24,228989,9712891091,HDEO-Tractor,BALASINOR RELIANCE PETROL PUMP KE SAMNE  0,NAIM AUTO AGENCY
+Concept Motorbike Company Pvt Limited,Jasmin  Patel,JANTA GERAJ,IM-Independent Mechanic,1.18E+24,228989,9712891091,HDEO-Tractor,BALASINOR RELIANCE PETROL PUMP KE SAMNE  0,NAIM AUTO AGENCY
 OM ENTERPRISES,Vikas  Laxman Jugdar,Balaji workshop,IM-Independent Mechanic,71F32881,,8883940085,MCO,ecr road  palavakkam  0,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Sajidbhai Vhora ,IM-Independent Mechanic,2433070000,15554,9974837507,MCO,Nr. Amina Manzil  Anand  Anand,Sadguru Auto Parts     Anand
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,Sri Rajarajeshwari motors ,IM-Independent Mechanic,0552375D,260477,9959770667,PCMO,kakatiya colony near alankar Hanamkonda  Alankar H,SRI LAXMI VENKATESHWARA AUTOMOBILES -JAGITIAL
@@ -7962,7 +7962,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,vrushali automobile,Retail,6D7FD4
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,bombay oil products,Retail,EDA5D67C,171472,8451036101,Retail,Thane  Thane  Thane,bombay oil products
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Tritan Bicycle World,Retail,F06FF884,93057,8454088578,Retail,thane  thane  thane,Tritan Bicycle World
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Jaspal Motors,Retail,7C9AECB4,34280,9325597115,Retail,Thane  Thane  Thane,Manish Auto Garage
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Taresh Motors,Retail,8.9498E+101,34241,7718983920,Retail,Thane  Thane  Thane,Taresh Motors
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Taresh Motors,Retail,8.95E+101,34241,7718983920,Retail,Thane  Thane  Thane,Taresh Motors
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Akshay Enterprises,Retail,FE6E0AD7,34229,8976143237,Retail,Thane  Thane  Thane,Akshay Enterprises
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,vishwkarma motor garege,IWS-Independent Workshop,CDD48199,250641,9558235858,PCMO,mantresh complex  ghogharoad  0,VISHAVAKARMA MOTOR GARAGE
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Saiprasad Auto Spares,Retail,F18ACF30,34872,9833675225,Retail,Panvel  Panvel  Panvel,Saiprasad Auto Spares
@@ -7990,7 +7990,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Car Doctor,Retail,76B8491A,34422,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Zankar Auto Parts,Retail,807CECA2,34194,8424884014,Retail,Thane  Thane  Thane,Zankar Auto Parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,khushi automobile Ettapalli ,BIWS-Branded Workshop,F7CC1A75,239158,9404934495,HDEO-Commercial Vehicle,panchayat samiti near  main road Ettapalli  Ettapa,Khushi Automobile Ettapalli
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Kartik automobile Ettapalli ,Retail,6AC1A48D,239151,9405391982,Retail,panchayat samiti opposite  petrol pump near  Ettap,Kartik automobile Ettapalli
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,AS Bike Point,Retail,5.2421E+94,34713,9768331986,Retail,Thane  Thane  Thane,AS Bike Point
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,AS Bike Point,Retail,5.24E+94,34713,9768331986,Retail,Thane  Thane  Thane,AS Bike Point
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Umesh Auto Garage,Retail,CE82DEE7,34726,8591266985,Retail,Thane  Thane  Thane,Umesh Auto Garage
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sujeet Auto Parts,Retail,DFE99E4D,34183,9967828447,Retail,Thane  Thane  Thane,Sujeet Auto Parts
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,supreme automobiles Unit of Re,Retail,F4E68942,218376,8828882425,Retail,Thane  Thane  Thane,supreme automobiles Unit of Reliable automotive pvt ltd
@@ -8106,7 +8106,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,Y Balakrishna ,IM-Independent Mechani
 Rajdeep Automotives,Thallapally  Raju Goud,P Kiran ,IM-Independent Mechanic,1F8184B7,233261,9347136266,PCMO,Medipally  Medipally  Hyderabad,Sree Venkateshwara Enterprises - Shell
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Rashik  patel,IWS-Independent Workshop,1BE8BE51,237977,9898949410,PCMO,shop no 4 sunexotica  naroda dehgam  Ahemdabad,PATEL AUTO CARE
 Sukan Incorporation,Pranav  Trivedi,KRISHNA AUTO AGENCY UNA,Retail,151F4420,67551,9825054222,Retail,SHOP. NO 18.   MARKETING YARD  BHAVANAGAR ROAD. UN,KRISHNA AUTO AGENCY UNA
-Sukan Incorporation,Pranav  Trivedi,GOKUL AUTOMOBILES VERAVALA,Retail,3.8806E+93,67620,9558053975,Retail,TRIKONIYA BLDG.  OPP ARADHANA CINEMA  VERAVAL,GOKUL AUTOMOBILES VERAVALA
+Sukan Incorporation,Pranav  Trivedi,GOKUL AUTOMOBILES VERAVALA,Retail,3.88E+93,67620,9558053975,Retail,TRIKONIYA BLDG.  OPP ARADHANA CINEMA  VERAVAL,GOKUL AUTOMOBILES VERAVALA
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Global Enterprises,Retail,2146A133,96594,9137175883,Retail,thane  thane  thane,Global Enterprises
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,KUMAR INTERIOR HOME,Retail,9E798070,199398,9892605076,Retail,thane  thane  thane,KUMAR INTERIOR HOME
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,City Motors,Retail,7D40EE11,34294,8652477267,Retail,thane  thane  thane,City Motors
@@ -8453,7 +8453,7 @@ George Oakes Limited ( Mumbai),Bhavesh  Vashiya,chekavars,IM-Independent Mechani
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sri Krupa Automobile,Retail,8761DD21,33875,7715062414,Retail,kalyan  kalyan  kalyan,Sri Krupa Automobile
 MUKTI TRADERS,Kishor  Mahant,BK Auto Garage ,IM-Independent Mechanic,4B3346D0,35731,8511533268,HDEO-Commercial Vehicle,"Gebinath Shopping Center  Timba Road,Savli  Savli",Bajrang Machinery and Electrical Store
 SRI SAINATH AGENCIES,Srinivas goud  burra,Sandeep,IM-Independent Mechanic,A703309E,235202,9642691691,PCMO,chilpakuntla  0,Satish Automobiles
-Concept Motorbike Company Pvt Limited,Jasmin  Patel,arti motar,IM-Independent Mechanic,5.9208E+83,228989,9099212897,HDEO-Tractor,balasinor  balsinor  0,NAIM AUTO AGENCY
+Concept Motorbike Company Pvt Limited,Jasmin  Patel,arti motar,IM-Independent Mechanic,5.92E+83,228989,9099212897,HDEO-Tractor,balasinor  balsinor  0,NAIM AUTO AGENCY
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,samed pasha,IM-Independent Mechanic,11F466FF,234205,9908114985,HDEO-Commercial Vehicle,bhadhurpally  Sainath  society  Hyderabad,Sonu Autoparts - Gandimysamma
 OM ENTERPRISES,Vikas  Laxman Jugdar,unique multibrand islampur,IM-Independent Mechanic,B9EDBD77,,8484085060,MCO,near kokrde rod  urun islampur  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SANTOSH Ram,IM-Independent Mechanic,FFC77156,201271,8897455810,HDEO-Commercial Vehicle,medical check post  near cmr college  Hyderabad,Baba Traders-Rtc ''x Road
@@ -8530,7 +8530,7 @@ Bharat Trading Hub,OM PRAKASH  MEHTA,CAPITAL MOTORS,Retail,8A24A7A4,230425,92636
 Bharat Trading Hub,OM PRAKASH  MEHTA,amit service,BIWS-Branded Workshop,56CC2ED0,236332,8789519571,PCMO,mv road  near reliance mall  Aurangabad,
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,B.F MOTOR,Retail,D904C6C8,230664,9820667700,Retail,jogeshwari w  jogeshwari w  jogeshwari w,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Kalim Ansari,IWS-Independent Workshop,9BD93EFA,215189,9924214003,MCO,"sarvodaynagar soc  sector 30, Gandhinagar  Gandhin",JANTA GARAGE.
-Bharat Trading Hub,OM PRAKASH  MEHTA,Bharat motor parts,Retail,8.28699E+11,236320,7977748016,Retail,opp sbi  Aurangabad  danibigha,
+Bharat Trading Hub,OM PRAKASH  MEHTA,Bharat motor parts,Retail,8.29E+11,236320,7977748016,Retail,opp sbi  Aurangabad  danibigha,
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,D.K TOORS AND TRAVELS,BIWS-Branded Workshop,17106C1A,236314,9833589409,PCMO,jogeshwariw  jogeshwariw  jogeshwari west,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Kamlesh  Sharma ,IWS-Independent Workshop,C917304C,222926,7490877828,MCO,Rudra arcade  dolvani 3 cross road  Bhiloda,SHARMA AUTO PARTS AND GAREGE
 Bharat Trading Hub,OM PRAKASH  MEHTA,D.S. motor,Retail,C02F6030,228360,9162675026,Retail,madarasa road  aurangabad  Aurangabad,
@@ -8601,7 +8601,7 @@ SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,m.f motels,IM-Independent Mechanic,
 Rajdeep Automotives,Thallapally  Raju Goud,Ms motor,IM-Independent Mechanic,CD9EAD5B,251294,6281444914,HDEO-Commercial Vehicle,pillar no 230 fish building rajendra nagar  MM pah,Sanjay Automobiles
 Super Lubricants,Default DSR  Super Lubricants,patel auto parts,IM-Independent Mechanic,D30C1016,,7016784671,PCMO,kosamdi  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Jubilee cars,IM-Independent Mechanic,C8B94CB5,201271,9989633406,PCMO,madhur  madhur  0,Baba Traders-Rtc ''x Road
-Sukan Incorporation,Pranav  Trivedi,MEGHANI ENTERPRISRAJKOT,Retail,7.7825E+32,67773,9824909900,Retail,"Gondal road , bombay hotel chok  rajkot  Rajkot",MEGHANI ENTERPRISRAJKOT
+Sukan Incorporation,Pranav  Trivedi,MEGHANI ENTERPRISRAJKOT,Retail,7.78E+32,67773,9824909900,Retail,"Gondal road , bombay hotel chok  rajkot  Rajkot",MEGHANI ENTERPRISRAJKOT
 Sukan Incorporation,Pranav  Trivedi,Hardik Sakariya ,Retail,E406EB5C,67341,9601618577,Retail,shiv traders gondal road  near shell petrol pump  ,SHIVAM TRADERS RAJKOT1B
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,Kamiyab Maruti Motors,Retail,9EE8DC37,32424,9313084058,Retail,satlasana Highway  Kheralu  0,Kamiyab Maruti GerageKheralu
 JS Diesel Spares,DEEPAK  HODE,KRISHNA SHA,IM-Independent Mechanic,F4629E46,212224,9325196158,MCO,pune  wadgowan,MAHADEV AUTOMOTIVES
@@ -8626,7 +8626,7 @@ MUKTI TRADERS,Kishor  Mahant,Bhavani Enterprise,Retail,8994C664,236031,762289111
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,mk motrres,IM-Independent Mechanic,9282DFEA,227392,9712182196,PCMO,At tintoi modasa  at tintoi modasa  0,VINAYAK TRACTORS
 Sukan Incorporation,Pranav  Trivedi,khodiyar bettry & auto electri,IM-Independent Mechanic,213C8EAA,,9712275829,MCO,khodiyar bettry  0,
 Sukan Incorporation,Pranav  Trivedi,krishna auto gerj,IM-Independent Mechanic,F8F1C503,,9723490915,MCO,trikonbag una  trikonbag una  0,
-George Oakes Limited ( Mumbai),Bhavesh  Vashiya,vainketewar,IM-Independent Mechanic,6.45435E+12,,9271446789,MCO,navghar road  mira bhayander  0,
+George Oakes Limited ( Mumbai),Bhavesh  Vashiya,vainketewar,IM-Independent Mechanic,6.45E+12,,9271446789,MCO,navghar road  mira bhayander  0,
 Sukan Incorporation,Pranav  Trivedi,Faruk  suba ,BIWS-Branded Workshop,5A6C622C,235213,6352330401,MCO,Talala road  veraval  near . I D chauhan school,GREEN STAR AUTO CARE VERAVAL
 MUKTI TRADERS,Kishor  Mahant,Panchal Hardware,Retail,60E61800,35586,9265339442,Retail,"OPP, KISHAMAT CIMEMA, STATIOM ROAD  KAWAT ROAD, NA",Panchal Hardware
 SHUBHAM ENTERPRISES,Vinod  Patil,SADGURU CAR CARE,BIWS-Branded Workshop,43FB1AF3,69037,8329007234,PCMO,Dhanvantari college  Nashik,SADGURU CAR CARE
@@ -8774,7 +8774,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,Naim Rajpura,IM-Independent 
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Misdak Kharodiya,IM-Independent Mechanic,9D41B0A9,228989,9773159001,PCMO,"under hotel mountain  near palajpur patiya, vijapu",NAIM AUTO AGENCY
 SHUBHAM ENTERPRISES,Vinod  Patil,VEDANT AUTOMOBILE,Retail,EB56DCC7,235635,9146085038,Retail,Gangapur Road  Nashik,VEDANT AUTOMOBILE
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Ankitaingh Zala,IM-Independent Mechanic,37F24B38,228989,6352034019,PCMO,near RTO circle  vijapppur highway  Himmatnagar,NAIM AUTO AGENCY
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,k m car care,IWS-Independent Workshop,3.415E+253,213686,8511779474,MCO,k m car care bhiloda . dholvani tran rasta .vijayn,K M CAR CARE
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,k m car care,IWS-Independent Workshop,3.42E+253,213686,8511779474,MCO,k m car care bhiloda . dholvani tran rasta .vijayn,K M CAR CARE
 Bharat Trading Hub,Akash  Telang,patel automobiles,IM-Independent Mechanic,2846FDFE,,9922447751,PCMO,washim rood  akola  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Shiv Ganesh Motors,Retail,1D9F7D67,34763,9833919355,Retail,shop no 1 arham arcade belpada  sec 3 kharghar  ra,Shiv Ganesh Motors
 SRI SAINATH AGENCIES,Srinivas goud  burra,Syed  Moshinuddin,Retail,666B8C9D,57859,7075902007,Retail,Moosapet  Hyderabad  Hyderabad,PERFECT AUTOMOBILES
@@ -8844,7 +8844,7 @@ Anushka Trading,Jagdish  Gangadas Vaishnav,sachin kalbhile,IM-Independent Mechan
 SRI SAINATH AGENCIES,Srinivas goud  burra,sri Balaji motears,IM-Independent Mechanic,FB471FAD,57926,6301578073,PCMO,konda mallepally  konda mallepally  0,Zoha EnterprisesMallepally
 SRI SAINATH AGENCIES,Srinivas goud  burra,khan's mechx,IM-Independent Mechanic,E720F05D,,7286998976,PCMO,12-2-837  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,shell,IM-Independent Mechanic,51C42A6D,,7418566039,MCO,"no:97  Poonamallee High Rd, Kandaswamy Nagar, Vill",
-RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,Sri Lakshmi nrusimha car care,IM-Independent Mechanic,5.0983E+14,235195,7995505905,PCMO,hayathnagar  hothigudha  0,E.S.MINING&EARTH MOVING SPARES_HAYATHNAGAR
+RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,Sri Lakshmi nrusimha car care,IM-Independent Mechanic,5.10E+14,235195,7995505905,PCMO,hayathnagar  hothigudha  0,E.S.MINING&EARTH MOVING SPARES_HAYATHNAGAR
 JS Diesel Spares,DEEPAK  HODE,gurudatta automobile,IM-Independent Mechanic,9AE344B5,33706,9665602002,MCO,ravet  ravet  0,SHABARI MOTORSKATRAJ
 MUKTI TRADERS,Kishor  Mahant,Mahadev Motors,Retail,D409D9ED,35875,9879466494,Retail,"Dabhoi Road  Near Water Tank,  Bodeli  Bodeli",Mahadev Motors
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,SRI DURGA MOTORS - VANASTHALIP,IWS-Independent Workshop,A04EF2DE,211809,9392080333,PCMO,"opp.reliance trends  vanasthali hills,vanasthalipu",Sri Durga Motors - Vanasthalipuram
@@ -8989,7 +8989,7 @@ SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,carjoz workshop,IM-Independent Mecha
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Neer by Katargam,IM-Independent Mechanic,DB09A0E8,,9801852968,MCO,neer by karargam  neer by katargam  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,PARVAZ KHAN,IM-Independent Mechanic,26C36DA9,57921,9848311973,PCMO,Aghapura  aghapura  hyderabad,National Auto MobilesAghapura
 SHUBHAM ENTERPRISES,Vinod  Patil,Autotech ,BIWS-Branded Workshop,A4B7CF3D,234703,9822278941,PCMO,Balwant Nagar  Gangapur road Nashik  0,AUTO TECH
-SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,munnu mechanic work shop,IM-Independent Mechanic,5.716E+27,58068,7097525313,HDEO-Commercial Vehicle,shadan hotel  shadan hotel  0,MS AUTO MOBILESChandrayanagutta
+SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,munnu mechanic work shop,IM-Independent Mechanic,5.72E+27,58068,7097525313,HDEO-Commercial Vehicle,shadan hotel  shadan hotel  0,MS AUTO MOBILESChandrayanagutta
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,munnu Mechanical work shop,IM-Independent Mechanic,0E156736,58068,8309872834,HDEO-Commercial Vehicle,shadan hotel  shadan hotel  0,MS AUTO MOBILESChandrayanagutta
 SHUBHAM ENTERPRISES,Vinod  Patil,HABIB AUTO GARAGE,BIWS-Branded Workshop,2F02A3E0,102277,9175605825,PCMO,Ambaf  Nashik,HABIB AUTO GARAGE
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Balaji auto mobiles,IM-Independent Mechanic,043D8E11,250350,8446863502,MCO,chickenghar chattari bangla  birla college road Ka,Shubham automobiles
@@ -9123,7 +9123,7 @@ SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,mk bike mechanic,IM-Independent Mech
 SRI SAINATH AGENCIES,Srinivas goud  burra,shell,IM-Independent Mechanic,8531A4A5,,8142600601,HDEO-Commercial Vehicle,lakshmi Nagar  Cherlapally  0,
 JS Diesel Spares,DEEPAK  HODE,shekhar,IM-Independent Mechanic,A1CC12D0,33087,9637431065,HDEO-Commercial Vehicle,2  2  0,SK MOTORS WARJE
 Bharat Trading Hub,Akash  Telang,om gerej,IM-Independent Mechanic,42DD6CDF,,7972808385,PCMO,wasim payss akola  washim bayss akola  0,
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,manorama nagar,IM-Independent Mechanic,6.4245E+76,216343,7208411381,MCO,kailash nagar  yashashavi nagar  0,Amit Auto parts
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,manorama nagar,IM-Independent Mechanic,6.42E+76,216343,7208411381,MCO,kailash nagar  yashashavi nagar  0,Amit Auto parts
 SRI SAINATH AGENCIES,Srinivas goud  burra,LG Motars,IM-Independent Mechanic,51AB2CC0,233906,8328118047,PCMO,cherch compond  0,A Auto Glide Lubricants
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,Rajesh auto center,IM-Independent Mechanic,76000B11,,9898782040,HDEO-Commercial Vehicle,Rajesh auto center  visnagar  0,
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,santinagar kalyan,IM-Independent Mechanic,913CE636,,8450934188,PCMO,ulhadnagar  klayan road  santinagar  0,
@@ -9606,7 +9606,7 @@ Bharat Trading Hub,Default DSR  Bharat Trading Hub,Faruk motors,IM-Independent M
 Bharat Trading Hub,Akash  Telang,Maa Jijau Garage,IWS-Independent Workshop,347CF554,261307,9860791009,MCO,Main Road  Mehkar Road  0,Maa Jijau Auto Sarvice
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,MOHD  SHAKIR,IM-Independent Mechanic,AD41A484,,9058330484,HDEO-Commercial Vehicle,aramghar x road  aramghar x road  hyderabad,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Manish  Rajput ,IM-Independent Mechanic,9230BD27,219495,7016288097,PCMO,bamroli road pandesara  near. police colony  385 g,Mistry motors
-SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SHADEEK PASHA,IM-Independent Mechanic,7.6462E+87,58144,9980979727,HDEO-Commercial Vehicle,attapur police station  attapur police station  hy,G N B TRADERS
+SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SHADEEK PASHA,IM-Independent Mechanic,7.65E+87,58144,9980979727,HDEO-Commercial Vehicle,attapur police station  attapur police station  hy,G N B TRADERS
 SHUBHAM ENTERPRISES,Vinod  Patil,yash Tyres,IM-Independent Mechanic,A5676EF9,234258,7499992146,PCMO,Nashik road  passport office  0,Yash Tyres
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,sabir bhai,Retail,465FF9A9,229147,8320316962,Retail,mahakali parking  s p ring road  Ahmedabad,HADDAD AUTO PARTS
 Sukan Incorporation,Pranav  Trivedi,akshar auto electricals,IWS-Independent Workshop,9C7D6F4F,,9427151173,PCMO,akshar auto electricals  nh.48 dharagiri  0,
@@ -10202,7 +10202,7 @@ SRI SAINATH AGENCIES,Srinivas goud  burra,SHAIK HUSSAIN,IM-Independent Mechanic,
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Borole Service,IM-Independent Mechanic,76E3BD01,,9923246361,MCO,Kanergaon Naka  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SYED RAHEMATH ALI,IM-Independent Mechanic,9DEF5140,201271,9908381129,HDEO-Commercial Vehicle,shamshabad auto nagar  shamshabad auto nagar  Hyde,Baba Traders-Rtc ''x Road
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Gopinathji,IM-Independent Mechanic,C0696085,15662,9316606015,HDEO-Commercial Vehicle,rupan faliyu narpura Godhra  Godhra  0,Metro Motors
-Rajdeep Automotives,Thallapally  Raju Goud,gmr motors,IM-Independent Mechanic,4.8992E+46,233871,8247560784,PCMO,old safilguda  old safilguda  0,Rs Auto Mobile -Moula Ali
+Rajdeep Automotives,Thallapally  Raju Goud,gmr motors,IM-Independent Mechanic,4.90E+46,233871,8247560784,PCMO,old safilguda  old safilguda  0,Rs Auto Mobile -Moula Ali
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Nishitbhai Patel.,IWS-Independent Workshop,1B089676,230593,7359880888,HDEO-Tractor,"30., Shreenath  Arcade., opp., Umiya Temple.  Dheg",PERFECT  ENTERPRISE.
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,mechanical,IM-Independent Mechanic,2F81E04C,205917,7249363460,HDEO-Tractor,kolad road near pala stop  kolad mahabale pala  0,Universal Auto
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,Ahmed bike point,IM-Independent Mechanic,7D66F678,58291,6361437125,MCO,Ahmed bike point near hockey stadium rasoolpura  r,LALIT AUTO MOBILESSecbad
@@ -10285,7 +10285,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),Ravi  Patil,IM-Independent Mecha
 Rajdeep Automotives,Abdul  Razak,SOBHA AUTOMOBILES AND WORKSHOP,BIWS-Branded Workshop,D97C06FB,232821,9492674129,MCO,Main Road Gummlakshmipuram  0,SOBHA CYCLES & AUTOMOBILES
 JS Diesel Spares,DEEPAK  HODE,Trisha Automobile,IM-Independent Mechanic,407DD211,33046,9657444481,MCO,Dehugaon  0,INDUSTRIAL OIL COMPANY
 Rajdeep Automotives,Thallapally  Raju Goud,Suresh Reddy  Ch,Retail,94C9D8B5,233261,9666652117,Retail,Medipally  Uppal  Hyderabad,Sree Venkateshwara Enterprises - Shell
-SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,km,IM-Independent Mechanic,4.041E+15,218990,6304115545,HDEO-Commercial Vehicle,hitech city  madhapur  0,A1 Motors
+SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,km,IM-Independent Mechanic,4.04E+15,218990,6304115545,HDEO-Commercial Vehicle,hitech city  madhapur  0,A1 Motors
 JS Diesel Spares,DEEPAK  HODE,Amita Enterprises,IM-Independent Mechanic,233DBBDA,109978,9689187247,PCMO,Bengaluru - Mumbai Hwy  0,ALI AUTO CARE- KONDWA
 SHUBHAM ENTERPRISES,Vinod  Patil,om sai garage,IM-Independent Mechanic,3F5B971A,235880,8080041190,PCMO,swar baba nagar satpur nashik  swar baba nagar tra,Sai marketing
 SRI SAINATH AGENCIES,Srinivas goud  burra,diesel mechanic,IM-Independent Mechanic,41D789A1,58162,9014859118,HDEO-Commercial Vehicle,attapur  attapur  0,Sri Akhila EnterprisesAttapur
@@ -10614,7 +10614,7 @@ SRI SAINATH AGENCIES,Srinivas goud  burra,MOHD YOUSUF,IM-Independent Mechanic,5D
 SRI SAINATH AGENCIES,Srinivas goud  burra,vinayaka enterprises ,Retail,5384FE02,233915,9492574308,Retail,vanastalipuram  near d mart  hyderabad,VINAYA ENTERPRISES _VANASTALIPURAM
 OM ENTERPRISES,Vikas  Laxman Jugdar,City Motors,IM-Independent Mechanic,9D5CC489,,9834676901,PCMO,Islampur  0,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,ss bike point,IM-Independent Mechanic,4C9BFF43,243165,9359552327,MCO,majri co  majri .co shiji nagar  0,M S MOTORS
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),sai Auto Garage,IM-Independent Mechanic,8.004E+175,212807,8200122879,PCMO,602 Gulistan apartment vahorwad navsari  602 Gulis,Vardhman oil agency Navsari
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),sai Auto Garage,IM-Independent Mechanic,8.00E+175,212807,8200122879,PCMO,602 Gulistan apartment vahorwad navsari  602 Gulis,Vardhman oil agency Navsari
 JS Diesel Spares,DEEPAK  HODE,D D motors,IM-Independent Mechanic,5D5527D9,33274,7620013028,PCMO,Audi showroom  audi showroom  0,THE MOTOR WORKS
 OM ENTERPRISES,Vikas  Laxman Jugdar,Shabira Shaikh ,IM-Independent Mechanic,EEA0B581,,9021716176,MCO,panchmukhi maruti road pathravat gali Sangli  Sang,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,ismail,IM-Independent Mechanic,A4702605,233803,6303804948,PCMO,auto nagar 2 road  auto nagar 2 road  0,GOEL SONS_AUTONAGAR
@@ -10819,7 +10819,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,Salaman Malek. ,IWS-Independ
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,morden car cer,IM-Independent Mechanic,2CAD0E2C,,7490995748,PCMO,mordencarcer danta navvaas  morden car cer navvas ,
 Rajdeep Automotives,Abdul  Razak,Murali Krishna bike works,IM-Independent Mechanic,95663B56,233940,9010223055,MCO,"Malkapuram,Main road  0",Nationalautomobiles
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Rahilbhai Chauhan. ,IM-Independent Mechanic,A99901DE,221826,7698779838,PCMO,Near water tank.  Palitana Road.  Gariydhar.  Gari,VALAM AUTO MOBILES
-Concept Motorbike Company Pvt Limited,Jasmin  Patel,Devang  Khavdiya,IM-Independent Mechanic,8.2379E+12,222768,8734845456,MCO,"shop7, Ashapura chamber  Kamal Derawar sama  suren",Vishnu auto sales
+Concept Motorbike Company Pvt Limited,Jasmin  Patel,Devang  Khavdiya,IM-Independent Mechanic,8.24E+12,222768,8734845456,MCO,"shop7, Ashapura chamber  Kamal Derawar sama  suren",Vishnu auto sales
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),royal Oil Center,IM-Independent Mechanic,294682F4,102827,9512522795,HDEO-Commercial Vehicle,kosmba  tarsadi  0,Jay Enterprise Paras(Surat)
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,bapa sitaram,IM-Independent Mechanic,C545D9C7,215818,9638746473,MCO,Shivam pan .om namah shivay soc mafatanagar.fulsar,OM ENTERPRISE
 OM ENTERPRISES,Vikas  Laxman Jugdar,new india multi barand car ser,IM-Independent Mechanic,43CA880D,,8667595902,HDEO-Commercial Vehicle,"2, susila nagar, Kalaignar St, Kovilambakkam, Chen",
@@ -11168,7 +11168,7 @@ Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Rajanibhai Patel.,IM
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Vijay bhai  Patel ,IM-Independent Mechanic,FD904D92,225552,9909084538,MCO,"Shop no.40 ,Bhaktinadan  Shopping  Centre.  Bapa  ",shreenathji tyre care
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,UMIYA AUTO MOBILE,IM-Independent Mechanic,B83CD460,,9427679951,MCO,"2,Suraj estate highway road  unjha  0",
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mrunal Gawali,IM-Independent Mechanic,EA791510,,9209357772,MCO,krida chowk  Chandan nagar  Nagpur,
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),Auto premium,IM-Independent Mechanic,7.6309E+47,202831,9374725650,PCMO,sardar park  0,Dev Traders (SURAT)
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),Auto premium,IM-Independent Mechanic,7.63E+47,202831,9374725650,PCMO,sardar park  0,Dev Traders (SURAT)
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Nilesh Atkar,IM-Independent Mechanic,7367210,236462,9764063787,MCO,krida chowk  Chandan nagar  Nagpur,Sunil Scooter House
 SRI SAINATH AGENCIES,Srinivas goud  burra,venky,IM-Independent Mechanic,DA573D81,,6302266175,MCO,amadagur  amadagur  0,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mrunal Gawali,IM-Independent Mechanic,F8A4689E,236462,7219803733,MCO,krida chowk  Chandan nagar  Nagpur,Sunil Scooter House
@@ -11217,7 +11217,7 @@ SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,Srinivasa Motors,IM-Independent Mech
 Bharat Trading Hub,Default DSR  Bharat Trading Hub,labai car service centre,IM-Independent Mechanic,0D648D1C,,9022103386,PCMO,Alim Nagar kabristan ka pass  0,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),om auto mobile,IM-Independent Mechanic,2125044D,200264,9537736847,PCMO,bardoli  bardoli  0,Mahadev Auto Spares (Surat-Bardoli)
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Dynaneshwar Jagre,IM-Independent Mechanic,B7E7CD58,,9370505331,PCMO,juni mangalwari  telephone exchange sq  Nagpur,
-GOODLUCK AUTO PARTS,Ashishkumar  Patel,Mahadev auto parts,IM-Independent Mechanic,8.4352E+32,,7574851642,PCMO,Manav ashram chokdi  Mehsana  0,
+GOODLUCK AUTO PARTS,Ashishkumar  Patel,Mahadev auto parts,IM-Independent Mechanic,8.44E+32,,7574851642,PCMO,Manav ashram chokdi  Mehsana  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,arrow motors,IM-Independent Mechanic,5EEE745C,34274,9028271617,PCMO,khopoli  0,Dev Battery Point
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,ansar car care,IM-Independent Mechanic,7D453437,201271,9154123655,PCMO,Vinayaka nagar kadapa  Vinayaka nagar kadapa  0,Baba Traders-Rtc ''x Road
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),hiten,IM-Independent Mechanic,FA758626,212807,8980878936,MCO,navsari  navsari  0,Vardhman oil agency Navsari
@@ -11247,7 +11247,7 @@ OM ENTERPRISES,Vikas  Laxman Jugdar,jagdamba auto shirwal,BIWS-Branded Workshop,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Mahendrabhai Patel.,IM-Independent Mechanic,D74E0F56,219666,9974276220,PCMO,"32., Shajahanand Complex.  New Ranip , Ahmedabad. ",Laxmi Auto Parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Imtiyaz Khan,IM-Independent Mechanic,A7A52012,,7588886786,MCO,in front of rewati complex  wadi road  Nagpur,
 OM ENTERPRISES,Vikas  Laxman Jugdar,Nandini automobile,BIWS-Branded Workshop,806FCE18,101288,9970255258,PCMO,kholapur road sangli  0,Nandini Automobiles (sangli)
-SHREE KRISHNA AGENCIES,Akil  Dudhwala,Saddam ali  saiyed ,IM-Independent Mechanic,5.40809E+12,15500,8140280748,HDEO-Commercial Vehicle,Dumad chokdi national highways near  salim auto pa,Shiv Shakti Auto Parts   Dumad
+SHREE KRISHNA AGENCIES,Akil  Dudhwala,Saddam ali  saiyed ,IM-Independent Mechanic,5.41E+12,15500,8140280748,HDEO-Commercial Vehicle,Dumad chokdi national highways near  salim auto pa,Shiv Shakti Auto Parts   Dumad
 JS Diesel Spares,DEEPAK  HODE,balaji motors,IM-Independent Mechanic,8A6C51BE,10906,7875800823,PCMO,"278, Dhanori-Lohegaon Rd, Kuthwad Colony, Dhanori-",Arihant Enterprises
 Rajdeep Automotives,Thallapally  Raju Goud,SHIRIDI SAI CAR CARE ,BIWS-Branded Workshop,D204E4C9,55984,9133435670,PCMO,opp muthangi church  isnapur x road  Muthangi,SHIRDI SAI CAR CARE
 OM ENTERPRISES,Vikas  Laxman Jugdar,shri Ganesh auto car,IM-Independent Mechanic,43B81612,,7517064141,PCMO,ja  jakinwadi  0,
@@ -11361,7 +11361,7 @@ SRI SAINATH AGENCIES,Srinivas goud  burra,Balaji motors,IM-Independent Mechanic,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),anantam enterprise,IM-Independent Mechanic,80E0C1FA,219352,9106810623,MCO,"572-Avirbhav society-1, pandesara, surat  0",Maruti auto garage
 JS Diesel Spares,DEEPAK  HODE,Vishaka Garage,IM-Independent Mechanic,BA5A2F7F,33046,9119482012,PCMO,Senapati bapat road palvi hotel  senapati bapat ro,INDUSTRIAL OIL COMPANY
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Vakare,IM-Independent Mechanic,DAED398D,,9422464654,MCO,Jakekur  0,
-SRI SAINATH AGENCIES,Srinivas goud  burra,car mechanic,IM-Independent Mechanic,5.6923E+103,,7794979816,PCMO,viajja  0,
+SRI SAINATH AGENCIES,Srinivas goud  burra,car mechanic,IM-Independent Mechanic,5.69E+103,,7794979816,PCMO,viajja  0,
 JS Diesel Spares,DEEPAK  HODE,sell,IM-Independent Mechanic,E9DDD509,33046,9075192670,MCO,Gajanan medical  Chatrapati chowk kaspate vasti  0,INDUSTRIAL OIL COMPANY
 Bharat Trading Hub,Default DSR  Bharat Trading Hub,Kaif,IM-Independent Mechanic,F8745A56,,7083656883,MCO,Walgao Road  walgao Road  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,maa chamunda,IM-Independent Mechanic,9E80715F,201403,9351926393,MCO,501  rangoli time  0,BHARAT ENGINEERS
@@ -11560,7 +11560,7 @@ OM ENTERPRISES,Vikas  Laxman Jugdar,Senthil Mechanic Shop,IM-Independent Mechani
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,.,IM-Independent Mechanic,6423F5C7,15481,7069840148,PCMO,.  0,Shree Durga Lubricants
 Sukan Incorporation,Pranav  Trivedi,brahmani motors,IM-Independent Mechanic,0558804C,,8758389842,PCMO,Pedak rod  0,
 Sukan Incorporation,Pranav  Trivedi,teknishn,IM-Independent Mechanic,A5560870,,9773212491,MCO,soori fuels shell Althan  soori fuels shell Althan,
-OM ENTERPRISES,Vikas  Laxman Jugdar,vzisvsisvsoh,IM-Independent Mechanic,5.2271E+47,,6374179904,MCO,yesuvssoaa suddenly f  svsisvsodbfjdsnwsivsys  0,
+OM ENTERPRISES,Vikas  Laxman Jugdar,vzisvsisvsoh,IM-Independent Mechanic,5.23E+47,,6374179904,MCO,yesuvssoaa suddenly f  svsisvsodbfjdsnwsivsys  0,
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,A.k,IM-Independent Mechanic,EB79731E,233448,9773254701,HDEO-Commercial Vehicle,daman  daman  0,INDIA MOTOR GARAGE
 Rajdeep Automotives,Thallapally  Raju Goud,general motores,IM-Independent Mechanic,75EF201B,234567,7799136962,PCMO,nh 44 medchal road  old bowenpalli  old bowenpalli,Rajalakshmi Enterprises-Boenpally
 Super Lubricants,Default DSR  Super Lubricants,jp motors,IM-Independent Mechanic,C36BF709,,9797533356,PCMO,nurani shoping  godkhul Patiya  0,
@@ -11578,7 +11578,7 @@ Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Karan automobile ,Retail,4FF
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,S.k motor garej,IM-Independent Mechanic,B89F9702,,9990769586,PCMO,Gathaman patiya  palanpur  0,
 JS Diesel Spares,DEEPAK  HODE,Sai travels,IM-Independent Mechanic,BF39ECEF,33046,9922981992,PCMO,chinchwad pune  Akurdi pune  0,INDUSTRIAL OIL COMPANY
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shree Ganesh trading,Retail,BCA4C149,237931,9637832741,Retail,mankapur ring road  gorewada road  Nagpur,"Shree Ganesh trading, mankapur ring road square"
-Rajdeep Automotives,Thallapally  Raju Goud,Sri anjaneya auto mobiles,Retail,7.59467E+11,213169,9441126624,Retail,chandurthi  chandurthi  0,SRI ANJANEYA AUTOMOBILES -CHANDURTHI
+Rajdeep Automotives,Thallapally  Raju Goud,Sri anjaneya auto mobiles,Retail,7.59E+11,213169,9441126624,Retail,chandurthi  chandurthi  0,SRI ANJANEYA AUTOMOBILES -CHANDURTHI
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,Laxminarayana car service,IM-Independent Mechanic,27FE7EFD,233931,7780156219,PCMO,karmanghat  indranagendra thearter  0,SRI SAI RAM MOTOR WORKD_LB NAGAR
 OM ENTERPRISES,Vikas  Laxman Jugdar,Cybereye Bike Care,IM-Independent Mechanic,1D87F064,,9677117007,PCMO,"23/12, Vigneshwara Nagar 1st Street, Madipakkam,  ",
 Rajdeep Automotives,Thallapally  Raju Goud,shell,IM-Independent Mechanic,A02AA399,,6302081067,MCO,nacharam  mallpur  0,
@@ -11901,7 +11901,7 @@ SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,SYED ALEEMUDDIN,IM-Independent Mecha
 OM ENTERPRISES,Vikas  Laxman Jugdar,ansari automobile,IM-Independent Mechanic,5C72102A,,9962002526,MCO,vandalur  otteri extension  0,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Kashmirsingh  Shikh,IM-Independent Mechanic,9ECA5685,203562,9725847011,MCO,Somnath Nagar  Tarsali  Vadodara,Patel Oil & Battery
 JS Diesel Spares,DEEPAK  HODE,yunus sayyad,IM-Independent Mechanic,A0D8CC17,33046,9850020586,PCMO,Balewadi  Balewadi  Banner,INDUSTRIAL OIL COMPANY
-RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,harsha praneeth tractor mechan,IM-Independent Mechanic,5.895E+20,242240,8179943440,HDEO-Commercial Vehicle,madhira  madhira rayapatnam road  0,Surabhi Automobile
+RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,harsha praneeth tractor mechan,IM-Independent Mechanic,5.90E+20,242240,8179943440,HDEO-Commercial Vehicle,madhira  madhira rayapatnam road  0,Surabhi Automobile
 MUKTI TRADERS,Kishor  Mahant,R.K MOTOR WORKSHOP,Retail,65F4871A,247745,8529651177,Retail,ambala road  near maruti agency kaithal  0,S.S MOTOR PARTS
 JS Diesel Spares,DEEPAK  HODE,ram,IM-Independent Mechanic,9EFFAFC8,228836,9588637524,MCO,dhanori  0,PRAVEEN MOTOR PARTS - LAXMI CHOWK
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Anil Auto Garage,IM-Independent Mechanic,DA7C0DB5,34763,9967618098,MCO,Black Smith Corner 1  shop no. 01  0,Shiv Ganesh Motors
@@ -12453,7 +12453,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,laxmi,IM-Independent Mechanic,2D3CFFB
 Rajdeep Automotives,Abdul  Razak,prem shop,IM-Independent Mechanic,C47DFD50,,7993510193,PCMO,palasa  palasa  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Hussain car machine,IM-Independent Mechanic,E22AB501,261029,9553607481,PCMO,Muradnagar Mehdipatnam Hyderabad  muradnagar Mehdi,New Royal Auto Parts & Oil
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,canara auto centar,IM-Independent Mechanic,D2ADD845,34410,7090256825,HDEO-Commercial Vehicle,mulla chaul azadmohalla at post nagothane  maharas,Fahad Auto
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,MD Noushad  ,IM-Independent Mechanic,5.24171E+12,238377,9004259115,MCO,Ali Bhai Premji Marg  Grant Road  Grant Road,Punamiya Earthmovers
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,MD Noushad  ,IM-Independent Mechanic,5.24E+12,238377,9004259115,MCO,Ali Bhai Premji Marg  Grant Road  Grant Road,Punamiya Earthmovers
 SHUBHAM ENTERPRISES,Vinod  Patil,shubham motor garage,IM-Independent Mechanic,0D8A67FE,,8329959366,PCMO,at post khakurdi tal Malegoan dist nashik  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Hitesh Jain,IM-Independent Mechanic,F15705EC,238377,7977440380,MCO,Ali Bhai Premji Marg  Grant Road  Grant Road,Punamiya Earthmovers
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Arif Mansoori ,IM-Independent Mechanic,07C7C028,238377,9867902102,MCO,Ali Bhai Premji Marg  Grant Road  Grant Road,Punamiya Earthmovers
@@ -12587,7 +12587,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,Mahesh Maheshwari,Retail,820447B0,15674,98
 Bharat Trading Hub,Default DSR  Bharat Trading Hub,CB Tyres abd lubricants,Retail,D32B106C,239205,9404784784,Retail,Amravati.  0,CB tyres & lubricants
 OM ENTERPRISES,Vikas  Laxman Jugdar,SIDDHIVINAYAK MOTOR GARAGE,IM-Independent Mechanic,54907702,,7620386722,MCO,"FRONT OF YADRAV SUTGIRANI  NEAR SIT COLLEGE ,ICHAL",
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Sarveshwar Automobile,IM-Independent Mechanic,1279FD0B,83656,8487912525,MCO,"18/19 Deepmala Society, Near DGVCL Ramnagar  Rande",SHREE JAY AMBEY OIL DEPO
-George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,waltern Fernando ,IWS-Independent Workshop,8.8118E+94,264119,9920513425,PCMO,"Active car care, I c colony.  borivali west  Mumba",ACTIVE CAR CARE
+George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,waltern Fernando ,IWS-Independent Workshop,8.81E+94,264119,9920513425,PCMO,"Active car care, I c colony.  borivali west  Mumba",ACTIVE CAR CARE
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,JAY BHOLE TRACTOR ,IM-Independent Mechanic,7E86E454,244995,9422154078,HDEO-Commercial Vehicle,mul road  Sawli  SAWLI,mauli sarvising centar warora
 Rajdeep Automotives,Abdul  Razak,mSrinu Bime mechanic works,IM-Independent Mechanic,06641BD4,233940,9542761594,MCO,Allipuram  0,Nationalautomobiles
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,shiva auto,IM-Independent Mechanic,42443A4E,223003,9574128131,PCMO,near anupam cinema  maninagar  0,NEW DELITE MOTORS.
@@ -12905,7 +12905,7 @@ Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Viral vhai,IM-Indepe
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,shahin bick gerej,IM-Independent Mechanic,1363AD9B,,9998131697,MCO,punjpur  punjpur  0,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Ahesan auto mart,Retail,E3D963A6,217473,9510240989,Retail,signature complex  Sarkhej  Ahmedabad,AUTO MART PARTS.
 JS Diesel Spares,DEEPAK  HODE,Sohan Chaudhari,IM-Independent Mechanic,20E84DAA,33091,9021040151,MCO,Thergaon  Thergaon  Thergaon,SHRI GANESH OIL DEPOT and TYRE CENTREHATTI CHOWK
-JS Diesel Spares,DEEPAK  HODE,MAHADEV  KUMBHAR ,IM-Independent Mechanic,8.5908E+32,,9699609226,MCO,pune  pune  WADGOAAN,
+JS Diesel Spares,DEEPAK  HODE,MAHADEV  KUMBHAR ,IM-Independent Mechanic,8.59E+32,,9699609226,MCO,pune  pune  WADGOAAN,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Naushad Rain,IM-Independent Mechanic,18C1464B,33952,9653620278,PCMO,Time Auto Works - Sector 01 Behind Bank of Baroda ,Navi Mumbai Auto Garage
 JS Diesel Spares,DEEPAK  HODE,Govind  Chaudhary,IM-Independent Mechanic,15418EC8,,8905566682,MCO,Thergaon  Thergaon  Thergaon,
 SRI SAINATH AGENCIES,Srinivas goud  burra,Rayees Ahmed,IM-Independent Mechanic,28114859,,9848657524,MCO,sagmandi street  0,
@@ -13030,7 +13030,7 @@ JS Diesel Spares,DEEPAK  HODE,mira hundai,IM-Independent Mechanic,08535F49,,8459
 Anushka Trading,Jagdish  Gangadas Vaishnav,Om Exclusive Car Care,IWS-Independent Workshop,D36F421B,223563,9028262861,PCMO,sai nagar ner Airport jalan road aurangabad  0,Om Exclusive Car Care Chikhalthan
 OM ENTERPRISES,Vikas  Laxman Jugdar,safi,IM-Independent Mechanic,2336151D,,9566745510,MCO,110 jawahar ayya nagar  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Prakash  Mhatre,IM-Independent Mechanic,F73C1BF8,34051,8879464888,MCO,Sai Jeet Auto Parts - Shop No 4 Shri Sai Samarth A,Sai Jeet Service Centre
-OM ENTERPRISES,Vikas  Laxman Jugdar,sumit auto,IM-Independent Mechanic,4.6257E+24,,8828954597,MCO,wai  bavdhan naka  0,
+OM ENTERPRISES,Vikas  Laxman Jugdar,sumit auto,IM-Independent Mechanic,4.63E+24,,8828954597,MCO,wai  bavdhan naka  0,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,SWAMI AUTOMOBILE,Retail,0934DDFD,244967,9860344221,Retail,Near Hanuman Mandir  old chirfad ghar Warora  WARO,swami automobile warora
 Rajdeep Automotives,Thallapally  Raju Goud,new padmaja auto mobiles,IM-Independent Mechanic,4992F448,55875,9490129409,MCO,hydrabad road  medak  medak,New Padmaja Automobiles - Medak
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Suraj Neemkar,IM-Independent Mechanic,F2BE27AD,201271,8341723655,PCMO,shamshabad  shamshabad  shamshabad,Baba Traders-Rtc ''x Road
@@ -13178,7 +13178,7 @@ SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,jk motors,IM-Independent Mechanic,AF
 JS Diesel Spares,DEEPAK  HODE,ROHIT  MAHADIK,IM-Independent Mechanic,1CB176E5,33192,7066851173,PCMO,pune  pune  DHYARI GOWAN,DIAMOND AUTO CENTRE
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,Shiv Auto Parts,Retail,F13325BE,32633,9825282990,Retail,"35,sardar complex, sidhpur cross road  Patan",Shiv Auto PartsPatan
 Rajdeep Automotives,Thallapally  Raju Goud,Govardhan Reddy  M,BIWS-Branded Workshop,26C999DF,232940,9550266555,PCMO,Bandlaguda  Ecil  Hyderabad,M.G.R Car Care Center
-SRI SAINATH AGENCIES,Srinivas goud  burra,Reliable Enterprises,IM-Independent Mechanic,5.81507E+12,232385,9885877862,PCMO,"Madanapalle Road  Haji Yousuf Nagar, Kadiri  0",AP\SNLR\422-POPULAR AUTOMOBILES
+SRI SAINATH AGENCIES,Srinivas goud  burra,Reliable Enterprises,IM-Independent Mechanic,5.82E+12,232385,9885877862,PCMO,"Madanapalle Road  Haji Yousuf Nagar, Kadiri  0",AP\SNLR\422-POPULAR AUTOMOBILES
 Rajdeep Automotives,Thallapally  Raju Goud,Anil K,Retail,94CF0F1E,234328,9866868745,Retail,Nagaram  ECIl  Hyderabad,Avr Automobiles
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Mohamadrafik  Jumaliwala,Retail,75ECF3B1,247171,9824340334,Retail,Karelibaug  Bahucharaji Road  Vadodara,ASHA AUTOMOBILES
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Jayeshbhai Porwal,IM-Independent Mechanic,9D4A239C,15231,9376220053,PCMO,Karelibaug  Bahucharaji road  Vadodara,Neelima Motors
@@ -13236,7 +13236,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,Sai Prakash  K,Retail,F7FC6AD1,234259
 OM ENTERPRISES,Vikas  Laxman Jugdar,ganesan,IM-Independent Mechanic,D98889C1,,8124402245,MCO,pammal  0,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sanket Auto Garage,IM-Independent Mechanic,A8D7C066,34750,9702572344,PCMO,"A 104 , Sheetal Darshan CHS Ltd  Sheetal Nagar , M",Indolube
 JS Diesel Spares,DEEPAK  HODE,Shree Samarth Auto garage,IM-Independent Mechanic,BC45AE5B,33046,7030175429,MCO,Sambhajinager  Chinchwad 19  0,INDUSTRIAL OIL COMPANY
-SHREE KRISHNA AGENCIES,Akil  Dudhwala,Karnataka car care,IM-Independent Mechanic,5.974E+85,14794,7079645330,PCMO,belaspur  belaspur  0,Shree Krishna Power Co  Sales
+SHREE KRISHNA AGENCIES,Akil  Dudhwala,Karnataka car care,IM-Independent Mechanic,5.97E+85,14794,7079645330,PCMO,belaspur  belaspur  0,Shree Krishna Power Co  Sales
 OM ENTERPRISES,Vikas  Laxman Jugdar,Veera car service,IM-Independent Mechanic,B9CCD178,,8015191067,PCMO,Villupuram New Bus Stand Rd  0,
 SRI SAINATH AGENCIES,Srinivas goud  burra,car bank,IM-Independent Mechanic,BBDCD7C5,,8143376842,HDEO-Commercial Vehicle,tadban  19-2-125/B  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,omr bike service,IM-Independent Mechanic,D8C65BBC,,7449175616,MCO,omr  solleganallur  0,
@@ -13436,7 +13436,7 @@ JS Diesel Spares,DEEPAK  HODE,sharthak auto mobile,IM-Independent Mechanic,15784
 SHUBHAM ENTERPRISES,Vinod  Patil,vaibhav motor garage,IM-Independent Mechanic,9C0D601C,,8446875384,PCMO,"at post khambale , vaitarna fata ,kooland  at post",
 JS Diesel Spares,DEEPAK  HODE,Laxmi Mata auto,IM-Independent Mechanic,FBC64E6E,10877,9529312717,PCMO,Hinjewadi aundh road  nare d mart  0,Anand Tempo House
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Aditya Patil,IM-Independent Mechanic,1F41FC69,,9022009798,HDEO-Commercial Vehicle,"Near Machimar Society, Reavas Gaon, Raigad, Mahara",
-Bharat Trading Hub,Default DSR  Bharat Trading Hub,shri kanhaiyya tractor,IM-Independent Mechanic,3.42953E+12,,9420188340,HDEO-Tractor,Shashi nagar  badnera road amravati  0,
+Bharat Trading Hub,Default DSR  Bharat Trading Hub,shri kanhaiyya tractor,IM-Independent Mechanic,3.43E+12,,9420188340,HDEO-Tractor,Shashi nagar  badnera road amravati  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,mahalaxmi Auto Garage ,IM-Independent Mechanic,16A5C3A9,,9890014700,PCMO,MIDC Shiroli  Kolhapur  Kolhapur,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,m r motor ,IM-Independent Mechanic,59FE3036,34134,8169332343,PCMO,navi mumbai  nerul  0,Arham Motors
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,ravi mechanic shop,IM-Independent Mechanic,44EDA707,,8008115131,MCO,anjuman circle  dhurgamma temple  0,
@@ -13444,7 +13444,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,JAY KHODIYAR MOTORA GARAGE,B
 SRI SAINATH AGENCIES,Srinivas goud  burra,raju raju,IM-Independent Mechanic,AB6A0EA8,58162,8179141840,HDEO-Commercial Vehicle,attapur  attapur  Hyderabad,Sri Akhila EnterprisesAttapur
 SRI SAINATH AGENCIES,Srinivas goud  burra,rakesh rakesh,IM-Independent Mechanic,7F8F6D4A,58162,9515168505,PCMO,attapur  attapur  Hyderabad,Sri Akhila EnterprisesAttapur
 Bharat Trading Hub,Default DSR  Bharat Trading Hub,chatrapati garaj,IM-Independent Mechanic,C1009669,,8605910277,MCO,katora road Amravati  katora road Amravati  0,
-SHUBHAM ENTERPRISES,Vinod  Patil,k p garaj,IM-Independent Mechanic,8.3404E+102,,9096555398,PCMO,shreekrushanand housing society  Dasak jailroad na,
+SHUBHAM ENTERPRISES,Vinod  Patil,k p garaj,IM-Independent Mechanic,8.34E+102,,9096555398,PCMO,shreekrushanand housing society  Dasak jailroad na,
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,Tiwari auto care,IM-Independent Mechanic,E1A15E9F,,9824116566,PCMO,opp Vijay party plot  vadnagar Highway - visnagar ,
 Rajdeep Automotives,Abdul  Razak,nabh,IM-Independent Mechanic,D4294512,,9589038449,MCO,bilaspur  bilaspur  0,
 JS Diesel Spares,DEEPAK  HODE,Ravi shop,IM-Independent Mechanic,32636B6B,207799,9561042289,MCO,Dange chok  Thergao  0,FOURTECH AUTO INDUSTRIES PVT LTD - KATRAJ 
@@ -13683,7 +13683,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,uniq motars,IM-Independent M
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Maksud Shaikh,IM-Independent Mechanic,B8F73055,34180,7701800185,MCO,Shafeek Auto Garage - Shop No 4 Om Apt near Garam ,Dhanlaxmi Auto Parts
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,nafiz ahmed,IM-Independent Mechanic,DD932A44,,9565666426,MCO,"bajaj point mohili village, ashalpha ghatkopar  li",
 Anushka Trading,Jagdish  Gangadas Vaishnav,Sai Shraddha Motors,IWS-Independent Workshop,C6D944B8,218165,9156169195,PCMO,API Corner  Aurangab  0,Sai Shraddha Motors N-1
-SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,sri sai ram.motars,IM-Independent Mechanic,8.4844E+13,234953,8985393207,PCMO,tengana  kodad vijeyavda rood cc reddy school opp ,NATIONAL AUTO MOBILES -KODAD
+SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,sri sai ram.motars,IM-Independent Mechanic,8.48E+13,234953,8985393207,PCMO,tengana  kodad vijeyavda rood cc reddy school opp ,NATIONAL AUTO MOBILES -KODAD
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Dharmendra Chaudhary,IM-Independent Mechanic,37F1C285,,8976178048,MCO,"Bajaj point,shop no 2, Dhanalaxmi, mohili village,",
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,shri auto work Gadchiroli ,IM-Independent Mechanic,54521C64,,9421266071,MCO,i t i chok gadchiroli  mul rod Gadchiroli  Gadchir,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Selvaraj  A,Retail,9CD877E9,34752,9820462037,Retail,Sai Auto Services - Shop No 30  Laxminarayan Compl,Sai Auto Services
@@ -13749,7 +13749,7 @@ Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mahesh work shop ,IM-Indepen
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mahesh work shop se,IM-Independent Mechanic,EECFD9C7,,9823312908,MCO,Bajar samiti complex Chamorshi  Gadchiroli rod Cha,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Mahesh work shop ,Retail,AEC52F7F,244502,8767052687,Retail,Bajar samiti complex Chamorshi  Gadchiroli rod Cha,Yuvraj Automobile Chamorshi
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Prabhunath Goud,IM-Independent Mechanic,6C7CEDC4,221664,9923076994,MCO,New Anita Auto Parts - Shop No 18 Anjur Phata  Bhi,shree vinayak auto parts
-George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Shyam prajapati ,IM-Independent Mechanic,2.458E+57,,9082559919,MCO,"madur auto parts, shop no 16/17,nav omkar society ",
+George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Shyam prajapati ,IM-Independent Mechanic,2.46E+57,,9082559919,MCO,"madur auto parts, shop no 16/17,nav omkar society ",
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Aniket Vishwakarma ,IM-Independent Mechanic,A2CA64D2,221664,7038461381,MCO,New Anita Auto Parts - Shop No 18 Anjur Phata  Bhi,shree vinayak auto parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,AMRUTKAR AUTOWORK,IM-Independent Mechanic,401DF522,,8806293521,MCO,t point Chowk  Nagbhid  NAGBHID,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Gokul motor service,IM-Independent Mechanic,DF74D925,84592,9925169073,PCMO,fatepura  Batkvada road  0,SHRI AMBE SALES AGENCY 
@@ -15226,12 +15226,12 @@ SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,babasaiauto care,IM-Independent Mec
 JS Diesel Spares,DEEPAK  HODE,AKSHYA DHILE,IM-Independent Mechanic,6CAB77BE,33046,8482826547,MCO,pune  Pune  DHANKWADI,INDUSTRIAL OIL COMPANY
 SRI SAINATH AGENCIES,Srinivas goud  burra,P V V  satyanarayana,BIWS-Branded Workshop,CDD91F58,235295,9849198471,MCO,bn reddy nagar  vanastalipuram,VASAVI BIKE POINT_VANASTALIPURAM
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,shee shiriniwasa car care,IM-Independent Mechanic,44A43F0E,55450,8208354917,PCMO,chandan nagar  lingampali haydrabad  0,SRI SAI KRISHNA AUTO WORKS - MIYAPUR
-Sukan Incorporation,Pranav  Trivedi,KANANI DHAVAL,IM-Independent Mechanic,9.476E+75,,7046155354,HDEO-Tractor,JAMAVADA ROAD  GIR GADHADA  GIR GADHADA,
+Sukan Incorporation,Pranav  Trivedi,KANANI DHAVAL,IM-Independent Mechanic,9.48E+75,,7046155354,HDEO-Tractor,JAMAVADA ROAD  GIR GADHADA  GIR GADHADA,
 Sukan Incorporation,Pranav  Trivedi,Pranami auto,IM-Independent Mechanic,3FBF2F3A,,9428226252,MCO,Anand bangla chok  0,
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,SHANKER LAL KURLEAY,Retail,FFF5E267,233880,8919086460,Retail,Sagar road  bn reddy,THULJABHAVANI OIL AUTOMOBILES_BN REDDY NAGAR
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,nakerakanti  shiva,IM-Independent Mechanic,B33780BC,235178,9014523917,PCMO,bn reddy nagar  Sagar road  hyderabadh,SRI MAHESH AUTO PARTES_AUTONAGAR
 Rajdeep Automotives,Abdul  Razak,MJS,IM-Independent Mechanic,B8A609B2,237937,8977556155,PCMO,75 Feet road  0,Sri Sai Teja Automobiles -Moula Ali
-OM ENTERPRISES,Vikas  Laxman Jugdar,mass wprkshop,IM-Independent Mechanic,5.0242E+99,,9976331889,MCO,"no,126,perumalkovil street ,varathapuram  kanchipu",
+OM ENTERPRISES,Vikas  Laxman Jugdar,mass wprkshop,IM-Independent Mechanic,5.02E+99,,9976331889,MCO,"no,126,perumalkovil street ,varathapuram  kanchipu",
 JS Diesel Spares,DEEPAK  HODE,BABAN THOBARE,IM-Independent Mechanic,4CD91EE4,33046,9850717075,MCO,pune  pune  DATTWADI,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,Sanjay  PAWAR,IM-Independent Mechanic,0033B1BB,33046,9822783752,MCO,pune  pune  Nal stop,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,BIPIN  SOMARNE,IM-Independent Mechanic,67519F29,33046,8308311649,MCO,pune  pune  DATTWADI,INDUSTRIAL OIL COMPANY
@@ -15363,7 +15363,7 @@ Bharat Trading Hub,Default DSR  Bharat Trading Hub,pawan automobile,Retail,266BE
 OM ENTERPRISES,Vikas  Laxman Jugdar,sai motors,IM-Independent Mechanic,2F47973D,,9762187603,PCMO,ap shirwal pandharpur phata  0,
 Sukan Incorporation,Pranav  Trivedi,jsd car car,IM-Independent Mechanic,9CD7A7DB,,6353574928,PCMO,jamnagar  jamnagar  0,
 JS Diesel Spares,DEEPAK  HODE,Kalasagar,IM-Independent Mechanic,580E7B70,,7972949575,MCO,Indrayaninagar Pune 411026  0,
-Rajdeep Automotives,Thallapally  Raju Goud,EJR ENTERPRISES,IM-Independent Mechanic,1.144E+91,246604,9505584021,HDEO-Commercial Vehicle,PEDDAPALLI PEDAKALUWALA  PEDDAPALLI PEDAKALWLA  0,Sri Raja Rajeshwara Auto Mobiles
+Rajdeep Automotives,Thallapally  Raju Goud,EJR ENTERPRISES,IM-Independent Mechanic,1.14E+91,246604,9505584021,HDEO-Commercial Vehicle,PEDDAPALLI PEDAKALUWALA  PEDDAPALLI PEDAKALWLA  0,Sri Raja Rajeshwara Auto Mobiles
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Chandan Maurya,IM-Independent Mechanic,EFE9AED7,39998,8172979289,MCO,shop 10 Gurumauli apt nagaon road  Uran Raigad  Ur,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,perfect auto ,IM-Independent Mechanic,B726EE43,34067,9823588000,PCMO,shantinagar  Ulhasnagar  Ulhasnagar,Shree Mahadev Lubricants
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,anshu automobile ,IM-Independent Mechanic,E5093C9F,246133,7769883543,MCO,ballarsha raod  man road  rajura,shree automobile warora
@@ -15522,7 +15522,7 @@ OM ENTERPRISES,Vikas  Laxman Jugdar,vijay motors,IM-Independent Mechanic,50F227D
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,j d s tyre sales and services,IM-Independent Mechanic,FB35E231,14794,8882998057,MCO,phulaparas  0,Shree Krishna Power Co  Sales
 OM ENTERPRISES,Vikas  Laxman Jugdar,Friends Auto Works,IM-Independent Mechanic,46EF380C,,9566186660,PCMO,Plot No 21  Kalaignar St Kalliamman Nagar  0,
 Rajdeep Automotives,Thallapally  Raju Goud,maruthi automobils,IM-Independent Mechanic,A384936E,246604,9989170234,HDEO-Tractor,peddapalli  Peddapalli  0,Sri Raja Rajeshwara Auto Mobiles
-SHUBHAM ENTERPRISES,Vinod  Patil,shree guru datt motors,IM-Independent Mechanic,4.896E+222,,9325520047,PCMO,nashik patardi phata  0,
+SHUBHAM ENTERPRISES,Vinod  Patil,shree guru datt motors,IM-Independent Mechanic,4.90E+222,,9325520047,PCMO,nashik patardi phata  0,
 Rajdeep Automotives,Abdul  Razak,balram gerej,IM-Independent Mechanic,0B38E528,233940,7477069587,HDEO-Commercial Vehicle,namna kala  namna kala  0,Nationalautomobiles
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Jay Kali workshop,IM-Independent Mechanic,48C493B1,219495,9925842601,PCMO,pandesara  0,Mistry motors
 JS Diesel Spares,DEEPAK  HODE,laxmi auto,IM-Independent Mechanic,1C26806F,199094,9637369632,PCMO,rahatani pune  0,MAULI AUTOMOBILS
@@ -16062,7 +16062,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),Snehal chaudhari,IM-Independent 
 OM ENTERPRISES,Vikas  Laxman Jugdar,C.V.P.N. Cycle works,IM-Independent Mechanic,F0C30ED1,,9884345271,MCO,"6/134 Nakkiren street  Ambal nagar main road,Ekkat",
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Infinity Designs,IM-Independent Mechanic,9739B3BA,93698,9904157386,PCMO,Dev Parisar  0,H P ENTERPRISE (NAROL)
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Ashish Auto Garage,IM-Independent Mechanic,260A008B,33982,9890526210,PCMO,Opp- Experty type writing institute  Gandhi nagar ,Bombay Auto Garage
-Sukan Incorporation,Pranav  Trivedi,my car cer,IM-Independent Mechanic,8.599E+304,,9099701266,PCMO,gandhidham  Maheshwari nagr  0,
+Sukan Incorporation,Pranav  Trivedi,my car cer,IM-Independent Mechanic,8.60E+304,,9099701266,PCMO,gandhidham  Maheshwari nagr  0,
 OM ENTERPRISES,Vikas  Laxman Jugdar,gowtham mechanic,IM-Independent Mechanic,70448DF6,,9790959454,MCO,100 /154 mettu street Ayanavarm  chennai  0,
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,honest auto parts,Retail,283FD332,205934,7698566840,Retail,nandasan road  0,HONEST AUTO PARTS. KADI
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Jayasankar  Alampilly,IM-Independent Mechanic,BC9B9743,,8879024637,PCMO,"Nath Pai Nagar, 90ft road, Ghatkopar East  Nath Pa",
@@ -16325,7 +16325,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,self workshop,IM-Independent Mechanic,3C63
 OM ENTERPRISES,Vikas  Laxman Jugdar,rita,IM-Independent Mechanic,EB36704E,,8446652628,MCO,sath rasta  Modi khana  0,
 JS Diesel Spares,DEEPAK  HODE,shell kharadi,IM-Independent Mechanic,2A6024A3,33046,7507890456,PCMO,Tuscan estate kharadi  0,INDUSTRIAL OIL COMPANY
 Rajdeep Automotives,Thallapally  Raju Goud,MADHU AUTO SPARES,IM-Independent Mechanic,8CB7B00E,239372,9912234899,MCO,"3-4-1/2/C, YADAVANAGAR, JYOTHIRAO PHULE,  KU-MULUG",RAJDEEP AUTOMOTIVES PRIVATE LIMITED MGP -WGL
-Anushka Trading,Jagdish  Gangadas Vaishnav,Sheree Laxmi auto,IM-Independent Mechanic,3.8031E+28,,7773933882,PCMO,sawitri nagar chikalthana Aurangabad  sawitri naga,
+Anushka Trading,Jagdish  Gangadas Vaishnav,Sheree Laxmi auto,IM-Independent Mechanic,3.80E+28,,7773933882,PCMO,sawitri nagar chikalthana Aurangabad  sawitri naga,
 JS Diesel Spares,DEEPAK  HODE,Balkrushna Turkunde,IM-Independent Mechanic,43A791DB,33046,8888684159,MCO,Hadapsar  Mahadev Nagar,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,chaitanya auto,IM-Independent Mechanic,D3972714,33046,8412861041,PCMO,otur  car service  0,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,Ashish halkude,IM-Independent Mechanic,CDED1E0D,205138,9579580889,MCO,Hadapsar  Mahedev Nagar Maheamadwadi,MATOSHRI MOTORS - AMBEGAON 
@@ -16439,7 +16439,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Moh Jama Vadiu Jama ,IM-Independe
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Nikunjkumar patel,Retail,513FCB1F,200134,9925047732,Retail,"8, Ambika shoping  near, Dada bhagvan temple  kamr",
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Praumk motor garej,IM-Independent Mechanic,0DECD35C,257899,9033229288,PCMO,3 MistrySociety bhalaji road anand  0,NEW DIAMOND SALES
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,9carcare,IM-Independent Mechanic,B1B8D4F7,46360,9974443441,PCMO,"Shop No 9, Arat Complex, B/H Durga School,, Nr Rad",MOHAN AUTO MANINAGAR
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),Yash motors,IM-Independent Mechanic,2.7631E+99,219495,9925947979,PCMO,Dindoli surat  0,Mistry motors
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),Yash motors,IM-Independent Mechanic,2.76E+99,219495,9925947979,PCMO,Dindoli surat  0,Mistry motors
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,sunil garage,IM-Independent Mechanic,92584D56,,7867864785,HDEO-Commercial Vehicle,"Surat, Gujarat, India  0",
 Anushka Trading,Jagdish  Gangadas Vaishnav,sanket motors,Retail,8CEEEC57,254235,7620499918,Retail,n1 sidco  N 1sidco  0,Sanket Motors - Cidco N-1
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,vinkteshvara,IM-Independent Mechanic,33BB20A6,15243,6383047063,MCO,mannurpat Chennai  mannurpat Chennai  0,New Star Automobiles
@@ -16464,7 +16464,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Sanket Padale,IM-Independent Mech
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Shamsher Khan,IM-Independent Mechanic,44EDECE9,34088,8828022786,PCMO,Road No 22 Kisan Nagar No 3  Wagle Estate Thane  T,Zero Degree
 OM ENTERPRISES,Vikas  Laxman Jugdar,xgjn,IM-Independent Mechanic,AFA9487F,,9677991310,MCO,fdhkkjiifd136  0,
 JS Diesel Spares,DEEPAK  HODE,Ganesh gaykwad,IM-Independent Mechanic,4E7E2632,33046,9011999111,MCO,kedgoan  kedgoan,INDUSTRIAL OIL COMPANY
-RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,swapna automobile-sircilla ,Retail,7.296E+292,59104,9505473231,Retail,sanjeevaiah nagar  sircilla  sircilla,Sri Laxmi Automobilessircilla
+RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,swapna automobile-sircilla ,Retail,7.30E+292,59104,9505473231,Retail,sanjeevaiah nagar  sircilla  sircilla,Sri Laxmi Automobilessircilla
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Bhagwan  Nagargoje,IM-Independent Mechanic,492D8201,34698,8805651444,PCMO,Khanda colony  Near Kiba Hotel  Panvel,RMBrothers
 MUKTI TRADERS,Kishor  Mahant,Mohinder Autos,Retail,49FC648D,208380,7009961259,Retail,sco 6  motor market  0,ADITYA AUTOMOBILES AUTO CARE CENTER - BHOR 
 OM ENTERPRISES,Vikas  Laxman Jugdar,RK auto courage,IM-Independent Mechanic,90F08816,,9962022624,HDEO-Commercial Vehicle,no78 9th street balamurugan nagar keelkatalai chen,
@@ -16564,7 +16564,7 @@ Gode Engineering Private Limited,UMESH  TEJRAO RAUT,sonu,IM-Independent Mechanic
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Mahesh Parel,IM-Independent Mechanic,145D8050,102827,6353843813,PCMO,adajan  surat  Rakutir,Jay Enterprise Paras(Surat)
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Kishan Randeri,IWS-Independent Workshop,9C4E08D1,84723,9825903164,MCO,karwa road  surat  navnidhi,TRILOK ENTERPRISE
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,shell,IM-Independent Mechanic,A1BD68F1,14524,8511484234,PCMO,"a 35, race course society  subhanpura, vadodarap  ",Shree Maruti AutoSPura
-JS Diesel Spares,DEEPAK  HODE,SHREE SHAURY AOTO CENTER AND S,IM-Independent Mechanic,2.7482E+45,33046,9309051474,MCO,varve khurd tel bhor dist pune  khedshivapur  0,INDUSTRIAL OIL COMPANY
+JS Diesel Spares,DEEPAK  HODE,SHREE SHAURY AOTO CENTER AND S,IM-Independent Mechanic,2.75E+45,33046,9309051474,MCO,varve khurd tel bhor dist pune  khedshivapur  0,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,GIRIDHAR  JADHAV,IM-Independent Mechanic,C071E693,33046,9359720079,MCO,pune  pune  Datt Wadi,INDUSTRIAL OIL COMPANY
 JS Diesel Spares,DEEPAK  HODE,MOHSIN SAYYAD,IM-Independent Mechanic,62C7A520,98536,9561790464,PCMO,pune  pune  DATTWADI,MATAJI AUTO PARTS
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,Senta Bavchand  Ranabhai ,IM-Independent Mechanic,56F4D358,,9518310553,MCO,"Flat no.204 A wing, Vasant Karishma Shantivan CHS,",
@@ -17439,7 +17439,7 @@ MUKTI TRADERS,Kishor  Mahant,M S MOTORS,Retail,1574357,35651,7600137735,Retail,S
 Sukan Incorporation,Pranav  Trivedi,NIMAVAT HITESH SUKHRAM DC CAR ,IM-Independent Mechanic,7481491,,9978471321,PCMO,PUSHKAR DHAM MAIN ROAD NR.PRADHYUMAN HEIGHT  KALAW,
 JS Diesel Spares,DEEPAK  HODE,OM AUTO SPARE,IM-Independent Mechanic,6D5BC56B,33046,8793731242,PCMO,"Sr.no.85, Dadachi Swasti , Lohagao-wagholi Road,  ",INDUSTRIAL OIL COMPANY
 Bharat Trading Hub,Default DSR  Bharat Trading Hub,motors pvt. ltd,IM-Independent Mechanic,66516064,,9284472181,PCMO,shaniwar peth  0,
-SHREE KRISHNA AGENCIES,Akil  Dudhwala,apna motorshop,IM-Independent Mechanic,2.152E+212,258150,9162970460,MCO,shampur  0,JYOTI MOTORS
+SHREE KRISHNA AGENCIES,Akil  Dudhwala,apna motorshop,IM-Independent Mechanic,2.15E+212,258150,9162970460,MCO,shampur  0,JYOTI MOTORS
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,madan Scooters ,IM-Independent Mechanic,FD7842E8,110425,9673421430,MCO,"shop no 3,wasudeo complex  mohapa road  Umred",
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Shaik kareem kareem,BIWS-Branded Workshop,F64EE3BE,206054,9848964404,PCMO,near lic building  lic building  Hyderabad,Royal Mechanic Works
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,SAMSAD  SALMANI,IM-Independent Mechanic,E6E2CBDB,34223,9821267419,MCO,KGN BIKE POINT  VASHI  NAVI MUMBAI,SMB Automobiles
@@ -17796,7 +17796,7 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,M G ENTERPRISE,IM-Independen
 Gode Engineering Private Limited,Manish  Nagorao Kadu,S.S.Automobiles,BIWS-Branded Workshop,ACAB296A,,8080211723,MCO,Lalganj bharti wada  Police chowki  Nagpur,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,SONU AUTOMOBILE,IM-Independent Mechanic,BBB98B5F,236382,9404430447,PCMO,MAIN CHANDRAPUR ROAD  GADCHIROLI  GADCHIROLI,Dayan automobile Gadchiroli
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,VINAYAK MOTOR GARAGE ,IM-Independent Mechanic,0BE54DE0,46522,8511533488,HDEO-Commercial Vehicle,"opp. saubhagya hotel, aslali sp ring road,  Aslali",SHREEJI AUTO PARTSASALALI
-Super Lubricants,Arif  Belim,SHREE  GAYATRI MOTORS,Retail,5.5414E+36,37022,9924003252,Retail,GIDC  Near Fire  station  Ankleshwar,Shree Gayatri Motors
+Super Lubricants,Arif  Belim,SHREE  GAYATRI MOTORS,Retail,5.54E+36,37022,9924003252,Retail,GIDC  Near Fire  station  Ankleshwar,Shree Gayatri Motors
 Rajdeep Automotives,Thallapally  Raju Goud,suresh kudupudi,Retail,FB7840DA,234509,8008783444,Retail,kukatpally  yellammabanda  Hyderabad,RAM SAI AUTO MOBILES
 MUKTI TRADERS,Kishor  Mahant,PRANAM AUTO GARAGE & SERVICE,Retail,ACF84136,203568,9974675360,Retail,"GF/18, ARTH AMBOSIYA SAMA SAVLI ROAD  VADODARA  VA",PRANAM AUTO GARAGE & SERVICE STATION
 Rajdeep Automotives,Thallapally  Raju Goud,Shine  motors,BIWS-Branded Workshop,B71D4E2F,234095,9000106868,PCMO,Boinpally  daily from rod  Hyderabad,Shine Motors- Tirumalgiri
@@ -18063,7 +18063,7 @@ JS Diesel Spares,DEEPAK  HODE,Firaq Contractor,IM-Independent Mechanic,260143FC,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Shitalben Patel,IM-Independent Mechanic,5E756394,14544,9712567759,MCO,Valetava  Valetava,Sunil Auto Parts
 Anushka Trading,Jagdish  Gangadas Vaishnav,new milan auto,IWS-Independent Workshop,C2BA59BF,216833,9579688830,MCO,Dc petrol pump jalna  Dc petrol pump jalana  Jalna,New Milan Auto workshop
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),prashant  bhai ,IM-Independent Mechanic,05B319C1,224429,9824183446,HDEO-Commercial Vehicle,road no. 7 Udhna station road  Udhna udhyogngar Su,MANOJ AUTOMOBILES (SURAT)
-SHREE KRISHNA AGENCIES,Akil  Dudhwala,Prasad Balan Vadkkan,BIWS-Branded Workshop,7.435E+271,110889,9638100483,PCMO,Pramukh motor garage  nr janvi party plot  Dabhan,Pramukh Motor Garage
+SHREE KRISHNA AGENCIES,Akil  Dudhwala,Prasad Balan Vadkkan,BIWS-Branded Workshop,7.44E+271,110889,9638100483,PCMO,Pramukh motor garage  nr janvi party plot  Dabhan,Pramukh Motor Garage
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,DAYYAN AUTOMOBILE SPARE,IM-Independent Mechanic,2F128BCF,237943,9096360526,HDEO-Commercial Vehicle,Beside HDFC BANK  MUL ROAD GADCHIROLI  GADCHIROLI,"Gurumauli Automobiles.ganpati nagar, godhni road"
 JS Diesel Spares,DEEPAK  HODE,Deep Auto Agency,IM-Independent Mechanic,6F41A631,,9168338989,MCO,"1,Gangs niwas, holevasti, undri  Pune  Pune",
 JS Diesel Spares,DEEPAK  HODE,TORQUE CAR CLINIC,IWS-Independent Workshop,C2974D3E,113176,8805311535,PCMO,Handewadi  Pune  Pune,TORQUE CAR CLINIC - HANDEWADI 
@@ -18219,7 +18219,7 @@ MUNOT BROTHERS,AZARUDDIN  SHAIKH,DESHMUKH AUTOMOBILE,IM-Independent Mechanic,A5D
 Rajdeep Automotives,Thallapally  Raju Goud,kalva  krishna,IM-Independent Mechanic,76504DFE,251321,9966775525,MCO,tandoooru  tandooru,Krishan Auto Mobiles
 MUKTI TRADERS,Kishor  Mahant,Bhudev auto garage ,IM-Independent Mechanic,D5247852,35586,9879445160,MCO,"14seth serry opp police station  nasvadi, chhota u",Panchal Hardware
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Suchit Thakkar,Retail,9D5F75C6,15258,9879619933,Retail,yamaha workshop  halol  halol,Shree Balaji Automobiles
-SRI SAINATH AGENCIES,Srinivas goud  burra,yerra chandhu,IM-Independent Mechanic,2.3094E+32,,9533266351,PCMO,mansoorabadh  lb nagar,
+SRI SAINATH AGENCIES,Srinivas goud  burra,yerra chandhu,IM-Independent Mechanic,2.31E+32,,9533266351,PCMO,mansoorabadh  lb nagar,
 Rajdeep Automotives,Thallapally  Raju Goud,Sri shanumuka automobile,Retail,645E81B3,199638,9908792515,Retail,"shop no,10-4-4/D  mahabubnagar  yenugonda",Sri Shanmukha Automobiles
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,SANDEEP PAL,IM-Independent Mechanic,64C986BE,34445,9137072334,PCMO,karjat road  Badlapur  Badlapur,Shree Samarth Krupa Automobile and Service Centre
 Bharat Trading Hub,Akash  Telang,CHAUDHARY BIKE CARE,IM-Independent Mechanic,1E13813D,,7620803517,MCO,Frezarpura  Old By Pass Road  Amravati,
@@ -18247,7 +18247,7 @@ Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shree Sai Automobile,Retail,
 MUKTI TRADERS,Kishor  Mahant,SHREE UMIYA BATTARY,Retail,9779C87E,88259,9879555268,Retail,Indu chaha  house  chhani jakatnaka Vadodara  Vado,Shree Umiya Battery
 Sukan Incorporation(Surat),CHINTAN  PATEL,GOURANG  PATEL,BIWS-Branded Workshop,4846671C,219491,8866687771,MCO,"152,shiv nagar, hii G H B road  Surat Gujarat  Sur",guru motors
 Anushka Trading,Jagdish  Gangadas Vaishnav,Rushi Auto Garkheda,IM-Independent Mechanic,5192CFB2,,9552278985,MCO,Sutgirni chouk  sutgirni chouk  Aurangabad,
-Sukan Incorporation,Pranav  Trivedi,BHALODIYA NANA LAL ,IM-Independent Mechanic,2.0695E+43,,9925799226,HDEO-Commercial Vehicle,NEW MAYUR AUTO  GUPT GANGA COMPLEX GADU  GADU,
+Sukan Incorporation,Pranav  Trivedi,BHALODIYA NANA LAL ,IM-Independent Mechanic,2.07E+43,,9925799226,HDEO-Commercial Vehicle,NEW MAYUR AUTO  GUPT GANGA COMPLEX GADU  GADU,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Prabhudayal Arya,IM-Independent Mechanic,611362F6,33903,8767139999,MCO,Nepali road  Kalyan  Kalyan,Mahavir Automobile
 MUKTI TRADERS,Kishor  Mahant,Sufiyan auto garage ,IM-Independent Mechanic,832E4B2F,35873,8141251051,PCMO,Harvant chhotaudepur  chhotaudepur vadodra  chhota,AARIF AUTO CENTER
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Sandesh Automobiles ,IM-Independent Mechanic,4.51E+216,,9850281687,MCO,Near Lathiwala Petrol Pump  Darvha Road Yavatmal  ,
@@ -19221,7 +19221,7 @@ OM ENTERPRISES,Vikas  Laxman Jugdar,Nandkumar Patil ,IM-Independent Mechanic,6E6
 Pin-416012  ",
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,vikas  baghele,IM-Independent Mechanic,4B31959D,,9766787960,MCO,trimurti nagar  Nagpur,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,rajkumar shivghare,IM-Independent Mechanic,F48D2349,,8329239836,MCO,Raj scooter swalambi nagar nagpur  Nagpur,
-Anushka Trading,Jagdish  Gangadas Vaishnav,Gajanan service center,IM-Independent Mechanic,8.9928E+25,,8805680001,MCO,Devlai  Aurangabad,
+Anushka Trading,Jagdish  Gangadas Vaishnav,Gajanan service center,IM-Independent Mechanic,8.99E+25,,8805680001,MCO,Devlai  Aurangabad,
 MUKTI TRADERS,Kishor  Mahant,mehual  raval,IM-Independent Mechanic,7CE4ED79,234498,9974186880,MCO,raooura  main road  vadodara,ATMIY MOTOR
 JS Diesel Spares,DEEPAK  HODE,NAIVN GUPTA,IM-Independent Mechanic,1E0A2539,113146,8055612377,PCMO,pune  PUNE  HADAPSAR,K.M.CORPORATION - FURSUNGI ROAD
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,MAHENDRAKUMAR SAVLIYA,Retail,A7C8377E,111239,9824024163,Retail,MEMCO CROSS ROAD MEGHANINAGAR  AHMEDABAD,SHREENATHJI AUTO PARTS
@@ -19313,13 +19313,13 @@ Concept Motorbike Company Pvt Limited,Jasmin  Patel,KAMLESHKUMAR CHOUDHARY,IM-In
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Aashish  pande,Retail,1CA35FE1,110425,7083848796,Retail,reshimbag square  Nagpur,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Gayatri Tractors Babhulgaon ,IM-Independent Mechanic,4A74844B,,9890979358,MCO,Dhamangaon Road  Near APMC Babhulgaon  Babhulgaon,
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,ellora enterprises,IM-Independent Mechanic,71D2F676,,9594728987,MCO,sarvoday nagar near nahur station mulund icici ban,
-SRI SAINATH AGENCIES,Srinivas goud  burra,SRIRAM GARAGE,IM-Independent Mechanic,2.87869E+14,,6302562062,HDEO-Tractor,BHASKAR RANGA STREET NAWABPET NELLORE  BHASKAR RAN,
+SRI SAINATH AGENCIES,Srinivas goud  burra,SRIRAM GARAGE,IM-Independent Mechanic,2.88E+14,,6302562062,HDEO-Tractor,BHASKAR RANGA STREET NAWABPET NELLORE  BHASKAR RAN,
 SRI SAINATH AGENCIES,Srinivas goud  burra,kudukuntla rajashekar,IM-Independent Mechanic,1E3262D0,,7207710843,MCO,near vijetha market  pragathi nagar  Hyderabad,
 SRI SAINATH AGENCIES,Srinivas goud  burra,WELCOME GARRAGE,IM-Independent Mechanic,AEF6396A,233803,9849195327,PCMO,AUTO NAGAR  NEAR EDGAH AUTO NAGAR  KURNOOL,GOEL SONS_AUTONAGAR
 Rajdeep Automotives,Thallapally  Raju Goud,sadhana motores ,Retail,6A5919F9,55455,9030663200,Retail,opp.new busstand  hyderabad road siddipet  siddipe,Sadhana Motors - Siddipet
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,venkateswara b/p,Retail,C0F83856,234067,8801407458,Retail,Pragathi nagar  near ambercheruvu  Hyderabad,SRI VENKATESWARA AUTOMOBILES
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,saurabh  gadi,IM-Independent Mechanic,71332670,,9823969549,MCO,sadar nagpur  opp. Poonam arcade  Nagpur,
-Sukan Incorporation,Pranav  Trivedi,SANJAY  AVACHARBHAI KANANI UMA,IM-Independent Mechanic,9.51788E+12,,9824992782,HDEO-Commercial Vehicle,MAHENDRA NAGAR CHOK  CITY  MORBI,
+Sukan Incorporation,Pranav  Trivedi,SANJAY  AVACHARBHAI KANANI UMA,IM-Independent Mechanic,9.52E+12,,9824992782,HDEO-Commercial Vehicle,MAHENDRA NAGAR CHOK  CITY  MORBI,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,kaushik  Dutta,BIWS-Branded Workshop,61B67ED5,237904,9403930396,MCO,vaishali nagar bus stop  sugat plaza  Nagpur,"New Shree guru , vaishali nagar"
 JS Diesel Spares,DEEPAK  HODE,MANESH MALSHE,IM-Independent Mechanic,9802E59D,,9822271977,PCMO,pune  pune  PUNE,
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Jyotsnaben Patel,IM-Independent Mechanic,C22458DB,102267,9979238192,PCMO,"krunal Complex, Viramgam  Ahmedabad",Dwarkesh  Enterprise
@@ -19351,7 +19351,7 @@ SHUBHAM ENTERPRISES,Vinod  Patil,chandrakant motor,BIWS-Branded Workshop,854A93A
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Ashwin rao,IM-Independent Mechanic,7842EA25,,9265296060,MCO,"opp,libery gandevi Navsari Gujarat  gandevi",
 MUKTI TRADERS,Kishor  Mahant,Aatmiya Auto Garage,IWS-Independent Workshop,A7F1D170,110846,9979139206,MCO,Sodhalia Chokdi  Gatboriad  Naswadi,Aatmiya Auto Garage
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,arti aito spers parts,IM-Independent Mechanic,BAD7A94C,,9321425206,MCO,"shop.no 3 ,centre point tower,90feet rode, mulund ",
-JS Diesel Spares,DEEPAK  HODE,CHANDRAKANT LADKAT,IM-Independent Mechanic,1.662E+228,,9822543350,MCO,BARAMATI  BARAMATI  BARAMATI,
+JS Diesel Spares,DEEPAK  HODE,CHANDRAKANT LADKAT,IM-Independent Mechanic,1.66E+228,,9822543350,MCO,BARAMATI  BARAMATI  BARAMATI,
 JS Diesel Spares,DEEPAK  HODE,SAGAR JAGTAP,IM-Independent Mechanic,991481F4,,7030982626,MCO,pune  pune  DHANKWADI,
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,karan auto garage,IM-Independent Mechanic,52298EE1,,9028246312,MCO,Shop no 2 Shree niwas nagar moregaon nallasopara E,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Samir  Trivedi,IM-Independent Mechanic,A830AD53,,9825065809,MCO,Kandarp Auto care Prima Shopping center Opp Aisha ,
@@ -19462,7 +19462,7 @@ Rajdeep Automotives,Thallapally  Raju Goud,Jai Hanuman Motors,BIWS-Branded Works
 Super Lubricants,Javed  Shaikh,ambika motors,IM-Independent Mechanic,40261FCF,,9998674553,PCMO,mangrol char rasta  mosali,
 Bharat Trading Hub,Akash  Telang,Yogesh Vibhute,IM-Independent Mechanic,109DCCAC,,9130950164,MCO,Near grampanchayat pinjar  Pinjar,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,S. K. Motors,IM-Independent Mechanic,D846219E,,8983298774,PCMO,Arvi Naka  Arvi Road  Wardha,
-SHREE KRISHNA AGENCIES,Akil  Dudhwala,Miteshkumar A Patel,Retail,6.78161E+13,216250,7573027394,Retail,"Opp bus stand,  Padra  Vadodara",K P Enterprise
+SHREE KRISHNA AGENCIES,Akil  Dudhwala,Miteshkumar A Patel,Retail,6.78E+13,216250,7573027394,Retail,"Opp bus stand,  Padra  Vadodara",K P Enterprise
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Delight auto electrical,IM-Independent Mechanic,396B432D,243456,9768430574,PCMO,JSS ROAD  girgaov  Mumbai,Delight auto electricals
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,DHARMENDRA PAL,Retail,D8241FB3,33913,9172784697,Retail,AIROLI  SEC 19  NAVI MUMBAI,APAuto Garage
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Shiv Automobiles,IM-Independent Mechanic,6CAB0B9E,,9978556463,MCO,"Opp Abhishek Arcade , Chikuvadi Road, Yogichowk  S",
@@ -19583,7 +19583,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),Shree Umiya Auto Electric,IM-Ind
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,samreddy srikanthreddy,IM-Independent Mechanic,C66790C8,58262,9550072500,PCMO,sagr complex  hyderbad,Sree Veerabhadra AutomobilesRam Nagar
 OM ENTERPRISES,Vikas  Laxman Jugdar,Abhay,IM-Independent Mechanic,0BD0F744,,9595385220,MCO,shiro - wadi road. opp. zele collage  jaysingpur,
 OM ENTERPRISES,Vikas  Laxman Jugdar,Vijay  Khare,IM-Independent Mechanic,A70D3C76,,8767447479,MCO,bhunji road bhunji  bhunji,
-Sukan Incorporation(Surat), Adarsh  Maurya (MO),Shree Sai workshop ,IM-Independent Mechanic,3.9881E+67,200189,9574614579,PCMO,bhatar road  Surat  Suraj,KUSHWAHA HARDWARE SEONI MALWA
+Sukan Incorporation(Surat), Adarsh  Maurya (MO),Shree Sai workshop ,IM-Independent Mechanic,3.99E+67,200189,9574614579,PCMO,bhatar road  Surat  Suraj,KUSHWAHA HARDWARE SEONI MALWA
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),New Patel Motor,IM-Independent Mechanic,BD695920,,9426859709,PCMO,"Shop No F2, Shyam Awas, Bhattar , Surat  Surat",
 MUKTI TRADERS,Kishor  Mahant,LUXSARI AUTO,Retail,52D65A82,102817,7226856143,Retail,"JUPITAR CHHOKDI opp, BoB  MAKARPURA  VADODARA",
 Sukan Incorporation,Pranav  Trivedi,PRAVINBHAI PATOLIYA,IM-Independent Mechanic,612A6E5A,,9925579079,PCMO,"Shivam oil, Near liliya chokdi  AMRELI",
@@ -19594,7 +19594,7 @@ MUNOT BROTHERS,AZARUDDIN  SHAIKH,Janta Garrage,IM-Independent Mechanic,4163311,,
 Sukan Incorporation,Pranav  Trivedi,KETAN KUMAR kHUNT,IM-Independent Mechanic,2C4F245D,,7990384734,PCMO,patel moters  JUNAGADH ROAD JETPUR  JETPUR,
 JS Diesel Spares,DEEPAK  HODE,ATUL PATWARI,IM-Independent Mechanic,B32F621E,,9175841271,MCO,pune  pune  WANWADI,
 JS Diesel Spares,DEEPAK  HODE,VAISHALI DOIPHODE,IM-Independent Mechanic,90C3BC0E,99594,9421069750,PCMO,pune  pune  HADAPSAR,OM Lubricant
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Kishan  Rathod,IM-Independent Mechanic,3.3461E+46,228436,7048291729,MCO,"10, Sanskar Shopping centre, Opp. Radhika Bungalow",SIHORI AUTO PARTS
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Kishan  Rathod,IM-Independent Mechanic,3.35E+46,228436,7048291729,MCO,"10, Sanskar Shopping centre, Opp. Radhika Bungalow",SIHORI AUTO PARTS
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Kanaknidhi auto garage ,IM-Independent Mechanic,13A8FF2E,83656,9427883082,MCO,Rander road  Adajan  Surat,SHREE JAY AMBEY OIL DEPO
 Sukan Incorporation,Pranav  Trivedi,YOGRAJSINH MOHANSINH JADEJA AS,IM-Independent Mechanic,C287BBAA,,7874900017,HDEO-Commercial Vehicle,GONDAL ROAD  RAJKOT  RAJKOT,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Rakesh Automobile,Retail,E649A90E,247037,9860329101,Retail,Main Road  Saoner  Saoner,RAKESH AUTOMOBIL SAONER
@@ -19738,7 +19738,7 @@ Sukan Incorporation,Pranav  Trivedi,JAVED THEBA,IM-Independent Mechanic,795025EA
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Nileshkumar P Patel,BIWS-Branded Workshop,C0DD0DDF,217243,9725327777,MCO,BALASINOR  BALASINOR,Ambica Motor  (B.Sinor) - 1
 SHUBHAM ENTERPRISES,Vinod  Patil,Kamruddin Shaikh,IM-Independent Mechanic,2A33FF49,,9850591786,PCMO,"Mansura Chandanpuri Road, Nr. Munna Dharm Kanta, M",
 Bharat Trading Hub,Akash  Telang,Nilesh Joshi,IM-Independent Mechanic,AC13E632,,9822665148,PCMO,Professor colony Akola  Ranpise Nagar  Akola,
-JS Diesel Spares,DEEPAK  HODE,Altaf Jamdar,IM-Independent Mechanic,6.933E+73,,9673246786,PCMO,"Opp.Good Shepherd School, Nr. Nanuman Sweet,  Bija",
+JS Diesel Spares,DEEPAK  HODE,Altaf Jamdar,IM-Independent Mechanic,6.93E+73,,9673246786,PCMO,"Opp.Good Shepherd School, Nr. Nanuman Sweet,  Bija",
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),New Auto Garage,IM-Independent Mechanic,B229DA8A,203622,8469724407,PCMO,"Chikali Vasda Road, Vanlkal,Chikhali,Navsari  Vank",VINAYAK MOTORS (NAVSARI)
 MUKTI TRADERS,Kishor  Mahant,LALABHAI GARAGE,IM-Independent Mechanic,48D7B21E,35875,9624874103,PCMO,Opp. Sangam Hospital  DHOKALIA TRAN Rasta  Bodeli,Mahadev Motors
 OM ENTERPRISES,Vikas  Laxman Jugdar,service plus care,IM-Independent Mechanic,4ADDC7BA,,8208653854,PCMO,kore mangal karyalay  kolhapur bypass Road. siddhi,
@@ -20190,7 +20190,7 @@ SRI SAINATH AGENCIES,Srinivas goud  burra,SRI MULTI CAR SERVICE CENTRE,IM-Indepe
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Dipak dalal,IM-Independent Mechanic,604C5608,,9422734282,PCMO,Mumbai galli  mseb office  amalner,
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,patel automobile,IM-Independent Mechanic,56572BFC,,9426512138,PCMO,patan chnasma hayway  Patan,
 JS Diesel Spares,DEEPAK  HODE,DATTATRAY M JAGDALE JAGDALE ,IM-Independent Mechanic,67F6BFD8,33046,9850067396,MCO,pune  pune  BIBWEWADI,INDUSTRIAL OIL COMPANY
-SRI SAINATH AGENCIES,Srinivas goud  burra,HAMSAVENI TWO WHEELER AUTO WOR,IM-Independent Mechanic,3.866E+298,209146,6305916002,MCO,PALAMANER ROAD  GANAVARAM,One Stop Automobiles
+SRI SAINATH AGENCIES,Srinivas goud  burra,HAMSAVENI TWO WHEELER AUTO WOR,IM-Independent Mechanic,3.87E+298,209146,6305916002,MCO,PALAMANER ROAD  GANAVARAM,One Stop Automobiles
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Salimkhan Rana,IM-Independent Mechanic,6F6777CD,15478,9054901522,PCMO,"Ekta auto garage,Litiya Bhagol,  Anand  ANAND",Amin and Sons
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Amar Automobile,Retail,793E1CFD,237694,9850601373,Retail,Laxminagar  Ramtek road  Mouda,"Amar Automobile, Mauda"
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,Anilkumar Kori,IM-Independent Mechanic,38ADDD74,219666,8306732701,MCO,"Shop No. 26, Sun Real Homes, B/H, Savan Bunglows, ",Laxmi Auto Parts
@@ -20877,7 +20877,7 @@ SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Darshan auto garage ,IM-Independent
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,NARENDRASINH RATHOD,IM-Independent Mechanic,08AF1C37,14794,9924273633,MCO,"Shree Ram motor garage, Valavav crosing  taluko De",Shree Krishna Power Co  Sales
 MUKTI TRADERS,Kishor  Mahant,PRAJAPATI BHARATBHAI PITAMBARB,IM-Independent Mechanic,EFE1A6B6,206970,9904630508,MCO,11 KHODIYAR NAGER SOC-2 NARMADA CANAL  CHHANI  VAD,Umiya Batteries
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,RATNAKAR NAYAK,IM-Independent Mechanic,8BFE4362,,9870319808,MCO,BANDRA  BANDRA  MUMBAI,
-George Oakes Limited ( Mumbai),Bhavesh  Vashiya,yuvraj s Yadav,IM-Independent Mechanic,4.5747E+17,,9820653167,MCO,chembur  chembur  Mumbai,
+George Oakes Limited ( Mumbai),Bhavesh  Vashiya,yuvraj s Yadav,IM-Independent Mechanic,4.57E+17,,9820653167,MCO,chembur  chembur  Mumbai,
 Sukan Incorporation,Pranav  Trivedi,Yogeshbhai Pansara,IM-Independent Mechanic,D565072B,,9909020220,PCMO,"Khodal Motors, Opp. Maldhari Fatak,  Near Gondal C",
 Anushka Trading,Jagdish  Gangadas Vaishnav,Krushna  Uukarde,IM-Independent Mechanic,7A039643,,8999150946,PCMO,Karmad  Main Road  Aurangabad,
 MUKTI TRADERS,Kishor  Mahant,SETCO MOTOR GARAGE,IM-Independent Mechanic,B97F2795,35875,9979396400,HDEO-Commercial Vehicle,OPP. RAILWAY STATION  PATHIKBHAVAN ROAD  CHHOTAUDE,Mahadev Motors
@@ -21676,7 +21676,7 @@ MUKTI TRADERS,Kishor  Mahant,OM AUTO SERVICE,IM-Independent Mechanic,678BD647,35
 Sukan Incorporation,Pranav  Trivedi,classic car,IM-Independent Mechanic,D9EDA823,,9428881856,PCMO,150 FEET RING ROAD  RAIYA CHOWKDI  RAJKOT,
 Rajdeep Automotives,Thallapally  Raju Goud,SRI RUDRA MOTORS,IM-Independent Mechanic,E7590588,233978,9866297675,PCMO,Janapraiya banglows  macha bollaram  Secunderabad,Sri Srinivasa Auto Spares
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,DHARMENDRASINH SOLANKI,IWS-Independent Workshop,4FE8452D,15629,8160007878,MCO,"G/6 CITY CENTER APARTMENT, BESIDE MARKETING YARD, ",Maa Sikotar Auto Garage
-Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Sneha Motors,Retail,9.677E+92,45728,9879089062,Retail,"lbs road, opp. reliance pump,  hirawadi, Ahmedabad",SNEHA AUTOMOBILES
+Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Sneha Motors,Retail,9.68E+92,45728,9879089062,Retail,"lbs road, opp. reliance pump,  hirawadi, Ahmedabad",SNEHA AUTOMOBILES
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,OLISHEIKH SHAIKH,IWS-Independent Workshop,2F79E1E6,11585,9702830070,PCMO,CENTRAL PAZA BLDG  CENTRAL PAZA BLDG  MIRA ROAD,
 Super Lubricants,Talha  Belim,punjab auto,IM-Independent Mechanic,F4417207,,9898981725,HDEO-Commercial Vehicle,jhadeshwar road  bharuch,
 MUKTI TRADERS,Kishor  Mahant,BAJRANG AUTO GARAGE,Retail,3988DD64,35731,9426656686,Retail,BHADRAVA CHOKADI SAVLI  savli  Vadodara,Bajrang Machinery and Electrical Store
@@ -23205,7 +23205,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,Jaswantsinh Ramanlal Parmar Ja,IM-Independ
 Rajdeep Automotives,Thallapally  Raju Goud,vkr motors ,Retail,C5E1D2F0,92426,7730931124,Retail,3-38 bheemavaram khamm  khammam  khammam,V K R AUTOMOBILES - KHM
 RAJDEEP AUTOMOTIVES PRIVATE LIMITED - Karimnagar,Thirupathi  Alli,chandrasekhar ,IM-Independent Mechanic,7EF1155B,251616,9908771130,HDEO-Tractor,3-1/2 kalluru khammam  kalluru  kalluru,FRIENDS TRACTOR GARAGE. PEDDAPALLY
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,AMRISHGIRI GOSWAMI  AMRISHGIRI,IM-Independent Mechanic,0D21D916,215133,9879894641,HDEO-Tractor,LATHIDAD DENA BENK NI BAJUMA  LATHIDAD DENA BENK N,ZamZam Oil Shop
-Rajdeep Automotives,Thallapally  Raju Goud,KGN AUTO MOBILE,Retail,2.5646E+48,55449,9397899755,Retail,shamirpeta road  medchal chekpost  medchal,KGN Automobile - Medchal
+Rajdeep Automotives,Thallapally  Raju Goud,KGN AUTO MOBILE,Retail,2.56E+48,55449,9397899755,Retail,shamirpeta road  medchal chekpost  medchal,KGN Automobile - Medchal
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Ritesh  Patel,IM-Independent Mechanic,872447CA,213396,9978531920,PCMO,Sarkhej dholka road  bakroal circle  Ahmedabad,LUCKY OIL TRADERS
 JS Diesel Spares,DEEPAK  HODE,pranav automobile,IM-Independent Mechanic,18DC9F0A,,7875400199,MCO,tathwade  tathwade,
 JS Diesel Spares,DEEPAK  HODE,shanishwar auto planet,IM-Independent Mechanic,DE424EF0,33046,9850229517,HDEO-Commercial Vehicle,transport nagar nigdi  transport nagar,INDUSTRIAL OIL COMPANY
@@ -23407,7 +23407,7 @@ SHREE KRISHNA AGENCIES,Akil  Dudhwala,FIROJ ALIBHAI MALEK,IM-Independent Mechani
 OM ENTERPRISES,Vikas  Laxman Jugdar,SHUMS CAR CARE,IM-Independent Mechanic,064BD0FD,,9422045786,PCMO,"252 E, WARD JYOTI APPARMENT,GALA NO 12  SHAHU BLOO",
 MUNOT BROTHERS,AZARUDDIN  SHAIKH,Tushar  sapkale,IM-Independent Mechanic,1089145929,,9767977687,MCO,bamnod tal.yawal.dist.jalgaon  bamnod tal.yawal.di,
 JS Diesel Spares,DEEPAK  HODE,GOOD LUCK AUTO CARE,IM-Independent Mechanic,F7481C80,,9923420420,MCO,Pune  Pune  DHANKWADI,
-SRI SAINATH AGENCIES,Srinivas goud  burra,saisannidhi auto works,IM-Independent Mechanic,7.5179E+56,,9030584941,MCO,Borabanda  allapur  Hyderabad,
+SRI SAINATH AGENCIES,Srinivas goud  burra,saisannidhi auto works,IM-Independent Mechanic,7.52E+56,,9030584941,MCO,Borabanda  allapur  Hyderabad,
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Shailesh  Vaniya,IM-Independent Mechanic,0A1350F7,217335,7043331289,MCO,"shop no 1,2, takshshila shopping centre  Nr Galaxy",Om Auto Parts
 MUKTI TRADERS,Kishor  Mahant,Ghaytri auto garage,IM-Independent Mechanic,24CB45BA,35617,7359776231,MCO,"151,kantiyala talav  padra vadodara  padra",Ghanshyam Auto Parts
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,v2 garage,IM-Independent Mechanic,552310FA,,9769465937,MCO,malad  malad  Mumbai,
@@ -23434,7 +23434,7 @@ JS Diesel Spares,DEEPAK  HODE,Balaji Auto Garage,IM-Independent Mechanic,70384B9
 SRI SAINATH AGENCIES,Srinivas goud  burra,SRI SRINIVASA AUTOMOTIVES,IM-Independent Mechanic,4BA051B3,,7396056866,PCMO,BOMBAY ROAD  OPP. M.M. MAHAL  BUCHI REDDY PALEM,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),AUTOMOTIVE,IWS-Independent Workshop,A2F7A367,204134,9687689897,PCMO,"NR/GREEN AVENUE APP,  DHOD DOD RD, SURAT  SURAT",AUTOMOTIVE (SURAT)
 OM ENTERPRISES,Vikas  Laxman Jugdar,MARUTI SERVICE STATION,IM-Independent Mechanic,5C7B770C,,9850147546,PCMO,"OPPSITE,ATRIA HOTEL  SHAHUPURI, KOLHAPUR  KOLHAPUR",
-SRI SAINATH AGENCIES,Srinivas goud  burra,SRI LAKSHMI NARASIMHA AUTOMOBI,IM-Independent Mechanic,5.886E+71,,6304493464,PCMO,MAIN ROAD  OPP. OLD SUB REGISTRAR OFFICE  VINJAMOO,
+SRI SAINATH AGENCIES,Srinivas goud  burra,SRI LAKSHMI NARASIMHA AUTOMOBI,IM-Independent Mechanic,5.89E+71,,6304493464,PCMO,MAIN ROAD  OPP. OLD SUB REGISTRAR OFFICE  VINJAMOO,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,mohammad shalkh,IM-Independent Mechanic,1EE08132,111361,7378653567,MCO,samir spare parts  samir spare  badlapur e  thane,Sai auto Garage
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,Vikash p  Sharma,IWS-Independent Workshop,25DB3372,223990,9099337077,MCO,SHARMA CORNER VISHALNAGAR ROAD  ISANPUR  Ahmedabad,Sharma Auto Center
 JS Diesel Spares,DEEPAK  HODE,PRAVIN PATIL,IWS-Independent Workshop,EEDCA382,33625,9822639113,MCO,pune  Pune  KOTHRUD,ANISH SERVICE POINT
@@ -23496,7 +23496,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,mahalingam mudlear,IM-Independent
 SRI SAINATH AGENCIES,Srinivas goud  burra,SOMASEKHAR MECHANICAL WORKS,IM-Independent Mechanic,57AE6FEA,,8985477399,PCMO,AUTO NAGAR  PHASE II  NELLORE,
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Pravin  Thakre,BIWS-Branded Workshop,75082E6F,238071,8087515438,MCO,Empres mill sociyty shree nagr  Empres mill sociyt,"Dhanshee Automobile, Suyog Nagar, Datt mandir"
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,ARPAN GOHIL,IM-Independent Mechanic,291C3DD3,203562,8758661198,MCO,"23 Indrapuri Shoping Center, Nr Old Bapod  Jakatna",Patel Oil & Battery
-MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,sivssunmugavel mudaliyar,IM-Independent Mechanic,2.35711E+11,255810,9323204172,MCO,Shiva auto centre  shiva auto centre dombivli w  t,s patil automobile
+MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,sivssunmugavel mudaliyar,IM-Independent Mechanic,2.36E+11,255810,9323204172,MCO,Shiva auto centre  shiva auto centre dombivli w  t,s patil automobile
 Sukan Incorporation,Pranav  Trivedi,SHABBIRHUSAIN LOTIYA,IM-Independent Mechanic,B14F48A8,,9428230664,MCO,HAKIMI AUTO  KUVADVA ROAD  RAJKOT,
 Sukan Incorporation,Pranav  Trivedi,MUKESH  KAKANIA,IM-Independent Mechanic,7E2B9B3D,,8758734747,MCO,CHAMUNDA AUTO GARAGE  KUVADVA ROAD  RAJKOT,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Santosh chauhan,IM-Independent Mechanic,B75AB92A,212753,8452801644,MCO,Santosh 2 wheeler garage  Near Accjibimayak ganpat,sahil motors
@@ -23585,7 +23585,7 @@ MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,Balasubramaniam Mudaliyar,IM-Inde
 MUKTI TRADERS,Kishor  Mahant,HARISH H MiSTRY HARIKISHAN,IM-Independent Mechanic,F58AA873,35722,9974039788,PCMO,OPP MANTEL HOSPITAL  ' KARILIBAG  VADODARA,Ganesh Automobiles
 George Oakes Limited ( Mumbai),Ganesh  D KSHIRSAGAR,Surjeet Singh  Godi ,Retail,93C651D9,243552,9869801738,Retail,chembur  chembur  Mumbai,Surjit auto parts
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,anil kumar sahani,IM-Independent Mechanic,A20713C4,,9867774820,PCMO,chembur  chembur  Mumbai,
-JS Diesel Spares,DEEPAK  HODE,SHASHIKANT MAHADIK,IM-Independent Mechanic,AF6C4A9A,,9049121583,MCO,-TILAK ROAD  Pune  SADASHIVPET,
+JS Diesel Spares,DEEPAK  HODE,SHASHIKANT MAHADIK,IM-Independent Mechanic,AF6C4A9A,,9049121583,MCO,#NAME?,
 MUKTI TRADERS,Kishor  Mahant,MACHHI MUKESH NARAYANBHAI,IM-Independent Mechanic,24976D54,35722,9825540340,PCMO,MUKESH MOTOR GF/1PRAMUKH AVANUE B/H ROKADNATH POLI,Ganesh Automobiles
 Rajdeep Automotives,Thallapally  Raju Goud,Abdul  aziz,BIWS-Branded Workshop,EE3AC7F8,56074,8464038399,PCMO,4-732 New hafeez pet martanda nagar  4-732 New haf,Cyber City Services Point - Hafizpet
 OM ENTERPRISES,Vikas  Laxman Jugdar,Abdul Patel,IM-Independent Mechanic,C48EEC27,,9960381885,PCMO,Tal. Karad Dist. Satara  AP Auto Garage Karad ( Pr,
@@ -23824,7 +23824,7 @@ JS Diesel Spares,DEEPAK  HODE,Ramesh Palkar,IM-Independent Mechanic,FC47F0A4,,99
 OM ENTERPRISES,Vikas  Laxman Jugdar,Maruti Auto Nadikinara,IM-Independent Mechanic,149B2AB9,,8806803049,PCMO,Daryache Vadgaon Road  Nadikinara  Nadikinara,
 MUKTI TRADERS,Kishor  Mahant,KHARADI MANOJ THAKORLAL,IM-Independent Mechanic,8F53D481,35583,8866209702,PCMO,HUJRAT TAKRA  FATHAPURA  VADODARA,SWASTIK AUTO PARTS
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,RK BIKE PIONT,BIWS-Branded Workshop,F2EC0E17,58385,9963120758,MCO,moosapet  moosapet  Hyderabad,RK Bike PointMoosapet
-Super Lubricants,Sufiyan  Kazi,Munna Bhai Motors ,IM-Independent Mechanic,1.751E+21,,9998793425,HDEO-Commercial Vehicle,Hotle Prince Compund Highway No 8  Nabipur  Nabipu,
+Super Lubricants,Sufiyan  Kazi,Munna Bhai Motors ,IM-Independent Mechanic,1.75E+21,,9998793425,HDEO-Commercial Vehicle,Hotle Prince Compund Highway No 8  Nabipur  Nabipu,
 JS Diesel Spares,DEEPAK  HODE,GM Lubricants,IM-Independent Mechanic,30654742,,9371559629,HDEO-Commercial Vehicle,"dange chowk,wakad  wakad",
 JS Diesel Spares,DEEPAK  HODE,Lavkush Pandey,IM-Independent Mechanic,B20BA804,,9028807744,PCMO,"KDS Apartment, Kalas-Alandi Road  Near PathanShah ",
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,Abdul hameed Mohammed,IM-Independent Mechanic,C94F1E2F,234205,9346377773,HDEO-Commercial Vehicle,Gandimaisama  Bahadurpally x road  Hyderabad,Sonu Autoparts - Gandimysamma
@@ -23969,7 +23969,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),Bhagwatibhai Sailor,IM-Independe
 SHREE KRISHNA AGENCIES,,MEETULBHAI RABARI,IM-Independent Mechanic,34192EFD,,7874562106,MCO,"near,ganj bazar  opp,deep motors  Anand",
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Dilipkumar Dalsania,IM-Independent Mechanic,9B8A4CD4,,9898262376,PCMO,"Shop no 4 Shiv Chamber  NH 8 GIDC, Vapi  Vapi",
 SRI SAINATH AGENCIES,Srinivas goud  burra,sri umeshwara garage ,IM-Independent Mechanic,FD505002,245427,9966329761,PCMO,autonagar  palamaner,M.P.AUTO AGENCIES_AUTONAGAR
-Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shashikant Lad,IM-Independent Mechanic,9.00383E+14,,9825631971,PCMO,"C7,63,64,opp Advance complex  N. H 8 GIDC Vapi  Va",
+Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Shashikant Lad,IM-Independent Mechanic,9.00E+14,,9825631971,PCMO,"C7,63,64,opp Advance complex  N. H 8 GIDC Vapi  Va",
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,ATUL BHUPENDRABHAI PITHVA  ATU,IM-Independent Mechanic,0470FB89,231831,9033476933,HDEO-Tractor,OPP PETROL PUMP POPAT PARA SOCITY  OPP PETROL PUMP,Maa Bhagvati Auto parts
 Gode Engineering Private Limited,UMESH  TEJRAO RAUT,Vishalbhai Mehta ,IM-Independent Mechanic,D23767C1,,9824419042,PCMO,"Shop no 1,Gopinath Complex  Vapi GIDC, Vapi  39619",
 JS Diesel Spares,DEEPAK  HODE,sai shradhha Automobile,IM-Independent Mechanic,4E5F24CB,,9657115151,MCO,devashri hieghts  sasane rd  pune,
@@ -24983,7 +24983,7 @@ JS Diesel Spares,DEEPAK  HODE,DEEPAK PATKAR,IWS-Independent Workshop,9EAF35EB,24
 OM ENTERPRISES,Vikas  Laxman Jugdar,Yogesh Dalavi,IM-Independent Mechanic,448B0D2B,,7773958966,MCO,Tal. Khatav Dist. Satara  Shri Jyotirling auto Gar,
 MUKTI TRADERS,Kishor  Mahant,VASAVA DEVENDRABHAI  MATHURBHA,IM-Independent Mechanic,55A3D4F2,85521,9909503223,MCO,OPP KAILESHPARTY PLOT  AJWA ROAD  VADODARA,MALVIYA MOTORS
 MUKTI TRADERS,Kishor  Mahant,shivsakti auto garage ,BIWS-Branded Workshop,8DC9CCE8,35796,9712921545,MCO,"khatri maharaj temple,at po sangama tal  padra, va",Shiv Shakti  Auto Parts
-George Oakes Limited ( Mumbai),Bhavesh  Vashiya,vishwanath Shindd,IM-Independent Mechanic,9.5963E+11,,9324304875,PCMO,Goregan  Goregan  Mumbai,
+George Oakes Limited ( Mumbai),Bhavesh  Vashiya,vishwanath Shindd,IM-Independent Mechanic,9.60E+11,,9324304875,PCMO,Goregan  Goregan  Mumbai,
 Sukan Incorporation(Surat), Adarsh  Maurya (MO),Yogesh Bhai Rudani,IM-Independent Mechanic,417BE68D,,8401883199,PCMO,"Adesh Moters,226,Dindayal Society  Near Mashal Cir",
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,MOHAMMAD TOFIQ MEMON,IM-Independent Mechanic,D0941A2B,15292,9824393611,MCO,sidhha sagar complex  station road  KHAMBHAT,Yogesh Auto Parts  Khambhat
 OM ENTERPRISES,Vikas  Laxman Jugdar,Lakman Gunge,IM-Independent Mechanic,7ADF144B,,9168200010,MCO, bazar patangan mangalveda  bazar patangan mangalv,
@@ -25372,7 +25372,7 @@ JS Diesel Spares,DEEPAK  HODE,Kishor Gore,IM-Independent Mechanic,6D8342B4,,9922
 Anushka Trading,Jagdish  Gangadas Vaishnav,Ganesh Pawar,IWS-Independent Workshop,D7FAD8D3,79746,9325221986,PCMO,Pawan Nagar  Jalgaon Road  Aurangabad,New Bajrang Auto Hudco
 Concept Motorbike Company Pvt Limited,Himanshukumar  Gandhi,PRAKASH NARAYANDAS MANGHNANI,Retail,67F0537F,219252,8905855006,Retail,17 BHARAT AMPAIR BULLDING  OPP MANINAGAR POLISH ST,Bharat Auto Sales
 SRI SAINATH AGENCIES,Srinivas goud  burra,Thirupathi Rajesh,BIWS-Branded Workshop,BCA69237,58218,9666182333,PCMO,"Shivaji nagar colony,miryalaguda  Miryalaguda  Mir",Karthikeya MotorsMLG NLG
-OM ENTERPRISES,Vikas  Laxman Jugdar,Rahul Khabale,IM-Independent Mechanic,9.3484E+71,,9422067954,PCMO,Karad (Varungi) Tal. Karad Dist. Satara  My car ca,
+OM ENTERPRISES,Vikas  Laxman Jugdar,Rahul Khabale,IM-Independent Mechanic,9.35E+71,,9422067954,PCMO,Karad (Varungi) Tal. Karad Dist. Satara  My car ca,
 SHUBHAM ENTERPRISES,Vinod  Patil,beeru varma,IM-Independent Mechanic,0132871D,,7235851233,PCMO,satpur Shivaji nagar  near carban naka  nasik,
 Rajdeep Automotives,Thallapally  Raju Goud,Jaganath reddy Gaddam,IM-Independent Mechanic,B8032ADD,,9849103125,PCMO,Alwal  Near Balaji temple  Hyderabad,
 Anushka Trading,Jagdish  Gangadas Vaishnav,Ravi Mhaske,IM-Independent Mechanic,ED790914,,9822812366,PCMO,Jadhav Wadi  Infront of Renuka mata temple  Aurang,
@@ -25395,7 +25395,7 @@ Sukan Incorporation(Surat), Adarsh  Maurya (MO),AnkitKumar  Doshi,IM-Independent
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,VIPUL KUMAR RAMESHBHAI RAVAL,IM-Independent Mechanic,BD1DB304,,9879438812,HDEO-Commercial Vehicle,MEHSANA  MEHSANA  MEHSANA,
 Sukan Incorporation,Pranav  Trivedi,IMRAN  SHAIKH,IM-Independent Mechanic,3B47184C,,9714662217,PCMO,CAPITAL CAR CARE  DIPAK PETROL PUMP PASE SABALPUR ,
 SHREE KRISHNA AGENCIES,,HEMANT KUMAR V  PATEL,IM-Independent Mechanic,900AB60B,,9374631300,PCMO,"Shop NO 2 Puspak Avenue Complex, B/H Aryakanya Vid",
-OM ENTERPRISES,Vikas  Laxman Jugdar,Yashwant Matekar,IM-Independent Mechanic,4.1841E+48,,9890620257,PCMO,Karad (Kolhapur Naka)  Sai Gajanan auto Garage Kar,
+OM ENTERPRISES,Vikas  Laxman Jugdar,Yashwant Matekar,IM-Independent Mechanic,4.18E+48,,9890620257,PCMO,Karad (Kolhapur Naka)  Sai Gajanan auto Garage Kar,
 GOODLUCK AUTO PARTS,Ashishkumar  Patel,PATHAN ISHRKHAN ZAHIRKHAN,IM-Independent Mechanic,C6035B51,,9998387122,HDEO-Commercial Vehicle,Mehsana  Mehsana  Mehsana,
 MANISHA ENTERPRISES,Hanumant Eknath  ' Nipurte,AVINASH  MIRGAL,IM-Independent Mechanic,A6DF63C9,34205,9833744618,PCMO,CAR MART  KHARGHAR BELPADA ROAD NAVI MUMBAI  THANE,Jai Jeevan Ghot Automobiles
 Concept Motorbike Company Pvt Limited,Jasmin  Patel,MILAN  SHAH,Retail,1411DF25,246929,9428997276,Retail,"13-148,Darshan appartment  Nr naran pura telephone",New Shubhlaxmi traders
@@ -25634,7 +25634,7 @@ Anushka Trading,Jagdish  Gangadas Vaishnav,Ashutosh  keley,IM-Independent Mechan
 Rajdeep Automotives,Thallapally  Raju Goud,Jaipal Reddy  Guduru ,BIWS-Branded Workshop,EC21324C,234044,9701444888,PCMO,Kapra  saket towers  Hyderabad,Shivasai Motors
 SHUBHAM ENTERPRISES,Vinod  Patil,aayush natwarlal bora,IM-Independent Mechanic,DB35BD5A,,9271208555,PCMO,4613f dindori road opp navrang hall  panchvati nas,
 SHREE KRISHNA AGENCIES,Akil  Dudhwala,Vijay Auto  Geraj,BIWS-Branded Workshop,EA38ED77,35834,9601682563,MCO,bahuchraji Road  NEAR khashvadi samsan karelibaug ,VIJAY AUTO GARAGE
-JS Diesel Spares,DEEPAK  HODE,RAZZAK SHAIKH,IM-Independent Mechanic,2385105522,33046,9763746715,MCO,-NANAPET  Pune  PUNE,INDUSTRIAL OIL COMPANY
+JS Diesel Spares,DEEPAK  HODE,RAZZAK SHAIKH,IM-Independent Mechanic,2385105522,33046,9763746715,MCO,#NAME?,INDUSTRIAL OIL COMPANY
 Sukan Incorporation,Atik  Kachara,ILYAS KAPA,IM-Independent Mechanic,,,9904941206,HDEO-Commercial Vehicle,SHAIN TRUCK GEREJ  VERAVAL BAY PASS MANGROL  MANGR,
 Rajdeep Automotives,Thallapally  Raju Goud,Ramakrishna  yamjala ,Retail,D8CF49DA,234035,9704785566,Retail,Kapra  hytension line  Hyderabad,Sri Ramamaruthi World
 SHUBHAM ENTERPRISES,Vinod  Patil,Vinay Sonar,IM-Independent Mechanic,BF661D1C,,9850732939,MCO,"Mauli 613/B  Ravivar Peth, Behind hemlata theater.",
@@ -25746,7 +25746,7 @@ Sukan Incorporation,Pranav  Trivedi,Jignesh  Mandpara,Retail,1687284249,67825,99
 SRI SAINATH AGENCIES,SHAIK AZEEM SABARI  DMR,Kondeti Venkateshwarlu,Retail,EB2BBB55,57854,9849181979,Retail,"Beet market,hyd road,nalgonda  Nalgonda,nalgonda  ",Venkateshwara Servicing Centre NLG
 George Oakes Limited ( Mumbai),Bhavesh  Vashiya,SATPAL  SINGH,IM-Independent Mechanic,4680154813,,9819689887,MCO,MIRA ROAD  Mira road  MUMBAI,
 Sukan Incorporation,RAHUL  SHARDA,Jamil  Shaikh,IM-Independent Mechanic,,,9998405354,PCMO,"car care,sagram pura kailash nagar road,  Hebitat ",
-GOODLUCK AUTO PARTS,Ashishkumar  Patel,ANILKUMARKANTILAL PATEL,IM-Independent Mechanic,7.6838E+91,,9879171927,PCMO,UNJHA  UNJHA  UNJHA,
+GOODLUCK AUTO PARTS,Ashishkumar  Patel,ANILKUMARKANTILAL PATEL,IM-Independent Mechanic,7.68E+91,,9879171927,PCMO,UNJHA  UNJHA  UNJHA,
 SHREE KRISHNA AGENCIES,,AMIT PANCHAL,IM-Independent Mechanic,60ADF062,,9726251747,PCMO,"SHOP NO 3 PRIYA AUTO CENTRE  SUNHARI PREMISES, HIG",
 SRI SAINATH AGENCIES,Shaik Abrar  Mohiuddin,Azhar Uddin Md,IM-Independent Mechanic,94E3CAE6,58038,9966887394,PCMO,panjagutta  panjagutta  Hyderabad,SM Auto MobilesBalkampet
 Anushka Trading,Jagdish  Gangadas Vaishnav,Irfan  Bagwan,IM-Independent Mechanic,3421CC12,,8796842313,MCO,shivaji chowk  gangapur  Gangapur,
