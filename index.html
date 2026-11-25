@@ -1796,7 +1796,9 @@ async function openCamera(type){
   try{
     await startCameraStream('user');
   }catch(e){
-    toast('Camera permission denied.'); stopStampClock(); stopGeoWatch();
+    console.error('Camera error:', e.name, e.message);
+    toast('Camera error: ' + e.name);
+    stopStampClock(); stopGeoWatch();
     if(type === 'visitform') goBack();     // back to the filled-in form, nothing sent
     else showScreen('screen-dashboard');
     return;
